@@ -2,7 +2,7 @@
 
 // Base:
 @import 'base/css-reset';
-@import 'base/typogrophy';
+@import 'base/typography';
 
 // Components:
 @import 'components/buttons';
@@ -21,3 +21,7 @@
 // Pages:
 
 // Vendors:
+
+body {
+    color: #fff;
+}
