@@ -1,0 +1,12 @@
+html {
+    font-size: 16px;
+}
+
+p {
+    font-family: $sans-serif;
+    line-height: 1.5em;
+}
+
+p.paragraph {
+    max-width: 63ch;
+}

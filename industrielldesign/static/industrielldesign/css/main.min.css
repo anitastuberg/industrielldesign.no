@@ -45,11 +45,39 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-a {
-  border-bottom: 1px solid #0093bc;
-  transition: color 200ms ease-in-out; }
+html {
+  font-size: 16px; }
 
-a:hover {
-  color: #0093bc; }
+p {
+  font-family: "Helvetica", Helvetica;
+  line-height: 1.5em; }
+
+p.paragraph {
+  max-width: 63ch; }
+
+a {
+  transition: color 200ms ease-in-out;
+  text-decoration: none;
+  font-family: inherit;
+  color: #0093bc;
+  position: relative;
+  transition: color 150ms 50ms ease-in-out;
+  overflow: hidden; }
+  a:visited {
+    color: #0093bc; }
+  a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    z-index: -1;
+    background-color: #0093bc;
+    transition: transform 200ms ease-in-out;
+    transform: scaleX(0);
+    transform-origin: bottom left; }
+  a:hover::before {
+    transform: scaleX(1); }
 
 /*# sourceMappingURL=main.min.css.map */

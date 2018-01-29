@@ -1,10 +1,35 @@
 a {
-    border-bottom: 1px solid $leo-blue;
     transition: color 200ms ease-in-out;
     text-decoration: none;
-    font-family: $sans-serif;
+    font-family: inherit;
+    color: $leo-blue;
+    position: relative;
+    transition: color 150ms 50ms ease-in-out;
+    overflow: hidden;
+
+    &:visited {
+        color: $leo-blue;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        z-index: -1;
+        background-color: $leo-blue;
+        transition: transform 200ms ease-in-out;
+        transform: scaleX(0);
+        transform-origin: bottom left;
+    }
+
+    &:hover {
+
+        &::before {
+           transform: scaleX(1);
+        }
+    }
 }
 
-a:hover {
-    color: $leo-blue;
-}
