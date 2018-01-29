@@ -1,4 +1,9 @@
-// Main css stylesheet, should only contain @imports
+
+
+// Helpers:
+@import 'helpers/functions';
+@import 'helpers/mixins';
+@import 'helpers/variables';
 
 // Base:
 @import 'base/css-reset';
@@ -7,11 +12,8 @@
 // Components:
 @import 'components/buttons';
 @import 'components/navigation';
+@import 'components/links';
 
-// Helpers:
-@import 'helpers/functions';
-@import 'helpers/mixins';
-@import 'helpers/variables';
 
 // Layout:
 @import 'layout/footer';
@@ -21,7 +23,3 @@
 // Pages:
 
 // Vendors:
-
-body {
-    color: #fff;
-}

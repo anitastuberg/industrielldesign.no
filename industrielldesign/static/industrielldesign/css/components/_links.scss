@@ -1,0 +1,10 @@
+a {
+    border-bottom: 1px solid $leo-blue;
+    transition: color 200ms ease-in-out;
+    text-decoration: none;
+    font-family: $sans-serif;
+}
+
+a:hover {
+    color: $leo-blue;
+}

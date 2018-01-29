@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +9,12 @@
 
     <title>Leonardo</title>
 
-    <link rel="stylesheet" href="{% statitc 'industrielldesign/css/main.min.css'">
+    <link rel="stylesheet" href="{% static 'industrielldesign/css/main.min.css' %}">
+
+    <script src="{% static 'industrielldesign/jquery/jquery.min.js' %}"></script>
 </head>
 <body>
     {% block content %}{% endblock content %}
+    <script src="{% static 'industrielldesign/js/index.js' %}"></script>
 </body>
 </html>
