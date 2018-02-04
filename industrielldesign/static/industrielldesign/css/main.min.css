@@ -48,6 +48,10 @@ table {
 html {
   font-size: 16px; }
 
+h1 {
+  font-family: "Helvetica", Helvetica;
+  font-size: 2rem; }
+
 p {
   font-family: "Helvetica", Helvetica;
   line-height: 1.5em; }
@@ -59,18 +63,17 @@ a {
   transition: color 200ms ease-in-out;
   text-decoration: none;
   font-family: inherit;
-  color: #0093bc;
   position: relative;
   transition: color 150ms 50ms ease-in-out;
   overflow: hidden; }
-  a:visited {
+  a, a:visited {
     color: #0093bc; }
   a::before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 2px;
+    height: 1px;
     width: 100%;
     z-index: -1;
     background-color: #0093bc;
@@ -79,5 +82,82 @@ a {
     transform-origin: bottom left; }
   a:hover::before {
     transform: scaleX(1); }
+
+#hamburger {
+  cursor: pointer;
+  position: absolute;
+  height: 28px;
+  width: 40px;
+  top: 2rem;
+  right: 2rem; }
+  #hamburger .bar {
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 4px;
+    background-color: #0093bc;
+    border-radius: 2px; }
+    #hamburger .bar:first-child {
+      transform-origin: 0 0; }
+    #hamburger .bar:nth-child(2) {
+      width: 30px;
+      margin-left: 10px;
+      top: 12px;
+      margin-right: -2px; }
+    #hamburger .bar:last-child {
+      width: 35px;
+      top: 24px;
+      margin-left: 5px;
+      transform-origin: 40px 0; }
+    #hamburger .bar.open:first-child {
+      transform: translateX(7px) rotate(45deg);
+      transition: transform 0.15s 0.15s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
+    #hamburger .bar.open:nth-child(2) {
+      top: 0;
+      opacity: 0;
+      transition: top 0.15s, opacity 50ms 0.15s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
+    #hamburger .bar.open:last-child {
+      top: 0;
+      transform: translateX(-7px) rotate(-45deg);
+      transition: 0.15s, transform 0.15s 0.15s, width 0.15s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      width: 40px;
+      margin-left: 0; }
+    #hamburger .bar.closed:first-child {
+      transform: rotate(0deg);
+      transition: transform 0.15s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
+    #hamburger .bar.closed:nth-child(2) {
+      top: 12px;
+      opacity: 1;
+      transition: top 0.15s 0.15s, opacity 50ms 0.15s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
+    #hamburger .bar.closed:last-child {
+      top: 24px;
+      transform: rotate(0deg);
+      width: 35px;
+      margin-left: 5px;
+      transition: 0.15s 0.15s, transform 0.15s, width 0.15s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 /*# sourceMappingURL=main.min.css.map */
