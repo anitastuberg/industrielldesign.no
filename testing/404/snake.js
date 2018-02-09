@@ -8,8 +8,12 @@ let cellCount = 50;
 let gameStarted = false;
 let gameFinished = false;
 let logoSize = cellSize * 5;
-let speed = 100;
+let speed = 20;
+let framerate = 1;
+let counter = 0;
 let score = 0;
+let scoreDOM = $('#score');
+let scoreDIV = $('#leo-snake__score');
 
 let validPos = false;
 
@@ -26,8 +30,9 @@ function drawSquare(x, y, colour) {
     ctx.fillRect(x, y, cellSize, cellSize);
 }
 
-$(document).keyup(function (e) {
+$(document).keydown(function (e) {
     let key = e.which;
+
     if ((key === 37 || key === 38 || key === 39 || key === 40)) {
         if (!gameStarted) {
             gameStarted = true;
@@ -94,6 +99,8 @@ function backgroundAnimation() {
 
     if (fillSize < backgroundSize + 100) {
         requestAnimationFrame(backgroundAnimation);
+    } else {
+        scoreDIV.show();
     }
 }
 
@@ -152,31 +159,28 @@ class Snake {
 
             for (let i = 0; i < this.snake.length - 1; i++) {
                 ctx.fillStyle = 'white';
-                ctx.fillRect(this.snake[i].x, this.snake[i].y, cellSize -2, cellSize -2);
+                ctx.fillRect(this.snake[i].x, this.snake[i].y, cellSize - 2, cellSize - 2);
             }
         }
     }
 
     move() {
-        if (this.direction === 'up' ) {
+        if (this.direction === 'up') {
             this.snake.unshift({
                 x: this.snake[0].x,
                 y: this.snake[0].y - cellSize
             });
-        }
-        else if (this.direction === 'right' ) {
+        } else if (this.direction === 'right') {
             this.snake.unshift({
                 x: this.snake[0].x + cellSize,
                 y: this.snake[0].y
             });
-        }
-        else if (this.direction === 'down' ) {
+        } else if (this.direction === 'down') {
             this.snake.unshift({
                 x: this.snake[0].x,
                 y: this.snake[0].y + cellSize
             });
-        }
-        else if (this.direction === 'left' ) {
+        } else if (this.direction === 'left') {
             this.snake.unshift({
                 x: this.snake[0].x - cellSize,
                 y: this.snake[0].y
@@ -233,7 +237,11 @@ class Apple {
 
     draw() {
         ctx.fillStyle = 'white';
-        ctx.fillRect(this.applePos.x, this.applePos.y, cellSize - 2, cellSize - 2);
+        if (!gameFinished) {
+            ctx.fillRect(this.applePos.x, this.applePos.y, cellSize - 2, cellSize - 2);
+        } else {
+            ctx.fillRect(this.applePos.x, this.applePos.y, cellSize, cellSize);
+        }
     }
 
     updatePos() {
@@ -264,11 +272,12 @@ class Apple {
                 }
                 appleEaten = true;
                 break;
-            } 
+            }
         }
         if (appleEaten) {
             score++;
-            speed *= 2;
+            scoreDOM.text(score);
+            speed -= 1;
             this.updatePos();
         } else {
             snake.snake.pop();
@@ -283,7 +292,7 @@ let apple = new Apple();
 let fillX, fillY, fillSize;
 
 function setup() {
-
+    
     changeSize();
     drawLogoBackground(logoLeft, logoTop, logoSize);
     updateSnakeApple();
@@ -294,23 +303,27 @@ function setup() {
 }
 
 function game() {
-
+    
     fillX = logoLeft;
     fillY = logoTop;
     fillSize = logoSize;
 
     backgroundAnimation();
 
-    let gameLoopInterval = setInterval(gameLoop, speed);
+    let gameLoopInterval = setInterval(gameLoop, framerate);
 
     function gameLoop() {
-        snake.changeDirection();
-        snake.move();
-        snake.isDead();
-        apple.isEaten();
-        if (gameFinished) {
-            clearInterval(gameLoopInterval);
-            backgroundAnimationReset();
+        counter++;
+        if (!(counter % speed / 5)) {
+            console.log(counter);
+            snake.changeDirection();
+            snake.move();
+            snake.isDead();
+            apple.isEaten();
+            if (gameFinished) {
+                clearInterval(gameLoopInterval);
+                backgroundAnimationReset();
+            }
         }
     }
 }

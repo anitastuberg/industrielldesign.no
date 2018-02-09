@@ -5,7 +5,7 @@
 
 body {
     overflow: hidden;
-    font-family: Courier New, Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #error {
@@ -26,12 +26,28 @@ body {
 }
 
 #leo-snake__score {
+    display: none;
+}
+
+#leo-snake__score div {
     position: absolute;
-    top: 2%;
-    left: 2%;
-    line-height: 1.5em;
     z-index: 10;
-    color: #fff;
+}
+
+#leo-snake__score #score {
+    font-weight: bold;
+    font-size: 4rem;
+    text-align: center;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    color: rgba(255,255,255, 0.5);
+}
+
+#leo-snake__score #highscore {
+    bottom: 2%;
+    left: 2%;
 }
 
 #leo-snake__score div span {
