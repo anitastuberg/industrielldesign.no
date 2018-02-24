@@ -33,7 +33,6 @@ function drawSquare(x, y, colour) {
 $(document).keydown(function (e) {
     let key = e.which;
 
-    if ((key === 37 || key === 38 || key === 39 || key === 40)) {
         if (!gameStarted) {
             gameStarted = true;
             game();
@@ -41,7 +40,6 @@ $(document).keydown(function (e) {
             keyStrokeQueue.push(key);
         }
 
-    }
 });
 
 function drawBackground() {
@@ -194,13 +192,13 @@ class Snake {
     changeDirection() {
         if (keyStrokeQueue.length > 0) {
             let key = keyStrokeQueue.shift();
-            if (key === 38 && this.direction !== 'down') {
+            if ((key === 38 || key === 87) && this.direction !== 'down') {
                 this.direction = 'up';
-            } else if (key === 39 && this.direction !== 'left') {
+            } else if ((key === 39 || key === 68) && this.direction !== 'left') {
                 this.direction = 'right';
-            } else if (key === 40 && this.direction !== 'up') {
+            } else if ((key === 40 || key === 83) && this.direction !== 'up') {
                 this.direction = 'down';
-            } else if (key === 37 && this.direction !== 'right') {
+            } else if ((key === 37 || key === 65) && this.direction !== 'right') {
                 this.direction = 'left';
             }
         }
