@@ -1,0 +1,34 @@
+#landing-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .square {
+        @media screen and (max-width: 640px) {
+            width: 100%;
+            height: 45vh;
+        }
+    }
+
+    #student, #prosjekter, #bedrift, #kontakt {
+        @media screen and (min-width: 640px) {
+            width: 50%;
+            height: 50%;
+        }
+    }
+
+    #student {
+        background-color: $red;
+    }
+    #prosjekter {
+        background-color: $yellow;
+    }
+    #bedrift {
+        background-color: $dark-blue;
+    }
+    #kontakt {
+        background-color: #fff;
+    }
+}

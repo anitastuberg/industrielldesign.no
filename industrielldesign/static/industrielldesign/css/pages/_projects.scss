@@ -1,0 +1,84 @@
+#project-grid {
+    display: grid;
+    grid-gap: 0;
+    
+    @media screen and (max-width: 480px) {
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: calc(100vh / 3);
+    }
+    @media screen and (min-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: calc(100vh / 3);
+    }
+    @media screen and (min-width: 960px) {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: calc(100vh / 3);
+    }
+
+    .project-image {
+        position: relative;
+        max-width: none;
+        border: 2px solid white;
+        background-color: $red;
+        overflow: hidden;
+        cursor: pointer;
+
+        &:hover .description {
+            transform: translateX(0);
+        }
+
+        .description {
+            transition: transform 200ms ease-in-out;
+            transform: translateX(-100%);
+            background-color: white;
+            width: 60%;
+            height: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            h3, p {
+                padding: 1rem;
+            }
+            h3 {
+                font-size: 2rem;
+            }
+            p {
+                width: 90%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @media screen and (min-width: 960px) {
+            // "Random" grid sizes
+            &:nth-child(22n+1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            &:nth-child(22n+5) {
+                grid-row: span 2;
+            }
+            &:nth-child(22n+9) {
+                grid-column: span 2;
+            }
+            &:nth-child(22n+14) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            &:nth-child(22n+15) {
+                grid-row: span 2;
+            }
+            &:nth-child(22n+22) {
+                grid-column: span 2;
+            }
+        }
+    }
+}
