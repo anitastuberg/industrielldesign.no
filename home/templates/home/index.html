@@ -1,13 +1,15 @@
-{% extends 'industrielldesign/base.html' %} 
-{% load staticfiles %} 
-{% block content %}
+{% extends 'industrielldesign/base.html' %} {% load staticfiles %} {% block content %}
 
 <div>
     <div id="landing-page">
-        <div id="student" class="square"></div>
-        <div id="prosjekter" class="square"></div>
-        <div id="bedrift" class="square"></div>
-        <div id="kontakt" class="square"></div>
+        <div class="row">
+            <div id="student" class="square active"></div>
+            <div id="prosjekter" class="square blur"></div>
+        </div>
+        <div class="row">
+            <div id="bedrift" class="square"></div>
+            <div id="kontakt" class="square"></div>
+        </div>
     </div>
 </div>
 <script src="{% static 'home/js/landingPage.js' %}"></script>

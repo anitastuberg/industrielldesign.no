@@ -216,22 +216,54 @@ a:hover::before {
 #landing-page {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 780px) {
   #landing-page .square {
     width: 100%;
-    height: 45vh;
+    height: 50%;
+  }
+  #landing-page .row {
+    height: 90vh;
+    width: 100%;
   }
 }
 
-@media screen and (min-width: 640px) {
-  #landing-page #student, #landing-page #prosjekter, #landing-page #bedrift, #landing-page #kontakt {
+@media screen and (min-width: 780px) {
+  #landing-page #student,
+  #landing-page #prosjekter,
+  #landing-page #bedrift,
+  #landing-page #kontakt {
     width: 50%;
-    height: 50%;
+    height: 100%;
+  }
+  #landing-page #student.active,
+  #landing-page #prosjekter.active,
+  #landing-page #bedrift.active,
+  #landing-page #kontakt.active {
+    width: 55%;
+  }
+  #landing-page #student.blur,
+  #landing-page #prosjekter.blur,
+  #landing-page #bedrift.blur,
+  #landing-page #kontakt.blur {
+    width: 45%;
+  }
+  #landing-page .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 50vh;
+    width: 100%;
+  }
+  #landing-page .row.active {
+    height: 55vh;
+  }
+  #landing-page .row.blur {
+    height: 45vh;
+  }
+  #landing-page #student, #landing-page #prosjekter, #landing-page #bedrift, #landing-page #kontakt, #landing-page .row {
+    transition: width 200ms ease-in-out, height 200ms ease-in-out;
   }
 }
 
