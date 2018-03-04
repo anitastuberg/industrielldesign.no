@@ -1,12 +1,10 @@
+// Variabeldeklarasjon
 let student = $('#student');
 let prosjekter = $('#prosjekter');
 let bedrift = $('#bedrift');
 let kontakt = $('#kontakt');
 
-function randomSize() {
-
-}
-
+// Hoverfunksjoner
 function hoverIn() {
     $(this).parent().addClass('active');
     $(this).parent().siblings().addClass('blur');
@@ -21,6 +19,7 @@ function hoverOut() {
     $(this).siblings().removeClass('blur');
 }
 
+// Initierer event listeners
 student.hover(hoverIn, hoverOut);
 prosjekter.hover(hoverIn, hoverOut);
 bedrift.hover(hoverIn, hoverOut);
