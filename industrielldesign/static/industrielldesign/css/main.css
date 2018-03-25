@@ -71,19 +71,6 @@ p.paragraph {
   max-width: 63ch;
 }
 
-nav#main-navigation {
-  padding: 2rem;
-}
-
-nav#main-navigation ul li {
-  display: inline;
-  margin-right: 2rem;
-}
-
-nav#main-navigation ul li a {
-  color: #000;
-}
-
 a {
   transition: color 200ms ease-in-out;
   text-decoration: none;
@@ -270,10 +257,10 @@ a:hover::before {
     width: 100%;
   }
   #landing-page .row.active {
-    height: 55vh;
+    height: 60vh;
   }
   #landing-page .row.blur {
-    height: 45vh;
+    height: 40vh;
   }
   #landing-page #student, #landing-page #prosjekter, #landing-page #bedrift, #landing-page #kontakt, #landing-page .row {
     transition: width 200ms ease-in-out, height 200ms ease-in-out;
@@ -390,58 +377,5 @@ a:hover::before {
   #project-grid .project-image:nth-child(22n+22) {
     grid-column: span 2;
   }
-}
-
-#error {
-  text-align: center;
-  position: absolute;
-  bottom: 20%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  font-size: 2rem;
-}
-
-#leo-snake {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-#leo-snake__score {
-  display: none;
-}
-
-#leo-snake__score div {
-  position: absolute;
-  z-index: 10;
-}
-
-#leo-snake__score div:first-child {
-  font-size: 1.2rem;
-}
-
-#leo-snake__score div::last-child {
-  font-size: 0.8rem;
-}
-
-#leo-snake__score #score {
-  font-weight: bold;
-  font-size: 4rem;
-  text-align: center;
-  top: 50%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-#leo-snake__score #highscore {
-  bottom: 2%;
-  left: 2%;
-}
-
-#leo-snake__score div span {
-  font-size: 1.1em;
 }
 /*# sourceMappingURL=main.css.map */

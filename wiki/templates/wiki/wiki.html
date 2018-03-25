@@ -1,8 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'industrielldesign/base.html' %}
 
 {% block content %}
     <div>
-        <p>Wikiside</p>
+        <h1>{{ title }}</h1>
+        <form action="" method="POST">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Publish">
+        </form>
     </div>
 {% endblock content %}
 

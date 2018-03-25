@@ -1,0 +1,7 @@
+{% extends 'industrielldesign/base.html' %} {% block content %}
+<div>
+    <form action="" method="POST">{% csrf_token %} {{ form.as_p }}
+        <input type="submit" value="Publish">
+    </form>
+</div>
+{% endblock content %}
