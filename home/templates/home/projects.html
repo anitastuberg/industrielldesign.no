@@ -1,8 +1,11 @@
-{% extends 'industrielldesign/base.html' %}
+{% extends 'base.html' %}
 
 {%load staticfiles %}
 
+{% block page_title %}Prosjekter{% endblock %}
+
 {% block content %}
+    {% include 'navbar.html' %}
     <div id="project-grid">
        <div class="project-image">
            <img src="" alt="">
