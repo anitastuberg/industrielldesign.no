@@ -75,13 +75,53 @@ nav#main-navigation {
   padding: 2rem;
 }
 
+@media screen and (min-width: 800px) {
+  nav#main-navigation #hamburger {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  nav#main-navigation ul {
+    display: none;
+  }
+}
+
 nav#main-navigation ul li {
-  display: inline;
+  display: inline-block;
   margin-right: 2rem;
 }
 
 nav#main-navigation ul li a {
   color: #000;
+}
+
+nav#main-navigation ul #user {
+  float: right;
+  position: relative;
+}
+
+nav#main-navigation ul #user:hover .dropdown-content {
+  display: block;
+}
+
+nav#main-navigation ul #user .dropdown-content {
+  display: none;
+  background-color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  width: 100%;
+}
+
+nav#main-navigation ul #user .dropdown-content li {
+  text-align: right;
+  margin: 1rem 0 0;
+  width: 100%;
+}
+
+nav#main-navigation ul #login {
+  float: right;
 }
 
 a {

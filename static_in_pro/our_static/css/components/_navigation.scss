@@ -1,13 +1,51 @@
 nav#main-navigation {
     padding: 2rem;
+
+    #hamburger {
+        @media screen and (min-width: 800px) {
+            display: none;
+        }
+    }
+
     ul {
+        @media screen and (max-width: 800px) {
+            display: none;
+        }
         li {
-            display: inline;
+            display: inline-block;
             margin-right: 2rem;
 
             a {
                 color: #000;
             }
+        }
+
+        #user {
+            float: right;
+            position: relative;
+
+            &:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown-content {
+                display: none;
+                background-color: #fff;
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                width: 100%;
+
+                li {
+                    text-align: right;
+                    margin: 1rem 0 0;
+                    width: 100%;
+                }
+            }
+        }
+        #login {
+            float: right;
+
         }
     }
 }

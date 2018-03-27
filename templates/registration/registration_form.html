@@ -2,10 +2,16 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
-
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+<div id="registration-form">
+  <form method="post" action=".">
+    {% csrf_token %}
+    <label for="id_username">Username: </label>
+    {{form.username}}<!-- id="id_username" -->
+    <label for="id_email">Email: </label>
+    {{form.email}}
+    <input type="submit" value="{% trans 'Submit' %}" />
+    <hr>
+    {{form.as_p}}
+  </form>
+</div>
 {% endblock %}

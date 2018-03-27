@@ -13,5 +13,17 @@
         <li><a href="">Bedrift</a></li>
         <li><a href="{% url 'wiki' %}">Wiki</a></li>
         <li><a href="{% url 'about' %}">Kontakt</a></li>
+        {% if request.user.is_authenticated %}
+            <li id="user">
+                <span>{{ request.user.email }}</span>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                    </ul>
+                </div>
+            </li>
+        {% else %}
+            <li id="login"><a href="{% url 'login' %}">Log in</a></li>
+        {% endif %}
     </ul>
 </nav>

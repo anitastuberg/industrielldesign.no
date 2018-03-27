@@ -6,6 +6,9 @@
     {% include 'navbar.html' %}
     <div>
         <p>Students</p>
+        {% if request.user.is_authenticated %}
+            <p>Logged in as {{request.user.email}}</p>
+        {% endif %}
     </div>
 {% endblock content %}
 

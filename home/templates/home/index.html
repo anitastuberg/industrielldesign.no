@@ -5,12 +5,12 @@
 <div>
     <div id="landing-page">
         <div class="row">
-            <div id="student" class="square"></div>
-            <div id="prosjekter" class="square"></div>
+            <a href="{% url 'students' %}" id="student" class="square"></a>
+            <a href="{% url 'projects' %}" id="prosjekter" class="square"></a>
         </div>
         <div class="row">
-            <div id="bedrift" class="square"></div>
-            <div id="kontakt" class="square"></div>
+            <a href="{% url 'login' %}" id="bedrift" class="square"></a>
+            <a href="{% url 'about' %}" id="kontakt" class="square"></a>
         </div>
     </div>
 </div>
