@@ -8,6 +8,14 @@ class Event(models.Model):
     event_start_time = models.TimeField()
     event_start_date = models.DateField()
 
+    # Registration opens
+    registration_start_time = models.TimeField(blank=True, null=True)
+    registration_start_date = models.DateField(max_length=500, blank=True, null=True)
+
+    # Available spots in the event
+    registration_required = models.BooleanField(default=False)
+    available_spots = models.IntegerField(blank=True, null=True)
+
     # Event header image:
     # image = models.ImageField()
 
@@ -15,26 +23,6 @@ class Event(models.Model):
         return self.title
 
     class Meta:
-        abstract = True
-
-class EventOpen(Event):
-    class Meta:
         ordering = ['event_start_date']
-        verbose_name = 'Open event'
-        verbose_name_plural = 'Open events'
-
-class EventRegister(Event):
-    # Registration opens
-    registration_start_time = models.TimeField()
-    registration_start_date = models.DateField(max_length=500)
-
-    # Available spots in the event
-    available_spots = models.IntegerField()
-
-    class Meta:
-        ordering = ['event_start_date']
-        verbose_name = 'Event with registration'
-        verbose_name_plural = 'Events with registration'
-        
-    
-
+        verbose_name = 'Event'
+        verbose_name_plural = 'Events'
