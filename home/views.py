@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.core.exceptions import ValidationError
 from .forms import LoginForm, RegisterForm
+from events.models import Event
 
 def index(request):
     return render(request, 'home/index.html', {})
@@ -14,7 +15,15 @@ def projects(request):
     return render(request, 'home/projects.html', {})
 
 def students(request):
-    return render(request, 'home/students.html', {})
+
+    context = {
+        "events": Event.objects.all()
+    }
+
+    return render(request, 'home/students.html', context)
+
+def snake(request):
+    return render(request, 'testing/404/404.html', {})
 
 class LoginFormView(View):
 

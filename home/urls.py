@@ -11,5 +11,6 @@ urlpatterns = [
     path('students/', views.students, name='students'),
     path('register/', views.RegisterFormView.as_view(), name='register'),
     path('login/', views.LoginFormView.as_view(), name='login'),
-    path('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout')
+    path('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    path('404/', views.snake, name='404')
 ]

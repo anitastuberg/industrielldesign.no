@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('wiki/', include('wiki.urls')),
-    path('accounts/', include('registration.backends.default.urls')),
+    path('', include('events.urls'))
 ]
 
 if settings.DEBUG:
