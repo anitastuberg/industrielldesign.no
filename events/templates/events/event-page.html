@@ -1,9 +1,14 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 
-<h1>{{ event.title }}</h1>
-<p>{{ event.description }}</p>
-<form action="" method="POST">
-    <input type="submit" value="Meld på">
-</form>
+<div id="event-page">
 
+    <h1>{{ event.title }}</h1>
+    <p>{{ event.description }}</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Meld på">
+    </form>
+
+</div>
 {% endblock content %}
