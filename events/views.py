@@ -15,3 +15,4 @@ def event(request, event_number):
     }
 
     return render(request, 'events/event-page.html', context)
+    
