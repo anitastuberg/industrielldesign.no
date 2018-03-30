@@ -16,7 +16,7 @@ Nettside
   |-- webbaENV // Virtualenv
   |
 ```
-6. Gå inn i `webbaENV` med kommandoen `source webbaENV/bin/activate`
+6. Aktiver `webbaENV` med kommandoen `source webbaENV/bin/activate`
 7. Gå inn i mappen industrielldesign.no og kjør `pip install -r requirements.txt`
 8. Nå kjør et par kommandoer for å sette opp database:
   - `python manage.py makemigrations`
