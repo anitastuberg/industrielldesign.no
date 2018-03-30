@@ -21,5 +21,5 @@ Nettside
 8. Nå kjør et par kommandoer for å sette opp database:
   - `python manage.py makemigrations`
   - `python manage.py migrate`
-9. Kjør serveren med `python manage.py runserver`
+9. Kjør serveren med `python manage.py runserver` :muscle:
 10. Nettsiden finner du da på `localhost:8000`
