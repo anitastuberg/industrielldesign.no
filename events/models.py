@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Event(models.Model):
     title = models.CharField(max_length=150)
@@ -15,6 +16,8 @@ class Event(models.Model):
     # Available spots in the event
     registration_required = models.BooleanField(default=False)
     available_spots = models.IntegerField(blank=True, null=True)
+
+    registered_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     # Event header image:
     # image = models.ImageField()

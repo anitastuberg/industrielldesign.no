@@ -6,4 +6,4 @@ class CreateEventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ['title', 'description', 'event_start_time', 'event_start_date', 'registration_start_date', 'registration_start_time','registration_required', 'available_spots']
+        fields = ['title', 'description', 'event_start_time', 'event_start_date', 'registration_start_date', 'registration_start_time','registration_required', 'registered_users', 'available_spots']

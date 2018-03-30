@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Event
 
@@ -10,8 +10,19 @@ def create_event(request):
 
 def event(request, event_number):
 
-    context = {
-        'event': Event.objects.get(pk=event_number)
-    }
+    event = Event.objects.get(pk=event_number)
 
-    return render(request, 'events/event-page.html', context)
+    if request.method == 'GET':
+
+        context = {
+            'event': event
+        }
+
+        return render(request, 'events/event-page.html', context)
+    
+    else:
+        event.registered_users.add(request.user)
+        return redirect('students')
+
+
+
