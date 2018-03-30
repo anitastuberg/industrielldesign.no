@@ -1,7 +1,7 @@
 # industrielldesign.no
-Ny nettside til Leonardo, linjeforeningen for studentene ved industriell design ved NTNU i Trondheim.
+Ny nettside til Leonardo, linjeforeningen for studentene ved industriell design ved NTNU i Trondheim.:boom::blue_heart:
 
-## Oppsett for utviklere:
+## Oppsett for utviklere :sunglasses::
 
 1. Installer python 3 <= 3.6
 2. Installer pip
