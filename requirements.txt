@@ -1,2 +1,2 @@
 django==2.0.1
-django_use_email_as_username>=0
+django_use_email_as_username=1.0.0
