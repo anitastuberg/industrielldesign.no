@@ -22,3 +22,4 @@ Nettside
   - `python manage.py makemigrations`
   - `python manage.py migrate`
 9. Kjør serveren med `python manage.py runserver`
+10. Nettsiden finner du da på `localhost:8000`
