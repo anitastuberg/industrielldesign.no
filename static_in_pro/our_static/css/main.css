@@ -70,16 +70,15 @@ table {
 
 html {
   font-size: 16px;
+  font-family: "sweden_sansregular", sans-serif;
 }
 
 h1 {
-  font-family: "sweden_sansregular", sans-serif;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 p {
-  font-family: "sweden_sansregular", sans-serif;
   line-height: 1.5em;
 }
 
