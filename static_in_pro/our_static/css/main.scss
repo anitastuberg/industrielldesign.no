@@ -1,13 +1,12 @@
 
+// Base:
+@import 'base/css-reset';
+@import 'base/typography';
 
 // Helpers:
 @import 'helpers/functions';
 @import 'helpers/mixins';
 @import 'helpers/variables';
-
-// Base:
-@import 'base/css-reset';
-@import 'base/typography';
 
 // Components:
 @import 'components/buttons';
@@ -24,6 +23,7 @@
 // Pages:
 @import 'pages/home';
 @import 'pages/projects';
+@import 'pages/event-page';
 @import 'pages/404';
 
 // Vendors:

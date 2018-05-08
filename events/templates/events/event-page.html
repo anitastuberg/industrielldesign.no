@@ -3,12 +3,32 @@
 
 <div id="event-page">
 
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.description }}</p>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Meld på">
-    </form>
+    <div class="beskrivelse">
+        <h1>{{ event.title }}</h1>
+        <p>{{ event.description }}</p>
+    </div>
+    <div class="bilde">
+        
+    </div>
+    <div class="signup">
+        <p></p>
+        <p>{{ event.location }}</p>
+        <p>{{ event.open_for }}</p>
+    
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if event_registration %}
+                
+                {% if already_registered %}
+                    <input type="submit" value="Meldt på" disabled>
+                {% elif not event_not_full %}
+                    <input type="submit" value="Arrangementet er fullt" disabled>
+                {% else %}
+                    <input type="submit" value="Bli med">
+                {% endif %}
 
+            {% endif %}
+        </form>
+    </div>
 </div>
 {% endblock content %}

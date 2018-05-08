@@ -11,18 +11,33 @@ def create_event(request):
 def event(request, event_number):
 
     event = Event.objects.get(pk=event_number)
+    register_users_count = event.registered_users.all().count()
+    already_registered =  request.user in event.registered_users.all()
+
+    context = {
+        'event': event,
+        'already_registered': already_registered
+    }
+    # If registering
+    if event.available_spots is not None:
+        event_not_full = register_users_count < event.available_spots
+        context.update({
+            'event_not_full': event_not_full,
+            'event_registration': True
+        })
 
     if request.method == 'GET':
-
-        context = {
-            'event': event
-        }
 
         return render(request, 'events/event-page.html', context)
     
     else:
-        event.registered_users.add(request.user)
-        return redirect('students')
+        
+        # If already signed up users count is less than available spots
+        if event_not_full:
+            event.registered_users.add(request.user)
+            return redirect('students')
+        else:
+            pass
 
 
 

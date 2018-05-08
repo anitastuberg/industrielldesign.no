@@ -5,7 +5,7 @@ from .forms import CreateEventForm
 from .models import Event
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "event_start_date", "event_start_time"]
+    list_display = ["__str__", "event_start_time"]
     form = CreateEventForm
     class Meta:
         model = Event
