@@ -1,14 +1,34 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
+
 
 
 from .models import Event
+from .forms import CreateEventForm
 
 # Create your views here.
 
 def create_event(request):
-    if user.groups.filter(name="event_maker").exists():
-        return render(request, 'events/event-creation.html', {})
+    # Calls 403 - permission denied if not logged in
+    if request.user.is_staff:
+
+        form = CreateEventForm(request.POST or None)
+
+        context = {
+            'form' : form
+        }
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+
+            instance.save()
+            print(instance.slug)
+            return redirect('event', event_slug=instance.slug)
+        
+        return render(request, 'events/event-creation.html', context)
+    else:
+        raise PermissionDenied
 
 def event(request, event_slug):
 
