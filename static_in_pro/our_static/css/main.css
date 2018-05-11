@@ -69,13 +69,47 @@ table {
 }
 
 html {
-  font-size: 16px;
+  font-size: 18px;
+}
+
+/* Setting Sweden sans as font */
+body,
+input,
+textarea {
   font-family: "sweden_sansregular", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
 }
 
 h1 {
   font-size: 2rem;
-  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.1rem;
 }
 
 p {
@@ -84,6 +118,11 @@ p {
 
 p.paragraph {
   max-width: 63ch;
+}
+
+input,
+textarea {
+  font-size: 1rem;
 }
 
 nav#main-navigation {
@@ -498,5 +537,14 @@ a:hover::before {
 
 #leo-snake__score div span {
   font-size: 1.1em;
+}
+
+#create-article form #id_title, #create-article form textarea {
+  display: block;
+  border: none;
+}
+
+#create-article form #id_title {
+  font-size: 2rem;
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,12 @@
+#create-article {
+    form {
+        #id_title, textarea {
+            display: block;
+            border: none;
+        }
+        #id_title {
+            font-size: 2rem;
+        }
+        
+    }
+}
