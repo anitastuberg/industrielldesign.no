@@ -1,8 +1,9 @@
 from django.db import models
 from django.conf import settings
+from django.template.defaultfilters import slugify
 
 class Event(models.Model):
-    title = models.CharField(max_length=80)
+    title = models.CharField(max_length=80, unique=True)
     description = models.TextField()
 
     location = models.CharField(max_length=50, blank=True, null=True)
@@ -23,12 +24,20 @@ class Event(models.Model):
     
 
     registered_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    
+    slug = models.SlugField(max_length=60, blank=True)
 
     # Event header image:
     # image = models.ImageField()
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            #Only set the slug when the object is created.
+            self.slug = slugify(self.title) #Or whatever you want the slug to use
+        super(Event, self).save(*args, **kwargs)
 
     class Meta:
         # ordering = ['event_start_date']

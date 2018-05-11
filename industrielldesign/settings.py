@@ -141,6 +141,10 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", 'media_root')
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static_in_pro', 'our_media'),
+    'industrielldesign/home'
+]
 # Django registration redux settings:
 
 LOGOUT_REDIRECT_URL = "index"

@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
 
 from .models import Event
 
@@ -8,9 +10,9 @@ def create_event(request):
     if user.groups.filter(name="event_maker").exists():
         return render(request, 'events/event-creation.html', {})
 
-def event(request, event_number):
+def event(request, event_slug):
 
-    event = Event.objects.get(pk=event_number)
+    event = Event.objects.get(slug=event_slug)
     register_users_count = event.registered_users.all().count()
     already_registered =  request.user in event.registered_users.all()
 
