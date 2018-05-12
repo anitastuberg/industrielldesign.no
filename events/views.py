@@ -13,7 +13,7 @@ def create_event(request):
     # Calls 403 - permission denied if not logged in
     if request.user.is_staff:
 
-        form = CreateEventForm(request.POST or None)
+        form = CreateEventForm(request.POST or None, request.FILES or None)
 
         context = {
             'form' : form

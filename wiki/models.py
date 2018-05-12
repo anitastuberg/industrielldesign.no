@@ -13,7 +13,7 @@ class Article(models.Model):
     title = models.CharField(max_length=40, unique=True)
     slug = models.SlugField(max_length=60, blank=True)
     text = models.TextField()
-    image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 60})
+    image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     category = models.CharField(max_length=3, choices=CATEGORIES)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
 
 class Event(models.Model):
     title = models.CharField(max_length=80, unique=True)
@@ -8,7 +10,7 @@ class Event(models.Model):
 
     location = models.CharField(max_length=50, blank=True, null=True)
     open_for = models.CharField(max_length=50, blank=True, null=True)
-    # image = models.ImageField(max_length=100)
+    image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     
 
     # Event start
