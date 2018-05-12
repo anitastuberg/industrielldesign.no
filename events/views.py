@@ -21,9 +21,8 @@ def create_event(request):
 
         if form.is_valid():
             instance = form.save(commit=False)
-
+            image = form.cleaned_data['image']
             instance.save()
-            print(instance.slug)
             return redirect('event', event_slug=instance.slug)
         
         return render(request, 'events/event-creation.html', context)

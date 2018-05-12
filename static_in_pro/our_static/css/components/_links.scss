@@ -1,6 +1,10 @@
 a {
-    transition: color 200ms ease-in-out;
     text-decoration: none;
+}
+
+
+p a:not([type="button"]) {
+    transition: color 200ms ease-in-out;
     font-family: inherit;
     position: relative;
     transition: color 150ms 50ms ease-in-out;
@@ -31,5 +35,12 @@ a {
            transform: scaleX(1);
         }
     }
+}
+
+a[type="button"] {
+    background-color: #fff;
+    @include med-shadow;
+    text-decoration: none;
+    color: $text-color;
 }
 

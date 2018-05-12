@@ -1,0 +1,26 @@
+#article {
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    p {
+        width: 63ch;
+        line-height: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .right {
+        margin-top: 40%;
+    }
+
+    .left {
+        margin-right: 6rem;
+
+        img {
+            min-height: 100vh;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

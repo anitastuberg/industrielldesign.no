@@ -125,6 +125,42 @@ textarea {
   font-size: 1rem;
 }
 
+.left-arrow {
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  padding-left: 2rem;
+  color: #000;
+  transition: transform 200ms ease-in-out;
+}
+
+.left-arrow:hover {
+  transform: translateX(5px);
+}
+
+.left-arrow::before {
+  content: '';
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.left-arrow::after {
+  content: '';
+  background-color: #000;
+  width: 30px;
+  height: 2px;
+  position: absolute;
+  top: 9px;
+  left: 0;
+}
+
 nav#main-navigation {
   padding: 2rem;
 }
@@ -179,19 +215,22 @@ nav#main-navigation ul #login {
 }
 
 a {
-  transition: color 200ms ease-in-out;
   text-decoration: none;
+}
+
+p a:not([type="button"]) {
+  transition: color 200ms ease-in-out;
   font-family: inherit;
   position: relative;
   transition: color 150ms 50ms ease-in-out;
   overflow: hidden;
 }
 
-a, a:visited {
+p a:not([type="button"]), p a:not([type="button"]):visited {
   color: #0093BC;
 }
 
-a::before {
+p a:not([type="button"])::before {
   content: '';
   position: absolute;
   left: 0;
@@ -205,8 +244,17 @@ a::before {
   transform-origin: bottom left;
 }
 
-a:hover::before {
+p a:not([type="button"]):hover::before {
   transform: scaleX(1);
+}
+
+a[type="button"] {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
+  text-decoration: none;
+  color: #000;
 }
 
 #hamburger {
@@ -309,11 +357,14 @@ a:hover::before {
 
 .grid {
   display: grid;
-  grid-gap: 0;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 2fr;
-  height: 100vh;
-  width: 100%;
+}
+
+.two-column-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.four-column-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .grid-box {
@@ -542,9 +593,135 @@ a:hover::before {
 #create-article form #id_title, #create-article form textarea {
   display: block;
   border: none;
+  outline: none;
 }
 
 #create-article form #id_title {
-  font-size: 2rem;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+#create-article form .right {
+  margin-top: 20%;
+}
+
+#create-article form .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #47A0BC;
+  margin-right: 6rem;
+  min-height: 100vh;
+}
+
+#create-article form .left #id_image {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#create-article form .left #id_image + label {
+  display: block;
+  background-color: #fff;
+  color: #000;
+  padding: 1rem;
+}
+
+#create-article form textarea {
+  width: 63ch;
+  line-height: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+#create-article form select {
+  border-radius: 0;
+}
+
+#create-article form input[type="submit"] {
+  margin-bottom: 5rem;
+}
+
+#wiki-page {
+  margin-top: 5%;
+}
+
+#wiki-page #categories {
+  margin-top: 3rem;
+  grid-column-gap: 4rem;
+  grid-row-gap: 2rem;
+}
+
+#wiki-page #categories::after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background-color: #000;
+}
+
+#wiki-page h1 {
+  font-size: 5rem;
+  text-align: center;
+}
+
+#wiki-page #new-article-button {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  width: 5rem;
+  padding: 0.5rem 1rem;
+}
+
+#wiki-page ul li {
+  line-height: 1.8rem;
+  text-decoration: none;
+  transition: transform 200ms ease-in-out;
+}
+
+#wiki-page ul li a, #wiki-page ul li a:visited {
+  color: #0093BC;
+}
+
+#wiki-page #fyi {
+  text-align: right;
+}
+
+#wiki-page #fyi ul li:hover {
+  transform: translateX(-10px);
+}
+
+#wiki-page #lol {
+  text-align: left;
+}
+
+#wiki-page #lol ul li:hover {
+  transform: translateX(10px);
+}
+
+#article h1 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+#article p {
+  width: 63ch;
+  line-height: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+#article .right {
+  margin-top: 40%;
+}
+
+#article .left {
+  margin-right: 6rem;
+}
+
+#article .left img {
+  min-height: 100vh;
+  width: 100%;
+  object-fit: cover;
 }
 /*# sourceMappingURL=main.css.map */

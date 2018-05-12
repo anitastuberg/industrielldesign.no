@@ -1,13 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<div id="article">
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.text }}</p>
-    {% if article.image %}
-        <img src="{{ article.image.url }}" alt="">
-    {% endif %}
+<div id="article" class="grid two-column-grid">
+    <div class="left">
+        {% if article.image %}
+        <img src="{{ article.image.url }}" alt=""> {% endif %}
+    </div>
+    <div class="right">
+        <a class="left-arrow" href="{% url 'wiki' %}">Tilbake</a>
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.text }}</p>
+    </div>
 </div>
 
 {% endblock content %}
