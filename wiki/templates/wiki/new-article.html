@@ -1,12 +1,13 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <div id="create-article">
-        <h1>{{ title }}</h1>
-        <form action="" method="POST">{% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Publish">
-        </form>
-    </div>
+{% extends 'base.html' %} {% block content %}
+<div id="create-article">
+    <h1>{{ title }}</h1>
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %} {{ form }}
+        <input type="submit" value="Publish">
+    </form>
+</div>
+<script>
+    $(window).ready(function () {
+        $('form').get(0).reset(); //clear form data on page load
+    });
+</script>
 {% endblock content %}
-

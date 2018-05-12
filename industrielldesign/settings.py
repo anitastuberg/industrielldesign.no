@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'events',
     # Third party apps:
     'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
-    'custom_user.apps.CustomUserConfig'
+    'custom_user.apps.CustomUserConfig',
+    'imagekit'
 
 ]
 

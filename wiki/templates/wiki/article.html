@@ -5,6 +5,9 @@
 <div id="article">
     <h1>{{ article.title }}</h1>
     <p>{{ article.text }}</p>
+    {% if article.image %}
+        <img src="{{ article.image.url }}" alt="">
+    {% endif %}
 </div>
 
 {% endblock content %}

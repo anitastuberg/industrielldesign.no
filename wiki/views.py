@@ -2,15 +2,15 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 
 from .forms import ArticleForm
 from .models import Article
 
 def wiki(request):
     context = {
-        'FYI_article' : Article.objects.filter(category="FYI"),
-        'LOL_article' : Article.objects.filter(category="LOL")
+        'FYI_article' : Article.objects.filter(category="FYI").order_by('title'),
+        'LOL_article' : Article.objects.filter(category="LOL").order_by('title')
     }
     return render(request, 'wiki/wiki.html', context)
 
@@ -20,20 +20,18 @@ def new_article(request):
     # Calls 403 - permission denied if not logged in
     if request.user.is_authenticated:
 
-        #add a form
-        form = ArticleForm(request.POST or None)
+        form = ArticleForm(request.POST or None, request.FILES or None)
+            
+        if form.is_valid():
+
+            new_article = form.save(commit=False)
+            image = form.cleaned_data['image']
+            new_article.save()
+            return redirect('article', article=new_article.slug)
 
         context = {
             'form': form
         }
-
-        if form.is_valid():
-
-            instance = form.save(commit=False)
-
-            instance.save()
-            print(instance.slug)
-            return redirect('article', article=instance.slug)
 
         return render(request, 'wiki/new-article.html', context)
     else:
