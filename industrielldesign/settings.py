@@ -64,7 +64,9 @@ ROOT_URLCONF = 'industrielldesign.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [
+            'templates',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +119,7 @@ AUTH_USER_MODEL = 'custom_user.User'
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nb'
 
 TIME_ZONE = 'UTC'
 
@@ -148,4 +150,5 @@ MEDIAFILES_DIRS = [
 ]
 # Django registration redux settings:
 
-LOGOUT_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/"

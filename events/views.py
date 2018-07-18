@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+# from django.utils import simplejson
 
 
 
@@ -46,13 +49,14 @@ def event(request, event_slug):
             'event_not_full': event_not_full,
             'event_registration': True
         })
+    
+    
 
     if request.method == 'GET':
 
         return render(request, 'events/event-page.html', context)
     
-    else:
-        
+    else: # POST
         # If already signed up users count is less than available spots
         if event_not_full:
             event.registered_users.add(request.user)
@@ -60,5 +64,26 @@ def event(request, event_slug):
         else:
             pass
 
+def event_login(request):
+    xhr = request.GET.has_key('xhr') # True if Ajax request
 
+    # If request method is POST
+    if request.method == 'POST':
+        # Returns new data if request is ajax and user is authenticated
+        if xhr and request.user.is_authenticated:
+            # Data to send back
+            response_dict = {
+                'Fornavn': request.user.first_name,
+                'Allergier': request.user.allergies
+                }
+            # Sends the data as JSON
+            return HttpResponse(simplejson.dumps(response_dict), mimetype='application/javascript')
+
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+        
+        return HttpResponse('')
 

@@ -1,34 +1,41 @@
 {% extends "base.html" %} 
 {% block content %}
+{% include "navbar.html" %}
+
+{% block nav_students %}
+    class="selected"
+{% endblock %}
 
 <div id="event-page">
 
     <div class="beskrivelse">
+        <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
         <h1>{{ event.title }}</h1>
         <p>{{ event.description }}</p>
     </div>
     <div class="bilde">
-        
+        <img src="{{ event.image.url }}" alt="">
     </div>
-    <div class="signup">
-        <p></p>
-        <p>{{ event.location }}</p>
-        <p>{{ event.open_for }}</p>
-    
-        <form action="" method="POST">
-            {% csrf_token %}
-            {% if event_registration %}
-                
-                {% if already_registered %}
-                    <input type="submit" value="Meldt på" disabled>
-                {% elif not event_not_full %}
-                    <input type="submit" value="Arrangementet er fullt" disabled>
-                {% else %}
-                    <input type="submit" value="Bli med">
-                {% endif %}
-
-            {% endif %}
-        </form>
-    </div>
+    {% include 'events/event-info-box.html' %}
 </div>
 {% endblock content %}
+{% block javascript %}
+<script>
+    $('#event-login-field').on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "event_login" %}',
+            data: {
+                email : $('#email').val(),
+                password : $('#password').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function() {
+                alert("logged in");
+            }
+        })
+    });
+</script>
+{% endblock javascript %}

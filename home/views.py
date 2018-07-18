@@ -43,6 +43,7 @@ class LoginFormView(View):
             login(request, user)
             return redirect('students')
     
+        # Refreshes the login form if not correct
         return  render(request, self.template_name, {'form': form})
     
         

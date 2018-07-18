@@ -1,3 +1,5 @@
+{% load static %}
+
 <nav id="main-navigation">
     <div id="leo-logo">
         <img src="" alt="">
@@ -8,11 +10,12 @@
         <div class="bar closed"></div>
     </div>
     <ul>
-        <li><a href="{% url 'students' %}">Student</a></li>
-        <li><a href="{% url 'projects' %}">Prosjekter</a></li>
-        <li><a href="">Bedrift</a></li>
-        <li><a href="{% url 'wiki' %}">Wiki</a></li>
-        <li><a href="{% url 'about' %}">Kontakt</a></li>
+        <div id="bar"></div>
+        <li {% if 'student' in request.path %}class="selected"{% endif %}><a href="{% url 'students' %}">Student</a></li>
+        <li {% if 'project' in request.path %}class="selected"{% endif %}><a href="{% url 'projects' %}">Prosjekter</a></li>
+        <li {% if 'bedrift' in request.path %}class="selected"{% endif %}><a href="">Bedrift</a></li>
+        <li {% if 'wiki' in request.path %}class="selected"{% endif %}><a href="{% url 'wiki' %}">Wiki</a></li>
+        <li {% if 'about' in request.path %}class="selected"{% endif %}><a href="{% url 'about' %}">Kontakt</a></li>
         {% if request.user.is_authenticated %}
             <li id="user">
                 <span>{{ request.user.email }}</span>
@@ -22,7 +25,7 @@
                     </ul>
                 </div>
             </li>
-        {% else %}
+            {% else %}
             <li id="login"><a href="{% url 'login' %}">Log in</a></li>
         {% endif %}
     </ul>
