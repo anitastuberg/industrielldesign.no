@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'events',
     'projects',
     # Third party apps:
-    'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
-    'custom_user.apps.CustomUserConfig',
     'imagekit'
 
 ]
@@ -111,8 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-AUTH_USER_MODEL = 'custom_user.User' 
 
 
 

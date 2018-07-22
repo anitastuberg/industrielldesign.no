@@ -8,7 +8,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('wiki/', include('wiki.urls')),
     path('', include('events.urls')),
-    path('', include('projects.urls'))
+    path('', include('projects.urls')),
+    path('', include('authentication.urls'))
 ]
 
 if settings.DEBUG:
