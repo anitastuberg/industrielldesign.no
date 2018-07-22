@@ -16,24 +16,100 @@
     <div class="bilde">
         <img src="{{ event.image.url }}" alt="">
     </div>
-    {% include 'events/event-info-box.html' %}
+    <div class="signup">
+        <p></p>
+        <p>{{ event.event_start_time|date:"j. F H:i" }} - {{ event.event_end_time|date:"H:i" }}</p>
+        <p>{{ event.location }}</p>
+        <p>{{ event.open_for }}</p>
+        <div id="logged-in">
+            <p>Hei {{ request.user.first_name }}</p>
+        </div>
+    
+        {% if event_registration %}
+        <form id="event-login-field" method="POST">
+            {% csrf_token %}
+            <div id="log-in-fields">
+                {% if not request.user.is_authenticated %}
+                    <label for="email">E-post</label>
+                    <input type="text" name="email" id="email">
+                    <span class="error"></span>
+                    <label for="password">Passord</label>
+                    <input type="password" name="password" id="password">
+                    <span class="error"></span>
+                    <input type="submit" value="Logg inn">
+                {% else %}
+                    {% if already_registered %}
+                        <input type="submit" value="Meldt på" disabled>
+                    {% elif not event_not_full %}
+                        <input type="submit" value="Arrangementet er fullt" disabled>
+                    {% else %}
+                        <input type="submit" value="Bli med">
+                    {% endif %}
+                {% endif %}
+            </div>
+        </form>
+        {% endif %}
+    </div>
 </div>
 {% endblock content %}
 {% block javascript %}
 <script>
+    $.ajaxSetup({ 
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                     break;
+                 }
+             }
+         }
+         return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     } 
+});
+    function loggedIn(data) {
+        if (data.success) {
+            let form = $('#log-in-fields');
+            form.empty();
+            if (data.already_registered) {
+                form.append('<input type="submit" value="Meldt på" disabled>');
+            } else if (!data.event_not_full) {
+                form.append('<input type="submit" value="Arrangementet er fullt" disabled>')
+            } else {
+                form.append('<input type="submit" value="Bli med">')
+                
+            }
+        }
+    }
+
     $('#event-login-field').on('submit', function(e) {
         e.preventDefault();
+        console.log($(this).serialize());
 
         $.ajax({
             type: 'POST',
-            url: '{% url "event_login" %}',
+            url: '{% url "event" event_slug=event.slug %}',
             data: {
-                email : $('#email').val(),
-                password : $('#password').val(),
-                csrfmiddlewaretoken: '{{ csrf_token }}'
+                'email': $('#email').val(),
+                'password': $('#password').val()
             },
-            success: function() {
-                alert("logged in");
+            success: function(data) {
+                console.log(data);
+                loggedIn(data)
+            },
+            error: function(data) {
+                console.log("Error");
+                console.log(data);
             }
         })
     });

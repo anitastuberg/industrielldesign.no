@@ -11,7 +11,7 @@ class CreateEventForm(forms.ModelForm):
     def clean_image(self):
         image = self.cleaned_data.get('image', False)
         if image:
-            if image._size > 20*1024*1024:
+            if image.size > 20*1024*1024:
                 raise ValidationError("Image file too large ( > 20mb )")
             return image
         else:
