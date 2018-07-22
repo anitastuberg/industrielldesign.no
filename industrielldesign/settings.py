@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authentication.Profile'
+
+
 
 # Application definition
 
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'wiki',
     'events',
     'projects',
+    'authentication',
     # Third party apps:
     'imagekit'
 
