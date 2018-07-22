@@ -1,4 +1,10 @@
 $home-breakpoint: 780px;
+$student-width: 61%;
+$prosjekt-width: 100 - $student-width;
+$bedrift-width: 52%;
+$kontakt-width: 100% - $bedrift-width;
+$expand-percent: 5%;
+
 #landing-page {
     width: 100vw;
     height: 100vh;
@@ -17,15 +23,32 @@ $home-breakpoint: 780px;
         #prosjekter,
         #bedrift,
         #kontakt {
-            width: 50%;
             height: 100%;
+        }
 
-            &.active {
-                width: 55%;
-            }
-            &.blur {
-                width: 45%;
-            }
+        #student.active {
+            width: $student-width + $expand-percent;
+        }
+        #student.blur {
+            width: $student-width - $expand-percent;
+        }
+        #prosjekter.active {
+            width: $prosjekt-width + $expand-percent;
+        }
+        #prosjekter.blur {
+            width: $prosjekt-width - $expand-percent;
+        }
+        #bedrift.active {
+            width: $bedrift-width + $expand-percent;
+        }
+        #bedrift.blur {
+            width: $bedrift-width - $expand-percent;
+        }
+        #kontakt.active {
+            width: $kontakt-width + $expand-percent;
+        }
+        #kontakt.blur {
+            width: $kontakt-width - $expand-percent;
         }
         .row {
             display: flex;
@@ -48,14 +71,18 @@ $home-breakpoint: 780px;
     }
     #student {
         background-color: $red;
+        width: $student-width;
     }
     #prosjekter {
         background-color: $yellow;
+        width: $prosjekt-width;
     }
     #bedrift {
         background-color: $dark-blue;
+        width: $bedrift-width;
     }
     #kontakt {
         background-color: #fff;
+        width: $kontakt-width;
     }
 }

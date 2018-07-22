@@ -1,50 +1,49 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
+from django.template.defaultfilters import slugify
+from django.core.exceptions import PermissionDenied, ValidationError
 
-from .forms import ArticleForm, ContactForm
+from .forms import ArticleForm
+from .models import Article
 
 def wiki(request):
-    title = "Welcome"
-
-    #add a form
-    form = ArticleForm(request.POST or None)
-
     context = {
-        "title": title,
-        'form': form
+        'FYI_article' : Article.objects.filter(category="FYI").order_by('title'),
+        'LOL_article' : Article.objects.filter(category="LOL").order_by('title')
     }
-
-
-    if form.is_valid():
-        # form.save()
-        instance = form.save(commit=False)
-
-        instance.save()
-        context = {
-            "title": "Thank you"
-        }
-
-    
-
     return render(request, 'wiki/wiki.html', context)
 
-def contact(request):
 
-    form = ContactForm(request.POST or None)
-    if form.is_valid():
-        form_email = form.cleaned_data.get("email")
-        form_message = form.cleaned_data.get('message')
-        form_full_name = form.cleaned_data.get('full_name')
-        subject = "Site contact form"
-        from_email = settings.EMAIL_HOST_USER
-        to_email = [settings.EMAIL_HOST_USER, "tobias.wulvik@gmail.com"]
-        contact_message = """
-        %s: %s via %s
-        """%(form_full_name, form_message, form_email)
-        send_mail(subject, contact_message, from_email, to_email, fail_silently=False)
+
+def new_article(request):
+    # Calls 403 - permission denied if not logged in
+    if request.user.is_authenticated:
+
+        form = ArticleForm(request.POST or None, request.FILES or None)
+            
+        if form.is_valid():
+
+            new_article = form.save(commit=False)
+            image = form.cleaned_data['image']
+            new_article.save()
+            return redirect('article', article=new_article.slug)
+
+        context = {
+            'form': form
+        }
+
+        return render(request, 'wiki/new-article.html', context)
+    else:
+        raise PermissionDenied
+
+
+
+def article(request, article):
+    print(article)
+    article_model = Article.objects.get(slug=article)
 
     context = {
-        "form": form,
+        'article' : article_model
     }
-    return render(request, 'wiki/forms.html', context)
+    return render(request, 'wiki/article.html', context)

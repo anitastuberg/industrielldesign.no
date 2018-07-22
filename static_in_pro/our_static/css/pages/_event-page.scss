@@ -1,0 +1,40 @@
+#event-page {
+    margin-top: 22px;
+
+    .bilde, .beskrivelse {
+    }
+    .beskrivelse {
+        padding: 87px 10% 0;
+        width: 60%;
+        height: 120vh;
+        box-sizing: border-box;
+
+        h1 {
+            margin-top: 87px;
+        }
+
+    }
+    .bilde {
+        position: fixed;
+        width: 40%;
+        height: 100vh;
+        top: 0;
+        right: 0;
+
+        img {
+            min-height: 100vh;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    .signup {
+        position: fixed;
+        width: 45%;
+        bottom: 70px;
+        left: 20%;
+        padding: 2rem;
+        background-color: $light-blue;
+        color: white;
+        font-size: 1.5rem;
+    }
+}

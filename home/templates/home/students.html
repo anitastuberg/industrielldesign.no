@@ -3,15 +3,20 @@
 {% load staticfiles %}
 
 {% block page_title %}Student{% endblock %}
+{% block nav_students %}
+    class="selected"
+{% endblock %}
 
 {% block content %}
     {% include 'navbar.html' %}
     <div>
         <h1>Students</h1>
         {% for event in events %}
+        <a href="{% url "event" event_slug=event.slug %}">
             <h1>{{ event.title }}</h1>
             <p>{{ event.description }}</p>
             <p>{{ event.pk }}</p>
+        </a>
         {% endfor %}
         
         {% if request.user.is_authenticated %}

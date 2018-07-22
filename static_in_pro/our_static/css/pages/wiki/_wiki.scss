@@ -1,0 +1,56 @@
+#wiki-page {
+    margin-top: 5%;
+
+
+    #categories {
+        margin-top: 3rem;
+        grid-column-gap: 4rem;
+        grid-row-gap: 2rem;
+
+        // Middle line
+        &::after {
+            content: '';
+            width: 1px;
+            height: 100%;
+            background-color: #000;
+        }
+
+    }
+    
+    h1 {
+        font-size: 5rem;
+        text-align: center;
+    }
+    #new-article-button {
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+        width: 5rem;
+        padding: 0.5rem 1rem;
+    }
+
+    ul li {
+        line-height: 1.8rem;
+        text-decoration: none;
+        transition: transform 200ms ease-in-out;
+        & a, & a:visited {
+            color: $link-color;
+        }
+    }
+
+    #fyi, #lol {
+    }
+
+    #fyi {
+        text-align: right;
+        ul li:hover {
+            transform: translateX(-10px); 
+        }
+    }
+    #lol {
+        text-align: left;
+        ul li:hover {
+            transform: translateX(10px); 
+        }
+    }
+}

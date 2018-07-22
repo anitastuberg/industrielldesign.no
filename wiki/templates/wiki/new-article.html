@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+
+{% block content %}
+<div id="create-article">
+    <form class="grid two-column-grid" action="" method="POST" enctype="multipart/form-data">
+        <div class="left">
+            {{ form.image }}
+            <label id="" for="id_image">Last opp et bilde...</label>
+        </div>
+        <div class="right">
+            {% csrf_token %} 
+            {{ form.title }}
+            {{ form.text }}
+            {{ form.category }}
+            <input type="submit" value="Publish">
+        </div>
+    </form>
+</div>
+<script src="{% static 'js/wiki/newArticle.js' %}"></script>
+<script src="{% static 'js/autoExpandingTextArea.js' %}"></script>
+{% endblock content %}

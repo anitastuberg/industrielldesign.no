@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authentication.Profile'
+
+
 
 # Application definition
 
@@ -42,9 +45,10 @@ INSTALLED_APPS = [
     'home',
     'wiki',
     'events',
+    'projects',
+    'authentication',
     # Third party apps:
-    'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
-    'custom_user.apps.CustomUserConfig'
+    'imagekit'
 
 ]
 
@@ -63,7 +67,9 @@ ROOT_URLCONF = 'industrielldesign.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [
+            'templates',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,17 +114,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'custom_user.User' 
-
 
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nb'
 
-TIME_ZONE = 'UTC'
+USE_TZ = True
+TIME_ZONE = 'Arctic/Longyearbyen'
 
 USE_I18N = True
 
@@ -141,6 +146,11 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", 'media_root')
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static_in_pro', 'our_media'),
+    'industrielldesign/home'
+]
 # Django registration redux settings:
 
-LOGOUT_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/"

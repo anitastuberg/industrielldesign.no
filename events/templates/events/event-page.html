@@ -1,14 +1,41 @@
 {% extends "base.html" %} 
 {% block content %}
+{% include "navbar.html" %}
+
+{% block nav_students %}
+    class="selected"
+{% endblock %}
 
 <div id="event-page">
 
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.description }}</p>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Meld på">
-    </form>
-
+    <div class="beskrivelse">
+        <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
+        <h1>{{ event.title }}</h1>
+        <p>{{ event.description }}</p>
+    </div>
+    <div class="bilde">
+        <img src="{{ event.image.url }}" alt="">
+    </div>
+    {% include 'events/event-info-box.html' %}
 </div>
 {% endblock content %}
+{% block javascript %}
+<script>
+    $('#event-login-field').on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "event_login" %}',
+            data: {
+                email : $('#email').val(),
+                password : $('#password').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function() {
+                alert("logged in");
+            }
+        })
+    });
+</script>
+{% endblock javascript %}
