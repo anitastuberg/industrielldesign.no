@@ -547,7 +547,7 @@ a[type="button"] {
 #project-grid {
   display: -ms-grid;
   display: grid;
-  grid-gap: 0;
+  grid-gap: 2px;
 }
 
 @media screen and (max-width: 480px) {
@@ -577,7 +577,6 @@ a[type="button"] {
 #project-grid .project-image {
   position: relative;
   max-width: none;
-  border: 2px solid white;
   background-color: #E84C4C;
   overflow: hidden;
   cursor: pointer;

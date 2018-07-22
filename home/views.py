@@ -11,9 +11,6 @@ def index(request):
 def about(request):
     return render(request, 'home/about.html', {})
 
-def projects(request):
-    return render(request, 'home/projects.html', {})
-
 def students(request):
 
     context = {
@@ -28,7 +25,7 @@ def snake(request):
 class LoginFormView(View):
 
     template_name = 'home/login.html'
-    form_class = RegisterForm
+    form_class = LoginForm
 
     def get(self, request):
         form = self.form_class(None)
@@ -71,6 +68,7 @@ class RegisterFormView(View):
             # username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+            allergies = form.cleaned_data['allergies']
             user.set_password(password)
             user.save()
 

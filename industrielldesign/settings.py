@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'wiki',
     'events',
+    'projects',
     # Third party apps:
     'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
     'custom_user.apps.CustomUserConfig',
@@ -121,7 +122,8 @@ AUTH_USER_MODEL = 'custom_user.User'
 
 LANGUAGE_CODE = 'nb'
 
-TIME_ZONE = 'UTC'
+USE_TZ = True
+TIME_ZONE = 'Arctic/Longyearbyen'
 
 USE_I18N = True
 
