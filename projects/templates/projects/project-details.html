@@ -1,0 +1,17 @@
+{% extend 'base.html' %}
+
+{% load staticfiles %}
+
+{% block page_title %}{{ project.title }}{% endblock %}
+
+{% block nav_projects %}
+    class="selected"
+{% endblock %}
+
+{% block content %}
+
+{{ project.title }}
+{{ project.description }}
+{{ project.image }}
+
+{% endblock %}

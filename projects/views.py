@@ -6,3 +6,7 @@ def projects(request):
 
 def project_details(request, project_slug):
     project = Projects.get(slug=project_slug)
+    
+    context = {
+        "project": project,
+    }
