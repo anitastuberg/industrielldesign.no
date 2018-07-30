@@ -1,12 +1,12 @@
 from django import forms
 
-from .models import Event
+from .models import Project
 
-class CreateEventForm(forms.ModelForm):
+class CreateProjectForm(forms.ModelForm):
 
     class Meta:
-        model = Event
-        fields = ['title', 'description', 'location', 'image', 'open_for', 'event_start_time', 'event_end_time', 'registration_required', 'registration_start_time', 'available_spots', 'registered_users' ]
+        model = Project
+        fields = ['title', 'description', 'creator', 'course', 'semester', 'year', 'thumbnail']
 
     def clean_image(self):
         image = self.cleaned_data.get('image', False)

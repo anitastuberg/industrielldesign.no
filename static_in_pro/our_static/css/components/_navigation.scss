@@ -1,11 +1,12 @@
 nav#main-navigation {
-    padding: 2rem;
+    padding: 1rem 2rem;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 10000;
     background-color: white;
+    border-bottom: 1px solid #f2f2f2;   
     #hamburger {
         @media screen and (min-width: 800px) {
             display: none;
@@ -26,6 +27,9 @@ nav#main-navigation {
                 color: #000;
             }
         }
+        #nav-items {
+            float: left;
+        }
         #bar {
             background-color: $yellow;
             position: absolute;
@@ -33,19 +37,19 @@ nav#main-navigation {
             height: 10px;
             width: 10px;
             transition: left 200ms ease-in-out, background-color 200ms ease-in-out, width 200ms ease-in-out;
-            &.color1 {
+            &.color0 {
                 background-color: $yellow;
             }
-            &.color2 {
+            &.color1 {
                 background-color: $red;
             }
-            &.color3 {
+            &.color2 {
                 background-color: $light-blue;
             }
-            &.color4 {
+            &.color3 {
                 background-color: $yellow;
             }
-            &.color5 {
+            &.color4 {
                 background-color: $light-gray;
             }
         }

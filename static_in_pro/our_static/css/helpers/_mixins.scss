@@ -2,11 +2,13 @@
 @mixin high-shadow() {
     box-shadow: 0 0 0 0;
 }
+
 @mixin med-shadow() {
-    -webkit-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.11);
-    -moz-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.11);
-    box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.11);
+    -webkit-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
+    -moz-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
 }
+
 @mixin low-shadow() {
     box-shadow: 0 0 0 0;
 }

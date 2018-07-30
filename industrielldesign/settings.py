@@ -153,4 +153,4 @@ MEDIAFILES_DIRS = [
 # Django registration redux settings:
 
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/students"

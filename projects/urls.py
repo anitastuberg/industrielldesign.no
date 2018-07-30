@@ -6,5 +6,4 @@ from . import views
 
 urlpatterns = [
     path('projects/', views.projects, name="projects"),
-    path('event/<slug:project_slug>', views.project_details, name="project-detail")
 ]

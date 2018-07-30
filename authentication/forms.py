@@ -6,12 +6,15 @@ User = get_user_model()
 
 class RegisterForm(forms.ModelForm):
     email = forms.EmailField(validators=[validate_stud_email])
-    password = forms.CharField(widget=forms.PasswordInput)
+    first_name = forms.CharField(max_length=150)
+    last_name = forms.CharField(max_length=150)
+    graduation_year = forms.IntegerField()
     allergies = forms.CharField(max_length=150)
+    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'allergies']
+        fields = ['email', 'first_name', 'last_name', 'graduation_year', 'allergies', 'password']
 
 class LoginForm(forms.Form):
     email = forms.EmailField()
