@@ -1,22 +1,21 @@
 {% extends "base.html" %} 
+
+{% load staticfiles %}
+
 {% block content %}
 {% include "navbar.html" %}
 
-{% block nav_students %}
-    class="selected"
-{% endblock %}
-
 <div id="event-page">
 
-    <div class="beskrivelse">
+    <div class="beskrivelse not-loaded">
         <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
         <h1>{{ event.title }}</h1>
         <p>{{ event.description }}</p>
     </div>
-    <div class="bilde">
+    <div class="bilde not-loaded">
         <img src="{{ event.image.url }}" alt="">
     </div>
-    <div class="signup">
+    <div class="signup not-loaded">
         <p></p>
         <p>{{ event.event_start_time|date:"j. F H:i" }} - {{ event.event_end_time|date:"H:i" }}</p>
         <p>{{ event.location }}</p>
@@ -52,31 +51,14 @@
     </div>
 </div>
 {% endblock content %}
+
 {% block javascript %}
+<script src="{% static '/js/ajaxSetup.js' %}"></script> 
 <script>
-    $.ajaxSetup({ 
-     beforeSend: function(xhr, settings) {
-         function getCookie(name) {
-             var cookieValue = null;
-             if (document.cookie && document.cookie != '') {
-                 var cookies = document.cookie.split(';');
-                 for (var i = 0; i < cookies.length; i++) {
-                     var cookie = jQuery.trim(cookies[i]);
-                     // Does this cookie string begin with the name we want?
-                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                     break;
-                 }
-             }
-         }
-         return cookieValue;
-         }
-         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-             // Only send the token to relative URLs i.e. locally.
-             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-         }
-     } 
-});
+    $(document).ready(function() {
+        $('.not-loaded').removeClass('not-loaded');
+    });
+        
     function loggedIn(data) {
         if (data.success) {
             let form = $('#log-in-fields');

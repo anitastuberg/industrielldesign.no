@@ -2,8 +2,8 @@ $(function () {
 
 
   let bar = $('#bar');
-  let listElement = $('#main-navigation ul li');
-  let selected = $('#main-navigation ul .selected');
+  let listElement = $('#main-navigation #nav-items li');
+  let selected = $('#main-navigation li.selected');
 
   if (!selected.length) {
     bar.hide();

@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
-import json
+from django.http import JsonResponse
 # from django.utils import simplejson
 
 
@@ -95,5 +94,5 @@ def event(request, event_slug):
             else:
                 pass
             
-        return HttpResponse(json.dumps(response_data), content_type="application/json")
+        return JsonResponse(response_data)
 

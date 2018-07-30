@@ -17,3 +17,6 @@ def students(request):
 
 def snake(request):
     return render(request, 'testing/404/404.html', {})
+
+def page_not_found(request):
+    return render(request, '404.html')
