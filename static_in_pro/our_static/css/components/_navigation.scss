@@ -6,7 +6,16 @@ nav#main-navigation {
     left: 0;
     z-index: 10000;
     background-color: white;
-    border-bottom: 1px solid #f2f2f2;   
+    border-bottom: 1px solid #f2f2f2;
+
+    #leo-logo svg {
+        height: 100%;
+        width: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
     #hamburger {
         @media screen and (min-width: 800px) {
             display: none;
@@ -29,6 +38,7 @@ nav#main-navigation {
         }
         #nav-items {
             float: left;
+            margin-left: 80px;
         }
         #bar {
             background-color: $yellow;
