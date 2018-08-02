@@ -1,23 +1,22 @@
 #create-article {
-    form {
-        #id_title, textarea {
+    form.grid {
+        grid-template-columns: 2fr 3fr;
+        #id_title {
             display: block;
             border: none;
             outline: none;
         }
         #id_title {
             font-size: 3rem;
-            margin-bottom: 3rem;
         }
-        .right {
-            margin-top: 20%;
+        .markdown-preview, #id_title, input[type="submit"] {
+            margin: 0 2rem;
         }
         .left {
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: $light-blue;
-            margin-right: 6rem;
             min-height: 100vh;
 
             #id_image {
@@ -36,17 +35,17 @@
                 }
             }
         }
-        textarea {
-            width: 63ch;
-            line-height: 1.5rem;
-            margin-bottom: 3rem;
-        }
         select {
             border-radius: 0;
         }
         input[type="submit"] {
-            margin-bottom: 5rem;
+            background-color: $red;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
         }
-        
     }
 }

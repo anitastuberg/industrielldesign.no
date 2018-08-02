@@ -130,6 +130,58 @@ textarea {
   font-size: 1rem;
 }
 
+strong {
+  font-family: "sweden_sansbold", sans-serif;
+}
+
+em {
+  font-style: italic;
+}
+
+blockquote {
+  position: relative;
+  margin: 2rem 0;
+}
+
+blockquote p {
+  margin-left: 1rem;
+  color: #333333;
+  font-size: 1.2em;
+}
+
+blockquote::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  background-color: #47A0BC;
+  height: 100%;
+  width: 2px;
+}
+
+code {
+  background-color: #d3e0e4;
+  padding: 2px 5px;
+  border: 1px solid #c4d5da;
+  border-radius: 2px;
+}
+
+ul, ol {
+  margin-left: 1rem;
+}
+
+ul li, ol li {
+  line-height: 1.5em;
+}
+
+ul li {
+  list-style-type: circle;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
 nav#main-navigation {
   padding: 1rem 2rem;
   position: fixed;
@@ -139,6 +191,14 @@ nav#main-navigation {
   z-index: 10000;
   background-color: white;
   border-bottom: 1px solid #f2f2f2;
+}
+
+nav#main-navigation #leo-logo svg {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media screen and (min-width: 800px) {
@@ -171,6 +231,7 @@ nav#main-navigation ul li a {
 
 nav#main-navigation ul #nav-items {
   float: left;
+  margin-left: 80px;
 }
 
 nav#main-navigation ul #bar {
@@ -437,6 +498,53 @@ a[type="button"] {
   left: 0;
 }
 
+.text-editor {
+  width: 100%;
+  background-color: #EAF0F2;
+}
+
+.text-editor .button-row {
+  background-color: #DFE8EB;
+  padding: 0.5rem 0;
+}
+
+.text-editor .button-row > ul {
+  margin: 0 5%;
+}
+
+.text-editor .button-row > ul li {
+  list-style-type: none;
+  cursor: pointer;
+  display: inline;
+}
+
+.text-editor .button-row > ul li i:hover {
+  background-color: #95B4BC;
+}
+
+.text-editor .button-row #format-size, .text-editor .button-row #format-code {
+  margin-right: 1rem;
+}
+
+.text-editor .button-row #format-size {
+  padding-right: 5px;
+}
+
+.text-editor .button-row #format-size ul {
+  display: none;
+}
+
+.text-editor textarea {
+  width: 90%;
+  min-height: calc(10rem * 1.2);
+  background-color: #EAF0F2;
+  resize: vertical;
+  border: none;
+  outline: none;
+  border-left: 1px solid #e1e9ec;
+  margin: 0 5%;
+}
+
 .grid {
   display: -ms-grid;
   display: grid;
@@ -552,7 +660,7 @@ a[type="button"] {
 #project-grid {
   display: -ms-grid;
   display: grid;
-  margin-top: 126px;
+  margin-top: 73px;
 }
 
 @media screen and (max-width: 480px) {
@@ -829,22 +937,26 @@ a[type="button"] {
   font-size: 1.1em;
 }
 
-#create-article form #id_title, #create-article form textarea {
+#create-article form.grid {
+  -ms-grid-columns: 2fr 3fr;
+      grid-template-columns: 2fr 3fr;
+}
+
+#create-article form.grid #id_title {
   display: block;
   border: none;
   outline: none;
 }
 
-#create-article form #id_title {
+#create-article form.grid #id_title {
   font-size: 3rem;
-  margin-bottom: 3rem;
 }
 
-#create-article form .right {
-  margin-top: 20%;
+#create-article form.grid .markdown-preview, #create-article form.grid #id_title, #create-article form.grid input[type="submit"] {
+  margin: 0 2rem;
 }
 
-#create-article form .left {
+#create-article form.grid .left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -855,11 +967,10 @@ a[type="button"] {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #47A0BC;
-  margin-right: 6rem;
   min-height: 100vh;
 }
 
-#create-article form .left #id_image {
+#create-article form.grid .left #id_image {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -868,25 +979,25 @@ a[type="button"] {
   z-index: -1;
 }
 
-#create-article form .left #id_image + label {
+#create-article form.grid .left #id_image + label {
   display: block;
   background-color: #fff;
   color: #000;
   padding: 1rem;
 }
 
-#create-article form textarea {
-  width: 63ch;
-  line-height: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-#create-article form select {
+#create-article form.grid select {
   border-radius: 0;
 }
 
-#create-article form input[type="submit"] {
-  margin-bottom: 5rem;
+#create-article form.grid input[type="submit"] {
+  background-color: #E84C4C;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
 }
 
 #wiki-page {

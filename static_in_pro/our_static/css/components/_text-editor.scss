@@ -1,0 +1,41 @@
+$text-editor-background-color: #EAF0F2;
+.text-editor {
+    width: 100%;
+    background-color: $text-editor-background-color;
+    .button-row {
+        background-color: #DFE8EB;
+        padding: 0.5rem 0;
+        & > ul {
+            margin: 0 5%;
+            li {
+                list-style-type: none;
+                cursor: pointer;
+                display: inline;
+
+                i:hover {
+                    background-color: $light-gray;
+                }
+            }
+        }
+        #format-size, #format-code {
+            margin-right: 1rem;
+        }
+
+        #format-size {
+            padding-right: 5px;
+            ul {
+                display: none;
+            }
+        }
+    }
+    textarea {
+        width: 90%;
+        min-height: calc(10rem * 1.2);
+        background-color: $text-editor-background-color;
+        resize: vertical;
+        border: none;
+        outline: none;
+        border-left: 1px solid darken($color: $text-editor-background-color, $amount: 3%);
+        margin: 0 5%;
+    }
+}

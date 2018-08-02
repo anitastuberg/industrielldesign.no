@@ -1,23 +1,29 @@
 {% extends 'base.html' %} 
 {% load static %}
 
+{% block page_title %}Ny artikkel{% endblock page_title %}
+
 
 {% block content %}
 <div id="create-article">
-    <form class="grid two-column-grid" action="" method="POST" enctype="multipart/form-data">
+    <form class="grid" action="" method="POST" enctype="multipart/form-data">
         <div class="left">
             {{ form.image }}
             <label id="" for="id_image">Last opp et bilde...</label>
         </div>
         <div class="right">
             {% csrf_token %} 
+            {% include 'wiki/text-editor.html' %}
             {{ form.title }}
-            {{ form.text }}
-            {{ form.category }}
-            <input type="submit" value="Publish">
+            <div class="markdown-preview"></div>
+            <input type="submit" value="Save">
         </div>
     </form>
 </div>
-<script src="{% static 'js/wiki/newArticle.js' %}"></script>
-<script src="{% static 'js/autoExpandingTextArea.js' %}"></script>
 {% endblock content %}
+
+{% block javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+    <script src="{% static 'js/wiki/newArticle.js' %}"></script>
+    <script src="{% static 'js/textEditor.js' %}"></script>
+{% endblock javascript %}
