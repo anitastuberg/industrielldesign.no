@@ -78,13 +78,7 @@
         $('.tilbake').on('click', function(e) {
             closeProjectDetail();
         });
-
-        $(document).keyup(function(e) {
-            if (e.which == 27) {
-                e.preventDefault();
-                closeProjectDetail();
-            }
-        });
+        
         $(window).on('popstate', function(event) {
             if (!window.location.href.endsWith('+detaljer')) {
                 closeProjectDetail(true);
