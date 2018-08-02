@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <div id="article" class="grid two-column-grid">
     <div class="left">
@@ -9,8 +10,23 @@
     <div class="right">
         <a class="tilbake" href="{% url 'wiki' %}">Tilbake</a>
         <h1>{{ article.title }}</h1>
-        <p>{{ article.text }}</p>
+        <p class="content-markdown">{{ article.text }}</p>
     </div>
 </div>
 
 {% endblock content %}
+
+<!-- JAVASCRIPT -->
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let content = $('.content-markdown');
+        console.log(content.text());
+        let markedContent = marked(content.text());
+        console.log(markedContent);
+        content.html(markedContent);
+
+    });
+</script>
+{% endblock javascript %}
