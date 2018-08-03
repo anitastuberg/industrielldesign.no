@@ -14,9 +14,9 @@
         <div id="fyi">
             <h2>FYI</h2>
             <ul>
-                {% for fyi in FYI_article %}
+                {% for wiki in article %}
                 <li>
-                    <a href="/wiki/{{ fyi.slug }}">{{fyi.title}}</a>
+                    <a href="/wiki/{{ wiki.slug }}">{{wiki.title}}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -24,11 +24,6 @@
         <div id="lol">
             <h2>LOL</h2>
             <ul>
-                {% for lol in LOL_article %}
-                <li>
-                    <a href="/wiki/{{ lol.slug }}">{{lol.title}}</a>
-                </li>
-                {% endfor %}
             </ul>
         </div>
     </div>

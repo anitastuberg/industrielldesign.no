@@ -1,6 +1,6 @@
 #create-article {
-    form.grid {
-        grid-template-columns: 2fr 3fr;
+    margin-top: 74px;
+    form {
         #id_title {
             display: block;
             border: none;
@@ -8,6 +8,10 @@
         }
         #id_title {
             font-size: 3rem;
+        }
+        .markdown-preview p {
+            margin-bottom: 1rem;
+            max-width: 63ch;
         }
         .markdown-preview, #id_title, input[type="submit"] {
             margin: 0 2rem;

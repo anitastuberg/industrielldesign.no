@@ -21,6 +21,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
 <script>
     $(document).ready(function() {
+        marked.setOptions({sanitize: true, tables: true});
         let content = $('.content-markdown');
         console.log(content.text());
         let markedContent = marked(content.text());

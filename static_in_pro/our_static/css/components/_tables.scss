@@ -1,0 +1,31 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	overflow: hidden;
+	border: 1px solid $light-gray;
+}
+
+th,
+td {
+	padding: 15px;
+	color: $text-color;
+}
+
+th {
+	text-align: left;
+	color: white;
+}
+
+thead {
+	th {
+		background-color: $light-blue;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba($color: $light-blue, $alpha: 0.2);
+		}
+	}
+}

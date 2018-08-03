@@ -9,8 +9,7 @@ from .models import Article
 
 def wiki(request):
     context = {
-        'FYI_article' : Article.objects.filter(category="FYI").order_by('title'),
-        'LOL_article' : Article.objects.filter(category="LOL").order_by('title')
+        'article' : Article.objects.all()
     }
     return render(request, 'wiki/wiki.html', context)
 

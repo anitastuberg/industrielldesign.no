@@ -12,6 +12,10 @@ $text-editor-background-color: #EAF0F2;
                 cursor: pointer;
                 display: inline;
 
+                i {
+                    color: $text-color;
+                }
+
                 i:hover {
                     background-color: $light-gray;
                 }
@@ -28,14 +32,29 @@ $text-editor-background-color: #EAF0F2;
             }
         }
     }
-    textarea {
-        width: 90%;
-        min-height: calc(10rem * 1.2);
+
+    #body-text, #editor-title, #editor-introduction {
         background-color: $text-editor-background-color;
-        resize: vertical;
+        border: none;
+        width: 90%;
+        margin: 0 5%;
+        border-left: 1px solid darken($color: $text-editor-background-color, $amount: 3%);
         border: none;
         outline: none;
-        border-left: 1px solid darken($color: $text-editor-background-color, $amount: 3%);
-        margin: 0 5%;
+        margin-bottom: 0.5rem;
+    }
+
+    #editor-title {
+        font-size: 2rem;
+        position: relative;
+    }
+
+    #editor-introduction {
+        resize: vertical;
+    }
+
+    textarea#body-text {
+        min-height: calc(10rem * 1.2);
+        resize: vertical;
     }
 }
