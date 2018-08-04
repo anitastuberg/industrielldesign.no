@@ -82,6 +82,7 @@ body,
 input,
 textarea {
   font-family: "sweden_sansregular", sans-serif;
+  line-height: 1.5em;
 }
 
 h1,
@@ -91,6 +92,7 @@ h4,
 h5,
 h6 {
   margin-bottom: 1rem;
+  line-height: 1.1em;
 }
 
 h1 {
@@ -186,6 +188,7 @@ nav#main-navigation {
   padding: 1rem 2rem;
   position: fixed;
   width: 100%;
+  height: 64px;
   top: 0;
   left: 0;
   z-index: 10000;
@@ -501,15 +504,23 @@ a[type="button"] {
 .text-editor {
   width: 100%;
   background-color: #EAF0F2;
+  overflow: scroll;
+  padding-top: 50px;
 }
 
 .text-editor .button-row {
+  position: fixed;
+  top: 64px;
+  z-index: 100;
+  left: 0;
+  height: 50px;
+  width: 100%;
   background-color: #DFE8EB;
   padding: 0.5rem 0;
 }
 
 .text-editor .button-row > ul {
-  margin: 0 5%;
+  position: relative;
 }
 
 .text-editor .button-row > ul li {
@@ -519,6 +530,8 @@ a[type="button"] {
 }
 
 .text-editor .button-row > ul li i {
+  position: relative;
+  top: 4px;
   color: #1a1a1a;
 }
 
@@ -526,7 +539,23 @@ a[type="button"] {
   background-color: #95B4BC;
 }
 
-.text-editor .button-row #format-size, .text-editor .button-row #format-code {
+.text-editor .button-row > ul a {
+  position: absolute;
+  right: 0;
+  color: #1a1a1a;
+  display: inline;
+}
+
+.text-editor .button-row > ul a:visited {
+  color: #1a1a1a;
+}
+
+.text-editor .button-row > ul a:hover {
+  background-color: #95B4BC;
+}
+
+.text-editor .button-row #format-title,
+.text-editor .button-row #format-code {
   margin-right: 1rem;
 }
 
@@ -538,15 +567,28 @@ a[type="button"] {
   display: none;
 }
 
-.text-editor #body-text, .text-editor #editor-title, .text-editor #editor-introduction {
-  background-color: #EAF0F2;
-  border: none;
+.text-editor .button-row ul,
+.text-editor #body-text,
+.text-editor #editor-title,
+.text-editor #editor-introduction {
   width: 90%;
-  margin: 0 5%;
-  border-left: 1px solid #e1e9ec;
+  margin: 0 auto;
+}
+
+.text-editor #body-text,
+.text-editor #editor-title,
+.text-editor #editor-introduction {
+  background-color: #EAF0F2;
   border: none;
   outline: none;
   margin-bottom: 0.5rem;
+  display: block;
+}
+
+.text-editor #body-text:hover,
+.text-editor #editor-title:hover,
+.text-editor #editor-introduction:hover {
+  background-color: #e1e9ec;
 }
 
 .text-editor #editor-title {
@@ -556,6 +598,7 @@ a[type="button"] {
 
 .text-editor #editor-introduction {
   resize: vertical;
+  font-family: "sweden_sansbold", sans-serif;
 }
 
 .text-editor textarea#body-text {
@@ -607,6 +650,15 @@ tbody tr:hover {
 .grid-box {
   display: -ms-inline-grid;
   display: inline-grid;
+}
+
+.container--margin-bottom {
+  margin-bottom: 4rem;
+}
+
+.container--nav {
+  margin-top: 64px;
+  position: relative;
 }
 
 #landing-page {
@@ -981,64 +1033,42 @@ tbody tr:hover {
   font-size: 1.1em;
 }
 
-#create-article {
-  margin-top: 74px;
+#create-article form #title {
+  font-size: 4rem;
+  text-align: center;
 }
 
-#create-article form #id_title {
+#create-article form #title::before {
+  content: '';
+  height: 6rem;
   display: block;
-  border: none;
-  outline: none;
 }
 
-#create-article form #id_title {
-  font-size: 3rem;
+#create-article form #introduction {
+  font-family: "sweden_sansbold", sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto 4rem;
+}
+
+#create-article form .markdown-preview {
+  width: 90%;
+  max-width: 63ch;
+  margin: 0 auto;
 }
 
 #create-article form .markdown-preview p {
   margin-bottom: 1rem;
-  max-width: 63ch;
+  line-height: 1.7em;
 }
 
-#create-article form .markdown-preview, #create-article form #id_title, #create-article form input[type="submit"] {
-  margin: 0 2rem;
+#create-article form .markdown-preview h1, #create-article form .markdown-preview h2, #create-article form .markdown-preview h3, #create-article form .markdown-preview h4, #create-article form .markdown-preview h5, #create-article form .markdown-preview h6 {
+  margin: 2rem 0 1rem;
 }
 
-#create-article form .left {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #47A0BC;
-  min-height: 100vh;
-}
-
-#create-article form .left #id_image {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-#create-article form .left #id_image + label {
-  display: block;
-  background-color: #fff;
-  color: #1a1a1a;
-  padding: 1rem;
-}
-
-#create-article form select {
-  border-radius: 0;
-}
-
-#create-article form input[type="submit"] {
+#create-article form .submit {
+  cursor: pointer;
   background-color: #E84C4C;
   color: #fff;
   padding: 0.5rem 1rem;
@@ -1046,6 +1076,13 @@ tbody tr:hover {
   position: fixed;
   bottom: 50px;
   right: 50px;
+}
+
+#create-article form .submit i {
+  position: relative;
+  font-size: 1rem;
+  top: 2px;
+  margin-right: 0.5rem;
 }
 
 #wiki-page {

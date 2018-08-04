@@ -5,7 +5,7 @@ $(function() {
 
     let formatBold = $('#format-bold');
     let formatItalic = $('#format-italic');
-    let formatSize = $('#format-size');
+    let formatTitle = $('#format-title');
     let formatImage = $('#format-image');
     let formatLink = $('#format-link');
     let formatQuote = $('#format-quote');
@@ -14,10 +14,12 @@ $(function() {
     let formatNumber = $('#format-list-number');
     let formatTable = $('#format-table');
 
+    let title = $('#title');
+    let introductuon = $('#introduction');
     let preview = $('.markdown-preview');
 
     function previewLoader() {
-        marked.setOptions({sanitize: true, tables: true});
+        marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
         let markedContent = marked(editorTextArea.val());
         preview.html(markedContent);
     }
@@ -37,6 +39,9 @@ $(function() {
                     break;
                 case "italic":
                     text = "*Italic*";
+                    break;
+                case 'title':
+                    text = "\n# Mellomtittel";
                     break;
                 case "image":
                     text = '![alt text](https://url.com/image.png)';
@@ -74,6 +79,14 @@ $(function() {
                     text = "*";
                     textAfter = "*";
                     break;
+                case 'title':
+                    text ="\n# ";
+                    textAfter = "";
+                    break;
+                case "image":
+                    text = '![';
+                    textAfter = "](https://url.com/image.png)";
+                    break;
                 case "link":
                     text = "[";
                     textAfter = "](https://url.com)";
@@ -108,13 +121,23 @@ $(function() {
 
     // Event listener for input text
     editorTextArea.bind('input propertychange', previewLoader);
-    editorTextArea.bind('input propertychange', previewLoader);
+    editorTitle.bind('input propertychange', () => {
+        title.text(editorTitle.val());
+    });
+    editorIntroduction.bind('input propertychange', () => {
+        introductuon.text(editorIntroduction.val());
+    });
+
+    $(".autoResize").autoResize();
 
     formatBold.click(() => {
         insertText('bold');
     });
     formatItalic.click( () => {
         insertText('italic');
+    });
+    formatTitle.click( () => {
+        insertText('title');
     });
     formatImage.click( () => {
         insertText("image");

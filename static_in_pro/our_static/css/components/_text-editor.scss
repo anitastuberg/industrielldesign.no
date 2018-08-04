@@ -2,29 +2,49 @@ $text-editor-background-color: #EAF0F2;
 .text-editor {
     width: 100%;
     background-color: $text-editor-background-color;
+    overflow: scroll;
+    padding-top: 50px;
     .button-row {
+        position: fixed;
+        top: $nav-height;
+        z-index: 100;
+        left: 0;
+        height: 50px;
+        width: 100%;
         background-color: #DFE8EB;
         padding: 0.5rem 0;
-        & > ul {
-            margin: 0 5%;
+        &>ul {
+            position: relative;
             li {
                 list-style-type: none;
                 cursor: pointer;
                 display: inline;
-
                 i {
+                    position: relative;
+                    top: 4px;
+                    color: $text-color;
+                    &:hover {
+                        background-color: $light-gray;
+                    }
+                }
+            }
+            a {
+                position: absolute;
+                right: 0;
+                color: $text-color;
+                display: inline;
+                &:visited {
                     color: $text-color;
                 }
-
-                i:hover {
+                &:hover {
                     background-color: $light-gray;
                 }
             }
         }
-        #format-size, #format-code {
+        #format-title,
+        #format-code {
             margin-right: 1rem;
         }
-
         #format-size {
             padding-right: 5px;
             ul {
@@ -32,27 +52,33 @@ $text-editor-background-color: #EAF0F2;
             }
         }
     }
-
-    #body-text, #editor-title, #editor-introduction {
-        background-color: $text-editor-background-color;
-        border: none;
+    .button-row ul,
+    #body-text,
+    #editor-title,
+    #editor-introduction {
         width: 90%;
-        margin: 0 5%;
-        border-left: 1px solid darken($color: $text-editor-background-color, $amount: 3%);
+        margin: 0 auto;
+    }
+    #body-text,
+    #editor-title,
+    #editor-introduction {
+        background-color: $text-editor-background-color;
         border: none;
         outline: none;
         margin-bottom: 0.5rem;
+        display: block;
+        &:hover {
+            background-color: darken($color: $text-editor-background-color, $amount: 3%);
+        }
     }
-
     #editor-title {
         font-size: 2rem;
         position: relative;
     }
-
     #editor-introduction {
         resize: vertical;
+        font-family: $bold;
     }
-
     textarea#body-text {
         min-height: calc(10rem * 1.2);
         resize: vertical;

@@ -1,48 +1,36 @@
 #create-article {
-    margin-top: 74px;
     form {
-        #id_title {
-            display: block;
-            border: none;
-            outline: none;
-        }
-        #id_title {
-            font-size: 3rem;
-        }
-        .markdown-preview p {
-            margin-bottom: 1rem;
-            max-width: 63ch;
-        }
-        .markdown-preview, #id_title, input[type="submit"] {
-            margin: 0 2rem;
-        }
-        .left {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: $light-blue;
-            min-height: 100vh;
-
-            #id_image {
-                width: 0.1px;
-                height: 0.1px;
-                opacity: 0;
-                overflow: hidden;
-                position: absolute;
-                z-index: -1;
-    
-                & + label {
-                    display: block;
-                    background-color: #fff;
-                    color: $text-color;
-                    padding: 1rem;
-                }
+        #title {
+            font-size: 4rem;
+            text-align: center;
+            &::before {
+                content:'';
+                height: 6rem;
+                display: block;
             }
         }
-        select {
-            border-radius: 0;
+        #introduction {
+            font-family: $bold;
+            font-size: 1.2rem;  
+            text-align: center;
+            width: 90%;
+            margin: 0 auto 4rem;
         }
-        input[type="submit"] {
+        .markdown-preview {
+            width: 90%;
+            max-width: 63ch;
+            margin: 0 auto;
+            p {
+                margin-bottom: 1rem;
+                line-height: 1.7em;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                margin: 2rem 0 1rem;
+            }
+        }
+        .submit {
+            cursor: pointer;
             background-color: $red;
             color: #fff;
             padding: 0.5rem 1rem;
@@ -50,6 +38,13 @@
             position: fixed;
             bottom: 50px;
             right: 50px;
+
+            i {
+                position: relative;
+                font-size: 1rem;
+                top: 2px;
+                margin-right: 0.5rem;
+            }
         }
     }
 }

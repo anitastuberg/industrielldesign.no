@@ -1,26 +1,26 @@
 {% extends 'base.html' %} 
-{% load static %}
+{% load staticfiles %}
 
 {% block page_title %}Ny artikkel{% endblock page_title %}
 
 
 {% block content %}
 {% include 'navbar.html' %}
-<div id="create-article">
+<div class="container--margin-bottom container--nav" id="create-article">
     <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %} 
             {% include 'wiki/text-editor.html' %}
-            {{form.category}}
             <h1 id="title"></h1>
             <p id="introduction"></p>
             <div class="markdown-preview"></div>
-            <input type="submit" value="Save">
+            <div type="submit" class="submit"><i class="material-icons">save</i>Lagre</div>
         </div>
     </form>
 </div>
 {% endblock content %}
 
 {% block javascript %}
+    <script src="{% static 'js/autoExpandingTextArea.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
     <script src="{% static 'js/wiki/newArticle.js' %}"></script>
     <script src="{% static 'js/textEditor.js' %}"></script>
