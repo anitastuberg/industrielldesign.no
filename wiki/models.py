@@ -5,13 +5,15 @@ from imagekit.processors import ResizeToFit
 
 # Create your models here.
 class Article(models.Model):
-    title = models.CharField(max_length=40, unique=True)
-    slug = models.SlugField(max_length=60, blank=True)
-    text = models.TextField()
-    image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    title = models.CharField(max_length=40, unique=True);
+    introduction  = models.TextField(blank=True, null=True);
+    body_text = models.TextField();
+    
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    #image = models.ImageField()
+    
+    slug = models.SlugField(max_length=60, blank=True)
+    # image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
 
     def save(self, *args, **kwargs):
         if not self.id:

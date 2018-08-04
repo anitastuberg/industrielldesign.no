@@ -2,30 +2,46 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	overflow: hidden;
-	border: 1px solid $light-gray;
 }
 
 th,
 td {
 	padding: 15px;
 	color: $text-color;
+	border: 1px solid $light-gray;
 }
 
 th {
 	text-align: left;
-	color: white;
+	color: $text-color;
 }
 
 thead {
+	border-bottom: 2px solid $light-gray;
 	th {
-		background-color: $light-blue;
+		font-family: $bold;
 	}
 }
 
 tbody {
 	tr {
 		&:hover {
-			background-color: rgba($color: $light-blue, $alpha: 0.2);
+			background-color: rgba($light-blue, 0.1);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba($light-blue, 0.05);
+				z-index: -1;
+			}
 		}
 	}
 }

@@ -3,7 +3,7 @@ $text-editor-background-color: #EAF0F2;
     width: 100%;
     background-color: $text-editor-background-color;
     overflow: scroll;
-    padding-top: 50px;
+    padding: 50px 5% 0;
     .button-row {
         position: fixed;
         top: $nav-height;
@@ -15,6 +15,7 @@ $text-editor-background-color: #EAF0F2;
         padding: 0.5rem 0;
         &>ul {
             position: relative;
+            margin: 0 5%;
             li {
                 list-style-type: none;
                 cursor: pointer;
@@ -24,7 +25,7 @@ $text-editor-background-color: #EAF0F2;
                     top: 4px;
                     color: $text-color;
                     &:hover {
-                        background-color: $light-gray;
+                        background-color: $gray;
                     }
                 }
             }
@@ -37,7 +38,7 @@ $text-editor-background-color: #EAF0F2;
                     color: $text-color;
                 }
                 &:hover {
-                    background-color: $light-gray;
+                    background-color: $gray;
                 }
             }
         }
@@ -52,34 +53,35 @@ $text-editor-background-color: #EAF0F2;
             }
         }
     }
-    .button-row ul,
-    #body-text,
-    #editor-title,
-    #editor-introduction {
-        width: 90%;
-        margin: 0 auto;
-    }
-    #body-text,
-    #editor-title,
-    #editor-introduction {
+    // .button-row ul,
+    // #id_body_text,
+    // #id_title,
+    // #id_introduction {
+    //     width: 90%;
+    //     margin: 0 auto;
+    // }
+    #id_body_text,
+    #id_title,
+    #id_introduction {
         background-color: $text-editor-background-color;
         border: none;
         outline: none;
         margin-bottom: 0.5rem;
         display: block;
+        width: 100%;
         &:hover {
             background-color: darken($color: $text-editor-background-color, $amount: 3%);
         }
     }
-    #editor-title {
+    #id_title {
         font-size: 2rem;
         position: relative;
     }
-    #editor-introduction {
+    #id_introduction {
         resize: vertical;
         font-family: $bold;
     }
-    textarea#body-text {
+    textarea#id_body_text {
         min-height: calc(10rem * 1.2);
         resize: vertical;
     }

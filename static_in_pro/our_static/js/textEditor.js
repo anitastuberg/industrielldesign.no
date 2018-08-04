@@ -1,7 +1,7 @@
 $(function() {
-    let editorTextArea = $('#body-text');
-    let editorTitle = $('#editor-title');
-    let editorIntroduction = $('#editor-introduction');
+    let editorTitle = $('#id_title');
+    let editorIntroduction = $('#id_introduction');
+    let editorTextArea = $('#id_body_text');
 
     let formatBold = $('#format-bold');
     let formatItalic = $('#format-italic');
@@ -14,14 +14,16 @@ $(function() {
     let formatNumber = $('#format-list-number');
     let formatTable = $('#format-table');
 
-    let title = $('#title');
-    let introductuon = $('#introduction');
+    let title = $('.article__title');
+    let introductuon = $('.article__introduction');
     let preview = $('.markdown-preview');
 
     function previewLoader() {
         marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
         let markedContent = marked(editorTextArea.val());
         preview.html(markedContent);
+        title.text(editorTitle.val());
+        introductuon.text(editorIntroduction.val());
     }
 
     function insertText(type) {
@@ -68,7 +70,7 @@ $(function() {
             }
             editorTextArea.val( currentText.substring(0, caretStart) + text + currentText.substring(caretStart) );
         } 
-        // A selection is made
+        // Else = selection not just caret
         else {
             switch(type) {
                 case "bold":
@@ -113,23 +115,28 @@ $(function() {
                     "| Tekst | Tekst | Tekst |";
                     textAfter = "";
             }
+            // Recreates the text with markdown at cursor/selection
             editorTextArea.val( currentText.substring(0, caretStart) + text + currentText.substring(caretStart, caretEnd) + textAfter + currentText.substring(caretEnd) );
         }
         
+        // Load preview again when inserting text with buttons
         previewLoader();
+
+        // Triggers the autoexpanding textarea in autoExpandingTextArea.js
+        $('textarea').trigger('input');
     }
 
-    // Event listener for input text
+    // Event listener for input text in all input-fields
     editorTextArea.bind('input propertychange', previewLoader);
-    editorTitle.bind('input propertychange', () => {
-        title.text(editorTitle.val());
-    });
-    editorIntroduction.bind('input propertychange', () => {
-        introductuon.text(editorIntroduction.val());
-    });
+    editorTitle.bind('input propertychange', previewLoader);
+    editorIntroduction.bind('input propertychange', previewLoader);
 
-    $(".autoResize").autoResize();
+    // Autoresizes textareas to be as tall as its content
+    // Uses autoExpandingTextArea.js
+    // $(".autoResize").autoResize();
 
+    // Creating eventlisteners for all format buttons.
+    // Sends a string to insertText which is used in a switch statement.
     formatBold.click(() => {
         insertText('bold');
     });
@@ -160,4 +167,7 @@ $(function() {
     formatTable.click( () => {
         insertText('table');
     });
+
+    // Load preview on refresh
+    previewLoader();
 });

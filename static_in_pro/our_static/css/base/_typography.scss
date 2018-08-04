@@ -14,12 +14,8 @@
     font-style: normal;
 }
 
-$sans-serif: "sweden_sansregular",
-sans-serif;
-$bold: "sweden_sansbold",
-sans-serif;
 html {
-    font-size: 18px;
+    font-size: $root-font-size;
 }
 
 /* Setting Sweden sans as font */
@@ -28,7 +24,7 @@ body,
 input,
 textarea {
     font-family: $sans-serif;
-    line-height: 1.5em;
+    line-height: 1.8rem;
 }
 
 h1,
@@ -38,7 +34,7 @@ h4,
 h5,
 h6 {
     margin-bottom: 1rem;
-    line-height: 1.1em;
+    line-height: 1.2em;
 }
 
 h1 {
@@ -66,7 +62,7 @@ h6 {
 }
 
 p {
-    line-height: 1.5em;
+    line-height: 1.8em;
 }
 
 p.paragraph {
@@ -108,9 +104,9 @@ blockquote {
 }
 
 code {
-    background-color: lighten($light-gray, 20%);
+    background-color: lighten($gray, 20%);
     padding: 2px 5px;
-    border: 1px solid lighten($light-gray, 15%);
+    border: 1px solid lighten($gray, 15%);
     border-radius: 2px;
 }
 

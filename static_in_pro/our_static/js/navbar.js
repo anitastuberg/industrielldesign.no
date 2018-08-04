@@ -56,6 +56,4 @@ $(function () {
 
   listElement.hover(hoverIn, hoverOut);
 
-  secondListElement = $('#second ul li');
-
 });

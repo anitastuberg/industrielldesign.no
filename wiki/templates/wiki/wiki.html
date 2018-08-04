@@ -8,7 +8,7 @@
 
     <h1>WTF?!</h1>
     {% if request.user.is_authenticated %}
-    <a type="button" id="new-article-button" href="{% url "new-article" %}">Legg til ny</a>
+    <a type="button" id="new-article-button" href="{% url 'new-article' %}">Legg til ny</a>
     {% endif %}
     <div id="categories" class="grid two-column-grid">
         <div id="fyi">
@@ -16,7 +16,7 @@
             <ul>
                 {% for wiki in article %}
                 <li>
-                    <a href="/wiki/{{ wiki.slug }}">{{wiki.title}}</a>
+                    <a href="{% url 'article' article_slug=wiki.slug %}">{{wiki.title}}</a>
                 </li>
                 {% endfor %}
             </ul>

@@ -5,31 +5,33 @@ from django.core.exceptions import ValidationError
 from .models import Article
 
 class ArticleForm(forms.ModelForm):
+
     class Meta:
         model = Article
-        fields = ['title', 'text', 'image']
-
+        fields = ['title', 'introduction', 'body_text']
+    
     def __init__(self, *args, **kwargs):
         super(ArticleForm, self).__init__(*args, **kwargs)
-        self.fields['title'].widget = forms.TextInput(attrs={
-            'name': 'Tittel',
-            'placeholder': 'Tittel...'})
-        self.fields['text'].widget = forms.Textarea(attrs={
-        'name': 'Brødtekst',
-        'class' : 'autoExpand',
-        'rows' : '3',
-        'data-min-rows' : '3',
-        'placeholder': 'Skriv artikkelen her...'})
+        self.fields['title'].widget.attrs['placeholder'] = "Title..."
+        self.fields['title'].widget.attrs['autocomplete'] = "off"
+        self.fields['title'].widget.attrs['onkeypress'] = "return event.keyCode!=13"
 
-    def clean_title(self):
-        title = self.cleaned_data.get('title')
-        return title
+        self.fields['introduction'].widget.attrs['placeholder'] = "Ingress..."
+        self.fields['introduction'].widget.attrs['class'] = "autoResize"
+        self.fields['introduction'].widget.attrs['rows'] = "3"
+
+        self.fields['body_text'].widget.attrs['placeholder'] = "Brødtekst..."
+        self.fields['body_text'].widget.attrs['class'] = "autoResize"
+        self.fields['introduction'].widget.attrs['rows'] = "4"
     
-    def clean_image(self):
-        image = self.cleaned_data.get('image', False)
-        if image:
-            if image._size > 20*1024*1024:
-                raise ValidationError("Image file too large ( > 20mb )")
-            return image
-        else:
-            raise ValidationError("Couldn't read uploaded image")
+    
+    # TODO Image uploading, postpone integration
+
+    # def clean_image(self):
+    #     image = self.cleaned_data.get('image', False)
+    #     if image:
+    #         if image._size > 20*1024*1024:
+    #             raise ValidationError("Image file too large ( > 20mb )")
+    #         return image
+    #     else:
+    #         raise ValidationError("Couldn't read uploaded image")

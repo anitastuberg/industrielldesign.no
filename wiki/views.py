@@ -19,28 +19,55 @@ def new_article(request):
     # Calls 403 - permission denied if not logged in
     if request.user.is_authenticated:
 
-        form = ArticleForm(request.POST or None, request.FILES or None)
-            
-        if form.is_valid():
+        form = ArticleForm(request.POST or None)
 
-            new_article = form.save(commit=False)
-            image = form.cleaned_data['image']
-            new_article.save()
-            return redirect('article', article=new_article.slug)
+        if request.method == 'POST':
+
+            if form.is_valid():
+
+                new_article = form.save(commit=False)
+                new_article.save()
+                return redirect('article', article_slug=new_article.slug)
+
 
         context = {
             'form': form
         }
 
         return render(request, 'wiki/new-article.html', context)
+    
+    # If not logged in raise 403-page    
+    else:
+        raise PermissionDenied
+
+def edit_article(request, article_slug):
+    # Check if user is logged in
+    if request.user.is_authenticated:
+
+        # Retriece the matching article model
+        article = Article.objects.get(slug=article_slug)
+        # Prepopulates the form with the articles data
+        form = ArticleForm(instance=article)
+
+        if request.method == 'POST':
+            # Get the new data from the sent form
+            form = ArticleForm(request.POST, instance=article)
+            if form.is_valid():
+                form.save()
+                return redirect('article', article_slug=article.slug)
+        # If GET request or not valid data
+        return render(request, 'wiki/new-article.html', {'form' : form})
+
+
+    # If user is not signed in. Redirect to 403-page
     else:
         raise PermissionDenied
 
 
 
-def article(request, article):
-    print(article)
-    article_model = Article.objects.get(slug=article)
+def article(request, article_slug):
+    print(article_slug)
+    article_model = Article.objects.get(slug=article_slug)
 
     context = {
         'article' : article_model
