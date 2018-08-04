@@ -9,7 +9,7 @@
 
 {% block content %}
     {% include 'navbar.html' %}
-    <div>
+    <div class="container--nav">
         <h1>Students</h1>
         {% for event in events %}
         <a href="{% url 'event' event_slug=event.slug %}">

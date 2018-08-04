@@ -7,7 +7,7 @@
 {% include 'navbar.html' %}
 
 
-// TODO Extend to include multiple images
+<!-- TODO Extend to include multiple images -->
 <img id="thumbnail" class="close" src="" alt="">
 <div id="content" class="close">
     <a href="#!" class="tilbake">Tilbake</a>
@@ -20,7 +20,7 @@
 </div>
 
 
-<div id="project-grid">
+<div class="container--nav" id="project-grid">
     {% for project in projects %}
     <a class="project-image" href="#{{project.slug}}+detaljer" data-slug="{{ project.slug }}">
         <img src="{{ project.thumbnail.url }}" alt="">
