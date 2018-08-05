@@ -54,14 +54,10 @@ $grid-gap: 1rem;
             color: $text-color;
             display: inline-block;
             h4 {
-                margin-bottom: 1rem;
-                margin: 0;
-            }
-            h5,
-            p {
                 margin: 0;
             }
             p {
+                margin-top: 1rem;
                 line-height: 1.5em;
             }
             .highlight {

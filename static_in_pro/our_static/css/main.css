@@ -1257,16 +1257,11 @@ textarea {
 }
 
 #wiki-page .all-articles .article-preview h4 {
-  margin-bottom: 1rem;
-  margin: 0;
-}
-
-#wiki-page .all-articles .article-preview h5,
-#wiki-page .all-articles .article-preview p {
   margin: 0;
 }
 
 #wiki-page .all-articles .article-preview p {
+  margin-top: 1rem;
   line-height: 1.5em;
 }
 

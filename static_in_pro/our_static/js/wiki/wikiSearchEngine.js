@@ -47,7 +47,6 @@ function trimBodyText(bodyText, introduction, query) {
 
     if (introduction.toLowerCase().includes(query)) {
         [indexStart, indexEnd] = highlight(introduction.toLowerCase(), query);
-        console.log(indexStart, indexEnd);
         introduction = introduction.substring(0, indexStart) + '<span class="highlight">' + introduction.substring(indexStart, indexEnd) + '</span>' + introduction.substring(indexEnd);
         bodyText = "";
     }
@@ -59,13 +58,12 @@ function trimBodyText(bodyText, introduction, query) {
         for (let i = 0; matchArray.length < 2 && i < bodyTextArray.length; i++) {
             if (bodyTextArray[i].includes(query)) {
                 [indexStart, indexEnd] = highlight(bodyTextArray[i].toLowerCase(), query);
-                console.log(indexStart, indexEnd);
                 matchArray.push(bodyTextArray[i].substring(0, indexStart) + '<span class="highlight">' + bodyTextArray[i].substring(indexStart, indexEnd) + '</span>' + bodyTextArray[i].substring(indexEnd));
             }
         }
         bodyText = "";
         for (let i in matchArray) {
-            bodyText += "..." + matchArray[i] + "...<br><br>";
+            bodyText += "<p>..." + matchArray[i] + "...</p>";
         }
 
     }

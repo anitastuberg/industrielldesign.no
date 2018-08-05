@@ -12,9 +12,9 @@
     </div>
     <div class="all-articles">
         {% for article in articles %}
-        <a href="{% url 'article' article_slug=article.slug%}" class="article-preview resize initial-article">
+        <a href="{% url 'article' article_slug=article.slug%}" class="article-preview initial-article">
             <h4>{{ article.title }}</h4>
-            <p>{% if article.introduction %}<br>{{ article.introduction }}{% endif %}</p>
+            {% if article.introduction %}<p>{{ article.introduction }}</p>{% endif %}
         </a>
         {% endfor %}
     </div>
