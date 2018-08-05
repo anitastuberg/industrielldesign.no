@@ -1148,8 +1148,8 @@ textarea {
 }
 
 #wiki-page {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 #wiki-page .wiki-search {
@@ -1276,6 +1276,8 @@ textarea {
 
 .article .article__title {
   font-size: 4rem;
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -1289,13 +1291,13 @@ textarea {
   font-style: italic;
   font-size: 1.2rem;
   text-align: center;
-  width: 90%;
+  width: 80%;
   max-width: 70ch;
   margin: 0 auto 4rem;
 }
 
 .article .markdown-preview {
-  width: 90%;
+  width: 80%;
   max-width: 63ch;
   margin: 0 auto;
 }

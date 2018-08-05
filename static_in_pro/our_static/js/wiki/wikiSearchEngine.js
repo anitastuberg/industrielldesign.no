@@ -9,14 +9,11 @@ marked.setOptions({
 });
 
 searchField.on('input', () => {
-    let query = searchField.val();
+    let query = searchField.val().toLowerCase();
     if (query.length > 1 || (!isNaN(query) && query.length > 0)) {
         clearTimeout(delayTimer);
         delayTimer = setTimeout(function () {
-            var t0 = performance.now();
             ajaxSearch(query);
-            var t1 = performance.now();
-            console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
         }, 800); // Sends the query to the server after it's been 800ms idle
     } else {
         searchResult("");
@@ -47,50 +44,32 @@ function highlight(result, query) {
 }
 
 function trimBodyText(bodyText, introduction, query) {
-    let isWithQuery;
-    let introductionIncludes = false;
-    if (introduction) {
-        introduction = introduction.toLowerCase();
-        if (introduction.includes(query.toLowerCase())) {
-            introductionIncludes = true;
-        }
+
+    if (introduction.toLowerCase().includes(query)) {
+        [indexStart, indexEnd] = highlight(introduction.toLowerCase(), query);
+        console.log(indexStart, indexEnd);
+        introduction = introduction.substring(0, indexStart) + '<span class="highlight">' + introduction.substring(indexStart, indexEnd) + '</span>' + introduction.substring(indexEnd);
+        bodyText = "";
     }
-
-    // Return body-text only if introduction doesn't contain query
-    if (!introductionIncludes) {
-        // Don't return the introduction
+    else {
         introduction = "";
-
-        isWithQuery = [];
-        // Splits on . for sentences and | for tables
-        let bodyArray = bodyText.split(/\.|\||,/);
-
-        // Loops through all sentences to see which ones contains the query
-        for (let i in bodyArray) {
-            if (bodyArray[i].toLowerCase().includes(query.toLowerCase())) {
-                // Highlight adds a <span class"highlight"> around the query in the text
-                [indexStart, indextEnd] = highlight(bodyArray[i], query);
-                let tempText = bodyArray[i].substring(0, indexStart) + '<span class="highlight">' + bodyArray[i].substring(indexStart, indexEnd) + '</span>' + bodyArray[i].substring(indexEnd);
-                // Adds the sentence containing query to isWithQuery array
-                isWithQuery.push(tempText);
-                // Break if more than 2 sentences contains query
-                if (isWithQuery.length > 1) {
-                    break;
-                }
+        let bodyTextLower = bodyText.toLowerCase();
+        let bodyTextArray = bodyTextLower.split(/\.|\||,/);
+        let matchArray = [];
+        for (let i = 0; matchArray.length < 2 && i < bodyTextArray.length; i++) {
+            if (bodyTextArray[i].includes(query)) {
+                [indexStart, indexEnd] = highlight(bodyTextArray[i].toLowerCase(), query);
+                console.log(indexStart, indexEnd);
+                matchArray.push(bodyTextArray[i].substring(0, indexStart) + '<span class="highlight">' + bodyTextArray[i].substring(indexStart, indexEnd) + '</span>' + bodyTextArray[i].substring(indexEnd));
             }
         }
-        // Construct string
         bodyText = "";
-        for (let i in isWithQuery) {
-            bodyText += "..." + isWithQuery[i] + "...<br><br>";
+        for (let i in matchArray) {
+            bodyText += "..." + matchArray[i] + "...<br><br>";
         }
-    // Introduction contains query. Don't return the body-text
-    } else {
-        bodyText = "";
-        [indexStart, indextEnd] = highlight(introduction, query);
-        introduction = introduction.substring(0, indexStart) + '<span class="highlight">' + introduction.substring(indexStart, indexEnd) + '</span>' + introduction.substring(indexEnd);
+
     }
-    return [bodyText, introduction];
+    return [introduction, bodyText];
 }
 
 function searchResult(articles, query) {
@@ -104,6 +83,7 @@ function searchResult(articles, query) {
         initialArticle.hide();
         for (let key in articles) {
             // Removes the unnecessary body-text/introduction and adds highlight
+            // trimmedText = trimBodyText(articles[key].body_text, articles[key].introduction, query);
             trimmedText = trimBodyText(articles[key].body_text, articles[key].introduction, query);
             // Adds the results to the wiki-page
             addArticleBox(allArticles, articles[key].title, trimmedText[1], trimmedText[0], articles[key].slug);

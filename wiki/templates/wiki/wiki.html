@@ -14,7 +14,7 @@
         {% for article in articles %}
         <a href="{% url 'article' article_slug=article.slug%}" class="article-preview resize initial-article">
             <h4>{{ article.title }}</h4>
-            <p>{% if article.introduction %}{{ article.introduction }}{% endif %}</p>
+            <p>{% if article.introduction %}<br>{{ article.introduction }}{% endif %}</p>
         </a>
         {% endfor %}
     </div>
