@@ -2,6 +2,8 @@
 
 {% load staticfiles %}
 
+{% block page_title %}{{ article.title }}{% endblock page_title %}
+
 {% block content %}
 
 {% include 'navbar.html' %}
@@ -31,7 +33,6 @@
     $(document).ready(function() {
         marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
         let content = $('.content-markdown');
-        console.log(content.text());
         let markedContent = marked(content.text());
         content.html(markedContent);
     });

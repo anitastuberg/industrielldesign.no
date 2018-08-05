@@ -772,11 +772,11 @@ textarea {
 }
 
 .container--margin-bottom {
-  margin-bottom: 4rem;
+  padding-bottom: 4rem;
 }
 
 .container--nav {
-  margin-top: 64px;
+  padding-top: 64px;
   position: relative;
 }
 
@@ -1147,61 +1147,131 @@ textarea {
   font-size: 1.1em;
 }
 
-#wiki-page #categories {
-  margin-top: 3rem;
-  grid-column-gap: 4rem;
-  grid-row-gap: 2rem;
+#wiki-page {
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-#wiki-page #categories::after {
-  content: '';
-  width: 1px;
-  height: 100%;
-  background-color: #000;
+#wiki-page .wiki-search {
+  margin: 4rem 0;
+  position: relative;
 }
 
-#wiki-page h1 {
-  font-size: 5rem;
-  text-align: center;
+#wiki-page .wiki-search input {
+  font-size: 4rem;
+  border: none;
+  outline: none;
+  padding-left: 4rem;
 }
 
-#wiki-page #new-article-button {
-  margin: 0 auto;
-  text-align: center;
-  display: block;
-  width: 5rem;
-  padding: 0.5rem 1rem;
+#wiki-page .wiki-search input::-webkit-input-placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#wiki-page ul li {
-  line-height: 1.8rem;
-  text-decoration: none;
-  -webkit-transition: -webkit-transform 200ms ease-in-out;
-  transition: -webkit-transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+#wiki-page .wiki-search input:-ms-input-placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#wiki-page ul li a, #wiki-page ul li a:visited {
-  color: #0093BC;
+#wiki-page .wiki-search input::-ms-input-placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#wiki-page #fyi {
-  text-align: right;
+#wiki-page .wiki-search input::placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#wiki-page #fyi ul li:hover {
-  -webkit-transform: translateX(-10px);
-          transform: translateX(-10px);
+#wiki-page .wiki-search input:focus + i {
+  color: #1a1a1a;
 }
 
-#wiki-page #lol {
-  text-align: left;
+#wiki-page .wiki-search input:focus::-webkit-input-placeholder {
+  color: #1a1a1a;
 }
 
-#wiki-page #lol ul li:hover {
-  -webkit-transform: translateX(10px);
-          transform: translateX(10px);
+#wiki-page .wiki-search input:focus:-ms-input-placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search input:focus::-ms-input-placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search input:focus::placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search i {
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
+  position: absolute;
+  left: 0;
+  top: 17px;
+  font-size: 3rem;
+  color: #95B4BC;
+}
+
+#wiki-page .all-articles {
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+  /* Masonry on large screens */
+  /* Masonry on medium-sized screens */
+  /* Masonry on small screens */
+}
+
+@media only screen and (min-width: 1024px) {
+  #wiki-page .all-articles {
+    -webkit-column-count: 4;
+            column-count: 4;
+  }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+  #wiki-page .all-articles {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+  #wiki-page .all-articles {
+    -webkit-column-count: 2;
+            column-count: 2;
+  }
+}
+
+#wiki-page .all-articles .article-preview {
+  background-color: #EEF2F3;
+  padding: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  display: inline-block;
+}
+
+#wiki-page .all-articles .article-preview h4 {
+  margin-bottom: 1rem;
+  margin: 0;
+}
+
+#wiki-page .all-articles .article-preview h5,
+#wiki-page .all-articles .article-preview p {
+  margin: 0;
+}
+
+#wiki-page .all-articles .article-preview p {
+  line-height: 1.5em;
+}
+
+#wiki-page .all-articles .article-preview .highlight {
+  background-color: #FFF49C;
 }
 
 .article .article__title {
