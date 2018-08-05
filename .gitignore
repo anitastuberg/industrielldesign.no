@@ -2,6 +2,7 @@
 .vscode
 *.scssc
 *.sqlite3
+.jshintrc
 
 # Created by https://www.gitignore.io/api/macos,python,windows,pycharm
 

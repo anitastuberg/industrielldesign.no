@@ -1,56 +1,72 @@
+$grid-gap: 1rem;
 #wiki-page {
-    margin-top: 5%;
-
-
-    #categories {
-        margin-top: 3rem;
-        grid-column-gap: 4rem;
-        grid-row-gap: 2rem;
-
-        // Middle line
-        &::after {
-            content: '';
-            width: 1px;
-            height: 100%;
-            background-color: #000;
+    padding-left: 5%;
+    padding-right: 5%;
+    .wiki-search {
+        margin: 4rem 0;
+        position: relative;
+        input {
+            font-size: 4rem;
+            border: none;
+            outline: none;
+            padding-left: 4rem;
+            &::placeholder {
+                color: $gray;
+                transition: color 100ms ease-in-out;
+            }
+            &:focus {
+                &+i {
+                    color: $text-color;
+                }
+                &::placeholder {
+                    color: $text-color;
+                }
+            }
         }
-
-    }
-    
-    h1 {
-        font-size: 5rem;
-        text-align: center;
-    }
-    #new-article-button {
-        margin: 0 auto;
-        text-align: center;
-        display: block;
-        width: 5rem;
-        padding: 0.5rem 1rem;
-    }
-
-    ul li {
-        line-height: 1.8rem;
-        text-decoration: none;
-        transition: transform 200ms ease-in-out;
-        & a, & a:visited {
-            color: $link-color;
+        i {
+            transition: color 100ms ease-in-out;
+            position: absolute;
+            left: 0;
+            top: 17px;
+            font-size: 3rem;
+            color: $gray;
         }
     }
-
-    #fyi, #lol {
-    }
-
-    #fyi {
-        text-align: right;
-        ul li:hover {
-            transform: translateX(-10px); 
+    .all-articles {
+        column-gap: $grid-gap;
+        /* Masonry on large screens */
+        @media only screen and (min-width: 1024px) {
+            column-count: 4;
         }
-    }
-    #lol {
-        text-align: left;
-        ul li:hover {
-            transform: translateX(10px); 
+        /* Masonry on medium-sized screens */
+        @media only screen and (max-width: 1023px) and (min-width: 768px) {
+            column-count: 3;
+        }
+        /* Masonry on small screens */
+        @media only screen and (max-width: 767px) and (min-width: 540px) {
+            column-count: 2;
+        }
+        .article-preview {
+            background-color: $extra-light-gray;
+            padding: 1rem;
+            width: 100%;
+            margin-bottom: $grid-gap;
+            color: $text-color;
+            display: inline-block;
+            h4 {
+                margin-bottom: 1rem;
+                margin: 0;
+            }
+            h5,
+            p {
+                margin: 0;
+            }
+            p {
+                line-height: 1.5em;
+            }
+            .highlight {
+                background-color: $yellow;
+            }
         }
     }
 }

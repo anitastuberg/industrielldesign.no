@@ -6,7 +6,7 @@ from .forms import ArticleForm
 from .models import Article
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "timestamp", "updated"]
+    list_display = ["__str__", "timestamp", "updated", 'visits']
     form = ArticleForm
     #class Meta:
      #   model = Article

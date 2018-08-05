@@ -2,21 +2,34 @@ nav#main-navigation {
     padding: 1rem 2rem;
     position: fixed;
     width: 100%;
+    height: $nav-height;
     top: 0;
     left: 0;
-    z-index: 10000;
+    z-index: 50;
     background-color: white;
-    border-bottom: 1px solid #f2f2f2;   
+    border-bottom: 1px solid #f2f2f2;
+
+    #leo-logo svg {
+        height: 100%;
+        width: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
     #hamburger {
         @media screen and (min-width: 800px) {
             display: none;
         }
     }
-    ul {
+    #nav-items {
+        margin-left: 40px;
+        position: relative;
+
         @media screen and (max-width: 800px) {
             display: none;
         }
-        position: relative;
+        
         li {
             margin-right: 2rem;
             cursor: pointer;
@@ -26,9 +39,6 @@ nav#main-navigation {
             a {
                 color: #000;
             }
-        }
-        #nav-items {
-            float: left;
         }
         #bar {
             background-color: $yellow;
@@ -50,12 +60,10 @@ nav#main-navigation {
                 background-color: $yellow;
             }
             &.color4 {
-                background-color: $light-gray;
+                background-color: $gray;
             }
         }
         #user {
-            float: right;
-            position: relative;
             &:hover .dropdown-content {
                 display: block;
             }
@@ -73,8 +81,10 @@ nav#main-navigation {
                 }
             }
         }
-        #login {
-            float: right;
+        #login, #user {
+            position: absolute;
+            right: 0;
+            top: 0;
         }
     }
 }

@@ -32,3 +32,45 @@
         left: 0;
     }
 }
+
+.modal {
+    display: none;
+    .modal-content {
+        position: fixed;
+        background-color: $extra-light-gray;
+        padding: 2rem;
+        z-index: 101;
+        width: 90%;
+        max-width: 450px;
+        top: 20%;
+
+        // Horisontal centering
+        left: 0;
+        right: 0;
+        margin: auto;
+
+        .button {
+            margin-top: 1.5rem;
+            display: inline;
+
+            &.right {
+                float: right;
+                margin-left: 0.5rem;
+            }
+            &.left {
+                float: left;
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}
+
+.scrim {
+    position: fixed;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: rgba(#fff, 0.8);
+}

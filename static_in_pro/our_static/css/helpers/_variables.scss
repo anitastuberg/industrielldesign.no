@@ -1,8 +1,21 @@
+// Colours
 $dark-blue: #0093BC;
 $light-blue: #47A0BC;
 $red: #E84C4C;
 $yellow: #FFF49C;
-$light-gray: #95B4BC;
+$gray: #95B4BC;
+$light-gray: #C4CACC;
+$extra-light-gray: #EEF2F3;
+$white: #fff;
 
-$text-color: #000;
 $link-color: $dark-blue;
+$error: $red;
+
+// Typography
+$root-font-size: 18px;
+$sans-serif: "sweden_sansregular", sans-serif;
+$bold: "sweden_sansbold", sans-serif;
+$text-color: #1a1a1a;
+
+// Sizes
+$nav-height: 64px;

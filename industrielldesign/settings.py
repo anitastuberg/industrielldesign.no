@@ -142,6 +142,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_r
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_in_pro', 'our_static'),
     'industrielldesign/home'
+    '/home'
 ]
 
 MEDIA_URL = '/media/'
@@ -149,6 +150,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", 'media_roo
 MEDIAFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_in_pro', 'our_media'),
     'industrielldesign/home'
+    '/home'
 ]
 # Django registration redux settings:
 

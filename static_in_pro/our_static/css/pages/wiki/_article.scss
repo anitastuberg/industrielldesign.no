@@ -1,32 +1,69 @@
-#article {
-    h1 {
-        font-size: 3rem;
-        margin-bottom: 3rem;
+.article {
+    .article__title {
+        font-size: 4rem;
+        text-align: center;
+        &::before {
+            content: '';
+            height: 6rem;
+            display: block;
+        }
+    }
+    .article__introduction {
+        font-style: italic;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 90%;
+        max-width: 70ch;
+        margin: 0 auto 4rem;
+    }
+    .markdown-preview {
+        width: 90%;
+        max-width: 63ch;
+        margin: 0 auto;
+        p {
+            margin-bottom: 1rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 5rem 0 1rem;
+        }
     }
 
-    p {
-        width: 63ch;
-        line-height: 1.5rem;
-        margin-bottom: 3rem;
+    // Article
+
+    .article__last-updated {
+        color: $light-gray;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 0.8rem;
     }
 
-    .right {
-        margin-top: 40%;
-    }
-    
-    .tilbake {
-        position: absolute;
-        top: 4rem;
-        left: 50%;
+    .article__edit {
+        margin: 0 auto;
+        margin-top: -3rem;
+        margin-bottom: 4rem;
+        color: $gray;
     }
 
-    .left {
-        margin-right: 6rem;
-
-        img {
-            min-height: 100vh;
-            width: 100%;
-            object-fit: cover;
+    // New article
+    .article__submit {
+        cursor: pointer;
+        background-color: $red;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border: none;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        i {
+            position: relative;
+            font-size: 1rem;
+            top: 2px;
+            margin-right: 0.5rem;
         }
     }
 }

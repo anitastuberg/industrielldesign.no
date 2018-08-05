@@ -1,33 +1,29 @@
-{% extends 'base.html' %} {% block content %}
-{% include 'navbar.html' %}
-<div id="wiki-page">
+{% extends 'base.html' %} 
+{% load staticfiles %}
 
-    <h1>WTF?!</h1>
-    {% if request.user.is_authenticated %}
-    <a type="button" id="new-article-button" href="{% url "new-article" %}">Legg til ny</a>
-    {% endif %}
-    <div id="categories" class="grid two-column-grid">
-        <div id="fyi">
-            <h2>FYI</h2>
-            <ul>
-                {% for fyi in FYI_article %}
-                <li>
-                    <a href="/wiki/{{ fyi.slug }}">{{fyi.title}}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div id="lol">
-            <h2>LOL</h2>
-            <ul>
-                {% for lol in LOL_article %}
-                <li>
-                    <a href="/wiki/{{ lol.slug }}">{{lol.title}}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+{% block page_title %}Wiki{% endblock page_title %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div  class="container--nav container--margin-bottom" id="wiki-page">
+    <div class="wiki-search">
+        <input id="search-field" type="text" placeholder="Søk...">
+        <i class="material-icons">search</i>
+    </div>
+    <div class="all-articles">
+        {% for article in articles %}
+        <a href="{% url 'article' article_slug=article.slug%}" class="article-preview resize initial-article">
+            <h4>{{ article.title }}</h4>
+            <p>{% if article.introduction %}{{ article.introduction }}{% endif %}</p>
+        </a>
+        {% endfor %}
     </div>
 </div>
 
 {% endblock content %}
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+<!-- <script src="{% static 'js/wiki/masonryGrid.js' %}"></script> -->
+<script src="{% static 'js/wiki/wikiSearchEngine.js' %}"></script>
+{% endblock javascript %}

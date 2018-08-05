@@ -1,14 +1,15 @@
 
 @import
-// Base:
-'base/css-reset',
-'base/typography',
-'base/global',
 
 // Helpers:
 'helpers/functions',
 'helpers/mixins',
 'helpers/variables',
+
+// Base:
+'base/css-reset',
+'base/typography',
+'base/global',
 
 // Components:
 'components/buttons',
@@ -16,19 +17,22 @@
 'components/links',
 'components/hamburger',
 'components/components',
+'components/text-editor',
+'components/tables',
+'components/input',
 
 
 // Layout:
 'layout/footer',
 'layout/forms',
 'layout/grid',
+'layout/containers',
 
 // Pages:
 'pages/home',
 'pages/projects',
 'pages/event-page',
 'pages/404',
-'pages/wiki/new-article',
 'pages/wiki/wiki',
 'pages/wiki/article'
 

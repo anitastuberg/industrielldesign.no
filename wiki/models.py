@@ -3,21 +3,21 @@ from django.template.defaultfilters import slugify
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 
-CATEGORIES = (
-    ('FYI', 'FYI'),
-    ('LOL', 'LOL')
-)
-
 # Create your models here.
 class Article(models.Model):
-    title = models.CharField(max_length=40, unique=True)
-    slug = models.SlugField(max_length=60, blank=True)
-    text = models.TextField()
-    image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
-    category = models.CharField(max_length=3, choices=CATEGORIES)
+    title = models.CharField(max_length=150, unique=True);
+    introduction  = models.TextField(blank=True, null=True);
+    body_text = models.TextField();
+    
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    #image = models.ImageField()
+    
+    slug = models.SlugField(max_length=60, blank=True)
+    visits = models.IntegerField(default=0);
+    # image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+
+    class Meta:
+        ordering = ['-visits', 'title']
 
     def save(self, *args, **kwargs):
         if not self.id:

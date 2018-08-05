@@ -82,6 +82,7 @@ body,
 input,
 textarea {
   font-family: "sweden_sansregular", sans-serif;
+  line-height: 1.8rem;
 }
 
 h1,
@@ -91,6 +92,7 @@ h4,
 h5,
 h6 {
   margin-bottom: 1rem;
+  line-height: 1.2em;
 }
 
 h1 {
@@ -118,7 +120,7 @@ h6 {
 }
 
 p {
-  line-height: 1.5em;
+  line-height: 1.8em;
 }
 
 p.paragraph {
@@ -130,15 +132,143 @@ textarea {
   font-size: 1rem;
 }
 
+strong {
+  font-family: "sweden_sansbold", sans-serif;
+}
+
+em {
+  font-style: italic;
+}
+
+blockquote {
+  position: relative;
+  margin: 2rem 0;
+}
+
+blockquote p {
+  margin-left: 1rem;
+  color: #4d4d4d;
+  font-size: 1.2em;
+}
+
+blockquote::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  background-color: #47A0BC;
+  height: 100%;
+  width: 2px;
+}
+
+code {
+  background-color: #d3e0e4;
+  padding: 2px 5px;
+  border: 1px solid #c4d5da;
+  border-radius: 2px;
+}
+
+ul, ol {
+  margin-left: 1rem;
+}
+
+ul li, ol li {
+  line-height: 1.5em;
+}
+
+ul li {
+  list-style-type: circle;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+.errorlist li {
+  list-style: none;
+  color: #E84C4C;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.button {
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: block;
+}
+
+.button:active, .button:focus {
+  outline: none;
+}
+
+.button.icon {
+  padding-right: 1rem;
+}
+
+.button.icon i {
+  position: relative;
+  top: 2px;
+  margin-right: 8px;
+  font-size: 1em;
+}
+
+.button.center {
+  margin: 0 auto;
+}
+
+.button.text {
+  background: none;
+  padding: 0;
+}
+
+.button.red {
+  background-color: #E84C4C;
+  color: #fff;
+}
+
+.button.blue {
+  background-color: #47A0BC;
+  color: #fff;
+}
+
+.button.yellow {
+  background-color: #FFF49C;
+  color: #1a1a1a;
+}
+
+.button.gray {
+  background-color: #95B4BC;
+  color: #fff;
+}
+
+a.button {
+  text-decoration: none;
+}
+
+a.button.center {
+  text-align: center;
+}
+
 nav#main-navigation {
   padding: 1rem 2rem;
   position: fixed;
   width: 100%;
+  height: 64px;
   top: 0;
   left: 0;
-  z-index: 10000;
+  z-index: 50;
   background-color: white;
   border-bottom: 1px solid #f2f2f2;
+}
+
+nav#main-navigation #leo-logo svg {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media screen and (min-width: 800px) {
@@ -147,17 +277,18 @@ nav#main-navigation {
   }
 }
 
-nav#main-navigation ul {
+nav#main-navigation #nav-items {
+  margin-left: 40px;
   position: relative;
 }
 
 @media screen and (max-width: 800px) {
-  nav#main-navigation ul {
+  nav#main-navigation #nav-items {
     display: none;
   }
 }
 
-nav#main-navigation ul li {
+nav#main-navigation #nav-items li {
   margin-right: 2rem;
   cursor: pointer;
   list-style: none;
@@ -165,15 +296,11 @@ nav#main-navigation ul li {
   position: relative;
 }
 
-nav#main-navigation ul li a {
+nav#main-navigation #nav-items li a {
   color: #000;
 }
 
-nav#main-navigation ul #nav-items {
-  float: left;
-}
-
-nav#main-navigation ul #bar {
+nav#main-navigation #nav-items #bar {
   background-color: #FFF49C;
   position: absolute;
   top: 10px;
@@ -183,36 +310,31 @@ nav#main-navigation ul #bar {
   transition: left 200ms ease-in-out, background-color 200ms ease-in-out, width 200ms ease-in-out;
 }
 
-nav#main-navigation ul #bar.color0 {
+nav#main-navigation #nav-items #bar.color0 {
   background-color: #FFF49C;
 }
 
-nav#main-navigation ul #bar.color1 {
+nav#main-navigation #nav-items #bar.color1 {
   background-color: #E84C4C;
 }
 
-nav#main-navigation ul #bar.color2 {
+nav#main-navigation #nav-items #bar.color2 {
   background-color: #47A0BC;
 }
 
-nav#main-navigation ul #bar.color3 {
+nav#main-navigation #nav-items #bar.color3 {
   background-color: #FFF49C;
 }
 
-nav#main-navigation ul #bar.color4 {
+nav#main-navigation #nav-items #bar.color4 {
   background-color: #95B4BC;
 }
 
-nav#main-navigation ul #user {
-  float: right;
-  position: relative;
-}
-
-nav#main-navigation ul #user:hover .dropdown-content {
+nav#main-navigation #nav-items #user:hover .dropdown-content {
   display: block;
 }
 
-nav#main-navigation ul #user .dropdown-content {
+nav#main-navigation #nav-items #user .dropdown-content {
   display: none;
   background-color: #fff;
   position: absolute;
@@ -221,14 +343,16 @@ nav#main-navigation ul #user .dropdown-content {
   width: 100%;
 }
 
-nav#main-navigation ul #user .dropdown-content li {
+nav#main-navigation #nav-items #user .dropdown-content li {
   text-align: right;
   margin: 1rem 0 0;
   width: 100%;
 }
 
-nav#main-navigation ul #login {
-  float: right;
+nav#main-navigation #nav-items #login, nav#main-navigation #nav-items #user {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 a {
@@ -278,7 +402,7 @@ a[type="button"] {
   -webkit-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
   box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.11);
   text-decoration: none;
-  color: #000;
+  color: #1a1a1a;
 }
 
 #hamburger {
@@ -402,7 +526,7 @@ a[type="button"] {
 .tilbake {
   position: relative;
   padding-left: 2rem;
-  color: #000;
+  color: #1a1a1a;
   -webkit-transition: -webkit-transform 200ms ease-in-out;
   transition: -webkit-transform 200ms ease-in-out;
   transition: transform 200ms ease-in-out;
@@ -437,6 +561,196 @@ a[type="button"] {
   left: 0;
 }
 
+.modal {
+  display: none;
+}
+
+.modal .modal-content {
+  position: fixed;
+  background-color: #EEF2F3;
+  padding: 2rem;
+  z-index: 101;
+  width: 90%;
+  max-width: 450px;
+  top: 20%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.modal .modal-content .button {
+  margin-top: 1.5rem;
+  display: inline;
+}
+
+.modal .modal-content .button.right {
+  float: right;
+  margin-left: 0.5rem;
+}
+
+.modal .modal-content .button.left {
+  float: left;
+  margin-right: 0.5rem;
+}
+
+.scrim {
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.text-editor {
+  width: 100%;
+  background-color: #EAF0F2;
+  overflow: scroll;
+  padding: 50px 5% 0;
+}
+
+.text-editor .button-row {
+  position: fixed;
+  top: 64px;
+  z-index: 100;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: #DFE8EB;
+  padding: 0.5rem 0;
+}
+
+.text-editor .button-row > ul {
+  position: relative;
+  margin: 0 5%;
+}
+
+.text-editor .button-row > ul li {
+  list-style-type: none;
+  cursor: pointer;
+  display: inline;
+}
+
+.text-editor .button-row > ul li i {
+  position: relative;
+  top: 4px;
+  color: #1a1a1a;
+}
+
+.text-editor .button-row > ul li i:hover {
+  background-color: #95B4BC;
+}
+
+.text-editor .button-row > ul a {
+  position: absolute;
+  right: 0;
+  color: #1a1a1a;
+  display: inline;
+}
+
+.text-editor .button-row > ul a:visited {
+  color: #1a1a1a;
+}
+
+.text-editor .button-row > ul a:hover {
+  background-color: #95B4BC;
+}
+
+.text-editor .button-row #format-title,
+.text-editor .button-row #format-code {
+  margin-right: 1rem;
+}
+
+.text-editor .button-row #format-size {
+  padding-right: 5px;
+}
+
+.text-editor .button-row #format-size ul {
+  display: none;
+}
+
+.text-editor #id_body_text,
+.text-editor #id_title,
+.text-editor #id_introduction {
+  background-color: #EAF0F2;
+  border: none;
+  outline: none;
+  margin-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+}
+
+.text-editor #id_body_text:hover,
+.text-editor #id_title:hover,
+.text-editor #id_introduction:hover {
+  background-color: #e1e9ec;
+}
+
+.text-editor #id_title {
+  font-size: 2rem;
+  position: relative;
+}
+
+.text-editor #id_introduction {
+  resize: vertical;
+  font-family: "sweden_sansbold", sans-serif;
+}
+
+.text-editor textarea#id_body_text {
+  min-height: calc(10rem * 1.2);
+  resize: vertical;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 15px;
+  color: #1a1a1a;
+  border: 1px solid #C4CACC;
+}
+
+th {
+  text-align: left;
+  color: #1a1a1a;
+}
+
+thead {
+  border-bottom: 2px solid #C4CACC;
+}
+
+thead th {
+  font-family: "sweden_sansbold", sans-serif;
+}
+
+tbody tr:hover {
+  background-color: rgba(71, 160, 188, 0.1);
+}
+
+tbody td {
+  position: relative;
+}
+
+tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(71, 160, 188, 0.05);
+  z-index: -1;
+}
+
+textarea {
+  resize: none;
+}
+
 .grid {
   display: -ms-grid;
   display: grid;
@@ -455,6 +769,15 @@ a[type="button"] {
 .grid-box {
   display: -ms-inline-grid;
   display: inline-grid;
+}
+
+.container--margin-bottom {
+  padding-bottom: 4rem;
+}
+
+.container--nav {
+  padding-top: 64px;
+  position: relative;
 }
 
 #landing-page {
@@ -552,7 +875,6 @@ a[type="button"] {
 #project-grid {
   display: -ms-grid;
   display: grid;
-  margin-top: 126px;
 }
 
 @media screen and (max-width: 480px) {
@@ -712,10 +1034,6 @@ a[type="button"] {
           transform: translateX(100%);
 }
 
-#event-page {
-  margin-top: 22px;
-}
-
 #event-page .beskrivelse {
   padding: 87px 10% 0;
   width: 60%;
@@ -829,156 +1147,201 @@ a[type="button"] {
   font-size: 1.1em;
 }
 
-#create-article form #id_title, #create-article form textarea {
-  display: block;
+#wiki-page {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#wiki-page .wiki-search {
+  margin: 4rem 0;
+  position: relative;
+}
+
+#wiki-page .wiki-search input {
+  font-size: 4rem;
   border: none;
   outline: none;
+  padding-left: 4rem;
 }
 
-#create-article form #id_title {
-  font-size: 3rem;
-  margin-bottom: 3rem;
+#wiki-page .wiki-search input::-webkit-input-placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#create-article form .right {
-  margin-top: 20%;
+#wiki-page .wiki-search input:-ms-input-placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#create-article form .left {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #47A0BC;
-  margin-right: 6rem;
-  min-height: 100vh;
+#wiki-page .wiki-search input::-ms-input-placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
 }
 
-#create-article form .left #id_image {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
+#wiki-page .wiki-search input::placeholder {
+  color: #95B4BC;
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
+}
+
+#wiki-page .wiki-search input:focus + i {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search input:focus::-webkit-input-placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search input:focus:-ms-input-placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search input:focus::-ms-input-placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search input:focus::placeholder {
+  color: #1a1a1a;
+}
+
+#wiki-page .wiki-search i {
+  -webkit-transition: color 100ms ease-in-out;
+  transition: color 100ms ease-in-out;
   position: absolute;
-  z-index: -1;
+  left: 0;
+  top: 17px;
+  font-size: 3rem;
+  color: #95B4BC;
 }
 
-#create-article form .left #id_image + label {
-  display: block;
-  background-color: #fff;
-  color: #000;
+#wiki-page .all-articles {
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+  /* Masonry on large screens */
+  /* Masonry on medium-sized screens */
+  /* Masonry on small screens */
+}
+
+@media only screen and (min-width: 1024px) {
+  #wiki-page .all-articles {
+    -webkit-column-count: 4;
+            column-count: 4;
+  }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+  #wiki-page .all-articles {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+  #wiki-page .all-articles {
+    -webkit-column-count: 2;
+            column-count: 2;
+  }
+}
+
+#wiki-page .all-articles .article-preview {
+  background-color: #EEF2F3;
   padding: 1rem;
-}
-
-#create-article form textarea {
-  width: 63ch;
-  line-height: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-#create-article form select {
-  border-radius: 0;
-}
-
-#create-article form input[type="submit"] {
-  margin-bottom: 5rem;
-}
-
-#wiki-page {
-  margin-top: 5%;
-}
-
-#wiki-page #categories {
-  margin-top: 3rem;
-  grid-column-gap: 4rem;
-  grid-row-gap: 2rem;
-}
-
-#wiki-page #categories::after {
-  content: '';
-  width: 1px;
-  height: 100%;
-  background-color: #000;
-}
-
-#wiki-page h1 {
-  font-size: 5rem;
-  text-align: center;
-}
-
-#wiki-page #new-article-button {
-  margin: 0 auto;
-  text-align: center;
-  display: block;
-  width: 5rem;
-  padding: 0.5rem 1rem;
-}
-
-#wiki-page ul li {
-  line-height: 1.8rem;
-  text-decoration: none;
-  -webkit-transition: -webkit-transform 200ms ease-in-out;
-  transition: -webkit-transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
-}
-
-#wiki-page ul li a, #wiki-page ul li a:visited {
-  color: #0093BC;
-}
-
-#wiki-page #fyi {
-  text-align: right;
-}
-
-#wiki-page #fyi ul li:hover {
-  -webkit-transform: translateX(-10px);
-          transform: translateX(-10px);
-}
-
-#wiki-page #lol {
-  text-align: left;
-}
-
-#wiki-page #lol ul li:hover {
-  -webkit-transform: translateX(10px);
-          transform: translateX(10px);
-}
-
-#article h1 {
-  font-size: 3rem;
-  margin-bottom: 3rem;
-}
-
-#article p {
-  width: 63ch;
-  line-height: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-#article .right {
-  margin-top: 40%;
-}
-
-#article .tilbake {
-  position: absolute;
-  top: 4rem;
-  left: 50%;
-}
-
-#article .left {
-  margin-right: 6rem;
-}
-
-#article .left img {
-  min-height: 100vh;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  display: inline-block;
+}
+
+#wiki-page .all-articles .article-preview h4 {
+  margin-bottom: 1rem;
+  margin: 0;
+}
+
+#wiki-page .all-articles .article-preview h5,
+#wiki-page .all-articles .article-preview p {
+  margin: 0;
+}
+
+#wiki-page .all-articles .article-preview p {
+  line-height: 1.5em;
+}
+
+#wiki-page .all-articles .article-preview .highlight {
+  background-color: #FFF49C;
+}
+
+.article .article__title {
+  font-size: 4rem;
+  text-align: center;
+}
+
+.article .article__title::before {
+  content: '';
+  height: 6rem;
+  display: block;
+}
+
+.article .article__introduction {
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: center;
+  width: 90%;
+  max-width: 70ch;
+  margin: 0 auto 4rem;
+}
+
+.article .markdown-preview {
+  width: 90%;
+  max-width: 63ch;
+  margin: 0 auto;
+}
+
+.article .markdown-preview p {
+  margin-bottom: 1rem;
+}
+
+.article .markdown-preview h1,
+.article .markdown-preview h2,
+.article .markdown-preview h3,
+.article .markdown-preview h4,
+.article .markdown-preview h5,
+.article .markdown-preview h6 {
+  margin: 5rem 0 1rem;
+}
+
+.article .article__last-updated {
+  color: #C4CACC;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+}
+
+.article .article__edit {
+  margin: 0 auto;
+  margin-top: -3rem;
+  margin-bottom: 4rem;
+  color: #95B4BC;
+}
+
+.article .article__submit {
+  cursor: pointer;
+  background-color: #E84C4C;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+.article .article__submit i {
+  position: relative;
+  font-size: 1rem;
+  top: 2px;
+  margin-right: 0.5rem;
 }
 /*# sourceMappingURL=main.css.map */

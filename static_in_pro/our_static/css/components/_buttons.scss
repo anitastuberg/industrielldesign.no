@@ -1,0 +1,60 @@
+.button {
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+
+    // State styling
+    &:active, &:focus {
+        outline: none;
+    }
+
+    // Include an icon in the button
+    &.icon {
+        padding-right: 1rem;
+        i {
+            position: relative;
+            top: 2px;
+            margin-right: 8px;
+            font-size: 1em;
+        }
+    }
+
+    // Center button
+    &.center {
+        margin: 0 auto;
+    }
+
+    // Text only button, no background
+    &.text {
+        background: none;
+        padding: 0;
+    }
+
+    // Colorization of buttons
+    &.red {
+        background-color: $red;
+        color: $white;
+    }
+    &.blue {
+        background-color: $light-blue;
+        color: $white;
+    }
+    &.yellow {
+        background-color: $yellow;
+        color: $text-color;
+    }
+    &.gray {
+        background-color: $gray;
+        color: $white;
+    }
+}
+
+// Specific styles for link buttons
+a.button {
+    text-decoration: none;
+    &.center {
+        text-align: center;
+    }
+}
