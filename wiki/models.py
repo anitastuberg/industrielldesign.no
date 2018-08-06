@@ -6,7 +6,7 @@ from imagekit.processors import ResizeToFit
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=150, unique=True);
-    introduction  = models.TextField(blank=True, null=True);
+    introduction  = models.TextField(max_length=255, blank=True, null=True);
     body_text = models.TextField();
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

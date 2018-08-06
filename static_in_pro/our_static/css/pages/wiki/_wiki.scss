@@ -1,11 +1,13 @@
-$grid-gap: 1rem;
+$wiki-grid-gap: 1rem;
 #wiki-page {
     padding-left: 5%;
     padding-right: 5%;
     .wiki-search {
         margin: 4rem 0;
         position: relative;
+        width: 100%;
         input {
+            width: 100%;
             font-size: 4rem;
             border: none;
             outline: none;
@@ -32,36 +34,44 @@ $grid-gap: 1rem;
             color: $gray;
         }
     }
+    .new-article {
+        width: 100%;
+        background-color: $light-blue;
+        color: $white;
+        margin-bottom: $wiki-grid-gap;
+        display: inline-block;
+
+        i {
+            position: relative;
+            top: 5px;
+        }
+    }
     .all-articles {
-        column-gap: $grid-gap;
+        column-gap: $wiki-grid-gap;
         /* Masonry on large screens */
-        @media only screen and (min-width: 1024px) {
+        @media only screen and (min-width: 1124px) {
             column-count: 4;
         }
         /* Masonry on medium-sized screens */
-        @media only screen and (max-width: 1023px) and (min-width: 768px) {
+        @media only screen and (max-width: 1123px) and (min-width: 868px) {
             column-count: 3;
         }
         /* Masonry on small screens */
-        @media only screen and (max-width: 767px) and (min-width: 540px) {
+        @media only screen and (max-width: 867px) and (min-width: 640px) {
             column-count: 2;
         }
         .article-preview {
             background-color: $extra-light-gray;
             padding: 1rem;
             width: 100%;
-            margin-bottom: $grid-gap;
+            margin-bottom: $wiki-grid-gap;
             color: $text-color;
             display: inline-block;
             h4 {
-                margin-bottom: 1rem;
-                margin: 0;
-            }
-            h5,
-            p {
                 margin: 0;
             }
             p {
+                margin-top: 1rem;
                 line-height: 1.5em;
             }
             .highlight {

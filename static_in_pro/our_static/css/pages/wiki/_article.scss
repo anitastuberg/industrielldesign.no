@@ -1,6 +1,13 @@
 .article {
+    .tilbake {
+        position: relative;
+        top: 2rem;
+        margin-left: 10%;
+    }
     .article__title {
         font-size: 4rem;
+        width: 80%;
+        margin: 0 auto;
         text-align: center;
         &::before {
             content: '';
@@ -12,12 +19,12 @@
         font-style: italic;
         font-size: 1.2rem;
         text-align: center;
-        width: 90%;
+        width: 80%;
         max-width: 70ch;
         margin: 0 auto 4rem;
     }
     .markdown-preview {
-        width: 90%;
+        width: 80%;
         max-width: 63ch;
         margin: 0 auto;
         p {
