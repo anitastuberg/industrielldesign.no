@@ -11,6 +11,9 @@
         <i class="material-icons">search</i>
     </div>
     <div class="all-articles">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'new-article' %}" class="button new-article"><i class="material-icons">add</i>Ny artikkel</a>
+        {% endif %}
         {% for article in articles %}
         <a href="{% url 'article' article_slug=article.slug%}" class="article-preview initial-article">
             <h4>{{ article.title }}</h4>

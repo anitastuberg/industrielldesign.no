@@ -40,11 +40,11 @@
                     <input type="submit" value="Logg inn">
                 {% else %}
                     {% if already_registered %}
-                        <input type="submit" value="Meldt på" disabled>
+                        <input class="button" type="submit" value="Meldt på" disabled>
                     {% elif not event_not_full %}
-                        <input type="submit" value="Arrangementet er fullt" disabled>
+                        <input class="button" type="submit" value="Arrangementet er fullt" disabled>
                     {% else %}
-                        <input type="submit" value="Bli med">
+                        <input class="button" type="submit" value="Bli med">
                     {% endif %}
                 {% endif %}
             </div>
@@ -66,11 +66,11 @@
             let form = $('#log-in-fields');
             form.empty();
             if (data.already_registered) {
-                form.append('<input type="submit" value="Meldt på" disabled>');
+                form.append('<input class="button" type="submit" value="Meldt på" disabled>');
             } else if (!data.event_not_full) {
-                form.append('<input type="submit" value="Arrangementet er fullt" disabled>')
+                form.append('<input class="button" type="submit" value="Arrangementet er fullt" disabled>')
             } else {
-                form.append('<input type="submit" value="Bli med">')
+                form.append('<input class="button" type="submit" value="Bli med">')
                 
             }
         }

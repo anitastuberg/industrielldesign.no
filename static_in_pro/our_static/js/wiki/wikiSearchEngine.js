@@ -29,7 +29,7 @@ function addArticleBox(target, title, introduction, bodyText, slug) {
         articleHTML += '<p class="article-introduction">' + introduction + '</p>';
     }
     if (bodyText.length > 0) {
-        articleHTML += '<p class="article-body-text">' + bodyText + '</p>';
+        articleHTML += bodyText;
     }
 
     articleHTML += '</a>';
@@ -63,7 +63,7 @@ function trimBodyText(bodyText, introduction, query) {
         }
         bodyText = "";
         for (let i in matchArray) {
-            bodyText += "<p>..." + matchArray[i] + "...</p>";
+            bodyText += "<p class='article-body-text'>..." + matchArray[i] + "...</p>";
         }
 
     }
