@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+import datetime
 
 
 class ProfileManager(BaseUserManager):
@@ -19,7 +20,7 @@ class ProfileManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name = first_name,
             last_name = last_name,
-            graduation_year = graduation_year,
+            graduation_year = graduation_year
             # allergies = allergies
         )
 
@@ -48,7 +49,7 @@ class Profile(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
-        unique=True,
+        unique=True
     )
     graduation_year = models.IntegerField()
     first_name = models.CharField(max_length=150)
@@ -74,6 +75,10 @@ class Profile(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+    def get_class_year(self):
+        current_year = datetime.datetime.now().year
+        return self.graduation_year - current_year
 
     @property
     def is_staff(self):
