@@ -19,14 +19,14 @@
     </div>
     <div class="signup not-loaded">
         <p></p>
-        <p>{{ event.event_start_time|date:"j. F H:i" }} - {{ event.event_end_time|date:"H:i" }}</p>
+        <p>{{ event.event_start_time|date:"j. F H:i" }} {% if event.end_time %}- {{ event.event_end_time|date:"H:i" }}{% endif %}</p>
         <p>{{ event.location }}</p>
-        <p>{{ event.open_for }}</p>
         <div id="logged-in">
             <p>Hei {{ request.user.first_name }}</p>
         </div>
     
         {% if event_registration %}
+        <p>{{ open_for }}</p>
         <form id="event-login-field" method="POST">
             {% csrf_token %}
             <div id="log-in-fields">
@@ -43,6 +43,8 @@
                         <input class="button" type="submit" value="Meldt på" disabled>
                     {% elif not event_not_full %}
                         <input class="button" type="submit" value="Arrangementet er fullt" disabled>
+                    {% elif too_young %}
+                        <input class="button" type="submit" value="Ikke tilgang" disabled>
                     {% else %}
                         <input class="button" type="submit" value="Bli med">
                     {% endif %}
@@ -62,16 +64,18 @@
     });
         
     function loggedIn(data) {
-        if (data.success) {
+        if (data.loginSuccess) {
             let form = $('#log-in-fields');
             form.empty();
             if (data.already_registered) {
                 form.append('<input class="button" type="submit" value="Meldt på" disabled>');
             } else if (!data.event_not_full) {
                 form.append('<input class="button" type="submit" value="Arrangementet er fullt" disabled>')
-            } else {
+            } else if(data.too_young) {
+                form.append('<input class="button" type="submit" value="Ikke tilgang" disabled>')
+            }
+            else {
                 form.append('<input class="button" type="submit" value="Bli med">')
-                
             }
         }
     }
