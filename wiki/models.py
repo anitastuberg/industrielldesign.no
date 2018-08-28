@@ -3,6 +3,8 @@ from django.template.defaultfilters import slugify
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 
+from django.core.mail import send_mail
+
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=150, unique=True);

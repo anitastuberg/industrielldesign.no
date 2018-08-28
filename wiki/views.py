@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.template.defaultfilters import slugify
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.http import JsonResponse
+import datetime
 
 
 from .forms import ArticleForm
@@ -53,6 +54,10 @@ def new_article(request):
 
                 new_article = form.save(commit=False)
                 new_article.save()
+                now = datetime.datetime.now()
+                subject = 'WIKI NY: "%s" har blitt opprettet' % (new_article.title)
+                message = 'Opprettet: %s av %s %s\nindustrielldesign.no/wiki/%s' % (now.strftime("%d.%m.%y %H:%M"), request.user.first_name, request.user.last_name, new_article.slug)
+                wiki_updated_email(subject, message)
                 return redirect('article', article_slug=new_article.slug)
 
 
@@ -65,6 +70,15 @@ def new_article(request):
     # If not logged in raise 403-page    
     else:
         raise PermissionDenied
+
+def wiki_updated_email(subject, message):
+    send_mail(
+        subject, # Subject
+        message, # Message
+        settings.EMAIL_HOST_USER, # From email
+        [settings.EMAIL_HOST_USER], # To email
+        fail_silently=False,
+    )
 
 def edit_article(request, article_slug):
     # Check if user is logged in
@@ -79,6 +93,10 @@ def edit_article(request, article_slug):
             # Get the new data from the sent form
             form = ArticleForm(request.POST, instance=article)
             if form.is_valid():
+                now = datetime.datetime.now()
+                subject = 'WIKI: "%s" har blitt oppdatert' % (article.title)
+                message = "Oppdatert: %s av %s %s\nindustrielldesign.no/wiki/%s" % (now.strftime("%d.%m.%y %H:%M"), request.user.first_name, request.user.last_name, article.slug)
+                wiki_updated_email(subject, message)
                 form.save()
                 return redirect('article', article_slug=article.slug)
         # If GET request or not valid data
