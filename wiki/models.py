@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
+import datetime
 
 from django.core.mail import send_mail
 
@@ -12,7 +13,7 @@ class Article(models.Model):
     body_text = models.TextField();
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=False)
     
     slug = models.SlugField(max_length=60, blank=True)
     visits = models.IntegerField(default=0);
@@ -25,6 +26,7 @@ class Article(models.Model):
         if not self.id:
             #Only set the slug when the object is created.
             self.slug = slugify(self.title) #Or whatever you want the slug to use
+        self.updated = datetime.datetime.now() # Update updated-field when article is updated
         super(Article, self).save(*args, **kwargs)
 
     def __str__(self):
