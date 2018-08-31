@@ -17,7 +17,7 @@ class Project(models.Model):
         (HØST, 'Høst'),
         (VÅR, 'Vår')
     )
-    YEAR_CHOICES = [(r,r) for r in range(2010, datetime.date.today().year+1)]
+    YEAR_CHOICES = [(r,r) for r in range(datetime.datetime.now().year-10, datetime.datetime.now().year+1)]
 
     title = models.CharField(max_length=150, unique=True)
     description = models.TextField()

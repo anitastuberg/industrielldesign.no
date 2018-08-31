@@ -9,19 +9,37 @@
 
 {% block content %}
     {% include 'navbar.html' %}
-    <div class="container--nav">
-        <h1>Students</h1>
-        {% for event in events %}
-        <a href="{% url 'event' event_slug=event.slug %}">
-            <h1>{{ event.title }}</h1>
-            <p>{{ event.description }}</p>
-            <p>{{ event.pk }}</p>
-        </a>
-        {% endfor %}
-        
-        {% if request.user.is_authenticated %}
-            
-        {% endif %}
+    <div id="students" class="container--nav container--margin-bottom">
+        <h1>Student</h1>
+        <div class="left">
+            {% for event in events %}
+            <a class="event-thumbnail" href="{% url 'event' event_slug=event.slug %}" style="background-image: url('{{ event.image.url }}')">
+                <h4>{{ event.title }}</h4>
+                <p>3 dager</p>
+                <p>{{ event.event_start_time|date:"j.m.Y" }}</p>
+                <div class="blue-tint"></div>
+                <!-- <div class="event-thumbnail-image">
+                    <img src="{{ event.image.url }}" alt="">
+                </div> -->
+            </a>
+            {% endfor %}
+        </div>
+        <div class="right">
+            <a href="/wiki/komiteer" class="student-link">
+                <span>Komiteer</span>
+            </a>
+            <a href="/wiki/nyheter" class="student-link"><span>Nyheter</span></a>
+            <div></div>
+            <div></div>
+            <a href="/wiki/nyheter" class="student-link jobb large"><span>Jobb</span></a>
+            <a href="/wiki/nyheter" class="student-link wiki large"><span>Wiki</span></a>
+            <a href="/wiki/nyheter" class="student-link"><span>Ny<br>student?</span></a>
+            <a href="/wiki/nyheter" class="student-link"><span>Faginfo</span></a>
+            <a href="/wiki/nyheter" class="student-link"><span>Vedtekter</span></a>
+            <a href="/wiki/nyheter" class="student-link"><span>Historie</span></a>
+            <a href="/wiki/nyheter" class="student-link wide"><span>Interesse-<br>grupper</span></a>
+
+        </div>
     </div>
 {% endblock content %}
 

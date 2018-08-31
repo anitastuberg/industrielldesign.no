@@ -3,8 +3,24 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
+import datetime
 
 class Event(models.Model):
+    NOW = datetime.datetime.now()
+    YEAR = NOW.year
+    if NOW.month > 7:
+        YEAR += 1
+
+    YEAR_CHOICES = [
+        (YEAR+4, '1.klasse'),
+        (YEAR+3, '2.klasse'),
+        (YEAR+2, '3.klasse'),
+        (YEAR+1, '4.klasse'),
+        (YEAR, '5.klasse')
+    ]
+    def get_class_year(self, graduation_year):
+        return graduation_year - self.YEAR
+
     title = models.CharField(max_length=80, unique=True)
     description = models.TextField()
 
@@ -18,10 +34,11 @@ class Event(models.Model):
     event_end_time = models.DateTimeField(blank=True, null=True)
 
     # Registration opens
+    registration_required = models.BooleanField(default=False)
     registration_start_time = models.DateTimeField(blank=True, null=True)
+    registration_year_limit = models.IntegerField('Åpent for n.klasse og opp', choices=YEAR_CHOICES, blank=True, null=True)
 
     # Available spots in the event
-    registration_required = models.BooleanField(default=False)
     available_spots = models.IntegerField(blank=True, null=True)
     
 
