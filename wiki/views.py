@@ -53,11 +53,12 @@ def new_article(request):
             if form.is_valid():
 
                 new_article = form.save(commit=False)
+                new_article.editable = True
                 new_article.save()
                 now = datetime.datetime.now()
                 subject = 'WIKI NY: "%s" har blitt opprettet' % (new_article.title)
                 message = 'Opprettet: %s av %s %s\nindustrielldesign.no/wiki/%s' % (now.strftime("%d.%m.%y %H:%M"), request.user.first_name, request.user.last_name, new_article.slug)
-                wiki_updated_email(subject, message)
+                wiki_email(subject, message)
                 return redirect('article', article_slug=new_article.slug)
 
 
@@ -71,7 +72,7 @@ def new_article(request):
     else:
         raise PermissionDenied
 
-def wiki_updated_email(subject, message):
+def wiki_email(subject, message):
     send_mail(
         subject, # Subject
         message, # Message
@@ -81,11 +82,15 @@ def wiki_updated_email(subject, message):
     )
 
 def edit_article(request, article_slug):
-    # Check if user is logged in
-    if request.user.is_authenticated:
 
-        # Retriece the matching article model
-        article = Article.objects.get(slug=article_slug)
+    # Retrieve the matching article model
+    article = Article.objects.get(slug=article_slug)
+    print("Redigerbar? %s" % article.editable)
+
+    # Check if user is logged in and article can be edited
+    # Staff can edit all articles
+    if (request.user.is_authenticated and article.editable) or request.user.is_staff:
+
         # Prepopulates the form with the articles data
         form = ArticleForm(instance=article)
 
@@ -96,8 +101,10 @@ def edit_article(request, article_slug):
                 now = datetime.datetime.now()
                 subject = 'WIKI: "%s" har blitt oppdatert' % (article.title)
                 message = "Oppdatert: %s av %s %s\nindustrielldesign.no/wiki/%s" % (now.strftime("%d.%m.%y %H:%M"), request.user.first_name, request.user.last_name, article.slug)
-                wiki_updated_email(subject, message)
-                form.save()
+                wiki_email(subject, message) # Sends email to "webredaktør"
+
+                updated_article = form.save(commit=False)
+                updated_article.save()
                 return redirect('article', article_slug=article.slug)
         # If GET request or not valid data
         return render(request, 'wiki/new-article.html', {'form' : form})
@@ -110,7 +117,6 @@ def edit_article(request, article_slug):
 
 
 def article(request, article_slug):
-    print(article_slug)
     article = Article.objects.get(slug=article_slug)
 
     article.visits += 1
