@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
+{% block page_title %}{{ event.title }}{% endblock page_title %}
+
 {% block content %}
 
+<a href="{% url 'event' event_slug=event.slug %}" class="tilbake">Tilbake</a>
 <table class="table">
     <tr>
         <th>Navn</th>

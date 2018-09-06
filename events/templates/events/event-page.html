@@ -11,6 +11,9 @@
 
     <div class="beskrivelse not-loaded">
         <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
+        {% if request.user.is_staff %}
+            <a class="button" href="{% url 'event-admin' event_slug=event.slug %}">Admin</a>
+        {% endif %}
         <h1>{{ event.title }}</h1>
         <p>{{ event.description }}</p>
     </div>
@@ -27,7 +30,7 @@
         </div>
         {% endif %}
     
-        {% if event_registration %}
+        {% if event.registration_required %}
         <p>{{ open_for }}</p>
         <form id="event-login-field" method="POST">
             {% csrf_token %}
@@ -46,6 +49,11 @@
                     {% elif not_open_yet %}
                         <input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>
                     {% elif not event_not_full %}
+                        {% if on_waiting_list %}
+                            <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>
+                        {% elif waiting_list %}
+                            <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Legg deg i ventelisten">
+                        {% endif%}
                         <input class="button" type="submit" value="Arrangementet er fullt" disabled>
                     {% elif too_young %}
                         <input class="button" type="submit" value="Ikke tilgang" disabled>
@@ -76,6 +84,11 @@
             } else if (data.not_open_yet) {
                 form.append('<input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>')
             } else if (!data.event_not_full) {
+                if (data.on_waiting_list) {
+                    form.append('<input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>')
+                } else if(data.waiting_list) {
+                    form.append('<input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Legg deg i ventelisten">')
+                }
                 form.append('<input class="button" type="submit" value="Arrangementet er fullt" disabled>')
             } else if(data.too_young) {
                 form.append('<input class="button" type="submit" value="Ikke tilgang" disabled>')
@@ -94,7 +107,8 @@
             url: '{% url "event" event_slug=event.slug %}',
             data: {
                 'email': $('#email').val(),
-                'password': $('#password').val()
+                'password': $('#password').val(),
+                'waiting_list': $('#waiting-list').data("waiting-list")
             },
             success: function(data) {
                 console.log(data);

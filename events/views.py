@@ -38,6 +38,7 @@ def event(request, event_slug):
     user = request.user
     user.update_class_year() # Updates user to alumni if old enough
     event = Event.objects.get(slug=event_slug)
+    event.update_waiting_list()
 
     context = {
         'event': event
@@ -46,7 +47,7 @@ def event(request, event_slug):
 
         register_users_count = event.registered_users.all().count()
         already_registered =  user in event.registered_users.all()
-        event_not_full = register_users_count < event.available_spots
+        waiting_list = event.available_spots is not None
 
         # Creates a string to post on event-page. "Åpent for 3. - 5.klasse" or "Åpent for alle" if registration is required
         if event.registration_year_limit and event.registration_year_limit > 1: # Not open for alumni
@@ -57,30 +58,37 @@ def event(request, event_slug):
         
         context['already_registered'] = already_registered
         context['open_for'] = open_for_string
-        context['event_not_full'] = event_not_full
         context['too_young'] = False
         context['not_open_yet'] = True
+        context['waiting_list'] = False
+        context['event_not_full'] = False
 
         response_data = {
             "loginSuccess" : "False",
             'too_young': False,
             'not_open_yet': event.registration_start_time >= timezone.now()
         }
+
+        # Check if event is full
+        if event.available_spots is not None:
+            if register_users_count < event.available_spots:
+                context['event_not_full'] = True
+            else:
+                context['waiting_list'] = True
+                response_data['waiting_list'] = waiting_list
+        else: 
+            context['event_not_full'] = True
         
         # Check age of user
         if (user.graduation_year > event.registration_year_limit):
             context['too_young'] = True
 
-        # If registering
-        if event.available_spots is not None:
-            context.update({
-                'event_registration': True
-            })
-            response_data["event_not_full"] = event_not_full
+        # Check if registration has opened
+        if event.registration_start_time <= timezone.now():
+            context['not_open_yet'] = False
 
-            # Check if registration has opened
-            if event.registration_start_time <= timezone.now():
-                context['not_open_yet'] = False
+        if user in event.waiting_list.all():
+            context['on_waiting_list'] = True
 
     if request.method == 'GET':
 
@@ -104,6 +112,7 @@ def event(request, event_slug):
                     if (event.registration_required) and (user.graduation_year > event.registration_year_limit):
                         response_data['too_young'] = True
                     # Sends data through ajax to eventpage. Is inserted with js client-side
+                    response_data["event_not_full"] = context['event_not_full']
                     response_data['loginSuccess'] = True # Log in succesful
                     response_data['already_registered'] = already_registered
                     response_data['first_name'] = user.first_name
@@ -112,12 +121,15 @@ def event(request, event_slug):
                     response_data['loginSuccess'] = False # User does not exist
                     
             elif not request.POST.get('email'): # If request doesn't contain an email. It is a sign-up request
-                print(user.graduation_year)
-                print(event.registration_year_limit)
-                if (event.registration_required) and (user.graduation_year < event.registration_year_limit) and (event.registration_start_time <= timezone.now()) and (event_not_full):
+                print(request.POST.get('waiting_list'))
+                if (event.registration_required) and (user.graduation_year < event.registration_year_limit) and (event.registration_start_time <= timezone.now()) and (context['event_not_full']):
                     event.registered_users.add(user)
                     response_data['registerSuccess'] = True
                     response_data['already_registered'] = True
+                # Check if waiting list was pressed
+                elif request.POST.get('waiting_list') == "true":
+                    event.waiting_list.add(user)
+                    response_data["on_waiting_list"] = True
                 else:
                     response_data['registerSuccess'] = False
                 
@@ -130,4 +142,7 @@ def event_admin(request, event_slug):
     event = Event.objects.get(slug=event_slug)
     context = {"event": event}
 
-    return render(request, 'events/event-admin.html', context)
+    if (request.user.is_staff):
+        return render(request, 'events/event-admin.html', context)
+    else:
+        raise PermissionDenied
