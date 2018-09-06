@@ -1,3 +1,47 @@
+.input-container {
+    position: relative;
+    max-width: 400px;
+    margin-bottom: 0.5rem;
+
+    &.focus {
+        label {
+            top: -4px;
+            left: 8px;
+            font-size: 0.6rem;
+            transition: top $animation-duration-short $animation-bounce;
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 12px;
+        left: 4px;
+        cursor: text;
+        color: $gray;
+    }
+    input,
+    textarea {
+        width: 100%;
+        height: 3rem;
+        padding: 1rem 0.5rem 0.5rem;
+        border: 0;
+        background-color: $white;
+        &:focus {
+            outline: none;
+        }
+    }
+    .error {
+        color: $red;
+        font-size: 0.8rem;
+        margin-left: 4px;
+        position: relative;
+        top: -3px;
+    }
+    .error.yellow {
+        color: $yellow;
+    }
+}
+
 textarea {
     resize: none;
 }
