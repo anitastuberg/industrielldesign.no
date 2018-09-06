@@ -131,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'nb'
 
 USE_TZ = True
-TIME_ZONE = 'Arctic/Longyearbyen'
+TIME_ZONE = 'Europe/Oslo'
 
 USE_I18N = True
 
