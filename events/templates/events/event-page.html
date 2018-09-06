@@ -21,9 +21,11 @@
         <p></p>
         <p>{{ event.event_start_time|date:"j. F H:i" }} {% if event.end_time %}- {{ event.event_end_time|date:"H:i" }}{% endif %}</p>
         <p>{{ event.location }}</p>
+        {% if event.registration_required and request.user.is_authenticated %}
         <div id="logged-in">
             <p>Hei {{ request.user.first_name }}</p>
         </div>
+        {% endif %}
     
         {% if event_registration %}
         <p>{{ open_for }}</p>
@@ -41,6 +43,8 @@
                 {% else %}
                     {% if already_registered %}
                         <input class="button" type="submit" value="Meldt på" disabled>
+                    {% elif not_open_yet %}
+                        <input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>
                     {% elif not event_not_full %}
                         <input class="button" type="submit" value="Arrangementet er fullt" disabled>
                     {% elif too_young %}
@@ -69,12 +73,13 @@
             form.empty();
             if (data.already_registered) {
                 form.append('<input class="button" type="submit" value="Meldt på" disabled>');
+            } else if (data.not_open_yet) {
+                form.append('<input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>')
             } else if (!data.event_not_full) {
                 form.append('<input class="button" type="submit" value="Arrangementet er fullt" disabled>')
             } else if(data.too_young) {
                 form.append('<input class="button" type="submit" value="Ikke tilgang" disabled>')
-            }
-            else {
+            } else {
                 form.append('<input class="button" type="submit" value="Bli med">')
             }
         }

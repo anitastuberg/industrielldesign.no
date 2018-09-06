@@ -12,11 +12,12 @@ class Event(models.Model):
         YEAR += 1
 
     YEAR_CHOICES = [
-        (YEAR+4, '1.klasse'),
-        (YEAR+3, '2.klasse'),
-        (YEAR+2, '3.klasse'),
-        (YEAR+1, '4.klasse'),
-        (YEAR, '5.klasse')
+        (1, 'Alle (inkludert alumni)'),
+        (YEAR+4, '1. - 5. klasse'),
+        (YEAR+3, '2. - 5. klasse'),
+        (YEAR+2, '3. - 5. klasse'),
+        (YEAR+1, '4. og 5. klasse'),
+        (YEAR, '5. klasse')
     ]
     def get_class_year(self, graduation_year):
         return graduation_year - self.YEAR
@@ -36,7 +37,7 @@ class Event(models.Model):
     # Registration opens
     registration_required = models.BooleanField(default=False)
     registration_start_time = models.DateTimeField(blank=True, null=True)
-    registration_year_limit = models.IntegerField('Åpent for n.klasse og opp', choices=YEAR_CHOICES, blank=True, null=True)
+    registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
 
     # Available spots in the event
     available_spots = models.IntegerField(blank=True, null=True)

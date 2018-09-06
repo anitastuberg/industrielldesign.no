@@ -46,12 +46,26 @@ class ProfileManager(BaseUserManager):
 
 
 class Profile(AbstractBaseUser):
+    NOW = datetime.datetime.now()
+    YEAR = NOW.year
+    if NOW.month > 7:
+        YEAR += 1
+
+    YEAR_CHOICES = [
+        (YEAR+4, '1.klasse'),
+        (YEAR+3, '2.klasse'),
+        (YEAR+2, '3.klasse'),
+        (YEAR+1, '4.klasse'),
+        (YEAR, '5.klasse'),
+        (1, 'Alumni')
+    ]
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True
     )
-    graduation_year = models.IntegerField()
+    graduation_year = models.IntegerField('Klasse', choices=YEAR_CHOICES)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     allergies = models.CharField(max_length=250, blank=True)
@@ -62,6 +76,7 @@ class Profile(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['graduation_year', 'first_name', 'last_name']
+    CURRENT_YEAR = datetime.datetime.now().year
 
     def __str__(self):
         return self.email
@@ -77,8 +92,16 @@ class Profile(AbstractBaseUser):
         return True
 
     def get_class_year(self):
-        current_year = datetime.datetime.now().year
-        return self.graduation_year - current_year
+        return self.graduation_year - self.CURRENT_YEAR
+    
+    # Sets the user to alumni if they've finished
+    def update_class_year(self):
+        print("Update class year")
+        print("Graduation year: %s\nCurrent year: %s" % (self.graduation_year, self.CURRENT_YEAR))
+        if self.graduation_year < self.CURRENT_YEAR:
+            print("Set alumni")
+            self.graduation_year = 1
+            self.save()
 
     @property
     def is_staff(self):

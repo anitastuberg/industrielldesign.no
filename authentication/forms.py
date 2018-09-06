@@ -12,6 +12,15 @@ class RegisterForm(forms.ModelForm):
     allergies = forms.CharField(max_length=150)
     password = forms.CharField(widget=forms.PasswordInput)
 
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['autocomplete'] = "email"
+        self.fields['first_name'].widget.attrs['autocomplete'] = "given-name"
+        self.fields['last_name'].widget.attrs['autocomplete'] = "family-name"
+        self.fields['last_name'].widget.attrs['autocomplete'] = "family-name"
+        self.fields['password'].widget.attrs['autocomplete'] = "current-password"
+
+
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'graduation_year', 'allergies', 'password']

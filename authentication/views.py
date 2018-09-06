@@ -23,6 +23,7 @@ class LoginFormView(View):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
+            user.update_class_year()
             return redirect('students')
     
         # Refreshes the login form if not correct
@@ -51,20 +52,18 @@ class RegisterFormView(View):
     # process form data
     def post(self, request):
         form = self.form_class(request.POST)
-
         if form.is_valid():
 
             user = form.save(commit=False)
             
             # Cleaned (normalized) data
-            # username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             allergies = form.cleaned_data['allergies']
             user.set_password(password)
             user.save()
 
-            # Return s User ovbjects if credentials are correct
+            # Returns User ovbjects if credentials are correct
             user = authenticate(email=email, password=password)
 
             if user is not None:
