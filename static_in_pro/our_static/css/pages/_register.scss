@@ -38,5 +38,8 @@
         #checkboxLabel {
             @include no-select();
         }
+        input[type="submit"] {
+            margin-top: 1rem;
+        }
     }
 }

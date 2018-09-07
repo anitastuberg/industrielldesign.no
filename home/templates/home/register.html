@@ -16,7 +16,7 @@
         <form action="" method="POST">
             {% csrf_token %}
             <div class="input-container">
-                <label for="{{ form.email.id_for_label }}">E-post (@stud.ntnu.no)</label>
+                <label for="{{ form.email.id_for_label }}">Epost@stud.ntnu.no</label>
                 {{ form.email }}
                 {{ form.email.errors }}
             </div>
@@ -36,7 +36,7 @@
                 {{ form.allergies.errors }}
             </div>
             <div class="input-container">
-                <label for="{{ form.graduation_year.id_for_label }}">Avslutningsår</label>
+                <label for="{{ form.graduation_year.id_for_label }}">Klasse</label>
                 {{ form.graduation_year }}
                 {{ form.graduation_year.errors }}
             </div>
@@ -68,17 +68,17 @@
         }
     }
 
-    acceptedCheckbox.change(function() {
+    acceptedCheckbox.change(function () {
         if (acceptedCheckbox.is(":checked")) {
             submitButton.attr("disabled", false);
         } else {
             submitButton.attr("disabled", true);
         }
     });
-    select.change(function() {
+    select.change(function () {
         updateSelect();
     });
-    select.blur(function() {
+    select.blur(function () {
         updateSelect();
     });
     // Update on refresh

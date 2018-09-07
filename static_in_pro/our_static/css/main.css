@@ -192,6 +192,21 @@ ol li {
   margin: 0;
 }
 
+i, img {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 .button {
   border: none;
   padding: 0.5rem 1rem;
@@ -1788,5 +1803,158 @@ textarea {
   user-select: none;
   /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+#register .register-inputs input[type="submit"] {
+  margin-top: 1rem;
+}
+
+.about-page .about-image, .about-page .about-text {
+  float: left;
+}
+
+.about-page .about-image {
+  width: 40%;
+  height: calc(100vh - 64px);
+  margin-bottom: 150px;
+}
+
+.about-page .about-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.about-page .about-text {
+  width: 60%;
+  padding: 0 5%;
+}
+
+.about-page h1 {
+  color: #47A0BC;
+  font-size: 4.666666667rem;
+  font-family: "sweden_sansbold", sans-serif;
+  line-height: 1em;
+}
+
+.about-page h5 {
+  position: relative;
+  font-size: 1.555555556rem;
+}
+
+.about-page .location {
+  position: relative;
+  margin: 50px 0;
+}
+
+.about-page .location i {
+  position: absolute;
+  top: 5px;
+}
+
+.about-page .location p {
+  margin-left: 2rem;
+  line-height: 1.5em;
+}
+
+.about-page .styremedlemmer {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 700px) {
+  .about-page .styremedlemmer {
+    left: 30px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .about-page .styremedlemmer {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+.about-page .styremedlemmer .styremedlem {
+  position: relative;
+  margin-bottom: 80px;
+}
+
+@media screen and (min-width: 700px) {
+  .about-page .styremedlemmer .styremedlem:nth-child(even) {
+    top: 90px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .about-page .styremedlemmer .styremedlem div {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .about-page .styremedlemmer .styremedlem div {
+    float: left;
+  }
+}
+
+.about-page .styremedlemmer .styremedlem div .styretittel {
+  font-size: 1.333333333rem;
+  font-family: "sweden_sansbold", sans-serif;
+  margin-bottom: 0;
+  margin-top: 1.5rem;
+}
+
+.about-page .styremedlemmer .styremedlem div .email, .about-page .styremedlemmer .styremedlem div .phone {
+  font-size: .777777778rem;
+}
+
+.about-page .styremedlemmer .styremedlem div i {
+  position: relative;
+  font-size: 16px;
+  top: 2px;
+  margin-right: 8px;
+}
+
+.about-page .styremedlemmer .styremedlem img {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+  -webkit-box-shadow: 8px 8px #95B4BC;
+          box-shadow: 8px 8px #95B4BC;
+  margin-right: 40px;
+  width: 150px;
+  height: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .about-page .styremedlemmer .styremedlem img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .about-page .styremedlemmer .styremedlem img {
+    float: left;
+  }
 }
 /*# sourceMappingURL=main.css.map */

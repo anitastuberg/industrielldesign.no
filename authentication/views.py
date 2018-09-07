@@ -53,7 +53,6 @@ class RegisterFormView(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-
             user = form.save(commit=False)
             print(form.cleaned_data['email'])
             
