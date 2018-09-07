@@ -197,6 +197,7 @@ ol li {
   font-size: 1rem;
   cursor: pointer;
   display: block;
+  margin-bottom: 5px;
 }
 
 .button:active, .button:focus {
@@ -1139,6 +1140,10 @@ textarea {
 #event-page .signup.not-loaded {
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
+}
+
+#event-page .signup .button {
+  display: inline-block;
 }
 
 #error {
