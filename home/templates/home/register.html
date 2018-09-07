@@ -3,46 +3,85 @@
 {% load staticfiles %}
 {% block page_title %}Registrer{% endblock %}
 
-{% block body_class %}blue-background{% endblock body_class %}
-
 {% block content %}
+
 {% include 'navbar.html' %}
+
 <div id="register" class="container--nav">
-    <h1>Registrer ny bruker</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div class="input-container">
-            <label for="{{ form.email.id_for_label }}">E-post (@stud.ntnu.no)</label>
-            {{ form.email }}
-            {% if form.password.error %}<span class="error yellow">{{ form.email.error }}</span>{% endif %}
-        </div>
-        <div class="input-container">
-            <label for="{{ form.first_name.id_for_label }}">Fornavn</label>
-            {{ form.first_name }}
-            {% if form.password.error %}<span class="error yellow">{{ form.first_name.error }}</span>{% endif %}
-        </div>
-        <div class="input-container">
-            <label for="{{ form.last_name.id_for_label }}">Etternavn</label>
-            {{ form.last_name }}
-            {% if form.password.error %}<span class="error yellow">{{ form.last_name.error }}</span>{% endif %}
-        </div>
-        <div class="input-container">
-            <label for="{{ form.graduation_year.id_for_label }}">Avslutningsår</label>
-            {{ form.graduation_year }}
-            {% if form.password.error %}<span class="error yellow">{{ form.graduation_year.error }}</span>{% endif %}
-        </div>
-        <div class="input-container">
-            <label for="{{ form.allergies.id_for_label }}">Allergier</label>
-            {{ form.allerigies }}
-            {% if form.password.error %}<span class="error yellow">{{ form.allergies.error }}</span>{% endif %}
-        </div>
-        <div class="input-container">
-            <label for="{{ form.password.id_for_label }}">Passord</label>
-            {{ form.password }}
-            {% if form.password.error %}<span class="error yellow">{{ form.password.error }}</span>{% endif %}
-        </div>
-        <input class="button" type="submit" value="Registrer">
-    </form>
+    <div class="terms-conditions">
+        {% include "brukervilkår.html" %}
+    </div>
+    <div class="register-inputs">
+        <h1>Registrer ny bruker</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-container">
+                <label for="{{ form.email.id_for_label }}">E-post (@stud.ntnu.no)</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="input-container">
+                <label for="{{ form.first_name.id_for_label }}">Fornavn</label>
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+            </div>
+            <div class="input-container">
+                <label for="{{ form.last_name.id_for_label }}">Etternavn</label>
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+            </div>
+            <div class="input-container">
+                <label for="{{ form.allergies.id_for_label }}">Allergier</label>
+                {{ form.allergies }}
+                {{ form.allergies.errors }}
+            </div>
+            <div class="input-container">
+                <label for="{{ form.graduation_year.id_for_label }}">Avslutningsår</label>
+                {{ form.graduation_year }}
+                {{ form.graduation_year.errors }}
+            </div>
+            <div class="input-container">
+                <label for="{{ form.password.id_for_label }}">Passord</label>
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <input type="checkbox" id="accepted">
+            <label id="checkboxLabel" for="accepted">Jeg godtar Leonardos vilkår</label>
+            <input id="submitButton" class="button blue" type="submit" value="Registrer" disabled>
+        </form>
+    </div>
 </div>
 
 {% endblock content %}
+{% block javascript %}
+<script>
+    let acceptedCheckbox = $('#accepted');
+    let submitButton = $('#submitButton');
+    let select = $('select');
+
+    function updateSelect() {
+        if (select.val().length > 0) {
+            select.addClass("active");
+        } else {
+            select.parent().removeClass("focus");
+            select.removeClass("active");
+        }
+    }
+
+    acceptedCheckbox.change(function() {
+        if (acceptedCheckbox.is(":checked")) {
+            submitButton.attr("disabled", false);
+        } else {
+            submitButton.attr("disabled", true);
+        }
+    });
+    select.change(function() {
+        updateSelect();
+    });
+    select.blur(function() {
+        updateSelect();
+    });
+    // Update on refresh
+    updateSelect();
+</script>
+{% endblock javascript %}

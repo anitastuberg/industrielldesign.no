@@ -169,11 +169,12 @@ code {
 }
 
 ul, ol {
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 ul li, ol li {
   line-height: 1.5em;
+  margin-bottom: 1rem;
 }
 
 ul li {
@@ -780,20 +781,37 @@ tbody td:hover:before {
 }
 
 .input-container input,
-.input-container textarea {
+.input-container textarea,
+.input-container select {
   width: 100%;
   height: 3rem;
   padding: 1rem 0.5rem 0.5rem;
   border: 0;
   background-color: #fff;
+  font-size: 1rem;
 }
 
 .input-container input:focus,
-.input-container textarea:focus {
+.input-container textarea:focus,
+.input-container select:focus {
   outline: none;
 }
 
-.input-container .error {
+.input-container select {
+  color: #95B4BC;
+}
+
+.input-container select.active {
+  color: #1a1a1a;
+}
+
+.input-container .errorlist {
+  margin: 0;
+  margin-top: 4px;
+  padding: 0;
+}
+
+.input-container .errorlist li {
   color: #E84C4C;
   font-size: 0.8rem;
   margin-left: 4px;
@@ -801,7 +819,7 @@ tbody td:hover:before {
   top: -3px;
 }
 
-.input-container .error.yellow {
+.input-container .errorlist li.yellow {
   color: #FFF49C;
 }
 
@@ -1714,18 +1732,61 @@ textarea {
 }
 
 #register {
-  padding-top: 100px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #EEF2F3;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 7fr;
+      grid-template-columns: 3fr 7fr;
+  -ms-grid-rows: 1;
+      grid-template-rows: 1;
 }
 
-#register h1 {
-  color: #fff;
-  text-align: center;
+@media screen and (max-width: 1100px) {
+  #register {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+#register .terms-conditions {
+  background-color: #fff;
+  padding: 2rem;
+  overflow: scroll;
+}
+
+#register .terms-conditions h1 {
+  margin-top: 3rem;
+}
+
+#register .terms-conditions h4 {
+  margin-top: 2rem;
+}
+
+#register .register-inputs {
+  padding: 0 5%;
+  margin-top: 3rem;
+}
+
+#register .register-inputs h1 {
+  color: #47A0BC;
   font-size: 4rem;
   font-family: "sweden_sansbold", sans-serif;
 }
 
-#register form .input-container, #register input[type="submit"] {
-  margin-left: auto;
-  margin-right: auto;
+#register .register-inputs #checkboxLabel {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 /*# sourceMappingURL=main.css.map */

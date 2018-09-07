@@ -55,6 +55,7 @@ class RegisterFormView(View):
         if form.is_valid():
 
             user = form.save(commit=False)
+            print(form.cleaned_data['email'])
             
             # Cleaned (normalized) data
             email = form.cleaned_data['email']

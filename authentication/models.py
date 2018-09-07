@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 import datetime
+from .validators import validate_stud_email
 
 
 class ProfileManager(BaseUserManager):
@@ -63,7 +64,8 @@ class Profile(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
-        unique=True
+        unique=True,
+        validators=[validate_stud_email]
     )
     graduation_year = models.IntegerField('Klasse', choices=YEAR_CHOICES)
     first_name = models.CharField(max_length=150)
