@@ -6,6 +6,12 @@
         width: 40%;
         height: calc(100vh - #{$nav-height});
         margin-bottom: 150px;
+        @media screen and (max-width: 1000px) {
+            width: 10%;
+        }
+        @media screen and (max-width: 1000px) {
+            display: none;
+        }
         img {
             width: 100%;
             height: 100%;
@@ -15,13 +21,20 @@
     .about-text {
         width: 60%;
         padding: 0 5%;
-        
+        margin-top: 3%;
+        margin-bottom: 150px;
+        @media screen and (max-width: 1000px) {
+            width: 90%;
+        }
     }
     h1 {
         color: $light-blue;
-        font-size: 4.666666667rem;
         font-family: $bold;
         line-height: 1em;
+        font-size: 3rem;
+        @media screen and (min-width: 600px) {
+            font-size: 4.666666667rem;
+        }
     }
     h5 {
         position: relative;
@@ -31,6 +44,7 @@
     .location {
         position: relative;
         margin: 50px 0;
+        font-family: $bold;
         i {
             position: absolute;
             top: 5px;
@@ -94,7 +108,6 @@
                     display: block;
                     margin: 0 auto;
                 }
-                @include no-select;
                 box-shadow: 8px 8px $gray;
                 margin-right: 40px;
                 width: 150px;

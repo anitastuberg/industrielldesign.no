@@ -1,5 +1,4 @@
 nav#main-navigation {
-    padding: 1rem 2rem;
     position: fixed;
     width: 100%;
     height: $nav-height;
@@ -18,73 +17,111 @@ nav#main-navigation {
     }
 
     #hamburger {
-        @media screen and (min-width: 800px) {
+        @media screen and (min-width: 1000px) {
             display: none;
         }
     }
+
     #nav-items {
         margin-left: 40px;
         position: relative;
+        display: none;
 
-        @media screen and (max-width: 800px) {
-            display: none;
-        }
-        
-        li {
-            margin-right: 2rem;
-            cursor: pointer;
-            list-style: none;
-            display: inline;
-            position: relative;
-            a {
-                color: #000;
-            }
-        }
-        #bar {
-            background-color: $yellow;
-            position: absolute;
-            top: 10px;
-            height: 10px;
-            width: 10px;
-            transition: left 200ms ease-in-out, background-color 200ms ease-in-out, width 200ms ease-in-out;
-            &.color0 {
-                background-color: $yellow;
-            }
-            &.color1 {
-                background-color: $red;
-            }
-            &.color2 {
-                background-color: $light-blue;
-            }
-            &.color3 {
-                background-color: $yellow;
-            }
-            &.color4 {
-                background-color: $gray;
-            }
-        }
-        #user {
-            &:hover .dropdown-content {
-                display: block;
-            }
-            .dropdown-content {
-                display: none;
-                background-color: #fff;
-                position: absolute;
-                top: 1rem;
-                right: 0;
-                width: 100%;
-                li {
-                    text-align: right;
-                    margin: 1rem 0 0;
-                    width: 100%;
+        @media screen and (min-width: 1000px) {
+            padding: 1rem 2rem;
+            display: block;
+            li {
+                margin-right: 2rem;
+                cursor: pointer;
+                list-style: none;
+                display: inline;
+                position: relative;
+
+                a {
+                    color: #000;
                 }
             }
+
+            #bar {
+                background-color: $yellow;
+                position: absolute;
+                top: 10px;
+                height: 10px;
+                width: 10px;
+                transition: left 200ms ease-in-out, background-color 200ms ease-in-out, width 200ms ease-in-out;
+
+                &.color0 {
+                    background-color: $yellow;
+                }
+
+                &.color1 {
+                    background-color: $red;
+                }
+
+                &.color2 {
+                    background-color: $light-blue;
+                }
+
+                &.color3 {
+                    background-color: $yellow;
+                }
+
+                &.color4 {
+                    background-color: $gray;
+                }
+            }
+
+            #user {
+                &:hover .dropdown-content {
+                    display: block;
+                }
+
+                .dropdown-content {
+                    display: none;
+                    background-color: #fff;
+                    position: absolute;
+                    top: 1rem;
+                    right: 0;
+                    width: 100%;
+
+                    li {
+                        text-align: right;
+                        margin: 1rem 0 0;
+                        width: 100%;
+                    }
+                }
+            }
+
+            #login,
+            #user {
+                position: absolute;
+                right: 0;
+            }
         }
-        #login, #user {
-            position: absolute;
-            right: 0;
-            top: 0;
+        @media screen and (max-width: 1000px) {
+            margin: 0;
+            display: absolute;
+            width: 100vw;
+            background-color: $white;
+            top: $nav-height;
+            left: 0;
+
+            ul {
+                margin: 0;
+            }
+
+            li {
+                text-align: center;
+                list-style-type: none;
+                font-size: 2rem;
+
+                a {
+                    color: $light-blue;
+                }
+            }
+            #user {
+                display: none;
+            }
         }
     }
 }

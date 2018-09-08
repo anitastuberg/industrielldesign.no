@@ -9,10 +9,16 @@
         width: 80%;
         margin: 0 auto;
         text-align: center;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
         &::before {
             content: '';
             height: 6rem;
             display: block;
+        }
+        @media screen and (max-width: 800px) {
+            font-size: 3rem;
         }
     }
     .article__introduction {

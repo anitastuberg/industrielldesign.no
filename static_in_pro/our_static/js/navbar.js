@@ -1,7 +1,7 @@
 $(function () {
-
-
+  let hamburger = $('#hamburger');
   let bar = $('#bar');
+  let nav = $('#nav-items');
   let listElement = $('#main-navigation #nav-items li');
   let selected = $('#main-navigation li.selected');
 
@@ -55,5 +55,10 @@ $(function () {
   }
 
   listElement.hover(hoverIn, hoverOut);
+
+  hamburger.click(function() {
+    $(this).children('div').toggleClass('open closed');
+    nav.slideToggle();
+  });
 
 });
