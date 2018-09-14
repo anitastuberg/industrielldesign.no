@@ -4,3 +4,30 @@
     font-size: 0.8rem;
     margin: 0;
 }
+
+i, img {
+    @include no-select;
+}
+
+// Scrollbar
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $extra-light-gray; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $light-gray; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $gray; 
+}

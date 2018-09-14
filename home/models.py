@@ -24,6 +24,9 @@ class Komiteer(models.Model):
     post_description = models.TextField()
     post_image = ProcessedImageField(upload_to='styremedlem/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
 
+    def __str__(self):
+        return self.komite
+
     class Meta:
         verbose_name = 'Komité'
         verbose_name_plural = 'Komiteer'

@@ -21,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.SECTRET_KEY
+SECRET_KEY = config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['142.93.166.104', 'www.industrielldesign.no', 'localhost']
 
 AUTH_USER_MODEL = 'authentication.Profile'
 
@@ -43,7 +43,6 @@ EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -131,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'nb'
 
 USE_TZ = True
-TIME_ZONE = 'Arctic/Longyearbyen'
+TIME_ZONE = 'Europe/Oslo'
 
 USE_I18N = True
 

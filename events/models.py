@@ -12,11 +12,12 @@ class Event(models.Model):
         YEAR += 1
 
     YEAR_CHOICES = [
-        (YEAR+4, '1.klasse'),
-        (YEAR+3, '2.klasse'),
-        (YEAR+2, '3.klasse'),
-        (YEAR+1, '4.klasse'),
-        (YEAR, '5.klasse')
+        (5000, 'Alle (inkludert alumni)'),
+        (YEAR+4, '1. - 5. klasse'),
+        (YEAR+3, '2. - 5. klasse'),
+        (YEAR+2, '3. - 5. klasse'),
+        (YEAR+1, '4. og 5. klasse'),
+        (YEAR, '5. klasse')
     ]
     def get_class_year(self, graduation_year):
         return graduation_year - self.YEAR
@@ -25,7 +26,6 @@ class Event(models.Model):
     description = models.TextField()
 
     location = models.CharField(max_length=50, blank=True, null=True)
-    open_for = models.CharField(max_length=50, blank=True, null=True)
     image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     
 
@@ -36,13 +36,14 @@ class Event(models.Model):
     # Registration opens
     registration_required = models.BooleanField(default=False)
     registration_start_time = models.DateTimeField(blank=True, null=True)
-    registration_year_limit = models.IntegerField('Åpent for n.klasse og opp', choices=YEAR_CHOICES, blank=True, null=True)
+    registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
 
     # Available spots in the event
     available_spots = models.IntegerField(blank=True, null=True)
     
 
-    registered_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    registered_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='registerd_users')
+    waiting_list = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='waiting_list_users')
     
     slug = models.SlugField(max_length=60, blank=True)
 
@@ -57,6 +58,19 @@ class Event(models.Model):
             #Only set the slug when the object is created.
             self.slug = slugify(self.title) #Or whatever you want the slug to use
         super(Event, self).save(*args, **kwargs)
+
+    def update_waiting_list(self):
+        if (self.waiting_list.all().count() > 0): # Checks if there are anyone in the waiting list
+            if (self.registered_users.all().count() < self.available_spots): # See if there are any free spots left
+                self.registered_users.add(self.waiting_list.all()[0].id) # Adds user to registered list
+                self.waiting_list.remove(self.waiting_list.all()[0].id) # Removes use from waiting list
+                self.update_waiting_list() # Recursive call
+
+    def is_now(self, month):
+        if (month == datetime.datetime.now().month):
+            return true
+        else:
+            return false
 
     class Meta:
         # ordering = ['event_start_date']

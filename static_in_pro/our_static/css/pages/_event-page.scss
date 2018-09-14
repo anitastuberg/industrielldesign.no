@@ -50,5 +50,8 @@
         &.not-loaded {
             transform: translateY(100%);
         }
+        .button {
+            display: inline-block;
+        }
     }
 }

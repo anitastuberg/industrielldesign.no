@@ -9,10 +9,15 @@
         width: 80%;
         margin: 0 auto;
         text-align: center;
+        @include text-wrap;
+        
         &::before {
             content: '';
             height: 6rem;
             display: block;
+        }
+        @media screen and (max-width: 800px) {
+            font-size: 3rem;
         }
     }
     .article__introduction {

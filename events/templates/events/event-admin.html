@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ event.title }}{% endblock page_title %}
+
+{% block content %}
+
+<a href="{% url 'event' event_slug=event.slug %}" class="tilbake">Tilbake</a>
+<table class="table">
+    <tr>
+        <th>Navn</th>
+        <th>E-post</th>
+        <th>Klasse</th>
+        <th>Allergier</th>
+    </tr>
+    {% for user in event.registered_users.all %}
+        <tr>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.get_class_year}}. klasse</td>
+            <td>{{ user.allergies }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

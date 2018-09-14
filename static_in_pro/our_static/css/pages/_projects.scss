@@ -21,13 +21,13 @@
         cursor: pointer;
 
         @media screen and (min-width: 960px) {
-            &:hover .description {
-                transform: scale(1);
-                -webkit-transform: scale(1);
-                -moz-transform: scale(1);
-                -ms-transform: scale(1);
-                -o-transform: scale(1);
-            }
+            // &:hover .description {
+            //     transform: scale(1);
+            //     -webkit-transform: scale(1);
+            //     -moz-transform: scale(1);
+            //     -ms-transform: scale(1);
+            //     -o-transform: scale(1);
+            // }
         }
 
         .description {
@@ -99,7 +99,7 @@
     width: 40%;
     height: 100%;
     padding: 6rem 2rem 2rem;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: #fff;
 
     &.close {

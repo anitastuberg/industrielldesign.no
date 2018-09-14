@@ -36,13 +36,13 @@
 
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock body_class %}">
     {% block content %}
 
     {% endblock content %}
-
-    <script src="{% static '/js/hamburger.js' %}"></script>
+    
     <script src="{% static '/js/navbar.js' %}"></script>
+    <script src="{% static '/js/inputFields.js' %}"></script>
     {% block javascript %}
     {% endblock %}
 </body>
