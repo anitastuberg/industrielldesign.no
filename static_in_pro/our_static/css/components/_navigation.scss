@@ -31,11 +31,12 @@ nav#main-navigation {
             padding: 1rem 2rem;
             display: block;
             li {
-                margin-right: 2rem;
+                padding-right: 2rem;
                 cursor: pointer;
                 list-style: none;
                 display: inline;
                 position: relative;
+                @include no-select;
 
                 a {
                     color: #000;
@@ -45,13 +46,13 @@ nav#main-navigation {
             #bar {
                 background-color: $yellow;
                 position: absolute;
-                top: 10px;
+                top: 36px;
                 height: 10px;
                 width: 10px;
                 transition: left 200ms ease-in-out, background-color 200ms ease-in-out, width 200ms ease-in-out;
 
                 &.color0 {
-                    background-color: $yellow;
+                    background-color: $light-blue;
                 }
 
                 &.color1 {
@@ -71,7 +72,7 @@ nav#main-navigation {
                 }
             }
 
-            #user {
+            .user {
                 &:hover .dropdown-content {
                     display: block;
                 }
@@ -93,7 +94,7 @@ nav#main-navigation {
             }
 
             #login,
-            #user {
+            .user {
                 position: absolute;
                 right: 0;
             }
@@ -119,7 +120,7 @@ nav#main-navigation {
                     color: $light-blue;
                 }
             }
-            #user {
+            .user {
                 display: none;
             }
         }

@@ -22,7 +22,7 @@
 
 <div class="container--nav" id="project-grid">
     {% for project in projects %}
-    <a class="project-image" href="#{{project.slug}}+detaljer" data-slug="{{ project.slug }}">
+    <a class="project-image close" href="#{{project.slug}}+detaljer" data-slug="{{ project.slug }}">
         <img src="{{ project.thumbnail.url }}" alt="">
         <div class="description">
             <h3>{{ project.title }}</h3>
@@ -65,7 +65,7 @@
         }
         function closeProjectDetail(backUsed) {
             body.attr('style','');
-            if (backUsed && /^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+            if (backUsed && /^((?!chrome|android).)*safari/i.test(navigator.userAgent)) { // Remove animation on safari
                 content.addClass("close").hide(0);
                 extraInfo.addClass("close").hide(0);
                 thumbnail.addClass("close").hide(0);    

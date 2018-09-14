@@ -51,9 +51,10 @@ def new_article(request):
         if request.method == 'POST':
 
             if form.is_valid():
-
+                now = datetime.datetime.now()
                 new_article = form.save(commit=False)
                 new_article.editable = True
+                new_article.updated = now;
                 new_article.save()
                 now = datetime.datetime.now()
                 subject = 'WIKI NY: "%s" har blitt opprettet' % (new_article.title)
@@ -102,8 +103,8 @@ def edit_article(request, article_slug):
                 subject = 'WIKI: "%s" har blitt oppdatert' % (article.title)
                 message = "Oppdatert: %s av %s %s\nindustrielldesign.no/wiki/%s" % (now.strftime("%d.%m.%y %H:%M"), request.user.first_name, request.user.last_name, article.slug)
                 wiki_email(subject, message) # Sends email to "webredaktør"
-
                 updated_article = form.save(commit=False)
+                updated_article.updated = now;
                 updated_article.save()
                 return redirect('article', article_slug=article.slug)
         # If GET request or not valid data

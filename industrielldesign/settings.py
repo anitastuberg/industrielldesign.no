@@ -26,9 +26,7 @@ SECRET_KEY = config.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '10.0.0.64' # For debugging on local wifi 
-    ] 
+ALLOWED_HOSTS = ['142.93.166.104', 'www.industrielldesign.no', 'localhost']
 
 AUTH_USER_MODEL = 'authentication.Profile'
 
@@ -45,7 +43,6 @@ EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

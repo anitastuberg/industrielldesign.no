@@ -58,7 +58,7 @@ class Profile(AbstractBaseUser):
         (YEAR+2, '3.klasse'),
         (YEAR+1, '4.klasse'),
         (YEAR, '5.klasse'),
-        (1, 'Alumni')
+        (5000, 'Alumni')
     ]
 
     email = models.EmailField(

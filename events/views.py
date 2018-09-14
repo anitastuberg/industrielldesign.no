@@ -36,7 +36,7 @@ def create_event(request):
 def event(request, event_slug):
 
     user = request.user
-    user.update_class_year() # Updates user to alumni if old enough
+    # user.update_class_year() # Updates user to alumni if old enough
     event = Event.objects.get(slug=event_slug)
     event.update_waiting_list()
 
@@ -50,7 +50,7 @@ def event(request, event_slug):
         waiting_list = event.available_spots is not None
 
         # Creates a string to post on event-page. "Åpent for 3. - 5.klasse" or "Åpent for alle" if registration is required
-        if event.registration_year_limit and event.registration_year_limit > 1: # Not open for alumni
+        if event.registration_year_limit and event.registration_year_limit < 5000: # Not open for alumni
             open_for_string = "Åpent for %d. - 5. klasse" % (5 - (event.get_class_year(event.registration_year_limit)))
         else:
             open_for_string = "Åpent for Alle"
@@ -66,7 +66,8 @@ def event(request, event_slug):
         response_data = {
             "loginSuccess" : "False",
             'too_young': False,
-            'not_open_yet': event.registration_start_time >= timezone.now()
+            'not_open_yet': event.registration_start_time >= timezone.now(),
+            'open_for': open_for_string
         }
 
         # Check if event is full
@@ -80,8 +81,10 @@ def event(request, event_slug):
             context['event_not_full'] = True
         
         # Check age of user
-        if (user.graduation_year > event.registration_year_limit):
-            context['too_young'] = True
+        if (user.is_authenticated):
+            print(user.graduation_year)
+            if (user.graduation_year > event.registration_year_limit):
+                context['too_young'] = True
 
         # Check if registration has opened
         if event.registration_start_time <= timezone.now():

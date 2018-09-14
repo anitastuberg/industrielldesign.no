@@ -28,3 +28,9 @@
     /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+@mixin text-wrap() {
+    overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+}

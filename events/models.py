@@ -12,7 +12,7 @@ class Event(models.Model):
         YEAR += 1
 
     YEAR_CHOICES = [
-        (1, 'Alle (inkludert alumni)'),
+        (5000, 'Alle (inkludert alumni)'),
         (YEAR+4, '1. - 5. klasse'),
         (YEAR+3, '2. - 5. klasse'),
         (YEAR+2, '3. - 5. klasse'),
@@ -26,7 +26,6 @@ class Event(models.Model):
     description = models.TextField()
 
     location = models.CharField(max_length=50, blank=True, null=True)
-    open_for = models.CharField(max_length=50, blank=True, null=True)
     image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     
 
@@ -66,6 +65,12 @@ class Event(models.Model):
                 self.registered_users.add(self.waiting_list.all()[0].id) # Adds user to registered list
                 self.waiting_list.remove(self.waiting_list.all()[0].id) # Removes use from waiting list
                 self.update_waiting_list() # Recursive call
+
+    def is_now(self, month):
+        if (month == datetime.datetime.now().month):
+            return true
+        else:
+            return false
 
     class Meta:
         # ordering = ['event_start_date']

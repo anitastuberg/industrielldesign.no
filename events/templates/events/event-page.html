@@ -31,7 +31,7 @@
         {% endif %}
     
         {% if event.registration_required %}
-        <p>{{ open_for }}</p>
+        <p id="open-for">{{ open_for }}</p>
         <form id="event-login-field" method="POST">
             {% csrf_token %}
             <div id="log-in-fields">
@@ -79,6 +79,7 @@
         if (data.loginSuccess) {
             let form = $('#log-in-fields');
             form.empty();
+            $('#open-for').text(data.open_for);
             if (data.already_registered) {
                 form.append('<input class="button" type="submit" value="Meldt på" disabled>');
             } else if (data.not_open_yet) {

@@ -67,6 +67,9 @@ $wiki-grid-gap: 1rem;
             margin-bottom: $wiki-grid-gap;
             color: $text-color;
             display: inline-block;
+            h4, p {
+                @include text-wrap;
+            }
             h4 {
                 margin: 0;
             }

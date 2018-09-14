@@ -9,9 +9,8 @@
         width: 80%;
         margin: 0 auto;
         text-align: center;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        hyphens: auto;
+        @include text-wrap;
+        
         &::before {
             content: '';
             height: 6rem;
