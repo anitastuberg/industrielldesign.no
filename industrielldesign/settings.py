@@ -26,7 +26,7 @@ SECRET_KEY = config.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['142.93.166.104', 'www.industrielldesign.no', 'localhost']
+ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldesign.no', 'localhost']
 
 AUTH_USER_MODEL = 'authentication.Profile'
 
@@ -148,8 +148,6 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_r
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_in_pro', 'our_static'),
-    'industrielldesign/home'
-    '/home'
 ]
 
 MEDIA_URL = '/media/'
