@@ -28,7 +28,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '..', 'static_in_pro', 'our_static'),
-]
