@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block page_title %}Om oss{% endblock %}
 
 {% block content %}
 {% include 'navbar.html' %}
 <div class="container--nav about-page">
     <div class="about-image">
-        <img src="/media/home/about.jpg" alt="">
+        <img src="{% static '/img/about.jpg' %}" alt="">
     </div>
     <div class="about-text">
         <h1>Leonardo<br>linjeforening</h1>
