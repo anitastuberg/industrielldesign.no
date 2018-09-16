@@ -1172,6 +1172,7 @@ textarea {
   transition: -webkit-transform 200ms ease-in-out;
   transition: transform 200ms ease-in-out;
   transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+  white-space: pre-line;
 }
 
 #event-page .beskrivelse h1 {
