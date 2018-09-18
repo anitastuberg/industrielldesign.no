@@ -12,10 +12,10 @@ $wiki-grid-gap: 1rem;
             border: none;
             outline: none;
             padding-left: 4rem;
+            line-height: 1em;
             &::placeholder {
                 color: $gray;
                 transition: color 100ms ease-in-out;
-                position: relative;
             }
             &:focus {
                 &+i {
