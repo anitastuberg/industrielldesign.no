@@ -1520,6 +1520,7 @@ textarea {
   background-color: #EEF2F3;
   padding-left: 12rem;
   height: 60vh;
+  min-height: 600px;
   overflow-x: scroll;
 }
 

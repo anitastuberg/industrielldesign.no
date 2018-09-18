@@ -8,7 +8,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'LeonardoLinjefor$industrielldesign',
         'USER': 'LeonardoLinjefor',
-        'PASSWORD': 'daVincisDatabase768',
+        'PASSWORD': config.DATABASE_PASSWORD,
         'HOST': 'LeonardoLinjeforening.mysql.pythonanywhere-services.com',
     }
 }

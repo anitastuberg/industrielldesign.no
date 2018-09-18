@@ -26,7 +26,7 @@ class Event(models.Model):
     description = models.TextField()
 
     location = models.CharField(max_length=50, blank=True, null=True)
-    image = ProcessedImageField(upload_to='wiki/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    image = ProcessedImageField(upload_to='events/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     
 
     # Event start
