@@ -1303,24 +1303,28 @@ textarea {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input:-ms-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input::-ms-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input::placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input:focus + i {

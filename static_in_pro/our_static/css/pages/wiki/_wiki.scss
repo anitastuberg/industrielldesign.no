@@ -15,6 +15,7 @@ $wiki-grid-gap: 1rem;
             &::placeholder {
                 color: $gray;
                 transition: color 100ms ease-in-out;
+                position: relative;
             }
             &:focus {
                 &+i {
