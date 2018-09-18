@@ -6,6 +6,10 @@
     min-height: 600px;
     overflow-x: scroll;
 
+    @media screen and (max-width: 768px) {
+        padding-left: 1rem;
+    }
+
     .month-div {
         height: 100%;
         display: flex;
@@ -53,6 +57,15 @@
         }
         &.changing {
             transform: translateY(-100vh) rotate(-90deg);
+        }
+        @media screen and (max-width: 768px) {
+            transform: rotate(0);
+            left: 1rem;
+            top: 1rem;
+            bottom: auto;
+            #month {
+                font-size: 3rem;
+            }
         }
     }
     .event {
@@ -115,6 +128,9 @@
         width: 7rem;
         margin: 0 auto;
         cursor: pointer;
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
     }
     .next-month, .previous-month {
         position: absolute;

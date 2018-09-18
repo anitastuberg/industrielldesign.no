@@ -1528,6 +1528,12 @@ textarea {
   overflow-x: scroll;
 }
 
+@media screen and (max-width: 768px) {
+  .agenda {
+    padding-left: 1rem;
+  }
+}
+
 .agenda .month-div {
   height: 100%;
   display: -webkit-box;
@@ -1625,6 +1631,19 @@ textarea {
           transform: translateY(-100vh) rotate(-90deg);
 }
 
+@media screen and (max-width: 768px) {
+  .agenda .month-year {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    left: 1rem;
+    top: 1rem;
+    bottom: auto;
+  }
+  .agenda .month-year #month {
+    font-size: 3rem;
+  }
+}
+
 .agenda .event {
   display: block;
   padding: 1rem;
@@ -1696,6 +1715,12 @@ textarea {
   width: 7rem;
   margin: 0 auto;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .agenda .today {
+    display: none;
+  }
 }
 
 .agenda .next-month, .agenda .previous-month {
