@@ -209,7 +209,7 @@ i, img {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
   height: 6px;
 }
 
@@ -1187,6 +1187,12 @@ textarea {
   transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
+@media screen and (max-width: 968px) {
+  #event-page .bilde {
+    display: none;
+  }
+}
+
 #event-page .bilde img {
   min-height: 100vh;
   width: 100%;
@@ -1293,34 +1299,31 @@ textarea {
   border: none;
   outline: none;
   padding-left: 4rem;
+  line-height: 1em;
 }
 
 #wiki-page .wiki-search input::-webkit-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
-  position: relative;
 }
 
 #wiki-page .wiki-search input:-ms-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
-  position: relative;
 }
 
 #wiki-page .wiki-search input::-ms-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
-  position: relative;
 }
 
 #wiki-page .wiki-search input::placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
-  position: relative;
 }
 
 #wiki-page .wiki-search input:focus + i {

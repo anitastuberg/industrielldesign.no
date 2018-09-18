@@ -28,6 +28,10 @@
         right: 0;
         transition: transform 500ms ease-in-out;
 
+        @media screen and (max-width: 968px) {
+            display: none;
+        }
+
         img {
             min-height: 100vh;
             width: 100%;
