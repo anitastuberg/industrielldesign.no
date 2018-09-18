@@ -102,7 +102,7 @@ class Profile(AbstractBaseUser):
         print("Graduation year: %s\nCurrent year: %s" % (self.graduation_year, self.CURRENT_YEAR))
         if self.graduation_year < self.CURRENT_YEAR:
             print("Set alumni")
-            self.graduation_year = 1
+            self.graduation_year = 5000
             self.save()
 
     @property
