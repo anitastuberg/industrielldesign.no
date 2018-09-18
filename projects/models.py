@@ -7,7 +7,7 @@ import datetime
 
 # Create your models here.
 class ProjectImage(models.Model):
-    image = ProcessedImageField(upload_to='styremedlem/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    image = ProcessedImageField(upload_to='projectimages/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
 
 class Project(models.Model):
 

@@ -1299,24 +1299,28 @@ textarea {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input:-ms-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input::-ms-input-placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input::placeholder {
   color: #95B4BC;
   -webkit-transition: color 100ms ease-in-out;
   transition: color 100ms ease-in-out;
+  position: relative;
 }
 
 #wiki-page .wiki-search input:focus + i {
@@ -1516,7 +1520,14 @@ textarea {
   background-color: #EEF2F3;
   padding-left: 12rem;
   height: 60vh;
+  min-height: 600px;
   overflow-x: scroll;
+}
+
+@media screen and (max-width: 768px) {
+  .agenda {
+    padding-left: 1rem;
+  }
 }
 
 .agenda .month-div {
@@ -1616,6 +1627,19 @@ textarea {
           transform: translateY(-100vh) rotate(-90deg);
 }
 
+@media screen and (max-width: 768px) {
+  .agenda .month-year {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    left: 1rem;
+    top: 1rem;
+    bottom: auto;
+  }
+  .agenda .month-year #month {
+    font-size: 3rem;
+  }
+}
+
 .agenda .event {
   display: block;
   padding: 1rem;
@@ -1687,6 +1711,12 @@ textarea {
   width: 7rem;
   margin: 0 auto;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .agenda .today {
+    display: none;
+  }
 }
 
 .agenda .next-month, .agenda .previous-month {
