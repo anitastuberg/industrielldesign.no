@@ -45,6 +45,8 @@
                 {{ form.password }}
                 {{ form.password.errors }}
             </div>
+            {{ form.is_komite }}
+            <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label><br>
             <input type="checkbox" id="accepted">
             <label id="checkboxLabel" for="accepted">Jeg godtar Leonardos vilkår</label>
             <input id="submitButton" class="button blue" type="submit" value="Registrer" disabled>

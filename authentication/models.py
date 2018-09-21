@@ -73,6 +73,7 @@ class Profile(AbstractBaseUser):
     allergies = models.CharField(max_length=250, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_komite = models.BooleanField(default=False)
 
     objects = ProfileManager()
 

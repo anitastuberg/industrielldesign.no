@@ -46,6 +46,8 @@
                 {% else %}
                     {% if already_registered %}
                         <input class="button" type="submit" value="Meldt på" disabled>
+                    {% elif only_komite %}
+                        <input class="button" type="submit" value="Bare for komitéer" disabled>
                     {% elif not_open_yet %}
                         <input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>
                     {% elif not event_not_full %}
@@ -82,6 +84,8 @@
             $('#open-for').text(data.open_for);
             if (data.already_registered) {
                 form.append('<input class="button" type="submit" value="Meldt på" disabled>');
+            } else if (data.only_komite) {
+                form.append('<input class="button" type="submit" value="Bare for komitéer" disabled>')
             } else if (data.not_open_yet) {
                 form.append('<input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>')
             } else if (!data.event_not_full) {

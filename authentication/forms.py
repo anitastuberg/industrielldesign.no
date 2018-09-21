@@ -16,7 +16,7 @@ class RegisterForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'graduation_year', 'allergies', 'password']
+        fields = ['email', 'first_name', 'last_name', 'graduation_year', 'allergies', 'password', 'is_komite']
         widgets = {
             'password': forms.PasswordInput(),
         }

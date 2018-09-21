@@ -62,12 +62,14 @@ def event(request, event_slug):
         context['not_open_yet'] = True
         context['waiting_list'] = False
         context['event_not_full'] = False
+        context['only_komite'] = event.only_komite
 
         response_data = {
             "loginSuccess" : "False",
             'too_young': False,
             'not_open_yet': event.registration_start_time >= timezone.now(),
-            'open_for': open_for_string
+            'open_for': open_for_string,
+            'only_komite': False
         }
 
         # Check if event is full
@@ -118,6 +120,7 @@ def event(request, event_slug):
                     response_data["event_not_full"] = context['event_not_full']
                     response_data['loginSuccess'] = True # Log in succesful
                     response_data['already_registered'] = already_registered
+                    response_data['only_komite'] = context['only_komite']
                     response_data['first_name'] = user.first_name
                     response_data['allergies'] = user.allergies
                 else:
@@ -125,7 +128,10 @@ def event(request, event_slug):
                     
             elif not request.POST.get('email'): # If request doesn't contain an email. It is a sign-up request
                 print(request.POST.get('waiting_list'))
-                if (event.registration_required) and (user.graduation_year < event.registration_year_limit) and (event.registration_start_time <= timezone.now()) and (context['event_not_full']):
+                komite_open = True
+                if (event.only_komite and not user.is_komite):
+                    komite_open = False
+                if (event.registration_required) and (user.graduation_year < event.registration_year_limit) and (event.registration_start_time <= timezone.now()) and (context['event_not_full'] and (komite_open)):
                     event.registered_users.add(user)
                     response_data['registerSuccess'] = True
                     response_data['already_registered'] = True

@@ -38,6 +38,7 @@ class Event(models.Model):
     registration_required = models.BooleanField(default=False)
     registration_start_time = models.DateTimeField(blank=True, null=True)
     registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
+    only_komite = models.BooleanField(default=False)
 
     # Available spots in the event
     available_spots = models.IntegerField(blank=True, null=True)
