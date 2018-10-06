@@ -383,7 +383,8 @@ nav#main-navigation #nav-items {
     display: none;
     background-color: #fff;
     position: absolute;
-    top: 1rem;
+    top: 0;
+    padding-top: 2rem;
     right: 0;
     width: 100%;
   }
@@ -393,9 +394,9 @@ nav#main-navigation #nav-items {
     width: 100%;
   }
   nav#main-navigation #nav-items #login,
-  nav#main-navigation #nav-items .user {
-    position: absolute;
-    right: 0;
+  nav#main-navigation #nav-items .user,
+  nav#main-navigation #nav-items .register {
+    float: right;
   }
 }
 
@@ -1846,6 +1847,23 @@ textarea {
 
 #register .register-inputs input[type="submit"] {
   margin-top: 1rem;
+}
+
+#login {
+  padding-top: 5%;
+  color: #fff;
+  background-color: #47A0BC;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+
+#login .input-container {
+  margin: 1rem auto;
+}
+
+#login .button {
+  margin: 0 auto;
 }
 
 .about-page .about-image, .about-page .about-text {

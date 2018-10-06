@@ -57,7 +57,7 @@
                             <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Legg deg i ventelisten">
                         {% endif%}
                         <input class="button" type="submit" value="Arrangementet er fullt" disabled>
-                    {% elif too_young %}
+                    {% elif no_access %}
                         <input class="button" type="submit" value="Ikke tilgang" disabled>
                     {% else %}
                         <input class="button" type="submit" value="Bli med">
@@ -95,7 +95,7 @@
                     form.append('<input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Legg deg i ventelisten">')
                 }
                 form.append('<input class="button" type="submit" value="Arrangementet er fullt" disabled>')
-            } else if(data.too_young) {
+            } else if(data.no_access) {
                 form.append('<input class="button" type="submit" value="Ikke tilgang" disabled>')
             } else {
                 form.append('<input class="button" type="submit" value="Bli med">')

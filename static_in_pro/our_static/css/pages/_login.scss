@@ -1,0 +1,15 @@
+#login {
+    padding-top: 5%;
+    color: $white;
+    background-color: $light-blue;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+
+    .input-container {
+        margin: 1rem auto;
+    }
+    .button {
+        margin: 0 auto;
+    }
+}

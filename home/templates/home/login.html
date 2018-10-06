@@ -1,14 +1,28 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block page_title %}Login{% endblock %}
 
-<h1>Log in</h1>
-<div>
-    <form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p}}
-        <input type="submit" value="submit">
-    </form>
+{% block content %}
+{% include 'navbar.html' %}
+
+<div id="login" class="container--nav">
+    <h1>Logg inn</h1>
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-container">
+                <label for="{{ form.email.id_for_label }}">E-post</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="input-container">
+                <label for="{{ form.email.id_for_label }}">Passord</label>
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <input class="button" type="submit" value="Logg inn">
+        </form>
+    </div>
 </div>
 
 {% endblock content %}

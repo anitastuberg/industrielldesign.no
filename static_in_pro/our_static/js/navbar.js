@@ -21,7 +21,7 @@ $(function () {
   }
 
   function hoverIn() {
-    if (!$(this).hasClass('user')) {
+    if ($(this).hasClass('nav-item')) {
       if (!selected.length) {
         bar.show();
       }

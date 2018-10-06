@@ -81,7 +81,8 @@ nav#main-navigation {
                     display: none;
                     background-color: #fff;
                     position: absolute;
-                    top: 1rem;
+                    top: 0;
+                    padding-top: 2rem;
                     right: 0;
                     width: 100%;
 
@@ -94,9 +95,9 @@ nav#main-navigation {
             }
 
             #login,
-            .user {
-                position: absolute;
-                right: 0;
+            .user,
+            .register {
+                float: right;
             }
         }
         @media screen and (max-width: 1000px) {

@@ -70,6 +70,6 @@ class RegisterFormView(View):
                 send_confiramtion_email(user.email)
                 if user.is_active:
                     login(request, user) # Loging in user to the website
-                    return redirect('index')
+                    return redirect('students')
 
         return  render(request, self.template_name, {'form': form})

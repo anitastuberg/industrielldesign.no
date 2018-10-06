@@ -1,7 +1,7 @@
 {% load static %}
 
 <nav id="main-navigation">
-    <a href="{% url 'index' %}" id="leo-logo">
+    <a href="{% url 'students' %}" id="leo-logo">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 311.81 311.81"><defs><style>.a{fill:#0093bc;}</style></defs><title>Logo</title><path class="a" d="M0,0V311.81H311.81V0ZM187.09,62.35h62.36v62.37H187.09Zm62.36,187.1H62.36V62.36h62.36V187.08H249.45Z"/></svg>
     </a>
     <div id="hamburger">
@@ -13,11 +13,11 @@
         <div id="nav-items">
             <div id="bar"></div>
             <ul>
-                <li {% if 'student' in request.path %}class="selected"{% endif %}><a href="{% url 'students' %}">Student</a></li>
-                <li {% if 'project' in request.path %}class="selected"{% endif %}><a href="{% url 'projects' %}">Prosjekter</a></li>
-                <!-- <li {% if 'bedrift' in request.path %}class="selected"{% endif %}><a href="">Bedrift</a></li> -->
-                <li {% if 'wiki' in request.path %}class="selected"{% endif %}><a href="{% url 'wiki' %}">Wiki</a></li>
-                <li {% if 'about' in request.path %}class="selected"{% endif %}><a href="{% url 'about' %}">Kontakt</a></li>
+                <li class="nav-item" {% if 'student' in request.path %}class="selected"{% endif %}><a href="{% url 'students' %}">Student</a></li>
+                <li class="nav-item" {% if 'project' in request.path %}class="selected"{% endif %}><a href="{% url 'projects' %}">Prosjekter</a></li>
+                <!-- <li class="nav-item" {% if 'bedrift' in request.path %}class="selected"{% endif %}><a href="">Bedrift</a></li> -->
+                <li class="nav-item" {% if 'wiki' in request.path %}class="selected"{% endif %}><a href="{% url 'wiki' %}">Wiki</a></li>
+                <li class="nav-item" {% if 'about' in request.path %}class="selected"{% endif %}><a href="{% url 'about' %}">Kontakt</a></li>
             
                 {% if request.user.is_authenticated %}
                 <li class="user">
@@ -29,6 +29,7 @@
                     </div>
                 </li>
                 {% else %}
+                <li class="register"><a href="{% url 'register' %}">Registrer</a></li>
                 <li id="login"><a href="{% url 'login' %}">Log in</a></li>
                 {% endif %}
             </ul>

@@ -37,7 +37,13 @@ class Event(models.Model):
     # Registration opens
     registration_required = models.BooleanField(default=False)
     registration_start_time = models.DateTimeField(blank=True, null=True)
-    registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
+    alumni = models.BooleanField(default=False)
+    class_1 = models.BooleanField(default=False)
+    class_2 = models.BooleanField(default=False)
+    class_3 = models.BooleanField(default=False)
+    class_4 = models.BooleanField(default=False)
+    class_5 = models.BooleanField(default=False)
+    # registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
     only_komite = models.BooleanField(default=False)
 
     # Available spots in the event
