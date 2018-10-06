@@ -1849,7 +1849,7 @@ textarea {
   margin-top: 1rem;
 }
 
-#login {
+#login-page {
   padding-top: 5%;
   color: #fff;
   background-color: #47A0BC;
@@ -1858,11 +1858,11 @@ textarea {
   text-align: center;
 }
 
-#login .input-container {
+#login-page .input-container {
   margin: 1rem auto;
 }
 
-#login .button {
+#login-page .button {
   margin: 0 auto;
 }
 
