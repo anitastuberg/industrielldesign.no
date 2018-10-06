@@ -73,12 +73,12 @@ class Profile(AbstractBaseUser):
     allergies = models.CharField(max_length=250, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_komite = models.BooleanField(default=False)
 
     objects = ProfileManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['graduation_year', 'first_name', 'last_name']
-    CURRENT_YEAR = datetime.datetime.now().year
 
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)
@@ -94,13 +94,22 @@ class Profile(AbstractBaseUser):
         return True
 
     def get_class_year(self):
-        return self.graduation_year - self.CURRENT_YEAR
+        if self.graduation_year == self.YEAR + 4:
+            return 1
+        elif self.graduation_year == self.YEAR + 3:
+            return 2
+        elif self.graduation_year == self.YEAR + 2:
+            return 3
+        elif self.graduation_year == self.YEAR + 1:
+            return 4
+        elif self.graduation_year == self.YEAR:
+            return 5
     
     # Sets the user to alumni if they've finished
     def update_class_year(self):
         print("Update class year")
-        print("Graduation year: %s\nCurrent year: %s" % (self.graduation_year, self.CURRENT_YEAR))
-        if self.graduation_year < self.CURRENT_YEAR:
+        print("Graduation year: %s\nCurrent year: %s" % (self.graduation_year, self.YEAR))
+        if self.graduation_year < self.YEAR:
             print("Set alumni")
             self.graduation_year = 5000
             self.save()

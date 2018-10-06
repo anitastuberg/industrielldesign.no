@@ -33,6 +33,53 @@ def create_event(request):
     else:
         raise PermissionDenied
 
+def checkClass(user, event):
+    print("Klasse: %d" % (user.get_class_year()))
+    print(event.class_2)
+    isAccess = False
+
+    if user.get_class_year() == 1 and event.class_1:
+        isAccess = True
+    if user.get_class_year() == 2 and event.class_2:
+        isAccess = True
+    if user.get_class_year() == 3 and event.class_3:
+        isAccess = True
+    if user.get_class_year() == 4 and event.class_4:
+        isAccess = True
+    if user.get_class_year() == 5 and event.class_5:
+        isAccess = True
+    if user.get_class_year() > 5 and event.alumni:
+        isAccess = True
+    return isAccess
+
+def stringBuilder(event):
+    open_for_string = "Åpent for alle"
+
+    if event.class_1 and event.class_2 and event.class_3 and event.class_4 and event.class_4 and event.class_5 and event.alumni:
+        open_for_string = "Åpent for alle IPD-studenter og alumni"
+    elif event.class_1 and event.class_2 and event.class_3 and event.class_4 and event.class_4 and event.class_5:
+        open_for_string = "Åpent for alle IPD-studenter"
+    elif event.class_3 and event.class_4 and event.class_4 and event.class_5:
+        open_for_string = "Åpent for 3. - 5. klasse"
+    elif event.class_1 and event.class_2:
+        open_for_string = "Åpent for 1. og 2. klasse"
+    elif event.class_4 and event.class_5:
+        open_for_string = "Åpent for 4. og 5. klasse"
+    elif event.class_1:
+        open_for_string = "Åpent for 1. klassse"
+    elif event.class_2:
+        open_for_string = "Åpent for 2. klassse"
+    elif event.class_3:
+        open_for_string = "Åpent for 3. klassse"
+    elif event.class_4:
+        open_for_string = "Åpent for 4. klassse"
+    elif event.class_5:
+        open_for_string = "Åpent for 5. klassse"
+    else:
+        open_for_string = "Åpent for noen"
+    
+    return open_for_string
+
 def event(request, event_slug):
 
     user = request.user
@@ -50,24 +97,23 @@ def event(request, event_slug):
         waiting_list = event.available_spots is not None
 
         # Creates a string to post on event-page. "Åpent for 3. - 5.klasse" or "Åpent for alle" if registration is required
-        if event.registration_year_limit and event.registration_year_limit < 5000: # Not open for alumni
-            open_for_string = "Åpent for %d. - 5. klasse" % (5 - (event.get_class_year(event.registration_year_limit)))
-        else:
-            open_for_string = "Åpent for Alle"
+        open_for_string = stringBuilder(event);
 
         
         context['already_registered'] = already_registered
         context['open_for'] = open_for_string
-        context['too_young'] = False
+        context['no_access'] = False
         context['not_open_yet'] = True
         context['waiting_list'] = False
         context['event_not_full'] = False
+        context['only_komite'] = event.only_komite
 
         response_data = {
             "loginSuccess" : "False",
-            'too_young': False,
+            'no_access': False,
             'not_open_yet': event.registration_start_time >= timezone.now(),
-            'open_for': open_for_string
+            'open_for': open_for_string,
+            'only_komite': False
         }
 
         # Check if event is full
@@ -82,9 +128,8 @@ def event(request, event_slug):
         
         # Check age of user
         if (user.is_authenticated):
-            print(user.graduation_year)
-            if (user.graduation_year > event.registration_year_limit):
-                context['too_young'] = True
+            if not checkClass(user, event):
+                context['no_access'] = True
 
         # Check if registration has opened
         if event.registration_start_time <= timezone.now():
@@ -112,12 +157,13 @@ def event(request, event_slug):
                     login(request, user) # Log in user
                     already_registered =  user in event.registered_users.all() # Update "already registered" with the new user
 
-                    if (event.registration_required) and (user.graduation_year > event.registration_year_limit):
-                        response_data['too_young'] = True
+                    if (event.registration_required) and (not checkClass(user, event)):
+                        response_data['no_access'] = True
                     # Sends data through ajax to eventpage. Is inserted with js client-side
                     response_data["event_not_full"] = context['event_not_full']
                     response_data['loginSuccess'] = True # Log in succesful
                     response_data['already_registered'] = already_registered
+                    response_data['only_komite'] = context['only_komite']
                     response_data['first_name'] = user.first_name
                     response_data['allergies'] = user.allergies
                 else:
@@ -125,7 +171,10 @@ def event(request, event_slug):
                     
             elif not request.POST.get('email'): # If request doesn't contain an email. It is a sign-up request
                 print(request.POST.get('waiting_list'))
-                if (event.registration_required) and (user.graduation_year < event.registration_year_limit) and (event.registration_start_time <= timezone.now()) and (context['event_not_full']):
+                komite_open = True
+                if (event.only_komite and not user.is_komite):
+                    komite_open = False
+                if (event.registration_required) and (checkClass(user, event)) and (event.registration_start_time <= timezone.now()) and (context['event_not_full'] and (komite_open)):
                     event.registered_users.add(user)
                     response_data['registerSuccess'] = True
                     response_data['already_registered'] = True
