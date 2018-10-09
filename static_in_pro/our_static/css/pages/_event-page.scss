@@ -12,7 +12,8 @@
         white-space: pre-line;
 
         h1 {
-            // margin-top: 87px;
+            font-size: 4rem;
+            font-family: $bold;
         }
 
         &.not-loaded {
@@ -51,6 +52,19 @@
         color: white;
         font-size: 1.5rem;
         transition: transform 400ms ease-in-out;
+
+        .input-fields {
+            display: none;
+        }
+
+        .event-start-time {
+            font-size: 2rem;
+            font-family: $bold;
+        }
+
+        .registration-start-time {
+            font-size: 1rem;
+        }
 
         &.not-loaded {
             transform: translateY(100%);

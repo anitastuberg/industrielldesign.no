@@ -261,6 +261,11 @@ i, img {
   padding: 0;
 }
 
+.button.white {
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
 .button.red {
   background-color: #E84C4C;
   color: #fff;
@@ -1176,6 +1181,11 @@ textarea {
   white-space: pre-line;
 }
 
+#event-page .beskrivelse h1 {
+  font-size: 4rem;
+  font-family: "sweden_sansbold", sans-serif;
+}
+
 #event-page .bilde {
   position: fixed;
   width: 40%;
@@ -1219,6 +1229,19 @@ textarea {
   transition: -webkit-transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
+}
+
+#event-page .signup .input-fields {
+  display: none;
+}
+
+#event-page .signup .event-start-time {
+  font-size: 2rem;
+  font-family: "sweden_sansbold", sans-serif;
+}
+
+#event-page .signup .registration-start-time {
+  font-size: 1rem;
 }
 
 #event-page .signup.not-loaded {

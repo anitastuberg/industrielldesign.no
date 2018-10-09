@@ -21,12 +21,11 @@
         <img src="{{ event.image.url }}" alt="">
     </div>
     <div class="signup not-loaded">
-        <p></p>
-        <p>{{ event.event_start_time|date:"j. F H:i" }} {% if event.end_time %}- {{ event.event_end_time|date:"H:i" }}{% endif %}</p>
-        <p>{{ event.location }}</p>
+        <p class="event-start-time">{{ event.event_start_time|date:"j. F H:i" }} {% if event.end_time %}- {{ event.event_end_time|date:"H:i" }}{% endif %}</p>
+        <p><i class="material-icons">place</i>{{ event.location }}</p>
         {% if event.registration_required and request.user.is_authenticated %}
         <div id="logged-in">
-            <p>Hei {{ request.user.first_name }}</p>
+            <!-- <p>Hei {{ request.user.first_name }}</p> -->
         </div>
         {% endif %}
     
@@ -36,13 +35,21 @@
             {% csrf_token %}
             <div id="log-in-fields">
                 {% if not request.user.is_authenticated %}
-                    <label for="email">E-post</label>
-                    <input type="text" name="email" id="email">
-                    <span class="error"></span>
-                    <label for="password">Passord</label>
-                    <input type="password" name="password" id="password">
-                    <span class="error"></span>
-                    <input type="submit" value="Logg inn">
+                <button id="display-inputs" class="button">Meld deg på!</button>
+                <div class="input-fields">
+                    <div class="input-container">
+                        <label for="email">E-post</label>
+                        <input type="text" name="email" id="email">
+                        <span class="error"></span>
+                    </div>
+                    <div class="input-container">
+                        <label for="password">Passord</label>
+                        <input type="password" name="password" id="password">
+                        <span class="error"></span>
+                    </div>
+                    <a href="{% url 'register' %}" class="button white">Registrer deg</a>
+                    <input class="button" type="submit" value="Logg inn">
+                </div>
                 {% else %}
                     {% if already_registered %}
                         <input class="button" type="submit" value="Meldt på" disabled>
@@ -50,6 +57,7 @@
                         <input class="button" type="submit" value="Bare for komitéer" disabled>
                     {% elif not_open_yet %}
                         <input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>
+                        <p class="registration-start-time">Påmelding åpner: {{event.registration_start_time|date:"j. F H:i"}}</p>
                     {% elif not event_not_full %}
                         {% if on_waiting_list %}
                             <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>
@@ -72,6 +80,7 @@
 
 {% block javascript %}
 <script src="{% static '/js/ajaxSetup.js' %}"></script> 
+<script src="{% static 'js/eventPage.js' %}"></script>
 <script>
     $(document).ready(function() {
         $('.not-loaded').removeClass('not-loaded');
