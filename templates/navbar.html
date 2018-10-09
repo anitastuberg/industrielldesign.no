@@ -24,13 +24,13 @@
                     <span>{{ request.user.email }}</span>
                     <div class="dropdown-content">
                         <ul>
-                            <li><a href="{% url 'logout' %}">Log out</a></li>
+                            <li><a href="{% url 'logout' %}">Logg ut</a></li>
                         </ul>
                     </div>
                 </li>
                 {% else %}
                 <li class="register"><a href="{% url 'register' %}">Registrer</a></li>
-                <li id="login"><a href="{% url 'login' %}">Log in</a></li>
+                <li id="login"><a href="{% url 'login' %}">Logg in</a></li>
                 {% endif %}
             </ul>
         </div>

@@ -34,6 +34,10 @@
     }
 
     // Colorization of buttons
+    &.white {
+        background-color: $white;
+        color: $text-color;
+    }
     &.red {
         background-color: $red;
         color: $white;
