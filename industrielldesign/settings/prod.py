@@ -12,3 +12,7 @@ DATABASES = {
         'HOST': 'LeonardoLinjeforening.mysql.pythonanywhere-services.com'
     }
 }
+
+# HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
