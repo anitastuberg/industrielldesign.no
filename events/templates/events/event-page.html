@@ -114,7 +114,6 @@
 
     $('#event-login-field').on('submit', function(e) {
         e.preventDefault();
-        console.log($(this).serialize());
 
         $.ajax({
             type: 'POST',
@@ -125,12 +124,10 @@
                 'waiting_list': $('#waiting-list').data("waiting-list")
             },
             success: function(data) {
-                console.log(data);
                 loggedIn(data)
             },
             error: function(data) {
                 console.log("Error");
-                console.log(data);
             }
         })
     });
