@@ -39,12 +39,12 @@
                 <div class="input-fields">
                     <div class="input-container">
                         <label for="email">E-post</label>
-                        <input type="text" name="email" id="email">
+                        <input type="text" name="email" id="email" autocomplete="email">
                         <span class="error"></span>
                     </div>
                     <div class="input-container">
                         <label for="password">Passord</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" autocomplete="current-password">
                         <span class="error"></span>
                     </div>
                     <a href="{% url 'register' %}" class="button white">Registrer deg</a>
