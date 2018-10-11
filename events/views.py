@@ -173,12 +173,13 @@ def event(request, event_slug):
                     komite_open = False
                 if (event.registration_required) and (checkClass(user, event)) and (event.registration_start_time <= timezone.now()) and (context['event_not_full'] and (komite_open)):
                     event.registered_users.add(user)
-                    print("%s %s: %s" % (user.first_name, user.last_name, timezone.now()))
+                    print("Påmeldt: %s %s | %s" % (user.first_name, user.last_name, timezone.now()))
                     response_data['registerSuccess'] = True
                     response_data['already_registered'] = True
                 # Check if waiting list was pressed
                 elif request.POST.get('waiting_list') == "true":
                     event.waiting_list.add(user)
+                    print("Venteliste: %s %s | %s" % (user.first_name, user.last_name, timezone.now()))
                     response_data["on_waiting_list"] = True
                 else:
                     response_data['registerSuccess'] = False
