@@ -34,8 +34,6 @@ def create_event(request):
         raise PermissionDenied
 
 def checkClass(user, event):
-    print("Klasse: %d" % (user.get_class_year()))
-    print(event.class_2)
     isAccess = False
 
     if user.get_class_year() == 1 and event.class_1:
@@ -170,17 +168,18 @@ def event(request, event_slug):
                     response_data['loginSuccess'] = False # User does not exist
                     
             elif not request.POST.get('email'): # If request doesn't contain an email. It is a sign-up request
-                print(request.POST.get('waiting_list'))
                 komite_open = True
                 if (event.only_komite and not user.is_komite):
                     komite_open = False
                 if (event.registration_required) and (checkClass(user, event)) and (event.registration_start_time <= timezone.now()) and (context['event_not_full'] and (komite_open)):
                     event.registered_users.add(user)
+                    print("Påmeldt: %s %s | %s" % (user.first_name, user.last_name, timezone.now()))
                     response_data['registerSuccess'] = True
                     response_data['already_registered'] = True
                 # Check if waiting list was pressed
                 elif request.POST.get('waiting_list') == "true":
                     event.waiting_list.add(user)
+                    print("Venteliste: %s %s | %s" % (user.first_name, user.last_name, timezone.now()))
                     response_data["on_waiting_list"] = True
                 else:
                     response_data['registerSuccess'] = False
