@@ -56,7 +56,7 @@
                     {% elif only_komite %}
                         <input class="button" type="submit" value="Bare for komitéer" disabled>
                     {% elif not_open_yet %}
-                        <input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>
+                        <input class="button" type="submit" value="Påmelding ikke åpnet ennå" disabled>
                         <p class="registration-start-time">Påmelding åpner: {{event.registration_start_time|date:"j. F H:i"}}</p>
                     {% elif not event_not_full %}
                         {% if on_waiting_list %}
@@ -96,7 +96,7 @@
             } else if (data.only_komite) {
                 form.append('<input class="button" type="submit" value="Bare for komitéer" disabled>')
             } else if (data.not_open_yet) {
-                form.append('<input class="button" type="submit" value="Påmelding ikke åpnet enda" disabled>')
+                form.append('<input class="button" type="submit" value="Påmelding ikke åpnet ennå" disabled>')
             } else if (!data.event_not_full) {
                 if (data.on_waiting_list) {
                     form.append('<input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>')
