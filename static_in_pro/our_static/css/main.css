@@ -1168,6 +1168,10 @@ textarea {
           transform: translateX(100%);
 }
 
+#event-page {
+  min-height: 100vh;
+}
+
 #event-page .beskrivelse {
   padding: 87px 10% 0;
   width: 60%;
@@ -1179,6 +1183,13 @@ textarea {
   transition: transform 200ms ease-in-out;
   transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
   white-space: pre-line;
+}
+
+@media screen and (max-width: 640px) {
+  #event-page .beskrivelse {
+    height: auto;
+    width: 100%;
+  }
 }
 
 #event-page .beskrivelse h1 {
@@ -1229,6 +1240,15 @@ textarea {
   transition: -webkit-transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
+}
+
+@media screen and (max-width: 640px) {
+  #event-page .signup {
+    position: relative;
+    left: auto;
+    width: 100%;
+    bottom: 0;
+  }
 }
 
 #event-page .signup .input-fields {

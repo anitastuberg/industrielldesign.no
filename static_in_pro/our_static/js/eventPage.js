@@ -4,13 +4,23 @@ let scrollAmount = 0;
 let newInfoBoxPos;
 console.log(infoBoxLeftPos);
 
-
 $(window).scroll(function() {
-    scrollAmount = $(window).scrollTop();
-    newInfoBoxPos = infoBoxLeftPos + (scrollAmount * 3);
-    console.log(newInfoBoxPos);
-    console.log(scrollAmount);
-    infoBox.css("left", newInfoBoxPos);
+    if (window.innerWidth >= 600) {
+        console.log(window.innerWidth);
+        scrollAmount = $(window).scrollTop();
+        newInfoBoxPos = infoBoxLeftPos + (scrollAmount * 3);
+        console.log(newInfoBoxPos);
+        console.log(scrollAmount);
+        infoBox.css("left", newInfoBoxPos);
+    }
+});
+
+$(window).resize(() => {
+    if (window.innerWidth <= 600) {
+        infoBox.css("left", infoBoxLeftPos);
+    } else {
+        infoBox.css("left", newInfoBoxPos);
+    }
 });
 
 let signUpDisplayButton = $("#display-inputs");
