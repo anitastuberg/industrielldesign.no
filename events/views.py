@@ -104,7 +104,7 @@ def event(request, event_slug):
         context['not_open_yet'] = True
         context['waiting_list'] = False
         context['event_not_full'] = False
-        context['only_komite'] = event.only_komite
+        context['only_komite'] = event.only_komite 
 
         response_data = {
             "loginSuccess" : "False",
@@ -129,12 +129,16 @@ def event(request, event_slug):
             if not checkClass(user, event):
                 context['no_access'] = True
 
+            if user in event.waiting_list.all():
+                context['on_waiting_list'] = True
+            
+            if user.is_komite and event.only_komite:
+                context['only_komite'] = False
+
         # Check if registration has opened
         if event.registration_start_time <= timezone.now():
             context['not_open_yet'] = False
 
-        if user in event.waiting_list.all():
-            context['on_waiting_list'] = True
 
     if request.method == 'GET':
 
