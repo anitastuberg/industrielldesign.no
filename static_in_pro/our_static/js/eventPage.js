@@ -2,7 +2,6 @@ let infoBox = $(".signup");
 let infoBoxLeftPos = infoBox.position().left;
 let scrollAmount = 0;
 let newInfoBoxPos;
-console.log(infoBoxLeftPos);
 
 $(window).scroll(function() {
     if (window.innerWidth >= 600) {
@@ -16,8 +15,8 @@ $(window).scroll(function() {
 });
 
 $(window).resize(() => {
-    if (window.innerWidth <= 600) {
-        infoBox.css("left", infoBoxLeftPos);
+    if (window.innerWidth < 600) {
+        infoBox.css("left", 0);
     } else {
         infoBox.css("left", newInfoBoxPos);
     }

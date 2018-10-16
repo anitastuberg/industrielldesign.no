@@ -20,6 +20,12 @@
             <td>{{ user.allergies }}</td>
         </tr>
     {% endfor %}
+    <tr>
+        <td><b>Totalt antall: {{ event.registered_users.all.count }}</b></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
 
 {% endblock content %}

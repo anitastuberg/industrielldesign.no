@@ -59,7 +59,7 @@
                         <input class="button" type="submit" value="Ikke tilgang" disabled>
                     {% elif not_open_yet %}
                         <input class="button" type="submit" value="Påmelding ikke åpnet ennå" disabled>
-                        <p class="registration-start-time">Påmelding åpner: {{event.registration_start_time|date:"j. F H:i"}}</p>
+                        
                     {% elif not event_not_full %}
                         {% if on_waiting_list %}
                             <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>
@@ -71,6 +71,9 @@
                         <input class="button" type="submit" value="Bli med">
                     {% endif %}
                 {% endif %}
+                {% if event.registration_start_time and not_open_yet %}
+                    <p class="registration-start-time">Påmelding åpner: {{event.registration_start_time|date:"j. F H:i"}}</p>
+                {% endif%}
             </div>
         </form>
         {% endif %}
