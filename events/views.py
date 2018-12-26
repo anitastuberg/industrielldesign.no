@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
-# from django.utils import simplejson
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 
@@ -78,119 +79,96 @@ def stringBuilder(event):
     
     return open_for_string
 
+def updateButtonEventButton(user, event):
+    buttonText = 'Bli med'
+    buttonState = True
+    if event.available_spots is not None:
+        if event.registered_users.all().count() >= event.available_spots:
+            buttonText = "Legg deg i ventelisten"
+            buttonState = True
+    # If user is logged in
+    if user.is_authenticated:
+        # Check if in correct class
+        if not checkClass(user, event):
+            buttonText = "Ikke tilgang"
+            buttonState = False
+        # If on waitinglist
+        elif user in event.waiting_list.all():
+            buttonText = "Du står på venteliste"
+            buttonState = False
+        elif not user.is_komite and event.only_komite:
+            buttonText = "Bare for komitéer"
+            buttonState = False
+    if event.registration_start_time <= timezone.now():
+        buttonText = "Påmelding ikke åpnet enda"
+        buttonState = False
+
+    return buttonText, buttonState
+
+
 def event(request, event_slug):
 
     user = request.user
     # user.update_class_year() # Updates user to alumni if old enough
     event = Event.objects.get(slug=event_slug)
+    # Whenever someone enters the event page. Waiting list is updated
     event.update_waiting_list()
+    # Generates a string based on who the event is open for
+    open_for_string = stringBuilder(event);
 
+    # On load data
     context = {
-        'event': event
+        'buttonText': '',
+        'buttonState': False,
+        'open_for' = open_for_string,
+        'not_open_yet' = True,
+        'loginSuccess' = False,
+        'user' = user,
     }
-    if event.registration_required:
 
-        register_users_count = event.registered_users.all().count()
-        already_registered =  user in event.registered_users.all()
-        waiting_list = event.available_spots is not None
+    # Check if registration has opened
+    if event.registration_start_time <= timezone.now():
+        context['not_open_yet'] = False
 
-        # Creates a string to post on event-page. "Åpent for 3. - 5.klasse" or "Åpent for alle" if registration is required
-        open_for_string = stringBuilder(event);
-
-        
-        context['already_registered'] = already_registered
-        context['open_for'] = open_for_string
-        context['no_access'] = False
-        context['not_open_yet'] = True
-        context['waiting_list'] = False
-        context['event_not_full'] = False
-        context['only_komite'] = event.only_komite 
-
-        response_data = {
-            "loginSuccess" : "False",
-            'no_access': False,
-            'not_open_yet': event.registration_start_time >= timezone.now(),
-            'open_for': open_for_string,
-            'only_komite': False
-        }
-
-        # Check if event is full
-        if event.available_spots is not None:
-            if register_users_count < event.available_spots:
-                context['event_not_full'] = True
-            else:
-                context['waiting_list'] = True
-                response_data['waiting_list'] = waiting_list
-        else: 
-            context['event_not_full'] = True
-        
-        # Check age of user
-        if (user.is_authenticated):
-            if not checkClass(user, event):
-                context['no_access'] = True
-
-            if user in event.waiting_list.all():
-                context['on_waiting_list'] = True
-            
-            if user.is_komite and event.only_komite:
-                context['only_komite'] = False
-
-        # Check if registration has opened
-        if event.registration_start_time <= timezone.now():
-            context['not_open_yet'] = False
-
-
+    context['buttonText'], context['buttonState'] = updateButtonEventButton(user, evnet)
+    
+    #### HTTP Part ####
+    # GET (On page load)
     if request.method == 'GET':
-
         return render(request, 'events/event-page.html', context)
     
-    else: # POST
-        if (event.registration_required):
-            # If user is not logged in this request is the login-request
-            if not user.is_authenticated:
-                
-                email = request.POST.get('email')
-                password = request.POST.get('password')
+    # POST (User sending data) requests are only nescescarry if event
+    # has registration
+    elif request.method == 'POST' and event.registration_required:
+        if not user.is_authenticated:
+            email = request.POST.get('email') # Get username/email
+            password = request.POST.get('password') # Get password
 
-                user = authenticate(request, email=email, password=password)
-                
-                # If user exists
-                if user is not None:
-                    login(request, user) # Log in user
-                    already_registered =  user in event.registered_users.all() # Update "already registered" with the new user
+            # Retrieves the user
+            user = authenticate(request, email=email, password=password)
 
-                    if (event.registration_required) and (not checkClass(user, event)):
-                        response_data['no_access'] = True
-                    # Sends data through ajax to eventpage. Is inserted with js client-side
-                    response_data["event_not_full"] = context['event_not_full']
-                    response_data['loginSuccess'] = True # Log in succesful
-                    response_data['already_registered'] = already_registered
-                    response_data['only_komite'] = context['only_komite']
-                    response_data['first_name'] = user.first_name
-                    response_data['allergies'] = user.allergies
-                else:
-                    response_data['loginSuccess'] = False # User does not exist
-                    
-            elif not request.POST.get('email'): # If request doesn't contain an email. It is a sign-up request
-                komite_open = True
-                if (event.only_komite and not user.is_komite):
-                    komite_open = False
-                if (event.registration_required) and (checkClass(user, event)) and (event.registration_start_time <= timezone.now()) and (context['event_not_full'] and (komite_open)):
-                    event.registered_users.add(user)
-                    print("Påmeldt: %s %s | %s" % (user.first_name, user.last_name, timezone.now()))
-                    response_data['registerSuccess'] = True
-                    response_data['already_registered'] = True
-                # Check if waiting list was pressed
-                elif request.POST.get('waiting_list') == "true":
-                    event.waiting_list.add(user)
-                    print("Venteliste: %s %s | %s" % (user.first_name, user.last_name, timezone.now()))
-                    response_data["on_waiting_list"] = True
-                else:
-                    response_data['registerSuccess'] = False
-                
-            return JsonResponse(response_data)
-        else:
-            pass
+            # If user exists
+            if user is not None:
+                login(request, user)
+                context['user'] = user
+                context['loginSuccess'] = True
+                context['buttonText'], context['buttonState'] = updateButtonEventButton(user, evnet)
+            # If user does not exist
+            else:
+                response_data['loginSuccess'] = False
+        
+        elif not request.POST.get('email') # If request doesn't contain an email. It is a sign-up request
+            if (event.registration_required) and (checkClass(user, event)) and (event.registration_start_time <= timezone.now()) and (context['event_not_full'] and (event.only_komite and user.is_komite)):
+                event.registered_users.add(user)
+                context['registerSuccess'] = True
+                context['buttonText'], context['buttonState'] = updateButtonEventButton(user, evnet)
+            elif request.POST.get('waiting_list') == 'true':
+                event.waiting_list.add(user)
+                context['buttonText'], context['buttonState'] = updateButtonEventButton(user, evnet)
+            else:
+                context['registerSuccess'] = False
+        return JsonResponse(context)
+
 
 
 def event_admin(request, event_slug):
@@ -201,3 +179,12 @@ def event_admin(request, event_slug):
         return render(request, 'events/event-admin.html', context)
     else:
         raise PermissionDenied
+
+def send_event_confirmation_mail(subject, message, user_email):
+    send_mail(
+        subject, # Subject
+        message, # Message
+        settings.EMAIL_HOST_USER, # From email
+        [user_email], # To email
+        fail_silently=False,
+    )

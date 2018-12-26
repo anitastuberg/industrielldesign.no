@@ -51,26 +51,7 @@
                     <input class="button" type="submit" value="Logg inn">
                 </div>
                 {% else %}
-                    {% if already_registered %}
-                        <input class="button" type="submit" value="Meldt på" disabled>
-                    {% elif only_komite %}
-                        <input class="button" type="submit" value="Bare for komitéer" disabled>
-                    {% elif no_access %}
-                        <input class="button" type="submit" value="Ikke tilgang" disabled>
-                    {% elif not_open_yet %}
-                        <input class="button" type="submit" value="Påmelding ikke åpnet ennå" disabled>
-                        
-                    {% elif not event_not_full %}
-                        {% if on_waiting_list %}
-                            <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>
-                        {% elif waiting_list %}
-                            <input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Legg deg i ventelisten">
-                        {% endif%}
-                        <input class="button" type="submit" value="Arrangementet er fullt" disabled>
-                    {% else %}
-                        <input class="button" type="submit" value="Bli med">
-                    {% endif %}
-                {% endif %}
+                    <input class="button" type="submit" value="{{ buttonText }}" {% if buttonState %}disabled{% endif %}>
                 {% if event.registration_start_time and not_open_yet %}
                     <p class="registration-start-time">Påmelding åpner: {{event.registration_start_time|date:"j. F H:i"}}</p>
                 {% endif%}
@@ -94,25 +75,7 @@
             let form = $('#log-in-fields');
             form.empty();
             $('#open-for').text(data.open_for);
-            if (data.already_registered) {
-                form.append('<input class="button" type="submit" value="Meldt på" disabled>');
-            } else if (data.only_komite) {
-                form.append('<input class="button" type="submit" value="Bare for komitéer" disabled>')
-            }
-            else if(data.no_access) {
-                form.append('<input class="button" type="submit" value="Ikke tilgang" disabled>')
-            } else if (data.not_open_yet) {
-                form.append('<input class="button" type="submit" value="Påmelding ikke åpnet ennå" disabled>')
-            } else if (!data.event_not_full) {
-                if (data.on_waiting_list) {
-                    form.append('<input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Du står på venteliste" disabled>')
-                } else if(data.waiting_list) {
-                    form.append('<input id="waiting-list" class="button" type="submit" data-waiting-list="true" value="Legg deg i ventelisten">')
-                }
-                form.append('<input class="button" type="submit" value="Arrangementet er fullt" disabled>')
-            } else {
-                form.append('<input class="button" type="submit" value="Bli med">')
-            }
+            form.append('<input class="button" type="submit" value="' + data.buttonText + data.buttonState ? 'disabled' : '' + '>');
         }
     }
 
