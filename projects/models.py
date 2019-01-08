@@ -13,11 +13,11 @@ class Project(models.Model):
 
     HØST = 'H'
     VÅR = 'V'
+    YEAR_CHOICES = [(r,r) for r in range(datetime.datetime.now().year-10, datetime.datetime.now().year+1)]
     SEMESTER_CHOICES = (
         (HØST, 'Høst'),
         (VÅR, 'Vår')
     )
-    YEAR_CHOICES = [(r,r) for r in range(datetime.datetime.now().year-10, datetime.datetime.now().year+1)]
     
 
     title = models.CharField(max_length=150, unique=True)
