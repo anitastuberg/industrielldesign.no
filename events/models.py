@@ -65,6 +65,8 @@ class Event(models.Model):
         if not self.id:
             # Only set the slug when the object is created.
             self.slug = slugify(self.title)  # Or whatever you want the slug to use
+        if not self.registration_start_time:
+            self.registration_start_time = self.event_start_time
         super(Event, self).save(*args, **kwargs)
 
     # def update_waiting_list(self):
