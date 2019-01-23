@@ -22,7 +22,7 @@ class Event(models.Model):
     def get_class_year(self, graduation_year):
         return graduation_year - self.YEAR
 
-    title = models.CharField(max_length=80, unique=True)
+    title = models.CharField(max_length=200, unique=True)
     description = models.TextField()
 
     location = models.CharField(max_length=50, blank=True, null=True)
