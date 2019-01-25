@@ -12,7 +12,7 @@
         <div class="beskrivelse not-loaded">
             <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
             {% if request.user.is_staff %}
-                {% comment %}<a class="button" href="{% url 'event_admin' event_slug=event.slug %}">Admin</a>{% endcomment %}
+                <a class="button" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
             {% endif %}
             <h1>{{ event.title }}</h1>
             <p>{{ event.description }}</p>
