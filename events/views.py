@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 
+
 from .models import Event
 from .forms import CreateEventForm
 
@@ -119,6 +120,7 @@ def event(request, event_slug):
     # user.update_class_year() # Updates user to alumni if old enough
     event = Event.objects.get(slug=event_slug)
     # Whenever someone enters the event page. Waiting list is updated
+
     # event.update_waiting_list()
     # Generates a string based on who the event is open for
     open_for_string = stringBuilder(event)
@@ -148,6 +150,7 @@ def event(request, event_slug):
             email = request.POST.get('email')  # Get username/email
             password = request.POST.get('password')  # Get password
 
+
             # Retrieves the user
             user = authenticate(request, email=email, password=password)
 
@@ -156,6 +159,7 @@ def event(request, event_slug):
                 login(request, user)
                 context['user'] = user
                 context['loginSuccess'] = True
+
                 context = updateButtonEventButton(user, context)
             # If user does not exist
             else:
@@ -175,6 +179,7 @@ def event(request, event_slug):
         del context['event']
         del context['user']
         return JsonResponse(context)
+
 
 
 def event_admin(request, event_slug):
