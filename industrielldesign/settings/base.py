@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'events',
     'projects',
     'authentication',
+    'designsystem',
+    'emails',
     # Third party apps:
     'imagekit'
 
