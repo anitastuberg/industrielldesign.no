@@ -15,7 +15,7 @@
                 <a class="button" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
             {% endif %}
             <h1>{{ event.title }}</h1>
-            <p>{{ event.description }}</p>
+            <p class="content-markdown">{{ event.description }}</p>
         </div>
         <div class="bilde not-loaded">
             <img src="{{ event.image.url }}" alt="">
@@ -83,9 +83,15 @@
 
     <script src="{% static '/js/ajaxSetup.js' %}"></script>
     <script src="{% static 'js/eventPage.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.not-loaded').removeClass('not-loaded');
+            // Renders markdown from db to html
+            marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
+            let content = $('.content-markdown');
+            let markedContent = marked(content.text());
+            content.html(markedContent);
         });
 
         function loggedIn(data) {

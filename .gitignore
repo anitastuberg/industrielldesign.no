@@ -1,6 +1,7 @@
 # Passwords that shouldn't be distributed
 config.py
 .idea
+*.css.map
 
 .vscode
 *.scssc
