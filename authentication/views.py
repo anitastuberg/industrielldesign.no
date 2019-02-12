@@ -73,3 +73,6 @@ class RegisterFormView(View):
                     return redirect('students')
 
         return  render(request, self.template_name, {'form': form})
+
+
+#class ResetPasswordView(View):
