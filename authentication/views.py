@@ -74,5 +74,3 @@ class RegisterFormView(View):
 
         return  render(request, self.template_name, {'form': form})
 
-
-#class ResetPasswordView(View):
