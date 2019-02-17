@@ -10,13 +10,13 @@
             {% csrf_token %}
             <h1>Logg inn</h1>
             <div class="input-container fluid">
-                <label for="{{ form.email.id_for_label }}">E-post</label>
                 {{ form.email }}
+                <label for="{{ form.email.id_for_label }}">E-post</label>
                 {{ form.email.errors }}
             </div>
             <div class="input-container fluid">
-                <label for="{{ form.email.id_for_label }}">Passord</label>
                 {{ form.password }}
+                <label for="{{ form.email.id_for_label }}">Passord</label>
                 {{ form.password.errors }}
             </div>
             <input class="button cta" type="submit" value="Logg inn">
