@@ -1,10 +1,12 @@
 #login-page {
-    padding-top: 5%;
-    color: $white;
-    background-color: $light-blue;
-    width: 100vw;
-    height: 100vh;
+    max-width: $xxs;
+    margin: 5% auto;
     text-align: center;
+
+    form {
+        width: 100%;
+        display: block;
+    }
 
     .input-container {
         margin: 1rem auto;

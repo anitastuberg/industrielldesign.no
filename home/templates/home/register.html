@@ -8,82 +8,49 @@
 {% include 'navbar.html' %}
 
 <div id="register" class="container--nav">
-    <div class="terms-conditions">
-        {% include "brukervilkår.html" %}
-    </div>
     <div class="register-inputs">
         <h1>Registrer ny bruker</h1>
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <div class="input-container">
-                <label for="{{ form.email.id_for_label }}">Epost@stud.ntnu.no</label>
                 {{ form.email }}
+                <label for="{{ form.email.id_for_label }}">Epost@stud.ntnu.no</label>
                 {{ form.email.errors }}
             </div>
             <div class="input-container">
-                <label for="{{ form.first_name.id_for_label }}">Fornavn</label>
                 {{ form.first_name }}
+                <label for="{{ form.first_name.id_for_label }}">Fornavn</label>
                 {{ form.first_name.errors }}
             </div>
             <div class="input-container">
-                <label for="{{ form.last_name.id_for_label }}">Etternavn</label>
                 {{ form.last_name }}
+                <label for="{{ form.last_name.id_for_label }}">Etternavn</label>
                 {{ form.last_name.errors }}
             </div>
             <div class="input-container">
-                <label for="{{ form.allergies.id_for_label }}">Allergier</label>
                 {{ form.allergies }}
+                <label for="{{ form.allergies.id_for_label }}">Allergier</label>
                 {{ form.allergies.errors }}
             </div>
             <div class="input-container">
-                <label for="{{ form.graduation_year.id_for_label }}">Klasse</label>
                 {{ form.graduation_year }}
+                <label for="{{ form.graduation_year.id_for_label }}">Klasse</label>
                 {{ form.graduation_year.errors }}
             </div>
             <div class="input-container">
-                <label for="{{ form.password.id_for_label }}">Passord</label>
                 {{ form.password }}
+                <label for="{{ form.password.id_for_label }}">Passord</label>
                 {{ form.password.errors }}
             </div>
             {{ form.is_komite }}
             <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label><br>
             <input type="checkbox" id="accepted">
             <label id="checkboxLabel" for="accepted">Jeg godtar Leonardos vilkår</label>
-            <input id="submitButton" class="button blue" type="submit" value="Registrer" disabled>
+            <input id="submitButton" class="button blue" type="submit" value="Registrer">
         </form>
     </div>
 </div>
 
 {% endblock content %}
 {% block javascript %}
-<script>
-    let acceptedCheckbox = $('#accepted');
-    let submitButton = $('#submitButton');
-    let select = $('select');
-
-    function updateSelect() {
-        if (select.val().length > 0) {
-            select.addClass("active");
-        } else {
-            select.parent().removeClass("focus");
-            select.removeClass("active");
-        }
-    }
-
-    acceptedCheckbox.change(function () {
-        if (acceptedCheckbox.is(":checked")) {
-            submitButton.attr("disabled", false);
-        } else {
-            submitButton.attr("disabled", true);
-        }
-    });
-    select.change(function () {
-        updateSelect();
-    });
-    select.blur(function () {
-        updateSelect();
-    });
-    // Update on refresh
-    updateSelect();
-</script>
 {% endblock javascript %}

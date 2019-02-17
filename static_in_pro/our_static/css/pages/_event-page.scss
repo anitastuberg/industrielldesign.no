@@ -19,7 +19,7 @@
 
         h1 {
             font-size: 4rem;
-            font-family: $bold;
+            font-weight: bold;
         }
 
         &.not-loaded {
@@ -54,7 +54,7 @@
         bottom: 70px;
         left: 20%;
         padding: 2rem;
-        background-color: $light-blue;
+        background-color: $primary;
         color: white;
         font-size: 1.5rem;
         transition: transform 400ms ease-in-out;
@@ -72,7 +72,7 @@
 
         .event-start-time {
             font-size: 2rem;
-            font-family: $bold;
+            font-weight: bold;
         }
 
         .registration-start-time {
