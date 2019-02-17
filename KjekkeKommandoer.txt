@@ -1,1 +1,0 @@
-Når "no such table:" kommer = python manage.py migrate --run-syncdb

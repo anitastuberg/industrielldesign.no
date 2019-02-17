@@ -22,7 +22,7 @@ searchField.on('input', () => {
 
 function addArticleBox(target, title, introduction, bodyText, slug) {
     let articleHTML =
-        '<a href="/wiki/' + slug + '" class="article-preview resize search-result">' +
+        '<a href=' + slug + '"/wiki" class="article-preview resize search-result">' +
         '<h4>' + title + '</h4>';
 
     if (introduction.length > 0) {
