@@ -957,8 +957,10 @@ tbody td {
     margin-right: 0.5rem; }
 
 #student {
-  display: grid;
-  grid-template-columns: 10fr 15fr; }
+  display: grid; }
+  @media screen and (min-width: 68.75em) {
+    #student {
+      grid-template-columns: 10fr 15fr; } }
   #student .color-field {
     background-color: #fbc6c6;
     width: 100%;
@@ -967,6 +969,9 @@ tbody td {
     align-items: center;
     justify-content: center;
     color: #6E787A; }
+    @media screen and (max-width: 68.75em) {
+      #student .color-field {
+        display: none; } }
   #student .events {
     min-height: 100vh;
     width: 100%;
@@ -978,7 +983,10 @@ tbody td {
     color: #1A1A1A;
     border-left: 1px solid #D0EAF1;
     border-bottom: 1px solid #D0EAF1;
-    max-width: 60vw; }
+    max-width: 100%; }
+    @media screen and (min-width: 68.75em) {
+      #student .event {
+        max-width: 60vw; } }
     #student .event::before {
       content: '';
       position: absolute;
@@ -998,12 +1006,16 @@ tbody td {
       transform: scaleX(1);
       transform-origin: left; }
     #student .event .event-inner-wrapper {
-      padding: 8rem;
-      display: grid;
-      grid-template-columns: 150px 1fr; }
+      padding: 2rem; }
+      @media screen and (min-width: 68.75em) {
+        #student .event .event-inner-wrapper {
+          padding: 8rem; } }
     #student .event h3 {
       color: #527884; }
     #student .event img {
+      position: absolute;
+      top: 8rem;
+      left: 8rem;
       width: 150px;
       height: 150px;
       object-fit: cover;
@@ -1011,9 +1023,17 @@ tbody td {
       transition: transform 400ms ease-in-out;
       will-change: transform;
       transform-origin: right center; }
+      @media screen and (max-width: 68.75em) {
+        #student .event img {
+          top: 2rem;
+          left: 2rem; } }
     #student .event .event-info {
-      padding-left: 1rem;
-      position: relative; }
+      padding-left: calc(150px + 1rem);
+      position: relative;
+      min-height: 150px; }
+      @media screen and (max-width: 68.75em) {
+        #student .event .event-info {
+          padding-left: calc(150px + 2rem); } }
       #student .event .event-info .label {
         text-transform: uppercase;
         font-weight: 300;
@@ -1021,16 +1041,20 @@ tbody td {
       #student .event .event-info .event-date p {
         margin: 0;
         line-height: 1.2em; }
-      #student .event .event-info .event-date div {
-        position: absolute;
-        bottom: 0; }
-        #student .event .event-info .event-date div:first-child {
-          left: 1rem; }
-        #student .event .event-info .event-date div:last-child {
-          left: calc(1rem + 200px); }
+      @media screen and (max-width: 68.75em) {
+        #student .event .event-info .event-date div {
+          margin-bottom: 1rem; } }
+      @media screen and (min-width: 68.75em) {
+        #student .event .event-info .event-date div {
+          position: absolute;
+          bottom: 0; }
+          #student .event .event-info .event-date div:first-child {
+            left: calc(150px + 1rem); }
+          #student .event .event-info .event-date div:last-child {
+            left: calc(1rem + 360px); } }
   #student .days-left {
-    margin-top: 1.5rem;
-    line-height: 0em; }
+    margin-top: 1.3rem;
+    line-height: 1em; }
   #student .dots {
     white-space: nowrap; }
     #student .dots .dot {
