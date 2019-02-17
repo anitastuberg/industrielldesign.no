@@ -19,14 +19,14 @@ th {
 thead {
 	border-bottom: 2px solid $light-gray;
 	th {
-		font-family: $bold;
+		font-weight: bold;
 	}
 }
 
 tbody {
 	tr {
 		&:hover {
-			background-color: rgba($light-blue, 0.1);
+			background-color: rgba($primary, 0.1);
 		}
 	}
 	td {
@@ -39,7 +39,7 @@ tbody {
 				right: 0;
 				top: -9999px;
 				bottom: -9999px;
-				background-color: rgba($light-blue, 0.05);
+				background-color: rgba($primary, 0.05);
 				z-index: -1;
 			}
 		}

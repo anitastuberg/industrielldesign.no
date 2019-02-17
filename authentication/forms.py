@@ -5,13 +5,20 @@ import datetime
 
 User = get_user_model()
 
+
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['autocomplete'] = "email"
+        self.fields['email'].widget.attrs['placeholder'] = "."
         self.fields['first_name'].widget.attrs['autocomplete'] = "given-name"
+        self.fields['first_name'].widget.attrs['placeholder'] = "."
         self.fields['last_name'].widget.attrs['autocomplete'] = "family-name"
+        self.fields['last_name'].widget.attrs['placeholder'] = "."
+        self.fields['allergies'].widget.attrs['autocomplete'] = "off"
+        self.fields['allergies'].widget.attrs['placeholder'] = "."
         self.fields['password'].widget.attrs['autocomplete'] = "current-password"
+        self.fields['password'].widget.attrs['placeholder'] = "."
         self.fields['graduation_year'].choices = [("", ""),] + list(self.fields["graduation_year"].choices)[1:]
     
     class Meta:
@@ -20,9 +27,6 @@ class RegisterForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput(),
         }
-
-
-
 
 
 class LoginForm(forms.Form):

@@ -79,7 +79,7 @@ $text-editor-background-color: #EAF0F2;
     }
     #id_introduction {
         resize: vertical;
-        font-family: $bold;
+        font-weight: bold;
     }
     textarea#id_body_text {
         min-height: calc(10rem * 1.2);

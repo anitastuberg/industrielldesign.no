@@ -74,3 +74,4 @@ class Event(models.Model):
         # ordering = ['event_start_date']
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
+        ordering = ['event_start_time']

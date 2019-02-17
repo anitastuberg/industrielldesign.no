@@ -37,7 +37,7 @@
     display: none;
     .modal-content {
         position: fixed;
-        background-color: $extra-light-gray;
+        background-color: $light-gray;
         padding: 2rem;
         z-index: 101;
         width: 90%;
@@ -76,5 +76,5 @@
 }
 
 .blue-background {
-    background-color: $light-blue;
+    background-color: $primary;
 }

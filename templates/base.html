@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -24,6 +24,7 @@
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Montserrat:300,400,400i,700" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="{% static '/img/favicon/Logo_16.png' %}" sizes="16x16">
     <link rel="icon" type="image/png" href="{% static '/img/favicon/Logo_32.png' %}" sizes="32x32">
@@ -31,6 +32,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     {% block extra_head %}{% endblock extra_head %}
 
@@ -40,9 +42,7 @@
     {% block content %}
 
     {% endblock content %}
-    
-    <script src="{% static '/js/navbar.js' %}"></script>
-    <script src="{% static '/js/inputFields.js' %}"></script>
+
     {% block javascript %}
     {% endblock %}
 </body>

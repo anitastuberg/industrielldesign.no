@@ -6,23 +6,21 @@
 {% include 'navbar.html' %}
 
 <div id="login-page" class="container--nav">
-    <h1>Logg inn</h1>
-    <div>
         <form action="" method="POST">
             {% csrf_token %}
-            <div class="input-container">
+            <h1>Logg inn</h1>
+            <div class="input-container fluid">
                 <label for="{{ form.email.id_for_label }}">E-post</label>
                 {{ form.email }}
                 {{ form.email.errors }}
             </div>
-            <div class="input-container">
+            <div class="input-container fluid">
                 <label for="{{ form.email.id_for_label }}">Passord</label>
                 {{ form.password }}
                 {{ form.password.errors }}
             </div>
-            <input class="button" type="submit" value="Logg inn">
+            <input class="button cta" type="submit" value="Logg inn">
         </form>
-    </div>
 </div>
 
 {% endblock content %}
