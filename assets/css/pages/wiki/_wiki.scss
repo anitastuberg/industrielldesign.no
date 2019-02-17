@@ -37,7 +37,7 @@ $wiki-grid-gap: 1rem;
     }
     .new-article {
         width: 100%;
-        background-color: $light-blue;
+        background-color: $primary;
         color: $white;
         margin-bottom: $wiki-grid-gap;
         display: inline-block;
@@ -62,7 +62,7 @@ $wiki-grid-gap: 1rem;
             column-count: 2;
         }
         .article-preview {
-            background-color: $extra-light-gray;
+            background-color: $light-gray;
             padding: 1rem;
             width: 100%;
             margin-bottom: $wiki-grid-gap;
@@ -79,7 +79,7 @@ $wiki-grid-gap: 1rem;
                 line-height: 1.5em;
             }
             .highlight {
-                background-color: $yellow;
+                background-color: $accent;
             }
         }
     }

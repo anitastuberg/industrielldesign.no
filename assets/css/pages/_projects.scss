@@ -17,7 +17,7 @@
     .project-image {
         position: relative;
         max-width: none;
-        background-color: $red;
+        background-color: $accent;
         cursor: pointer;
 
         @media screen and (min-width: 960px) {
@@ -33,7 +33,7 @@
         .description {
             transition: transform 200ms ease-in-out;
             transform: scale(0);
-            background-color: rgba($red, 0.6);
+            background-color: rgba($accent, 0.6);
             color: #fff;
             height: 90%;
             width: 90%;
@@ -111,7 +111,7 @@
     }
 }
 #extra-info {
-    background-color: $red;
+    background-color: $accent;
     color: #fff;
     padding: 2rem 4rem;
     bottom: 5%;

@@ -19,15 +19,15 @@ i, img {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: $extra-light-gray; 
+    background: $light-gray;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $light-gray; 
+    background: $gray;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: $gray; 
+    background: $dark-gray;
 }

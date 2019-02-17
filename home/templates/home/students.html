@@ -1,97 +1,46 @@
 {% extends 'base.html' %}
 
-{% load staticfiles %}
-
-{% block page_title %}Student{% endblock %}
-
-{% block nav_students %}
-class="selected"
-{% endblock %}
+{% load days_until %}
 
 {% block content %}
-{% include 'navbar.html' %}
-<div class="container--nav">
-    <div class="agenda">
-        <div class="month-year changing">
-            <h1 id="month"></h1>
-            <h5 id="year"></h5>
+    {% include 'navbar.html' %}
+    <div class="container--nav" id="student">
+
+        <div class="color-field">
+            <!-- Something needs to go here -->
+            <p>Kommer no greier her etter hvert</p>
         </div>
-        <div class="januar month-div">
-            {% for event in januar %}
-            {% include 'home/event-details.html' %}
+        <div class="events">
+            {% for event in events %}
+                {% with event.event_start_time|days_until as days_left %}
+                    <a class="event" href="{% url 'event' event_slug=event.slug %}">
+                        <div class="event-inner-wrapper">
+                            <img src="{{ event.image.url }}" alt="">
+                            <div class="event-info">
+                                <h3>{{ event.title }}</h3>
+                                <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}dager{% endif %}
+                                    igjen</p>
+                                <div class="dots">
+                                    {% for i in days_left|times %}
+                                        <div class="dot"></div>
+                                    {% endfor %}
+                                </div>
+                                <div class="event-date">
+                                    <div>
+                                        <p class="label">Når</p>
+                                        <p>{{ event.event_start_time|date:"d. F H:m" }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="label">Hvor</p>
+                                        <p>{{ event.location }}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endwith %}
             {% endfor %}
         </div>
-        <div class="februar month-div">
-            {% for event in februar %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="mars month-div">
-            {% for event in mars %}\\\
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="april month-div">
-            {% for event in april %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="mai month-div">
-            {% for event in mai %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="juni month-div">
-            {% for event in juni %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="juli month-div">
-            {% for event in juli %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="august month-div">
-            {% for event in august %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="september month-div">
-            {% for event in september %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="oktober month-div">
-            {% for event in oktober %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="november month-div">
-            {% for event in november %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="desember month-div">
-            {% for event in desember %}
-            {% include 'home/event-details.html' %}
-            {% endfor %}
-        </div>
-        <div class="previous-month"></div>
-        <div class="today">Denne måneden</div>
-        <div class="next-month"></div>
     </div>
-</div>
-
-<a href="/wiki/nyheter" class="student-link jobb large"><span>Jobb</span></a>
-<a href="/wiki/nyheter" class="student-link wiki large"><span>Wiki</span></a>
-<a href="/wiki/nyheter" class="student-link"><span>Ny<br>student?</span></a>
-<a href="/wiki/nyheter" class="student-link"><span>Faginfo</span></a>
-<a href="/wiki/nyheter" class="student-link"><span>Vedtekter</span></a>
-<a href="/wiki/nyheter" class="student-link"><span>Historie</span></a>
-<a href="/wiki/nyheter" class="student-link wide"><span>Interesse-<br>grupper</span></a>
-</div>
 {% endblock content %}
-
-{% block javascript %}
-<script src="{% static 'js/students.js' %}"></script>
-{% endblock javascript %}

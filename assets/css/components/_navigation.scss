@@ -5,125 +5,72 @@ nav#main-navigation {
     top: 0;
     left: 0;
     z-index: 50;
-    background-color: white;
-    border-bottom: 1px solid #f2f2f2;
-
-    #leo-logo svg {
-        height: 100%;
-        width: auto;
+    border-bottom: 1px solid $primary-light;
+    border-top: 1px solid $primary-light;
+    display: flex;
+    align-items: center;
+    &::before {
+        content: '';
         position: absolute;
+        background-color: $white;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: background-color $animation-duration $animation-ease;
+        will-change: background-color;
+    }
+    &:hover::before {
+        background-color: $light-gray;
     }
 
+    #leo-logo {
+
+        img {
+            height: 42px;
+            width: auto;
+        }
+    }
     #hamburger {
-        @media screen and (min-width: 1000px) {
-            display: none;
-        }
+        display: none;
     }
 
-    #nav-items {
-        margin-left: 40px;
+    .left-aligned, .right-aligned {
+        display: flex;
+        height: 100%;
+    }
+    .right-aligned {
+        position: absolute;
+        right: 0;
+    }
+
+    .nav-item {
+        height: 100%;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        color: $text-color;
         position: relative;
-        display: none;
 
-        @media screen and (min-width: 1000px) {
-            padding: 1rem 2rem;
-            display: block;
-            li {
-                padding-right: 2rem;
-                cursor: pointer;
-                list-style: none;
-                display: inline;
-                position: relative;
-                @include no-select;
 
-                a {
-                    color: #000;
-                }
-            }
-
-            #bar {
-                background-color: $yellow;
-                position: absolute;
-                top: 36px;
-                height: 10px;
-                width: 10px;
-                transition: left 200ms ease-in-out, background-color 200ms ease-in-out, width 200ms ease-in-out;
-
-                &.color0 {
-                    background-color: $light-blue;
-                }
-
-                &.color1 {
-                    background-color: $red;
-                }
-
-                &.color2 {
-                    background-color: $light-blue;
-                }
-
-                &.color3 {
-                    background-color: $yellow;
-                }
-
-                &.color4 {
-                    background-color: $gray;
-                }
-            }
-
-            .user {
-                &:hover .dropdown-content {
-                    display: block;
-                }
-
-                .dropdown-content {
-                    display: none;
-                    background-color: #fff;
-                    position: absolute;
-                    top: 0;
-                    padding-top: 2rem;
-                    right: 0;
-                    width: 100%;
-
-                    li {
-                        text-align: right;
-                        margin: 1rem 0 0;
-                        width: 100%;
-                    }
-                }
-            }
-
-            #login,
-            .user,
-            .register {
-                float: right;
-            }
-        }
-        @media screen and (max-width: 1000px) {
-            margin: 0;
-            display: absolute;
-            width: 100vw;
-            background-color: $white;
-            top: $nav-height;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
             left: 0;
-
-            ul {
-                margin: 0;
-            }
-
-            li {
-                text-align: center;
-                list-style-type: none;
-                font-size: 2rem;
-
-                a {
-                    color: $light-blue;
-                }
-            }
-            .user {
-                display: none;
-            }
+            width: 100%;
+            height: 100%;
+            transform: scaleY(0);
+            will-change: transform;
+            transition: transform $animation-duration $animation-ease;
+            transform-origin: top;
+            background-color: $white;
+            z-index: -1;
+            opacity: 1;
+        }
+        &:hover::before {
+            transform: scaleY(1);
         }
     }
 }

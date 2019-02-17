@@ -1,69 +1,41 @@
-.button {
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+button, .button {
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: $primary-dark;
+    outline: 0;
+    border: 0;
+    transition: all $animation-duration $animation-ease;
     cursor: pointer;
-    display: block;
-    margin-bottom: 5px;
+    color: $white;
+    padding: 0.2rem 1rem;
+    box-shadow: $med-shadow;
+    font-weight: bold;
 
-    // State styling
-    &:active, &:focus {
-        outline: none;
+    &:hover {
+        background-color: darken($primary-dark, 5%);
     }
 
-    // Include an icon in the button
-    &.icon {
-        padding-right: 1rem;
-        i {
-            position: relative;
-            top: 2px;
-            margin-right: 8px;
-            font-size: 1em;
+    &.cta {
+        background-color: $accent;
+        &:hover {
+            background-color: darken($accent, 5%);
         }
     }
 
-    // Center button
-    &.center {
-        margin: 0 auto;
+    &.primary {
+        background-color: $primary;
+        &:hover {
+            background-color: darken($primary, 5%);
+        }
     }
 
-    // Text only button, no background
-    &.text {
-        background: none;
-        padding: 0;
-    }
-
-    // Colorization of buttons
-    &.white {
-        background-color: $white;
-        color: $text-color;
-    }
-    &.red {
-        background-color: $red;
-        color: $white;
-    }
-    &.blue {
-        background-color: $light-blue;
-        color: $white;
-    }
-    &.yellow {
-        background-color: $yellow;
-        color: $text-color;
-    }
-    &.gray {
-        background-color: $gray;
-        color: $white;
-    }
     &:disabled {
-        opacity: 0.7;
-        cursor: default;
-    }
-}
-
-// Specific styles for link buttons
-a.button {
-    text-decoration: none;
-    &.center {
-        text-align: center;
+        background-color: $gray;
+        color: $dark-gray;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: scale(0.98);
     }
 }
