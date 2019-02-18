@@ -22,4 +22,4 @@ SECURE_SSL_REDIRECT = True
 X_FRAME_OPTIONS = 'DENY'
 
 MEDIA_URL = '/static/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'static', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
