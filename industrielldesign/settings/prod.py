@@ -21,5 +21,5 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_SSL_REDIRECT = True
 X_FRAME_OPTIONS = 'DENY'
 
-MEDIA_URL = '/static/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
