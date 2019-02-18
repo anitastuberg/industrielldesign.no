@@ -2,6 +2,8 @@
 config.py
 .idea
 *.css.map
+media
+static_in_pro
 
 .vscode
 *.scssc
