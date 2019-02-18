@@ -1,0 +1,47 @@
+// Colours
+$primary: #3593B1;
+$primary-dark: #527884;
+$primary-light: #D0EAF1;
+$accent: #F36868;
+
+$black: #1A1A1A;
+$dark-gray: #6E787A;
+$gray: #C4CACC;
+$light-gray: #EEF2F3;
+$white: #FFFFFF;
+
+$warning: #DFAF08;
+$error: #E41F49;
+$warning: #5CBA65;
+
+$text-color: $black;
+
+$link-color: $primary;
+
+// Typography
+$root-font-size: 16px;
+$sans-serif: 'Montserrat', sans-serif;
+$serif: 'Noto Serif', serif;
+
+// Shadows
+$low-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+$med-shadow: -20px 20px 35px rgba(52, 79, 87, 0.24);
+$high-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+
+// Sizes
+$nav-height: 64px;
+
+// Animation
+$animation-bounce: ease-in-out;
+$animation-ease: ease-in-out;
+$animation-duration: 200ms;
+$animation-duration-short: 100ms;
+
+// Responsive
+$xxs: 20em; // (320px)
+$xs: 30em; // (480px)
+$sm: 37.5em; // (600px)
+$md: 48em; // (768px)
+$lg: 56.25em; // (900px)
+$xl: 68.75em; // (1100px)
+$xxl: 81.25em; // (1300px)

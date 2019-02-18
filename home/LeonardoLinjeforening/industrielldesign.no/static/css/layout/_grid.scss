@@ -1,0 +1,15 @@
+.grid {
+    display: grid;
+}
+
+.two-column-grid {
+    grid-template-columns: repeat(2, 1fr)
+}
+
+.four-column-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-box {
+    display: inline-grid;
+}

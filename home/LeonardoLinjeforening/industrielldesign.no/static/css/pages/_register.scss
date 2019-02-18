@@ -1,0 +1,45 @@
+#register {
+    width: 100vw;
+    height: 100vh;
+    background-color: $extra-light-gray;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    grid-template-rows: 1;
+    @media screen and (max-width: 1100px) {
+            grid-template-columns: 1fr;
+    }
+
+    .terms-conditions {
+        background-color: $white;
+        padding: 2rem;
+        overflow-y: scroll;
+        
+        h1 {
+            margin-top: 3rem;
+        }
+
+        h4 {
+            margin-top: 2rem;
+        }
+
+        @media screen and (max-width: 1100px) {
+
+        }
+    }
+
+    .register-inputs {
+        padding: 0 5%;
+        margin-top: 3rem;
+        h1 {
+            color: $light-blue;
+            font-size: 4rem;
+            font-family: $bold;
+        }
+        #checkboxLabel {
+            @include no-select();
+        }
+        input[type="submit"] {
+            margin-top: 1rem;
+        }
+    }
+}

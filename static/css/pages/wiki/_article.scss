@@ -1,0 +1,81 @@
+.article {
+    .tilbake {
+        position: relative;
+        top: 2rem;
+        margin-left: 10%;
+    }
+    .article__title {
+        font-size: 4rem;
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        @include text-wrap;
+        
+        &::before {
+            content: '';
+            height: 6rem;
+            display: block;
+        }
+        @media screen and (max-width: 800px) {
+            font-size: 3rem;
+        }
+    }
+    .article__introduction {
+        font-style: italic;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 80%;
+        max-width: 70ch;
+        margin: 0 auto 4rem;
+    }
+    .markdown-preview {
+        width: 80%;
+        max-width: 63ch;
+        margin: 0 auto;
+        p {
+            margin-bottom: 1rem;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 5rem 0 1rem;
+        }
+    }
+
+    // Article
+
+    .article__last-updated {
+        color: $light-gray;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .article__edit {
+        margin: 0 auto;
+        margin-top: -3rem;
+        margin-bottom: 4rem;
+        color: $gray;
+    }
+
+    // New article
+    .article__submit {
+        cursor: pointer;
+        background-color: $accent;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border: none;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        i {
+            position: relative;
+            font-size: 1rem;
+            top: 2px;
+            margin-right: 0.5rem;
+        }
+    }
+}
