@@ -3582,6 +3582,8 @@ tbody td {
     top: -4rem;
     width: 30em;
     display: block; }
+  #login-page .button {
+    margin: 0 auto; }
 
 .about-page .about-image, .about-page .about-text {
   float: left; }
