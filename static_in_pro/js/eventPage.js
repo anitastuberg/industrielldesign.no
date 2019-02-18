@@ -5,11 +5,8 @@ let newInfoBoxPos;
 
 $(window).scroll(function() {
     if (window.innerWidth >= 600) {
-        console.log(window.innerWidth);
         scrollAmount = $(window).scrollTop();
         newInfoBoxPos = infoBoxLeftPos + (scrollAmount * 3);
-        console.log(newInfoBoxPos);
-        console.log(scrollAmount);
         infoBox.css("left", newInfoBoxPos);
     }
 });

@@ -190,6 +190,9 @@ i, img {
 ::-webkit-scrollbar-thumb:hover {
   background: #6E787A; }
 
+.container--nav {
+  margin-top: 64px; }
+
 .wrapper {
   box-sizing: border-box;
   max-width: 1200px;
@@ -2786,6 +2789,8 @@ button, .button {
     cursor: not-allowed;
     box-shadow: none;
     transform: scale(0.98); }
+    button:disabled:hover, .button:disabled:hover {
+      background-color: #C4CACC; }
 
 nav#main-navigation {
   position: fixed;
@@ -2849,14 +2854,17 @@ nav#main-navigation {
 a {
   text-decoration: none; }
 
-p a:not([type="button"]) {
+a.block {
+  display: block; }
+
+p a:not([type="button"]), a.link {
   font-family: inherit;
   position: relative;
   transition: color 150ms 50ms ease-in-out;
   overflow: hidden; }
-  p a:not([type="button"]), p a:not([type="button"]):visited {
+  p a:not([type="button"]), p a:not([type="button"]):visited, a.link, a.link:visited {
     color: #3593B1; }
-  p a:not([type="button"])::before {
+  p a:not([type="button"])::before, a.link::before {
     content: '';
     position: absolute;
     left: 0;
@@ -2868,7 +2876,7 @@ p a:not([type="button"]) {
     transition: transform 200ms ease-in-out;
     transform: scaleX(0);
     transform-origin: bottom left; }
-  p a:not([type="button"]):hover::before {
+  p a:not([type="button"]):hover::before, a.link:hover::before {
     transform: scaleX(1); }
 
 a[type="button"] {
@@ -3131,7 +3139,7 @@ tbody td {
     pointer-events: none; }
   .input-field input, .input-field select, .input-field textarea {
     width: 100%;
-    background: none;
+    background: #FFFFFF;
     outline: 0;
     font-size: 1rem;
     padding: 1.2rem 0.5rem 0.6rem;
@@ -3272,64 +3280,35 @@ tbody td {
     transform: translateX(100%); }
 
 #event-page {
-  min-height: 100vh; }
+  padding: 5% 2.5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  background-color: #D0EAF1; }
+  #event-page .images img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: relative;
+    top: 15%; }
   #event-page .beskrivelse {
-    padding: 87px 10% 0;
-    width: 60%;
-    height: 120vh;
-    box-sizing: border-box;
-    transition: transform 200ms ease-in-out;
-    white-space: pre-line; }
-    @media screen and (max-width: 640px) {
-      #event-page .beskrivelse {
-        height: auto;
-        width: 100%; } }
+    max-width: 80%; }
+    #event-page .beskrivelse .time-and-place {
+      margin: 2rem 0; }
+      #event-page .beskrivelse .time-and-place p {
+        display: block;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 1.2rem; }
     #event-page .beskrivelse h1 {
-      font-size: 4rem;
-      font-weight: bold; }
-  #event-page .bilde {
-    position: fixed;
-    width: 40%;
-    height: 100vh;
-    top: 0;
-    right: 0;
-    transition: transform 500ms ease-in-out; }
-    @media screen and (max-width: 968px) {
-      #event-page .bilde {
-        display: none; } }
-    #event-page .bilde img {
-      min-height: 100vh;
-      width: 100%;
-      object-fit: cover; }
-    #event-page .bilde.not-loaded {
-      transform: translateX(100%); }
-  #event-page .signup {
-    position: fixed;
-    width: 45%;
-    bottom: 70px;
-    left: 20%;
-    padding: 2rem;
-    background-color: #3593B1;
-    color: white;
-    font-size: 1.5rem;
-    transition: transform 400ms ease-in-out; }
-    @media screen and (max-width: 640px) {
-      #event-page .signup {
-        position: relative;
-        left: auto;
-        width: 100%;
-        bottom: 0; } }
-    #event-page .signup .input-fields {
-      display: none; }
-    #event-page .signup .event-start-time {
-      font-size: 2rem;
-      font-weight: bold; }
-    #event-page .signup .registration-start-time {
-      font-size: 1rem; }
-    #event-page .signup.not-loaded {
-      transform: translateY(100%); }
-    #event-page .signup .button {
-      display: inline-block; }
+      margin-top: 6rem; }
+    #event-page .beskrivelse p span {
+      text-transform: uppercase;
+      font-weight: 300; }
+    #event-page .beskrivelse .signup {
+      margin-bottom: 4rem; }
+    #event-page .beskrivelse p {
+      white-space: pre-line; }
 
 #error {
   text-align: center;
