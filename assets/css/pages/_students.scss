@@ -7,6 +7,7 @@ $event-padding: 2rem;
   }
   .event {
     position: relative;
+
     margin: 8rem auto 0;
     display: block;
     padding: $event-padding $event-padding $event-padding calc(#{$event-image-size} + #{$event-padding} + 3rem);
