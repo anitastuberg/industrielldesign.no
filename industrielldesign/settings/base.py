@@ -123,6 +123,10 @@ USE_L10N = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_in_pro')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '..', 'assets'),
+]
+
 # Django registration redux settings:
 
 LOGIN_REDIRECT_URL = '/'
