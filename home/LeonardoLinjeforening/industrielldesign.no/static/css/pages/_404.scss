@@ -1,0 +1,46 @@
+#error {
+    text-align: center;
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+#leo-snake {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#leo-snake__score {
+    display: none;
+    div {
+        position: absolute;
+        z-index: 10;
+        &:first-child {
+            font-size: 1.2rem;
+        }
+        &::last-child {
+            font-size: 0.8rem;
+        }
+    }
+    #score {
+        font-weight: bold;
+        font-size: 4rem;
+        text-align: center;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.5);
+    }
+    #highscore {
+        bottom: 2%;
+        left: 2%;
+    }
+    div span {
+        font-size: 1.1em;
+    }
+}

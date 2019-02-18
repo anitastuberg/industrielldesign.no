@@ -1,0 +1,47 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	overflow: hidden;
+}
+
+th,
+td {
+	padding: 15px;
+	color: $text-color;
+	border: 1px solid $light-gray;
+}
+
+th {
+	text-align: left;
+	color: $text-color;
+}
+
+thead {
+	border-bottom: 2px solid $light-gray;
+	th {
+		font-weight: bold;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba($primary, 0.1);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba($primary, 0.05);
+				z-index: -1;
+			}
+		}
+	}
+}
