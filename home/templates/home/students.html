@@ -5,11 +5,6 @@
 {% block content %}
     {% include 'navbar.html' %}
     <div class="container--nav" id="student">
-
-        <div class="color-field">
-            <!-- Something needs to go here -->
-            <p>Kommer no greier her etter hvert</p>
-        </div>
         <div class="events">
             {% for event in events %}
                 {% with event.event_start_time|days_until as days_left %}

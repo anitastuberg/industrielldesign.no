@@ -2,8 +2,11 @@ a {
     text-decoration: none;
 }
 
+a.block {
+    display: block;
+}
 
-p a:not([type="button"]) {
+p a:not([type="button"]), a.link {
     font-family: inherit;
     position: relative;
     transition: color 150ms 50ms ease-in-out;
