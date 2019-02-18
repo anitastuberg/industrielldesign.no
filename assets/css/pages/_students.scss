@@ -1,154 +1,59 @@
+$event-image-size: 160px;
+$event-padding: 2rem;
+
 #student {
-  display: grid;
-  @media screen and (min-width: $xl) {
-    grid-template-columns: 10fr 15fr;
-
-  }
-
-  .color-field {
-    background-color: lighten($accent, 20%);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $dark-gray;
-    @media screen and (max-width: $xl) {
-      display: none;
-    }
-  }
 
   .events {
-    // background-color: $light-gray;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
+    width: 100vw;
   }
-
   .event {
-    display: block;
     position: relative;
+    margin: 8rem auto 0;
+    display: block;
+    padding: $event-padding $event-padding $event-padding calc(#{$event-image-size} + #{$event-padding} + 3rem);
+    max-width: $lg;
     color: $text-color;
-    border-left: 1px solid $primary-light;
-    border-bottom: 1px solid $primary-light;
-    max-width: 100%;
-    @media screen and (min-width: $xl) {
-      max-width: 60vw;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-      background-color: $light-gray;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 400ms $animation-ease;
-      will-change: transform;
-      z-index: -1;
-    }
-
-    &:hover {
-      .event-inner-wrapper img {
-        transform: scale(1.05);
-      }
-
-      &::before {
-        transform: scaleX(1);
-        transform-origin: left;
-      }
-    }
-
-    .event-inner-wrapper {
-      padding: 2rem;
-      @media screen and (min-width: $xl) {
-        padding: 8rem;
-      }
-    }
-
-    h3 {
-      color: $primary-dark;
-    }
 
     img {
       position: absolute;
-      top: 8rem;
-      left: 8rem;
-      width: 150px;
-      height: 150px;
+      top: 50%;
+      left: $event-padding;
+      transform: translateY(-50%);
+      width: $event-image-size;
+      height: $event-image-size;
       object-fit: cover;
       box-shadow: $high-shadow;
-      transition: transform 400ms $animation-ease;
-      will-change: transform;
-      transform-origin: right center;
-      @media screen and (max-width: $xl) {
-        top: 2rem;
-        left: 2rem;
-      }
     }
 
-    .event-info {
-      padding-left: calc(150px + 1rem);
-      position: relative;
-      min-height: 150px;
-      @media screen and (max-width: $xl) {
-        padding-left: calc(150px + 2rem);
-      }
+    h3 {
+    }
 
-      .label {
+    .dots {
+      overflow: hidden;
+      white-space: nowrap;
+
+      .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: $accent;
+        border-radius: 12px;
+        &:nth-child(7n) {
+          margin-right: 8px;
+        }
+      }
+    }
+    .event-date {
+      display: flex;
+      justify-content: left;
+
+      > div {
+        margin-right: 2rem;
+      }
+    }
+    .label {
         text-transform: uppercase;
         font-weight: 300;
-        letter-spacing: 0.1em;
       }
-
-      .event-date {
-        p {
-          margin: 0;
-          line-height: 1.2em;
-        }
-
-        div {
-          @media screen and (max-width: $xl) {
-            margin-bottom: 1rem;
-          }
-          @media screen and (min-width: $xl) {
-            position: absolute;
-            bottom: 0;
-            &:first-child {
-              left: calc(150px + 1rem);
-            }
-
-            &:last-child {
-              left: calc(1rem + 360px);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .days-left {
-    margin-top: 1.3rem;
-    line-height: 1em;
-  }
-
-  .dots {
-    white-space: nowrap;
-
-    .dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background-color: $accent;
-      border-radius: 10px;
-
-      &:nth-child(7n) {
-        margin-right: 8px;
-      }
-    }
   }
 }

@@ -1,20 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block page_title %}Login{% endblock %}
 
 {% block content %}
-{% include 'navbar.html' %}
 
 <div id="login-page" class="container--nav">
         <form action="" method="POST">
             {% csrf_token %}
-            <h1>Logg inn</h1>
-            <div class="input-container fluid">
+            <img src="{% static 'img/login.png' %}" alt="">
+            <div class="input-field fluid">
                 {{ form.email }}
                 <label for="{{ form.email.id_for_label }}">E-post</label>
                 {{ form.email.errors }}
             </div>
-            <div class="input-container fluid">
+            <div class="input-field fluid">
                 {{ form.password }}
                 <label for="{{ form.email.id_for_label }}">Passord</label>
                 {{ form.password.errors }}

@@ -1,15 +1,16 @@
 
 @import
 
-// Helpers:
-'helpers/functions',
-'helpers/mixins',
-'helpers/variables',
-
 // Base:
+'base/mixins',
+'base/variables',
 'base/css-reset',
 'base/typography',
 'base/global',
+
+// Grid
+'grid/grid',
+'grid/flex',
 
 // Components:
 'components/buttons',
@@ -21,12 +22,6 @@
 'components/tables',
 'components/input',
 
-// Layout:
-'layout/footer',
-'layout/forms',
-'layout/grid',
-'layout/containers',
-
 // Pages:
 'pages/projects',
 'pages/event-page',
@@ -37,7 +32,5 @@
 'pages/register',
 'pages/login',
 'pages/about'
-
-// Vendors:
 
 ;

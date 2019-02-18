@@ -12,32 +12,32 @@
         <h1>Registrer ny bruker</h1>
         <form method="POST">
             {% csrf_token %}
-            <div class="input-container">
+            <div class="input-field">
                 {{ form.email }}
                 <label for="{{ form.email.id_for_label }}">Epost@stud.ntnu.no</label>
                 {{ form.email.errors }}
             </div>
-            <div class="input-container">
+            <div class="input-field">
                 {{ form.first_name }}
                 <label for="{{ form.first_name.id_for_label }}">Fornavn</label>
                 {{ form.first_name.errors }}
             </div>
-            <div class="input-container">
+            <div class="input-field">
                 {{ form.last_name }}
                 <label for="{{ form.last_name.id_for_label }}">Etternavn</label>
                 {{ form.last_name.errors }}
             </div>
-            <div class="input-container">
+            <div class="input-field">
                 {{ form.allergies }}
                 <label for="{{ form.allergies.id_for_label }}">Allergier</label>
                 {{ form.allergies.errors }}
             </div>
-            <div class="input-container">
+            <div class="input-field">
                 {{ form.graduation_year }}
                 <label for="{{ form.graduation_year.id_for_label }}">Klasse</label>
                 {{ form.graduation_year.errors }}
             </div>
-            <div class="input-container">
+            <div class="input-field">
                 {{ form.password }}
                 <label for="{{ form.password.id_for_label }}">Passord</label>
                 {{ form.password.errors }}

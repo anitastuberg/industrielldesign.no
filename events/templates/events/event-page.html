@@ -38,12 +38,12 @@
                         {% if not request.user.is_authenticated %}
                             <button id="display-inputs" class="button">Meld deg på!</button>
                             <div class="input-fields">
-                                <div class="input-container">
+                                <div class="input-field">
                                     <input type="text" name="email" id="email" autocomplete="email">
                                     <label for="email">E-post</label>
                                     <span class="error"></span>
                                 </div>
-                                <div class="input-container">
+                                <div class="input-field">
                                     <input type="password" name="password" id="password"
                                            autocomplete="current-password">
                                     <label for="password">Passord</label>

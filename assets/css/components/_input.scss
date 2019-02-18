@@ -1,4 +1,4 @@
-.input-container {
+.input-field {
   position: relative;
   margin-bottom: 2rem;
   width: 100%;
@@ -21,12 +21,13 @@
     font-size: 1rem;
     padding: 1.2rem 0.5rem 0.6rem;
     border: 0;
-    border-bottom: 1px solid $gray;
     height: 48px;
     min-width: 200px;
+    transition: box-shadow $animation-duration $animation-ease;
+    box-shadow: $low-shadow;
 
-    &:hover {
-
+    &:hover, &:focus {
+      box-shadow: $med-shadow;
     }
 
     &::placeholder {

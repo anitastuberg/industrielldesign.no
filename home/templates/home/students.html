@@ -14,27 +14,25 @@
             {% for event in events %}
                 {% with event.event_start_time|days_until as days_left %}
                     <a class="event" href="{% url 'event' event_slug=event.slug %}">
-                        <div class="event-inner-wrapper">
-                            <img src="{{ event.image.url }}" alt="">
-                            <div class="event-info">
-                                <h3>{{ event.title }}</h3>
-                                <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}dager{% endif %}
-                                    igjen</p>
-                                <div class="dots">
-                                    {% for i in days_left|times %}
-                                        <div class="dot"></div>
-                                    {% endfor %}
+                        <img src="{{ event.image.url }}" alt="">
+                        <div class="event-info">
+                            <h3>{{ event.title }}</h3>
+                            <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}
+                                dager{% endif %}
+                                igjen</p>
+                            <div class="dots">
+                                {% for i in days_left|times %}
+                                    <div class="dot"></div>
+                                {% endfor %}
+                            </div>
+                            <div class="event-date">
+                                <div>
+                                    <p class="label">Når</p>
+                                    <p>{{ event.event_start_time|date:"d. F H:m" }}</p>
                                 </div>
-                                <div class="event-date">
-                                    <div>
-                                        <p class="label">Når</p>
-                                        <p>{{ event.event_start_time|date:"d. F H:m" }}</p>
-                                    </div>
-                                    <div>
-                                        <p class="label">Hvor</p>
-                                        <p>{{ event.location }}</p>
-                                    </div>
-
+                                <div>
+                                    <p class="label">Hvor</p>
+                                    <p>{{ event.location }}</p>
                                 </div>
                             </div>
                         </div>
