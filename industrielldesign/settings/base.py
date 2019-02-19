@@ -27,13 +27,14 @@ ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldes
 AUTH_USER_MODEL = 'authentication.Profile'
 
 # EMAIL
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "webred.leonardo@gmail.com"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = "mail.uniweb.no"
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = "ikkesvar@industrielldesign.no"
 EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+EMAIL_PORT = 465
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Application definition
 
