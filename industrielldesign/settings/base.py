@@ -33,6 +33,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "webred.leonardo@gmail.com"
 EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 # Application definition
 
