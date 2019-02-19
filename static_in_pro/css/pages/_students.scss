@@ -1,0 +1,58 @@
+$event-image-size: 160px;
+$event-padding: 2rem;
+
+#student {
+  .events {
+    width: 100vw;
+  }
+  .event {
+    position: relative;
+    margin: 8rem auto 0;
+    display: block;
+    padding: $event-padding $event-padding $event-padding calc(#{$event-image-size} + #{$event-padding} + 3rem);
+    max-width: $lg;
+    color: $text-color;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: $event-padding;
+      transform: translateY(-50%);
+      width: $event-image-size;
+      height: $event-image-size;
+      object-fit: cover;
+      box-shadow: $high-shadow;
+    }
+
+    h3 {
+    }
+
+    .dots {
+      overflow: hidden;
+      white-space: nowrap;
+
+      .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: $accent;
+        border-radius: 12px;
+        &:nth-child(7n) {
+          margin-right: 8px;
+        }
+      }
+    }
+    .event-date {
+      display: flex;
+      justify-content: left;
+
+      > div {
+        margin-right: 2rem;
+      }
+    }
+    .label {
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+  }
+}

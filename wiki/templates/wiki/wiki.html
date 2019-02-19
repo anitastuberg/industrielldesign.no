@@ -15,7 +15,7 @@
         <a href="{% url 'new-article' %}" class="button new-article"><i class="material-icons">add</i>Ny artikkel</a>
         {% endif %}
         {% for article in articles %}
-        <a href="{% url 'article' article_slug=article.slug%}" class="article-preview initial-article">
+        <a href="{% url 'article' article_slug=article.slug %}" class="article-preview initial-article">
             <h4>{{ article.title }}</h4>
             {% if article.introduction %}<p>{{ article.introduction }}</p>{% endif %}
         </a>

@@ -3,78 +3,90 @@
 {% load staticfiles %}
 
 {% block page_title %}{{ event.title }}{% endblock page_title %}
+{% block extra_head %}
+    <style>
+        body {
+            background-color: #D0EAF1; /* primary-light */
+        }
+    </style>
+{% endblock extra_head %}
 
 {% block content %}
-    {% include "navbar.html" %}
 
-    <div class="container--nav" id="event-page">
+    <div id="event-page">
 
-        <div class="beskrivelse not-loaded">
-            <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
-            {% if request.user.is_staff %}
-                {% comment %}<a class="button" href="{% url 'event_admin' event_slug=event.slug %}">Admin</a>{% endcomment %}
+    <div class="images">
+        <img src="{{ event.image.url }}" alt="">
+    </div>
+    <div class="beskrivelse">
+        <a class="tilbake" href="{% url 'students' %}">Tilbake</a>
+        {% if request.user.is_staff %}
+            <a class="link block" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
+        {% endif %}
+        <h1>{{ event.title }}</h1>
+        <div class="time-and-place">
+            <p><img src="" alt="">{{ event.event_start_time|date:"h:i d. F" }}</p>
+            {% if event.location %}
+                <p><img src="" alt="">{{ event.location }}</p>
             {% endif %}
-            <h1>{{ event.title }}</h1>
-            <p>{{ event.description }}</p>
         </div>
-        <div class="bilde not-loaded">
-            <img src="{{ event.image.url }}" alt="">
-        </div>
-        <div class="signup not-loaded">
-            <p class="event-start-time">{{ event.event_start_time|date:"j. F H:i" }} {% if event.end_time %}-
-                {{ event.event_end_time|date:"H:i" }}{% endif %}</p>
-            <p><i class="material-icons">place</i>{{ event.location }}</p>
-            {% if event.registration_required and request.user.is_authenticated %}
-                <div id="logged-in">
-                    <!-- <p>Hei {{ request.user.first_name }}</p> -->
-                </div>
-            {% endif %}
-
+        <div class="signup">
             {% if event.registration_required %}
-                <p id="open-for">{{ open_for }}</p>
+                {% if event.available_spots %}
+                    <p><span>Ledige plasser igjen: </span>{{ spots_left }}</p>
+                {% endif %}
+                <p id="open-for"><span>Åpent for: </span>{{ open_for }}</p>
                 <form id="event-login-field" method="POST">
                     {% csrf_token %}
                     <div id="log-in-fields">
                         {% if not request.user.is_authenticated %}
-                            <button id="display-inputs" class="button">Meld deg på!</button>
                             <div class="input-fields">
-                                <div class="input-container">
-                                    <label for="email">E-post</label>
+                                <div class="input-field">
                                     <input type="text" name="email" id="email" autocomplete="email">
+                                    <label for="email">E-post</label>
                                     <span class="error"></span>
                                 </div>
-                                <div class="input-container">
-                                    <label for="password">Passord</label>
+                                <div class="input-field">
                                     <input type="password" name="password" id="password"
                                            autocomplete="current-password">
+                                    <label for="password">Passord</label>
                                     <span class="error"></span>
                                 </div>
-                                <a href="{% url 'register' %}" class="button white">Registrer deg</a>
-                                <input class="button" type="submit" value="Logg inn">
+                                <input class="button cta" type="submit" value="Logg inn for å melde deg på">
+                                <a href="{% url 'register' %}" class="link">Eller registrer en ny bruker</a>
                             </div>
                         {% else %}
-                            <input class="button" type="submit" value="{{ buttonText }}"
+                            <input class="button cta" type="submit" value="{{ buttonText }}"
                                    {% if not buttonState %}disabled{% endif %}>
                             {% if event.registration_start_time and not_open_yet %}
                                 <p class="registration-start-time">Påmelding
                                     åpner: {{ event.registration_start_time|date:"j. F H:i" }}</p>
                             {% endif %}
                             </div>
-                            </form>
                         {% endif %}
-                </div>
-                </div>
+                </form>
             {% endif %}
+        </div>
+        <!-- Description -->
+        <p class="content-markdown">{{ event.description }}</p>
+    </div>
+
 {% endblock content %}
 
 <input class="button" type="submit" value="data.buttonText" disabled>
 
 {% block javascript %}
+
     <script src="{% static '/js/ajaxSetup.js' %}"></script>
     <script src="{% static 'js/eventPage.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.not-loaded').removeClass('not-loaded');
+            // Renders markdown from db to html
+            marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
+            let content = $('.content-markdown');
+            let markedContent = marked(content.text());
+            content.html(markedContent);
         });
 
         function loggedIn(data) {

@@ -1,0 +1,88 @@
+$text-editor-background-color: #EAF0F2;
+.text-editor {
+    width: 100%;
+    background-color: $text-editor-background-color;
+    overflow: scroll;
+    padding: 50px 5% 0;
+    .button-row {
+        position: fixed;
+        top: $nav-height;
+        z-index: 100;
+        left: 0;
+        height: 50px;
+        width: 100%;
+        background-color: #DFE8EB;
+        padding: 0.5rem 0;
+        &>ul {
+            position: relative;
+            margin: 0 5%;
+            li {
+                list-style-type: none;
+                cursor: pointer;
+                display: inline;
+                i {
+                    position: relative;
+                    top: 4px;
+                    color: $text-color;
+                    &:hover {
+                        background-color: $gray;
+                    }
+                }
+            }
+            a {
+                position: absolute;
+                right: 0;
+                color: $text-color;
+                display: inline;
+                &:visited {
+                    color: $text-color;
+                }
+                &:hover {
+                    background-color: $gray;
+                }
+            }
+        }
+        #format-title,
+        #format-code {
+            margin-right: 1rem;
+        }
+        #format-size {
+            padding-right: 5px;
+            ul {
+                display: none;
+            }
+        }
+    }
+    // .button-row ul,
+    // #id_body_text,
+    // #id_title,
+    // #id_introduction {
+    //     width: 90%;
+    //     margin: 0 auto;
+    // }
+    #id_body_text,
+    #id_title,
+    #id_introduction {
+        background-color: $text-editor-background-color;
+        border: none;
+        outline: none;
+        margin-bottom: 0.5rem;
+        display: block;
+        width: 100%;
+        &:hover {
+            background-color: darken($color: $text-editor-background-color, $amount: 3%);
+        }
+    }
+    #id_title {
+        font-size: 2rem;
+        position: relative;
+    }
+    #id_introduction {
+        resize: vertical;
+        font-weight: bold;
+    }
+    textarea#id_body_text {
+        min-height: calc(10rem * 1.2);
+        resize: vertical;
+    }
+}

@@ -8,7 +8,10 @@ class Styremedlem(models.Model):
     full_name = models.CharField(max_length=200)
     e_mail = models.EmailField(max_length=200)
     phone_number = models.CharField(max_length=11)
-    profile_picture = ProcessedImageField(upload_to='styremedlem/',processors=[ResizeToFit(500, 500, False)], format='JPEG', options={'quality': 85})
+    profile_picture = ProcessedImageField(upload_to='styremedlem/',
+                                          processors=[ResizeToFit(500, 500, False)],
+                                          format='JPEG',
+                                          options={'quality': 85})
 
     def __str__(self):
         return self.styretittel

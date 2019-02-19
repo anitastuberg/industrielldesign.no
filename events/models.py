@@ -22,19 +22,12 @@ class Event(models.Model):
     def get_class_year(self, graduation_year):
         return graduation_year - self.YEAR
 
-    title = models.CharField(max_length=80, unique=True)
+    title = models.CharField(max_length=200, unique=True)
     description = models.TextField()
-
     location = models.CharField(max_length=50, blank=True, null=True)
-    
     image = ProcessedImageField(upload_to='events/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
-    
-
-    # Event start
     event_start_time = models.DateTimeField()
     event_end_time = models.DateTimeField(blank=True, null=True)
-
-    # Registration opens
     registration_required = models.BooleanField(default=False)
     registration_start_time = models.DateTimeField(blank=True, null=True)
     alumni = models.BooleanField(default=False)
@@ -43,17 +36,12 @@ class Event(models.Model):
     class_3 = models.BooleanField(default=False)
     class_4 = models.BooleanField(default=False)
     class_5 = models.BooleanField(default=False)
-    # registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
     only_komite = models.BooleanField(default=False)
-
-    # Available spots in the event
     available_spots = models.IntegerField(blank=True, null=True)
-    
-
     registered_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='registerd_users')
     waiting_list = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='waiting_list_users')
-    
     slug = models.SlugField(max_length=60, blank=True)
+    # registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
 
     # Event header image:
     # image = models.ImageField()
@@ -86,3 +74,4 @@ class Event(models.Model):
         # ordering = ['event_start_date']
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
+        ordering = ['event_start_time']

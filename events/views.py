@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 
+
 from .models import Event
 from .forms import CreateEventForm
 
@@ -25,7 +26,7 @@ def create_event(request):
 
         if form.is_valid():
             instance = form.save(commit=False)
-            image = form.cleaned_data['image']
+            # image = form.cleaned_data['image']
             instance.save()
             return redirect('event', event_slug=instance.slug)
 
@@ -54,32 +55,35 @@ def checkClass(user, event):
 
 def stringBuilder(event):
     if event.class_1 and event.class_2 and event.class_3 and event.class_4 and event.class_4 and event.class_5 and event.alumni:
-        open_for_string = "Åpent for alle IPD-studenter og alumni"
+        open_for_string = "Alle IPD-studenter og alumni"
     elif event.class_1 and event.class_2 and event.class_3 and event.class_4 and event.class_4 and event.class_5:
-        open_for_string = "Åpent for alle IPD-studenter"
+        open_for_string = "Alle IPD-studenter"
     elif event.class_3 and event.class_4 and event.class_4 and event.class_5:
-        open_for_string = "Åpent for 3. - 5. klasse"
+        open_for_string = "3. - 5. klasse"
     elif event.class_1 and event.class_2:
-        open_for_string = "Åpent for 1. og 2. klasse"
+        open_for_string = "1. og 2. klasse"
     elif event.class_4 and event.class_5:
-        open_for_string = "Åpent for 4. og 5. klasse"
+        open_for_string = "4. og 5. klasse"
     elif event.class_1:
-        open_for_string = "Åpent for 1. klassse"
+        open_for_string = "1. klassse"
     elif event.class_2:
-        open_for_string = "Åpent for 2. klassse"
+        open_for_string = "2. klassse"
     elif event.class_3:
-        open_for_string = "Åpent for 3. klassse"
+        open_for_string = "3. klassse"
     elif event.class_4:
-        open_for_string = "Åpent for 4. klassse"
+        open_for_string = "4. klassse"
     elif event.class_5:
-        open_for_string = "Åpent for 5. klassse"
+        open_for_string = "5. klassse"
     else:
-        open_for_string = "Åpent for noen"
+        open_for_string = "Noen"
 
     return open_for_string
 
 
 def updateButtonEventButton(user, context):
+    if context['event'].available_spots:
+        context['spots_left'] = context['event'].available_spots - context['event'].registered_users.count()
+        print(context['spots_left'])
     if context['event'].available_spots is not None:
         if context['event'].registered_users.all().count() >= context['event'].available_spots:
             context['buttonText'] = "Legg deg i ventelisten"
@@ -119,6 +123,7 @@ def event(request, event_slug):
     # user.update_class_year() # Updates user to alumni if old enough
     event = Event.objects.get(slug=event_slug)
     # Whenever someone enters the event page. Waiting list is updated
+
     # event.update_waiting_list()
     # Generates a string based on who the event is open for
     open_for_string = stringBuilder(event)
@@ -130,9 +135,10 @@ def event(request, event_slug):
         'open_for': open_for_string,
         'not_open_yet': False,
         'loginSuccess': False,
-        'buttonText': 'Bli med',
+        'buttonText': 'Meld deg på',
         'buttonState': True,
-        'event_full': False
+        'event_full': False,
+        'spots_left': 0
     }
 
     # HTTP Part
@@ -148,6 +154,7 @@ def event(request, event_slug):
             email = request.POST.get('email')  # Get username/email
             password = request.POST.get('password')  # Get password
 
+
             # Retrieves the user
             user = authenticate(request, email=email, password=password)
 
@@ -156,6 +163,7 @@ def event(request, event_slug):
                 login(request, user)
                 context['user'] = user
                 context['loginSuccess'] = True
+
                 context = updateButtonEventButton(user, context)
             # If user does not exist
             else:
@@ -175,6 +183,7 @@ def event(request, event_slug):
         del context['event']
         del context['user']
         return JsonResponse(context)
+
 
 
 def event_admin(request, event_slug):

@@ -73,3 +73,9 @@ class RegisterFormView(View):
                     return redirect('students')
 
         return  render(request, self.template_name, {'form': form})
+
+def PasswordResetView(request):
+    template_name = 'home/password_reset_form.html'
+
+    return render(request, template_name, {})
+

@@ -10,6 +10,6 @@ urlpatterns = [
     path('', views.students, name='students'),
     path('students/komiteer/', views.Komiteer, name='komiteer'),
     path('404/', views.snake, name='404'),
-    # Andy:
     path('jobb', views.jobb, name='jobb'),
+    path('brukervilkår', views.terms, name='terms'),
 ]
