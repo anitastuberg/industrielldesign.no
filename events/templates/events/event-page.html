@@ -32,9 +32,6 @@
         </div>
         <div class="signup">
             {% if event.registration_required %}
-                {% if event.available_spots %}
-                    <p><span>Ledige plasser igjen: </span>{{ spots_left }}</p>
-                {% endif %}
                 <p id="open-for"><span>Åpent for: </span>{{ open_for }}</p>
                 <form id="event-login-field" method="POST">
                     {% csrf_token %}

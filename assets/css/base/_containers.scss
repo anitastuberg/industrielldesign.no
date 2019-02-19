@@ -1,3 +1,8 @@
 .container--nav {
   margin-top: $nav-height;
 }
+
+.container--narrow {
+  padding: 5%;
+  max-width: $md;
+}

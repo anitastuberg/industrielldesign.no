@@ -193,6 +193,10 @@ i, img {
 .container--nav {
   margin-top: 64px; }
 
+.container--narrow {
+  padding: 5%;
+  max-width: 48em; }
+
 .wrapper {
   box-sizing: border-box;
   max-width: 1200px;
@@ -2791,6 +2795,8 @@ button, .button {
     transform: scale(0.98); }
     button:disabled:hover, .button:disabled:hover {
       background-color: #C4CACC; }
+  button a.button, .button a.button {
+    display: inline-block; }
 
 nav#main-navigation {
   position: fixed;
