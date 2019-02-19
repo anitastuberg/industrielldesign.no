@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from events.models import Event
-from .models import Styremedlem, Komiteer
+from .models import Styremedlem, Komiteer, Jobb
 
 def index(request):
     return render(request, 'home/index.html', {})
@@ -39,3 +39,10 @@ def komiteer(request):
         'komiteer': Komiteer.objects.all()
     }
     return render(request, 'home/komiteer.html', context)
+
+# Andy:
+def jobb(request):
+    context = {
+        'Stillingsannonser': Jobb.objects.all()
+    }
+    return render(request, 'home/jobb.html', context)

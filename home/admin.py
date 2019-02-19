@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Styremedlem, Komiteer, Nyhet
+from .models import Styremedlem, Komiteer, Nyhet, Jobb
 
 # Register your models here.
 class StyrmedlemAdmin(admin.ModelAdmin):
@@ -21,6 +21,15 @@ class NyheterAdmin(admin.ModelAdmin):
     class Meta:
         model = Nyhet
 
+# Andy:
+class JobbAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "job_title", "job_deadline", "job_description"]
+
+    class Meta:
+        model = Jobb
+
 admin.site.register(Styremedlem, StyrmedlemAdmin)
 admin.site.register(Komiteer, KomiteerAdmin)
 admin.site.register(Nyhet, NyheterAdmin)
+# Andy:
+admin.site.register(Jobb, JobbAdmin)
