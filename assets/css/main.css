@@ -193,6 +193,10 @@ i, img {
 .container--nav {
   margin-top: 64px; }
 
+.container--narrow {
+  padding: 5%;
+  max-width: 48em; }
+
 .wrapper {
   box-sizing: border-box;
   max-width: 1200px;
@@ -3307,7 +3311,7 @@ tbody td {
       font-weight: 300; }
     #event-page .beskrivelse .signup {
       margin-bottom: 4rem; }
-    #event-page .beskrivelse p {
+    #event-page .beskrivelse p.content-markdown {
       white-space: pre-line; }
 
 #error {
