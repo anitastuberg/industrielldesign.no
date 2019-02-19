@@ -1,3 +1,4 @@
+.idea/*
 # Passwords that shouldn't be distributed
 config.py
 .idea
