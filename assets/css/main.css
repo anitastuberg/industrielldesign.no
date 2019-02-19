@@ -3307,7 +3307,7 @@ tbody td {
       font-weight: 300; }
     #event-page .beskrivelse .signup {
       margin-bottom: 4rem; }
-    #event-page .beskrivelse p {
+    #event-page .beskrivelse p.content-markdown {
       white-space: pre-line; }
 
 #error {
