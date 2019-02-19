@@ -44,4 +44,8 @@ button, .button {
             background-color: $gray;
         }
     }
+
+    a.button {
+        display: inline-block;
+    }
 }
