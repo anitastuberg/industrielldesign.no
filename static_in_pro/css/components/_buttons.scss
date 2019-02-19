@@ -39,5 +39,13 @@ button, .button {
         cursor: not-allowed;
         box-shadow: none;
         transform: scale(0.98);
+
+        &:hover {
+            background-color: $gray;
+        }
+    }
+
+    a.button {
+        display: inline-block;
     }
 }
