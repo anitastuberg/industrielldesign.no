@@ -158,6 +158,13 @@ ol li {
   font-size: 0.8rem;
   margin: 0; }
 
+.container--nav {
+  margin-top: 64px; }
+
+.container--narrow {
+  padding: 5%;
+  max-width: 48em; }
+
 i, img {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -189,13 +196,6 @@ i, img {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #6E787A; }
-
-.container--nav {
-  margin-top: 64px; }
-
-.container--narrow {
-  padding: 5%;
-  max-width: 48em; }
 
 .wrapper {
   box-sizing: border-box;
