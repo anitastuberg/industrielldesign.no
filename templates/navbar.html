@@ -22,7 +22,7 @@
 
     <div class="right-aligned">
         {% if request.user.is_authenticated %}
-            <a class="nav-item">{{ request.user.email }}</a>
+            <a class="nav-item" href="{% url 'my_profile' %}">{{ request.user.email }}</a>
             <a class="nav-item" href="{% url 'logout' %}">Logg ut</a>
         {% else %}
             <a class="register nav-item" href="{% url 'register' %}">Registrer ny bruker</a>

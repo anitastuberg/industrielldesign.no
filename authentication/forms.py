@@ -30,5 +30,11 @@ class RegisterForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': '.'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': '.'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={
+        'placeholder': '.',
+        'autocomplete': 'email'
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'placeholder': '.',
+        'autocomplete': 'password',
+    }))

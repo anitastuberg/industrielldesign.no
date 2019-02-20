@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'authentication',
     'designsystem',
     'emails',
+    'profilepage',
     # Third party apps:
     'imagekit'
 

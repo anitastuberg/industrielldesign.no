@@ -7,9 +7,8 @@
 
 {% include 'navbar.html' %}
 
-<div id="register" class="container--nav">
+<div id="register" class="container--nav container--narrow">
     <div class="register-inputs">
-        <h1>Registrer ny bruker</h1>
         <form method="POST">
             {% csrf_token %}
             <div class="input-field">
@@ -45,8 +44,8 @@
             {{ form.is_komite }}
             <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label><br>
             <input type="checkbox" id="accepted">
-            <label id="checkboxLabel" for="accepted">Jeg godtar Leonardos vilkår</label>
-            <input id="submitButton" class="button blue" type="submit" value="Registrer">
+            <label id="checkboxLabel" for="accepted">Jeg godtar <a class="link" href="{% url 'terms' %}" target="_blank">Leonardos nettsidevilkår</a></label>
+            <input id="submitButton" class="button blue" type="submit" value="Opprett bruker">
         </form>
     </div>
 </div>
