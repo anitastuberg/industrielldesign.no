@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 
-{% block body %}
-    {% include "brukervilkår.html" %}
-{% endblock %}
+{% block content %}
+    <div class="container--nav container--narrow">
+        <h2>Data Leonardo lagrer om deg:</h1>
+            <ul>
+                <li>Vær et hyggelig menneske når du er på siden, gjerne ellers også :)</li>
+                <li>Jeg godtar at Leonardo samler inn data om meg som beskrevet under. Og vet at jeg kan få slettet all
+                    denne dataen hvis jeg ønsker det.
+                </li>
+            </ul>
+            <h4>Data vi samler inn:</h4>
+            <ul>
+                <li>Dataen du skriver inn her: Navn, e-post, avslutningsår og allergier, blir lagret</li>
+                <li>Arrangementer du skal/har deltatt på</li>
+                <li>Wikiartikler du har laget blir ikke automatisk slettet selv om du sletter brukeren. Ingen data om
+                    forfatter
+                    lagres. Du kan be om at artikkelen blir slettet.
+                </li>
+                <li>Prosjekter har et “laget av”-felt. Dette er ikke koblet opp mot brukeren din. Men er et vanlig
+                    tekstfelt
+                    hvor
+                    personen som oppretter prosjektet kan skrive ditt navn.
+                </li>
+            </ul>
+    </div>
+{% endblock content %}

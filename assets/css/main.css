@@ -3526,49 +3526,42 @@ tbody td {
     text-transform: uppercase;
     font-weight: 300; }
 
-#register {
-  max-width: 48em;
-  margin: 0 auto; }
-  #register .register-inputs {
-    margin-top: 3rem; }
-    #register .register-inputs h1 {
-      color: #3593B1;
-      font-size: 4rem;
-      font-weight: bold; }
-    #register .register-inputs #checkboxLabel {
-      -webkit-touch-callout: none;
-      /* iOS Safari */
-      -webkit-user-select: none;
-      /* Safari */
-      -khtml-user-select: none;
-      /* Konqueror HTML */
-      -moz-user-select: none;
-      /* Firefox */
-      -ms-user-select: none;
-      /* Internet Explorer/Edge */
-      user-select: none;
-      /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */ }
-    #register .register-inputs input[type="submit"] {
-      margin-top: 1rem; }
+#register h1 {
+  margin-bottom: 2rem; }
+#register .button {
+  margin-top: 2rem; }
 
 #login-page {
   display: flex;
   height: 100vh;
-  width: 100vw;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  text-align: center; }
   #login-page img {
-    width: 300px;
+    width: 250px;
     margin: 0 auto;
     display: block; }
   #login-page form {
     position: relative;
-    top: -4rem;
+    top: -2rem;
     width: 30em;
     display: block; }
   #login-page .button {
     margin: 0 auto; }
+  #login-page .links {
+    margin-top: 2rem;
+    color: #3593B1; }
+    #login-page .links a {
+      margin: 0 1rem; }
+
+#registration-done img {
+  width: 300px;
+  height: auto; }
+
+#forgot-password-form img {
+  width: 300px;
+  height: auto;
+  margin-bottom: 1rem; }
 
 .about-page .about-image, .about-page .about-text {
   float: left; }
@@ -3665,5 +3658,8 @@ tbody td {
       @media screen and (min-width: 1080px) {
         .about-page .styremedlemmer .styremedlem img {
           float: left; } }
+
+#profile-page form {
+  margin-bottom: 4rem; }
 
 /*# sourceMappingURL=main.css.map */

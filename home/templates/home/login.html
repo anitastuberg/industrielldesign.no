@@ -6,7 +6,7 @@
 {% block content %}
 
 <div id="login-page" class="container--nav">
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token %}
             <img src="{% static 'img/login.png' %}" alt="">
             <div class="input-field fluid">
@@ -20,7 +20,10 @@
                 {{ form.password.errors }}
             </div>
             <input class="button cta" type="submit" value="Logg inn">
-            <a href="/accounts/password_reset">Glemt passordet?</a>
+            <div class="links">
+                <a class="link" href="/accounts/password_reset">Glemt passordet?</a>|
+                <a class="link" href="{% url 'register' %}">Registrer ny bruker</a>
+            </div>
         </form>
 </div>
 

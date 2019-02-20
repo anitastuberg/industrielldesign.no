@@ -45,12 +45,12 @@ def komiteer(request):
     }
     return render(request, 'home/komiteer.html', context)
 
+
 def jobb(request):
     context = {
         'Stillingsannonser': Jobb.objects.all()
     }
     return render(request, 'home/jobb.html', context)
-
 
 
 def terms(request):
