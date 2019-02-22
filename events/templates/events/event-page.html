@@ -25,7 +25,7 @@
         {% endif %}
         <h1>{{ event.title }}</h1>
         <div class="time-and-place">
-            <p><img src="" alt="">{{ event.event_start_time|date:"h:i d. F" }}</p>
+            <p><img src="" alt="">{{ event.event_start_time|date:"H:i d. F" }}</p>
             {% if event.location %}
                 <p><img src="" alt="">{{ event.location }}</p>
             {% endif %}
