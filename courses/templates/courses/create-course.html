@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-field">
+            {{ form.name }}
+            <label for="{{ form.name.id_for_label }}">Fag</label>
+        </div>
+        <div class="input-field">
+            {{ form.course_code }}
+            <label for="{{ form.course_code.id_for_label }}">Fagkode</label>
+        </div>
+        <input type="submit" class="button cta" value="Opprett fag">
+    </form>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'navbar.html' %}
+    <div class="container--nav" id="course-detail">
+        <h1>{{ course.name }}</h1>
+        <p>{{ course.course_code }}</p>
+        <div class="reviews">
+            {% for review in course.reviews.all %}
+                <div class="review card">
+                    <p>{{ review.text }}</p>
+                    <p>{{ review.timestamp|date:'F Y' }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{ form.text }}
+                    <label for="{{ form.text.id_for_label }}">Har du noen erfaringer du kan dele fra faget?</label>
+                </div>
+                <input type="submit" class="button" value="Legg inn anmeldelse">
+            </form>
+        {% endif %}
+    </div>
+{% endblock content %}

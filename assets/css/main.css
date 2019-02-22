@@ -159,7 +159,7 @@ ol li {
   margin: 0; }
 
 .container--nav {
-  margin-top: 64px; }
+  margin: calc(64px + 1rem) 1rem 1rem 1rem; }
 
 .container--narrow {
   padding: 5%;
@@ -3189,6 +3189,18 @@ tbody td {
       .input-field .errorlist li::before {
         transform: rotate(-45deg); }
 
+.card {
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+  padding: 1rem;
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  will-change: transform, box-shadow;
+  color: #1A1A1A; }
+  .card.clickable:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    box-shadow: -20px 20px 35px rgba(52, 79, 87, 0.24); }
+
 #project-grid {
   display: grid; }
   @media screen and (max-width: 480px) {
@@ -3661,5 +3673,20 @@ tbody td {
 
 #profile-page form {
   margin-bottom: 4rem; }
+
+#courses {
+  padding: 5%; }
+  #courses .course-list {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+#course-detail .reviews {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-bottom: 3rem; }
+#course-detail .review {
+  white-space: pre-line; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,34 @@
+// -------------
+// Courses page
+// -------------
+#courses {
+  padding: 5%;
+  .course-list {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr) ) ;
+  }
+  .course {
+
+  }
+}
+
+// -------------------
+// Create courses page
+// -------------------
+
+
+// -----------------
+// Course detail page
+// -----------------
+#course-detail {
+  .reviews {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-bottom: 3rem;
+  }
+  .review {
+    white-space: pre-line;
+  }
+}

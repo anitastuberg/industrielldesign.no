@@ -6,7 +6,7 @@
 }
 
 .container--nav {
-  margin-top: $nav-height;
+  margin: calc(#{$nav-height} + 1rem) 1rem 1rem 1rem;
 }
 
 .container--narrow {

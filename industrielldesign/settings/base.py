@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'designsystem',
     'emails',
     'profilepage',
+    'courses',
     # Third party apps:
     'imagekit'
 
