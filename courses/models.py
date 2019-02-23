@@ -36,3 +36,11 @@ class Course(models.Model):
             # Only set the slug when the object is created.
             self.slug = slugify(self.name)  # Or whatever you want the slug to use
         super(Course, self).save(*args, **kwargs)
+
+
+class CourseLink(models.Model):
+    url_title = models.CharField(max_length=500)
+    url_description = models.TextField()
+    img_url = models.CharField(max_length=500)
+    url = models.CharField(max_length=500)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True)

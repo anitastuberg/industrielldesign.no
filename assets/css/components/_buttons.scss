@@ -1,4 +1,5 @@
 button, .button {
+    font-size: 1rem;
     border-radius: 2px;
     display: flex;
     align-items: center;
@@ -9,7 +10,8 @@ button, .button {
     transition: all 400ms $animation-ease;
     cursor: pointer;
     color: $white;
-    padding: 0.2rem 1rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.2em;
     font-weight: bold;
     box-shadow: $low-shadow;
 

@@ -2,30 +2,39 @@
 
 {% block content %}
     {% include 'navbar.html' %}
-    <div id="profile-page" class="container--nav container--narrow">
-        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="input-field">
-                {{ form.allergies }}
-                <label for="allergies">Allergier</label>
-            </div>
-            <div class="input-field">
-                {{ form.graduation_year }}
-                <label for="allergies">Allergier</label>
-            </div>
-            {{ form.is_komite }}
-            <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label>
-            <input type="submit" class="button cta" value="Lagre info">
-        </form>
-        <form method="post">
-            {% csrf_token %}
-            <div class="input-field">
-                <input name="password" type="password" placeholder=".">
-                <label for="allergies">Nytt passord</label>
-            </div>
-            <input type="submit" class="button cta" value="Lagre nytt passord">
-        </form>
+    <div id="profile-page" class="container nav">
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <div class="user-settings">
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{ form.allergies }}
+                    <label for="allergies">Allergier</label>
+                </div>
+                <div class="input-field">
+                    {{ form.graduation_year }}
+                    <label for="allergies">Allergier</label>
+                </div>
+                <div class="input-field">
+                    {{ form.is_komite }}
+                    <div class="checkmark"></div>
+                    <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label>
+                </div>
+                <input type="submit" class="button" value="Lagre info">
+            </form>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    <input name="password" type="password" placeholder=".">
+                    <label for="allergies">Nytt passord</label>
+                </div>
+                <input type="submit" class="button" value="Lagre nytt passord">
+            </form>
+            <a href="{% url 'logout' %}" class="link">Logg ut</a>
+        </div>
+        <div class="user-activity">
+
+        </div>
 
     </div>
 {% endblock content %}

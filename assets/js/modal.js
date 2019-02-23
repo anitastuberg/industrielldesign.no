@@ -1,12 +1,14 @@
-modalContent = $('.modal-content');
+modalContent = $('.modal');
 scrim = $('.scrim');
 
 function openModal() {
-    modalContent.slideDown();
+    modalContent.show();
     scrim.fadeIn();
 }
 
 function closeModal() {
-    modalContent.slideUp();
+    modalContent.hide();
     scrim.fadeOut();
 }
+
+scrim.click(closeModal);

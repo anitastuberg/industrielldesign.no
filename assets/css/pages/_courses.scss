@@ -22,13 +22,28 @@
 // Course detail page
 // -----------------
 #course-detail {
+  .useful-links {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    .url-preview {
+      @extend .card;
+      @extend .clickable;
+    }
+  }
   .reviews {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     margin-bottom: 3rem;
   }
   .review {
     white-space: pre-line;
+    margin: 0;
+  }
+  .review-date {
+    font-size: 0.8rem;
+    color: $dark-gray;
+    text-transform: capitalize;
   }
 }

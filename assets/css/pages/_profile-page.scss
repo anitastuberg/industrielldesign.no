@@ -1,4 +1,13 @@
 #profile-page {
+  padding: 5% 10%;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  .user-settings {
+
+  }
+  .user-activity {
+
+  }
   form {
     margin-bottom: 4rem;
   }

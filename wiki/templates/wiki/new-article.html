@@ -6,7 +6,7 @@
 
 {% block content %}
 {% include 'navbar.html' %}
-<div class="container--margin-bottom container--nav article" id="create-article">
+<div class="container--margin-bottom container nav article" id="create-article">
     <form id="new-article-form" method="POST" > <!-- Include for images: enctype="multipart/form-data" -->
             {% csrf_token %}
             {{ form.non_field_errors}}

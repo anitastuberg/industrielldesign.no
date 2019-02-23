@@ -81,11 +81,13 @@ h4,
 h5,
 h6 {
   line-height: 1.2em;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold; }
+  font-family: "Montserrat", sans-serif; }
 
 h1 {
-  font-size: 2rem; }
+  font-size: 3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: .1em; }
 
 h2 {
   font-size: 1.8rem; }
@@ -158,12 +160,14 @@ ol li {
   font-size: 0.8rem;
   margin: 0; }
 
-.container--nav {
-  margin: calc(64px + 1rem) 1rem 1rem 1rem; }
-
-.container--narrow {
-  padding: 5%;
-  max-width: 48em; }
+.container {
+  margin: 1rem auto;
+  max-width: 81.25em; }
+  .container.nav {
+    margin-top: calc(64px + 1rem); }
+  .container.narrow {
+    padding: 5%;
+    max-width: 48em; }
 
 i, img {
   -webkit-touch-callout: none;
@@ -2762,6 +2766,7 @@ i, img {
   .last-xl {
     order: 1; } }
 button, .button {
+  font-size: 1rem;
   border-radius: 2px;
   display: flex;
   align-items: center;
@@ -2772,7 +2777,8 @@ button, .button {
   transition: all 400ms ease-in-out;
   cursor: pointer;
   color: #FFFFFF;
-  padding: 0.2rem 1rem;
+  padding: 0.5rem 1rem;
+  line-height: 1.2em;
   font-weight: bold;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09); }
   button:hover, .button:hover {
@@ -2805,8 +2811,6 @@ nav#main-navigation {
   top: 0;
   left: 0;
   z-index: 50;
-  border-bottom: 1px solid #D0EAF1;
-  border-top: 1px solid #D0EAF1;
   display: flex;
   align-items: center; }
   nav#main-navigation::before {
@@ -2833,6 +2837,9 @@ nav#main-navigation {
   nav#main-navigation .right-aligned {
     position: absolute;
     right: 0; }
+  nav#main-navigation .user img {
+    width: 32px;
+    height: auto; }
   nav#main-navigation .nav-item {
     height: 100%;
     padding: 0 1rem;
@@ -2969,10 +2976,13 @@ a[type="button"] {
       -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
 
 .tilbake {
+  display: inline-block;
   position: relative;
-  padding-left: 2rem;
+  padding-left: 3rem;
   color: #1A1A1A;
-  transition: transform 200ms ease-in-out; }
+  transition: transform 200ms ease-in-out;
+  margin-bottom: 3rem;
+  line-height: 1.4em; }
   .tilbake:hover {
     transform: translateX(5px); }
   .tilbake::before {
@@ -2996,29 +3006,21 @@ a[type="button"] {
     left: 0; }
 
 .modal {
-  display: none; }
-  .modal .modal-content {
-    position: fixed;
-    background-color: #EEF2F3;
-    padding: 2rem;
-    z-index: 101;
-    width: 90%;
-    max-width: 450px;
-    top: 20%;
-    left: 0;
-    right: 0;
-    margin: auto; }
-    .modal .modal-content .button {
-      margin-top: 1.5rem;
-      display: inline; }
-      .modal .modal-content .button.right {
-        float: right;
-        margin-left: 0.5rem; }
-      .modal .modal-content .button.left {
-        float: left;
-        margin-right: 0.5rem; }
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90vh;
+  max-width: 90%;
+  min-width: 400px;
+  background-color: #FFFFFF;
+  box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+  z-index: 1000;
+  padding: 1rem; }
 
 .scrim {
+  display: none;
   position: fixed;
   z-index: 100;
   width: 100vw;
@@ -3029,6 +3031,30 @@ a[type="button"] {
 
 .blue-background {
   background-color: #3593B1; }
+
+.url-preview {
+  width: 100%;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 100px calc(100% - 100px - 1rem); }
+  .url-preview img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%; }
+  .url-preview div {
+    padding-left: 1rem; }
+  .url-preview h1, .url-preview h2, .url-preview h3, .url-preview h4, .url-preview h5, .url-preview h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: none; }
+  .url-preview .description {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 0.8rem; }
+  .url-preview .url {
+    color: #C4CACC;
+    font-size: 0.8rem; }
 
 .text-editor {
   width: 100%;
@@ -3133,7 +3159,8 @@ tbody td {
 .input-field {
   position: relative;
   margin-bottom: 2rem;
-  width: 100%; }
+  width: 100%;
+  min-height: 48px; }
   .input-field label {
     position: absolute;
     font-size: 1rem;
@@ -3168,6 +3195,42 @@ tbody td {
   .input-field textarea {
     resize: vertical;
     min-height: 6rem; }
+  .input-field input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+    .input-field input[type="checkbox"] ~ label {
+      pointer-events: all;
+      padding-left: 2rem;
+      cursor: pointer;
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Safari */
+      -khtml-user-select: none;
+      /* Konqueror HTML */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+      left: 0; }
+    .input-field input[type="checkbox"]:checked + .checkmark {
+      background-image: url("../img/icons/checkbox_checked.png"); }
+  .input-field .checkmark {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    height: 32px;
+    width: 32px;
+    background-image: url("../img/icons/checkbox_unchecked.png");
+    background-position: center;
+    background-size: 100%;
+    pointer-events: none; }
   .input-field .errorlist {
     margin: 0; }
     .input-field .errorlist li {
@@ -3189,14 +3252,14 @@ tbody td {
       .input-field .errorlist li::before {
         transform: rotate(-45deg); }
 
-.card {
+.card, #course-detail .useful-links .url-preview {
   background-color: #FFFFFF;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
   padding: 1rem;
   transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
   will-change: transform, box-shadow;
   color: #1A1A1A; }
-  .card.clickable:hover {
+  .card.clickable:hover, #course-detail .useful-links .url-preview:hover {
     cursor: pointer;
     transform: scale(1.01);
     box-shadow: -20px 20px 35px rgba(52, 79, 87, 0.24); }
@@ -3671,8 +3734,12 @@ tbody td {
         .about-page .styremedlemmer .styremedlem img {
           float: left; } }
 
-#profile-page form {
-  margin-bottom: 4rem; }
+#profile-page {
+  padding: 5% 10%;
+  display: grid;
+  grid-template-columns: 2fr 3fr; }
+  #profile-page form {
+    margin-bottom: 4rem; }
 
 #courses {
   padding: 5%; }
@@ -3681,12 +3748,21 @@ tbody td {
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 
+#course-detail .useful-links {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
 #course-detail .reviews {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   margin-bottom: 3rem; }
 #course-detail .review {
-  white-space: pre-line; }
+  white-space: pre-line;
+  margin: 0; }
+#course-detail .review-date {
+  font-size: 0.8rem;
+  color: #6E787A;
+  text-transform: capitalize; }
 
 /*# sourceMappingURL=main.css.map */

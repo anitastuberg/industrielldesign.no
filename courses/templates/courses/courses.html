@@ -2,7 +2,7 @@
 
 {% block content %}
     {% include 'navbar.html' %}
-    <div class="container--nav" id="courses">
+    <div class="container nav" id="courses">
         <div class="course-list">
             {% for course in courses %}
                 <a href="{% url 'course_detail' course_slug=course.slug %}" class="course card clickable">
