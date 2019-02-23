@@ -21,7 +21,7 @@ class CourseReviewAdmin(admin.ModelAdmin):
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ["__str__"]
-    fields = ('name', 'course_code', 'class_year', 'reviews')
+    fields = ('name', 'course_code', 'reviews')
     filter_horizontal = ['reviews']
 
     class Meta:
