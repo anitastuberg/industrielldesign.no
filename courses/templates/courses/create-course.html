@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        <div class="input-field">
-            {{ form.name }}
-            <label for="{{ form.name.id_for_label }}">Fag</label>
-        </div>
-        <div class="input-field">
-            {{ form.course_code }}
-            <label for="{{ form.course_code.id_for_label }}">Fagkode</label>
-        </div>
-        <input type="submit" class="button cta" value="Opprett fag">
-    </form>
+    <div id="create-course" class="container">
+        <a href="{% url 'courses' %}" class="tilbake">Tilbake</a>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-field">
+                {{ form.name }}
+                <label for="{{ form.name.id_for_label }}">Fag</label>
+            </div>
+            <div class="input-field">
+                {{ form.course_code }}
+                <label for="{{ form.course_code.id_for_label }}">Fagkode</label>
+            </div>
+            <div class="input-field">
+                {{ form.class_year }}
+                <label for="{{ form.class_year.id_for_label }}"></label>
+            </div>
+            <input type="submit" class="button cta" value="Opprett fag">
+        </form>
+    </div>
 {% endblock content %}

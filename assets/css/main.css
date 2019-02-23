@@ -162,6 +162,7 @@ ol li {
 
 .container {
   margin: 1rem auto;
+  padding: 1rem;
   max-width: 81.25em; }
   .container.nav {
     margin-top: calc(64px + 1rem); }
@@ -2801,8 +2802,9 @@ button, .button {
     transform: scale(0.98); }
     button:disabled:hover, .button:disabled:hover {
       background-color: #C4CACC; }
-  button a.button, .button a.button {
-    display: inline-block; }
+
+a.button {
+  display: inline-block; }
 
 nav#main-navigation {
   position: fixed;
@@ -2980,11 +2982,14 @@ a[type="button"] {
   position: relative;
   padding-left: 3rem;
   color: #1A1A1A;
-  transition: transform 200ms ease-in-out;
   margin-bottom: 3rem;
   line-height: 1.4em; }
-  .tilbake:hover {
-    transform: translateX(5px); }
+  .tilbake::after, .tilbake::before {
+    transition: transform 200ms ease-in-out; }
+  .tilbake:hover::before {
+    transform: translateX(-5px) rotate(135deg); }
+  .tilbake:hover::after {
+    transform: translateX(-5px); }
   .tilbake::before {
     content: '';
     border: solid black;
@@ -2994,8 +2999,7 @@ a[type="button"] {
     position: absolute;
     top: 5px;
     left: 0;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg); }
+    transform: rotate(135deg); }
   .tilbake::after {
     content: '';
     background-color: #000;
@@ -3563,8 +3567,6 @@ tbody td {
     top: 2px;
     margin-right: 0.5rem; }
 
-#student .events {
-  width: 100vw; }
 #student .event {
   position: relative;
   margin: 8rem auto 0;
@@ -3747,6 +3749,11 @@ tbody td {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+#create-course {
+  max-width: 30em; }
+  #create-course form {
+    margin-top: 20%; }
 
 #course-detail .useful-links {
   display: grid;
