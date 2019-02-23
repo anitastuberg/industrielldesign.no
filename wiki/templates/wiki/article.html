@@ -8,7 +8,7 @@
 
 {% include 'navbar.html' %}
 
-<div class="article container--margin-bottom container--nav" id="article">
+<div class="article container--margin-bottom container nav" id="article">
     <a href="{% url 'wiki' %}" class="tilbake">Tilbake</a>
     <h1 class="article__title">{{ article.title }}</h1>
     <p class="article__last-updated">Oppdatert: {{ article.updated|date:"j. F Y" }}</p>

@@ -15,15 +15,14 @@
         <a class="nav-item" {% if 'project' in request.path %}class="selected"{% endif %}
            href="{% url 'projects' %}">Prosjekter</a>
         <a class="nav-item" {% if 'wiki' in request.path %}class="selected"{% endif %}
-           href="{% url 'wiki' %}">Wiki</a>
-        <a class="nav-item" {% if 'about' in request.path %}class="selected"{% endif %}
+           href="{% url 'courses' %}">Fag</a>
+        <a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}
            href="{% url 'about' %}">Kontakt</a>
     </div>
 
     <div class="right-aligned">
         {% if request.user.is_authenticated %}
-            <a class="nav-item" href="{% url 'my_profile' %}">{{ request.user.email }}</a>
-            <a class="nav-item" href="{% url 'logout' %}">Logg ut</a>
+            <a class="nav-item user" href="{% url 'my_profile' %}"><img src="{% static 'img/icons/user.png' %}"></a>
         {% else %}
             <a class="register nav-item" href="{% url 'register' %}">Registrer ny bruker</a>
             <a class="nav-item" id="login" href="/login">Logg in</a>

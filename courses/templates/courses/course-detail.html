@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <style>body { background-color: #D0EAF1}</style>
+{% endblock extra_head %}
+
+{% block content %}
+    <div class="container nav" id="course-detail">
+        <a href="{% url 'courses' %}" class="tilbake">Tilbake</a>
+        <h1>{{ course.name }}</h1>
+        <p>{{ course.course_code }}</p>
+        <br><br>
+        <div class="useful-links">
+            {% for link in links %}
+                <a class="url-preview" href="{{ link.url }}" target="_blank">
+                    <img src="{{ link.img_url }}" alt="">
+                    <div>
+                        <h3>{{ link.url_title }}</h3>
+                        <p class="description">{{ link.url_description }}</p>
+                        <p class="url">{{ link.url }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+            <br>
+            <button class="button" onclick="openModal()">Legg til nyttig lesestoff</button>
+            <div class="scrim"></div>
+            <div class="modal">
+                <form method="post" id="link-form">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <input id="url" type="url" placeholder="." autocomplete="off">
+                        <label for="url">Lenke til det nyttige lesestoffet</label>
+                    </div>
+                    <div class="url-preview">
+                        <img id="preview-image" src="" alt="">
+                        <div>
+                            <h4 id="preview-title"></h4>
+                            <p id="preview-description" class="description"></p>
+                        </div>
+                    </div>
+                    <button type="submit" class="button">Lagre</button>
+                </form>
+            </div>
+        {% endif %}
+        <div class="reviews">
+            {% for review in course.reviews.all %}
+                <div class="review">
+                    <p>"{{ review.text }}"</p>
+                    <p class="review-date">{{ review.timestamp|date:'F Y' }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{ form.text }}
+                    <label for="{{ form.text.id_for_label }}">Har du noen erfaringer du kan dele fra faget?</label>
+                </div>
+                <input type="submit" class="button" value="Legg inn anmeldelse">
+            </form>
+        {% endif %}
+    </div>
+{% endblock content %}
+{% block javascript %}
+    <script src="{% static '/js/ajaxSetup.js' %}"></script>
+    <script>
+        const key = "5c711d38873ba9da2ac9e3a2b49e0917ba99efe61623e";
+        const urlInput = $('#url');
+        const usefulLinks = $('.useful-links');
+        const preview = {
+            'title': $('#preview-title'),
+            'description': $('#preview-description'),
+            'image': $('#preview-image')
+        };
+        let globalResponse = {};
+
+        function displayPreview(response) {
+            if (Object.keys(response).length) {
+                preview.title.text(response.title);
+                preview.description.text(response.description);
+                preview.image.attr('src', response.image);
+            } else {
+                preview.title.text('');
+                preview.description.text('');
+                preview.image.attr('src', '');
+            }
+        }
+
+        function getPreviewRequest() {
+            let url = urlInput.val();
+            console.log("change");
+            if (url.length > 0 && url.includes("http") && url.includes("://") && url.includes(".")) {
+                console.log("Calling: " + url);
+                $.ajax({
+                    url: "https://api.linkpreview.net",
+                    dataType: "jsonp",
+                    data: {q: url, key: key},
+                    success: function (response) {
+                        console.log(response);
+                        globalResponse = response;
+                        displayPreview(response);
+                    }
+                });
+            } else {
+                displayPreview({});
+                globalResponse = {}
+            }
+        }
+
+        urlInput.on('change paste', getPreviewRequest);
+        urlInput.on("input", function () {
+            if (urlInput.val().length === 0) {
+                getPreviewRequest();
+            }
+        });
+
+        $('#link-form').on('submit', function (e) {
+            e.preventDefault();
+            console.log("Save to server", globalResponse);
+            if (Object.keys(globalResponse).length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "course_detail" course_slug=course.slug %}',
+                    data: {
+                        'url_data': globalResponse
+                    },
+                    success: function () {
+                        usefulLinks.append(`<a class="url-preview" href="${globalResponse.url}">
+                                <img src="${globalResponse.image}">
+                                <div>
+                                    <h3>${globalResponse.title}</h3>
+                                    <p class="description">${globalResponse.description}</p>
+                                    <p class="url">${globalResponse.url}</p>
+                                </div>
+                            </a>`
+                        )
+                    },
+                    error: function (data) {
+                        console.log("Error");
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock javascript %}
