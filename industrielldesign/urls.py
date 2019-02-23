@@ -13,7 +13,7 @@ urlpatterns = [
     path('', include('projects.urls')),
     path('', include('authentication.urls')),
     path('', include('profilepage.urls')),
-    path('', include('courses.urls'))
+    path('', include('course.urls'))
 ]
 
 handler404 = 'home.views.page_not_found'
