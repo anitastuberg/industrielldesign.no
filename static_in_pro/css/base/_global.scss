@@ -1,33 +1,48 @@
 .errorlist li {
-    list-style: none;
-    color: $error;
-    font-size: 0.8rem;
-    margin: 0;
+  list-style: none;
+  color: $error;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.container {
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: $xxl;
+
+  &.nav {
+    margin-top: calc(#{$nav-height} + 1rem);
+  }
+
+  &.narrow {
+    padding: 5%;
+    max-width: $md;
+  }
 }
 
 i, img {
-    @include no-select;
+  @include no-select;
 }
 
 // Scrollbar
 
 /* width */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 6px;
+  width: 8px;
+  height: 6px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: $light-gray;
+  background: $light-gray;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $gray;
+  background: $gray;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: $dark-gray;
+  background: $dark-gray;
 }

@@ -36,11 +36,13 @@ h5,
 h6 {
     line-height: 1.2em;
     font-family: $sans-serif;
-    font-weight: bold;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .1em;
 }
 
 h2 {
