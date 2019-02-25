@@ -189,7 +189,7 @@ def event(request, event_slug):
 def event_admin(request, event_slug):
     event = Event.objects.get(slug=event_slug)
     context = {"event": event,
-               'registered_users': event.registered_users.order_by('-graduation_year', 'last_name')}
+               'registered_users': event.registered_users.order_by('-graduation_year', 'first_name')}
 
     if (request.user.is_staff):
         return render(request, 'events/event-admin.html', context)
