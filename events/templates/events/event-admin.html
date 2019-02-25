@@ -12,7 +12,7 @@
         <th>Klasse</th>
         <th>Allergier</th>
     </tr>
-    {% for user in event.registered_users.all %}
+    {% for user in registered_users %}
         <tr>
             <td>{{ user.first_name }} {{ user.last_name }}</td>
             <td>{{ user.email }}</td>
@@ -21,7 +21,7 @@
         </tr>
     {% endfor %}
     <tr>
-        <td><b>Totalt antall: {{ event.registered_users.all.count }}</b></td>
+        <td><b>Totalt antall: {{ registered_users.all.count }}</b></td>
         <td></td>
         <td></td>
         <td></td>
