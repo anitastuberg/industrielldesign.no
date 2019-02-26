@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'emails',
     'profilepage',
     'course',
-    'books',
     # Third party apps:
     'imagekit'
 
