@@ -40,4 +40,29 @@
 {% endblock content %}
 {% block javascript %}
     <script src="{% static "js/dynamicShadow.js" %}"></script>
+    <script>
+        let event = $('.event');
+        function addBorder(img) {
+            img.addClass('jubileum');
+        }
+        event.each(function() {
+            let title = $(this).find('h3');
+            let img = $(this).find('img');
+            switch (title.text()) {
+                case 'Jubileumsgalla':
+                    console.log("jub");
+                    addBorder(img);
+                    break;
+                case '[fullt] Digitalt sketchekurs med Fredrik Bostad':
+                    addBorder(img);
+                    break;
+                case 'Café au Leo':
+                    addBorder(img);
+                    break;
+                case 'Fra da til nå - instituttets historie i ord og bilder':
+                    addBorder(img);
+                    break;
+            }
+        });
+    </script>
 {% endblock javascript %}

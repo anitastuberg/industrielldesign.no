@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let shadowBox = $('.dynamic-shadow');
 
-    document.onmousemove = function (e) {
+    function changeShadow(e) {
         let mouseX = e.pageX;
         let mouseY = e.pageY;
         shadowBox.each(function () {
@@ -16,4 +16,8 @@ $(document).ready(function () {
             self.css('box-shadow', shadow);
         })
     }
+
+    document.onmousemove = function (e) {
+        changeShadow(e);
+    };
 });

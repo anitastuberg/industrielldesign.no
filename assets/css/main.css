@@ -3583,6 +3583,8 @@ tbody td {
     height: 160px;
     object-fit: cover;
     box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+    #student .event img.jubileum {
+      border: #D4AF37 4px solid; }
   #student .event .dots {
     overflow: hidden;
     white-space: nowrap; }

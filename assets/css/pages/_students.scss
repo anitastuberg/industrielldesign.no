@@ -21,6 +21,9 @@ $event-padding: 2rem;
       height: $event-image-size;
       object-fit: cover;
       box-shadow: $high-shadow;
+      &.jubileum {
+        border: #D4AF37 4px solid;
+      }
     }
 
     h3 {
