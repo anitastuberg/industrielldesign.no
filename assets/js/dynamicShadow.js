@@ -2,8 +2,8 @@ $(document).ready(function () {
     let shadowBox = $('.dynamic-shadow');
 
     document.onmousemove = function (e) {
-        let mouseX = e.clientX
-        let mouseY = e.clientY
+        let mouseX = e.pageX;
+        let mouseY = e.pageY;
         shadowBox.each(function () {
             let self = $(this);
             let offset = self.offset();
