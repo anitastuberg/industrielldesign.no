@@ -16,6 +16,9 @@
 
 html {
     font-size: $root-font-size;
+    @media screen and (max-width: $sm) {
+        font-size: 14px;
+    }
 }
 
 /* Setting Sweden sans as font */

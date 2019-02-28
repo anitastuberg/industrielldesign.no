@@ -65,6 +65,9 @@ table {
 }*/
 html {
   font-size: 16px; }
+  @media screen and (max-width: 37.5em) {
+    html {
+      font-size: 14px; } }
 
 /* Setting Sweden sans as font */
 body,
@@ -3582,6 +3585,17 @@ tbody td {
   padding: 2rem 2rem 2rem calc(160px + 2rem + 3rem);
   max-width: 56.25em;
   color: #1A1A1A; }
+  @media screen and (max-width: 37.5em) {
+    #student .event {
+      padding: 2rem; } }
+  #student .event:hover img {
+    transform: scale(1.05) translateY(-50%); }
+  #student .event:hover h3 {
+    transform: translateX(-5px); }
+  #student .event:hover .event-date > div {
+    transform: translateX(5px); }
+  #student .event:hover .days-left {
+    letter-spacing: 0.1em; }
   #student .event img {
     position: absolute;
     top: 50%;
@@ -3590,9 +3604,17 @@ tbody td {
     width: 160px;
     height: 160px;
     object-fit: cover;
-    box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+    box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+    transition: transform 400ms ease-in-out; }
     #student .event img.jubileum {
       border: #D4AF37 4px solid; }
+    @media screen and (max-width: 37.5em) {
+      #student .event img {
+        display: none; } }
+  #student .event .days-left {
+    transition: letter-spacing 500ms ease-in-out; }
+  #student .event h3, #student .event img, #student .event .event-date > div {
+    transition: transform 500ms ease-in-out; }
   #student .event .dots {
     overflow: hidden;
     white-space: nowrap; }
@@ -3601,7 +3623,8 @@ tbody td {
       width: 6px;
       height: 6px;
       background-color: #F36868;
-      border-radius: 12px; }
+      border-radius: 12px;
+      transition: margin-right 500ms ease-in-out; }
       #student .event .dots .dot:nth-child(7n) {
         margin-right: 8px; }
   #student .event .event-date {
