@@ -59,6 +59,10 @@ $event-padding: 2rem;
       transition: transform 500ms ease-in-out;
     }
 
+    h3 {
+      @include text-wrap;
+    }
+
     .dots {
       overflow: hidden;
       white-space: nowrap;

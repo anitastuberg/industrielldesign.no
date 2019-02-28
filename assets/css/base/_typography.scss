@@ -16,9 +16,6 @@
 
 html {
     font-size: $root-font-size;
-    @media screen and (max-width: $sm) {
-        font-size: 14px;
-    }
 }
 
 /* Setting Sweden sans as font */
@@ -47,18 +44,30 @@ h1 {
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .1em;
+    @media screen and (max-width: $md) {
+        font-size: 2rem;
+    }
 }
 
 h2 {
     font-size: 1.8rem;
+    @media screen and (max-width: $md) {
+        font-size: 1.5rem;
+    }
 }
 
 h3 {
     font-size: 1.6rem;
+    @media screen and (max-width: $md) {
+        font-size: 1.4rem;
+    }
 }
 
 h4 {
     font-size: 1.4rem;
+    @media screen and (max-width: $md) {
+        font-size: 1.2rem;
+    }
 }
 
 h5 {

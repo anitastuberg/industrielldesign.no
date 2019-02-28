@@ -65,9 +65,6 @@ table {
 }*/
 html {
   font-size: 16px; }
-  @media screen and (max-width: 37.5em) {
-    html {
-      font-size: 14px; } }
 
 /* Setting Sweden sans as font */
 body,
@@ -92,15 +89,27 @@ h1 {
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: .1em; }
+  @media screen and (max-width: 48em) {
+    h1 {
+      font-size: 2rem; } }
 
 h2 {
   font-size: 1.8rem; }
+  @media screen and (max-width: 48em) {
+    h2 {
+      font-size: 1.5rem; } }
 
 h3 {
   font-size: 1.6rem; }
+  @media screen and (max-width: 48em) {
+    h3 {
+      font-size: 1.4rem; } }
 
 h4 {
   font-size: 1.4rem; }
+  @media screen and (max-width: 48em) {
+    h4 {
+      font-size: 1.2rem; } }
 
 h5 {
   font-size: 1.2rem; }
@@ -3372,7 +3381,7 @@ tbody td {
     transform: translateX(100%); }
 
 #event-page {
-  padding: 10% 2.5%;
+  padding: 10% 5%;
   background-color: #D0EAF1; }
   #event-page .beskrivelse {
     position: relative;
@@ -3383,6 +3392,11 @@ tbody td {
       position: relative;
       margin-top: 6rem;
       text-shadow: 2px 2px 0px #D0EAF1; }
+      @media screen and (max-width: 48em) {
+        #event-page .beskrivelse h1 {
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          hyphens: auto; } }
     #event-page .beskrivelse img {
       max-width: 320px;
       max-height: 320px;
@@ -3615,6 +3629,10 @@ tbody td {
     transition: letter-spacing 500ms ease-in-out; }
   #student .event h3, #student .event img, #student .event .event-date > div {
     transition: transform 500ms ease-in-out; }
+  #student .event h3 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto; }
   #student .event .dots {
     overflow: hidden;
     white-space: nowrap; }

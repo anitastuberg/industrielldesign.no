@@ -1,5 +1,5 @@
 #event-page {
-  padding: 10% 2.5%;
+  padding: 10% 5%;
   background-color: $primary-light;
 
   .beskrivelse {
@@ -12,6 +12,9 @@
       position: relative;
       margin-top: 6rem;
       text-shadow: 2px 2px 0px $primary-light;
+      @media screen and (max-width: $md) {
+        @include text-wrap;
+      }
     }
 
     img {
