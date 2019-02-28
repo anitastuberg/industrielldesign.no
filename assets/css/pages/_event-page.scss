@@ -1,20 +1,27 @@
 #event-page {
-  padding: 5% 2.5%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
+  padding: 10% 2.5%;
   background-color: $primary-light;
 
-  .images img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    position: relative;
-    top: 15%;
-  }
-
   .beskrivelse {
-    max-width: 80%;
+    position: relative;
+    max-width: $sm;
+    margin: 0 auto;
+    z-index: 0;
+
+    h1 {
+      position: relative;
+      margin-top: 6rem;
+      text-shadow: 2px 2px 0px $primary-light;
+    }
+
+    img {
+      max-width: 320px;
+      max-height: 320px;
+      position: absolute;
+      bottom: -2rem;
+      right: 0;
+      z-index: -1;
+    }
 
     .time-and-place {
       margin: 2rem 0;
@@ -27,9 +34,7 @@
       }
     }
 
-    h1 {
-      margin-top: 6rem;
-    }
+
 
     p {
       span {
@@ -44,6 +49,7 @@
 
     p.content-markdown {
       white-space: pre-line;
+      text-align: justify;
     }
   }
 }

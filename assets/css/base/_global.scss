@@ -46,3 +46,7 @@ i, img {
 ::-webkit-scrollbar-thumb:hover {
   background: $dark-gray;
 }
+
+::selection {
+  background: #ff9;
+}
