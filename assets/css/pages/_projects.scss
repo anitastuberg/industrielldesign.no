@@ -1,6 +1,6 @@
 #project-page {
   padding: 10% 0;
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
 
   .project-image {
@@ -8,19 +8,18 @@
     position: relative;
     width: 100%;
     height: var(--image-size);
-    box-shadow: 5 5 20px;
 
     .description {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      left: calc(50vw + 1rem);
+      left: calc(50% + 2rem);
 
     }
 
     img {
       position: absolute;
-      right: 50vw;
+      right: 50%;
       top: 0;
       height: 100%;
       width: var(--image-size);
@@ -29,22 +28,23 @@
 
     &:nth-child(even) {
       .description {
-        right: calc(50vw + 1rem);
+        right: calc(50% + 2rem);
         left: auto;
+        text-align: right;
       }
 
       img {
-        left: 50vw;
+        left: 50%;
         right: auto;
       }
     }
 
     &:nth-child(8n+1) {
-      --image-size: 600px;
+      --image-size: 560px;
     }
 
     &:nth-child(8n+2) {
-      --image-size: 500px;
+      --image-size: 480px;
     }
 
     &:nth-child(8n+3) {
@@ -64,7 +64,7 @@
     }
 
     &:nth-child(8n+7) {
-      --image-size: 460px;
+      --image-size: 580px;
     }
 
     &:nth-child(8n+8) {
