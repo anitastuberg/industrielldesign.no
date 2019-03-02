@@ -1,13 +1,9 @@
-body{
-    padding: 10% 0;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+#project-page {
+  padding: 10% 0;
+  width: 100vw;
+  overflow-x: hidden;
 
-.project-image {
+  .project-image {
     --image-size: 300px;
     position: relative;
     width: 100%;
@@ -15,61 +11,65 @@ body{
     box-shadow: 5 5 20px;
 
     .description {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: calc(50vw + 1rem);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: calc(50vw + 1rem);
 
     }
 
     img {
-        position: absolute;
-        right: 50vw;
-        top: 0;
-        height: 100%;
-        width: var(--image-size);
-        object-fit: cover;
+      position: absolute;
+      right: 50vw;
+      top: 0;
+      height: 100%;
+      width: var(--image-size);
+      object-fit: cover;
     }
 
     &:nth-child(even) {
-        .description{
-            right: calc(50vw + 1rem);
-            left: auto;
-        }
-        img{
+      .description {
+        right: calc(50vw + 1rem);
+        left: auto;
+      }
+
+      img {
         left: 50vw;
         right: auto;
-        }
+      }
     }
+
     &:nth-child(8n+1) {
-        --image-size: 600px;
+      --image-size: 600px;
     }
+
     &:nth-child(8n+2) {
-        --image-size: 500px;
+      --image-size: 500px;
     }
 
     &:nth-child(8n+3) {
-        --image-size: 350px;
+      --image-size: 350px;
     }
 
     &:nth-child(8n+4) {
-        --image-size: 360px;
+      --image-size: 360px;
     }
 
     &:nth-child(8n+5) {
-        --image-size: 620px;
+      --image-size: 620px;
     }
 
     &:nth-child(8n+6) {
-        --image-size: 400px;
+      --image-size: 400px;
     }
 
     &:nth-child(8n+7) {
-        --image-size: 460px;
+      --image-size: 460px;
     }
 
     &:nth-child(8n+8) {
-        --image-size: 350px;
+      --image-size: 350px;
     }
 
+  }
 }
