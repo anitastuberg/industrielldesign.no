@@ -3623,58 +3623,85 @@ tbody td:hover:before {
   width: 100%;
   overflow-x: hidden;
 }
-#project-page .project-image {
-  --image-size: 300px;
-  position: relative;
-  width: 100%;
-  height: var(--image-size);
+@media screen and (max-width: 1000px) {
+  #project-page .project-image {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20rem;
+    padding-top: 5rem;
+  }
+  #project-page .project-image .description {
+    position: relative;
+    left: 10%;
+  }
+  #project-page .project-image:nth-child(even) .description {
+    right: 10%;
+    left: auto;
+    text-align: right;
+  }
+  #project-page .project-image img {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto 2rem;
+    object-fit: cover;
+  }
 }
-#project-page .project-image .description {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: calc(50% + 2rem);
-}
-#project-page .project-image img {
-  position: absolute;
-  right: 50%;
-  top: 0;
-  height: 100%;
-  width: var(--image-size);
-  object-fit: cover;
-}
-#project-page .project-image:nth-child(even) .description {
-  right: calc(50% + 2rem);
-  left: auto;
-  text-align: right;
-}
-#project-page .project-image:nth-child(even) img {
-  left: 50%;
-  right: auto;
-}
-#project-page .project-image:nth-child(8n+1) {
-  --image-size: 560px;
-}
-#project-page .project-image:nth-child(8n+2) {
-  --image-size: 480px;
-}
-#project-page .project-image:nth-child(8n+3) {
-  --image-size: 350px;
-}
-#project-page .project-image:nth-child(8n+4) {
-  --image-size: 360px;
-}
-#project-page .project-image:nth-child(8n+5) {
-  --image-size: 620px;
-}
-#project-page .project-image:nth-child(8n+6) {
-  --image-size: 400px;
-}
-#project-page .project-image:nth-child(8n+7) {
-  --image-size: 580px;
-}
-#project-page .project-image:nth-child(8n+8) {
-  --image-size: 350px;
+@media screen and (max-width: 1000px) and (min-width: 1000px) {
+  #project-page .project-image {
+    --image-size: 300px;
+    position: relative;
+    width: 100%;
+    height: var(--image-size);
+  }
+  #project-page .project-image .description {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(50% + 2rem);
+  }
+  #project-page .project-image img {
+    position: absolute;
+    right: 50%;
+    top: 0;
+    height: 100%;
+    width: var(--image-size);
+    object-fit: cover;
+  }
+  #project-page .project-image:nth-child(even) .description {
+    right: calc(50% + 2rem);
+    left: auto;
+    text-align: right;
+  }
+  #project-page .project-image:nth-child(even) img {
+    left: 50%;
+    right: auto;
+  }
+  #project-page .project-image:nth-child(8n+1) {
+    --image-size: 560px;
+  }
+  #project-page .project-image:nth-child(8n+2) {
+    --image-size: 480px;
+  }
+  #project-page .project-image:nth-child(8n+3) {
+    --image-size: 350px;
+  }
+  #project-page .project-image:nth-child(8n+4) {
+    --image-size: 360px;
+  }
+  #project-page .project-image:nth-child(8n+5) {
+    --image-size: 550px;
+  }
+  #project-page .project-image:nth-child(8n+6) {
+    --image-size: 400px;
+  }
+  #project-page .project-image:nth-child(8n+7) {
+    --image-size: 590px;
+  }
+  #project-page .project-image:nth-child(8n+8) {
+    --image-size: 350px;
+  }
 }
 
 #event-page {

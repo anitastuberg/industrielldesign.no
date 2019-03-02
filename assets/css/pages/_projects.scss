@@ -3,73 +3,103 @@
   width: 100%;
   overflow-x: hidden;
 
-  .project-image {
-    --image-size: 300px;
-    position: relative;
-    width: 100%;
-    height: var(--image-size);
+  @media screen and (max-width: 1000px) {
+    .project-image {
+      width: 100%;
+      position: relative;
+      margin-bottom: 20rem;
+      padding-top: 5rem;
 
-    .description {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: calc(50% + 2rem);
-
-    }
-
-    img {
-      position: absolute;
-      right: 50%;
-      top: 0;
-      height: 100%;
-      width: var(--image-size);
-      object-fit: cover;
-    }
-
-    &:nth-child(even) {
       .description {
-        right: calc(50% + 2rem);
-        left: auto;
-        text-align: right;
+        position: relative;
+        left: 10%;
       }
-
+      &:nth-child(even) {
+        .description {
+          right: 10%;
+          left: auto;
+          text-align: right;
+        }
+      }
       img {
-        left: 50%;
-        right: auto;
+        display: block;
+        position: relative;
+        height: 100%;
+        width: 80%;
+        margin: 0 auto 2rem;
+        object-fit: cover;
       }
     }
+    @media screen and (min-width: 1000px) {
+      .project-image {
+        --image-size: 300px;
+        position: relative;
+        width: 100%;
+        height: var(--image-size);
 
-    &:nth-child(8n+1) {
-      --image-size: 560px;
+        .description {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: calc(50% + 2rem);
+        }
+
+        img {
+          position: absolute;
+          right: 50%;
+          top: 0;
+          height: 100%;
+          width: var(--image-size);
+          object-fit: cover;
+        }
+
+        &:nth-child(even) {
+          .description {
+            right: calc(50% + 2rem);
+            left: auto;
+            text-align: right;
+          }
+
+          img {
+            left: 50%;
+            right: auto;
+          }
+        }
+
+        &:nth-child(8n+1) {
+          --image-size: 560px;
+        }
+
+        &:nth-child(8n+2) {
+          --image-size: 480px;
+        }
+
+        &:nth-child(8n+3) {
+          --image-size: 350px;
+        }
+
+        &:nth-child(8n+4) {
+          --image-size: 360px;
+        }
+
+        &:nth-child(8n+5) {
+          --image-size: 550px;
+        }
+
+        &:nth-child(8n+6) {
+          --image-size: 400px;
+        }
+
+        &:nth-child(8n+7) {
+          --image-size: 590px;
+        }
+
+        &:nth-child(8n+8) {
+          --image-size: 350px;
+        }
+
+      }
     }
-
-    &:nth-child(8n+2) {
-      --image-size: 480px;
-    }
-
-    &:nth-child(8n+3) {
-      --image-size: 350px;
-    }
-
-    &:nth-child(8n+4) {
-      --image-size: 360px;
-    }
-
-    &:nth-child(8n+5) {
-      --image-size: 620px;
-    }
-
-    &:nth-child(8n+6) {
-      --image-size: 400px;
-    }
-
-    &:nth-child(8n+7) {
-      --image-size: 580px;
-    }
-
-    &:nth-child(8n+8) {
-      --image-size: 350px;
-    }
-
   }
 }
+
