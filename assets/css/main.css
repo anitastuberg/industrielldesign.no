@@ -3288,6 +3288,10 @@ tbody td {
   padding: 10% 0;
   width: 100%;
   overflow-x: hidden; }
+  #project-page .project-image:nth-child(odd) .description {
+    padding-right: 5%; }
+  #project-page .project-image:nth-child(even) .description {
+    padding-left: 5%; }
   @media screen and (max-width: 1000px) {
     #project-page .project-image {
       width: 100%;

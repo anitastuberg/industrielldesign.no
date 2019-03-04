@@ -3,6 +3,13 @@
   width: 100%;
   overflow-x: hidden;
 
+  .project-image:nth-child(odd) .description {
+    padding-right: 5%;
+  }
+  .project-image:nth-child(even) .description {
+    padding-left: 5%;
+  }
+
   @media screen and (max-width: 1000px) {
     .project-image {
       width: 100%;
