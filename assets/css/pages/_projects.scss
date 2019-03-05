@@ -3,6 +3,13 @@
   width: 100%;
   overflow-x: hidden;
 
+  .project-image:nth-child(odd) .description {
+    padding-right: 5%;
+  }
+  .project-image:nth-child(even) .description {
+    padding-left: 5%;
+  }
+
   @media screen and (max-width: 1000px) {
     .project-image {
       width: 100%;
@@ -14,6 +21,7 @@
         position: relative;
         left: 10%;
       }
+
       &:nth-child(even) {
         .description {
           right: 10%;
@@ -21,6 +29,7 @@
           text-align: right;
         }
       }
+
       img {
         display: block;
         position: relative;
@@ -30,75 +39,75 @@
         object-fit: cover;
       }
     }
-    @media screen and (min-width: 1000px) {
-      .project-image {
-        --image-size: 300px;
-        position: relative;
-        width: 100%;
-        height: var(--image-size);
+  }
+  @media screen and (min-width: 1000px) {
+    .project-image {
+      --image-size: 300px;
+      position: relative;
+      width: 100%;
+      height: var(--image-size);
 
+      .description {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: calc(50% + 2rem);
+      }
+
+      img {
+        position: absolute;
+        right: 50%;
+        top: 0;
+        height: 100%;
+        width: var(--image-size);
+        object-fit: cover;
+      }
+
+      &:nth-child(even) {
         .description {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: calc(50% + 2rem);
+          right: calc(50% + 2rem);
+          left: auto;
+          text-align: right;
         }
 
         img {
-          position: absolute;
-          right: 50%;
-          top: 0;
-          height: 100%;
-          width: var(--image-size);
-          object-fit: cover;
+          left: 50%;
+          right: auto;
         }
-
-        &:nth-child(even) {
-          .description {
-            right: calc(50% + 2rem);
-            left: auto;
-            text-align: right;
-          }
-
-          img {
-            left: 50%;
-            right: auto;
-          }
-        }
-
-        &:nth-child(8n+1) {
-          --image-size: 560px;
-        }
-
-        &:nth-child(8n+2) {
-          --image-size: 480px;
-        }
-
-        &:nth-child(8n+3) {
-          --image-size: 350px;
-        }
-
-        &:nth-child(8n+4) {
-          --image-size: 360px;
-        }
-
-        &:nth-child(8n+5) {
-          --image-size: 550px;
-        }
-
-        &:nth-child(8n+6) {
-          --image-size: 400px;
-        }
-
-        &:nth-child(8n+7) {
-          --image-size: 590px;
-        }
-
-        &:nth-child(8n+8) {
-          --image-size: 350px;
-        }
-
       }
+
+      &:nth-child(8n+1) {
+        --image-size: 560px;
+      }
+
+      &:nth-child(8n+2) {
+        --image-size: 480px;
+      }
+
+      &:nth-child(8n+3) {
+        --image-size: 350px;
+      }
+
+      &:nth-child(8n+4) {
+        --image-size: 360px;
+      }
+
+      &:nth-child(8n+5) {
+        --image-size: 550px;
+      }
+
+      &:nth-child(8n+6) {
+        --image-size: 400px;
+      }
+
+      &:nth-child(8n+7) {
+        --image-size: 590px;
+      }
+
+      &:nth-child(8n+8) {
+        --image-size: 350px;
+      }
+
     }
   }
 }
