@@ -4,10 +4,10 @@
   overflow-x: hidden;
 
   .project-image:nth-child(odd) .description {
-    padding-right: 5%;
+
   }
   .project-image:nth-child(even) .description {
-    padding-left: 5%;
+
   }
 
   @media screen and (max-width: 1000px) {
@@ -19,14 +19,13 @@
 
       .description {
         position: relative;
-        left: 10%;
+        padding: 0 10% 0 10%;
+        text-align: justify;
       }
 
       &:nth-child(even) {
         .description {
-          right: 10%;
-          left: auto;
-          text-align: right;
+         direction: rtl;
         }
       }
 
@@ -52,6 +51,7 @@
         top: 50%;
         transform: translateY(-50%);
         left: calc(50% + 2rem);
+        padding-right: 5%;
       }
 
       img {
@@ -68,6 +68,7 @@
           right: calc(50% + 2rem);
           left: auto;
           text-align: right;
+          padding-left: 5%;
         }
 
         img {
