@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -8,7 +9,7 @@ from .models import Course, CourseReview, CourseLink
 
 def courses(request):
     context = {
-        'courses': Course.objects.all()
+        'courses': Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True)).order_by('-reviews', 'name')
     }
     return render(request, 'courses/courses.html', context)
 
@@ -23,7 +24,12 @@ def create_course(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             course_code = form.cleaned_data['course_code']
-            Course.objects.create(name=name, course_code=course_code)
+            if Course.objects.filter(course_code=course_code).exists():
+                existing_course = Course.objects.get(course_code=course_code)
+                existing_course.display_without_reviews = True
+                existing_course.save()
+            else:
+                Course.objects.create(name=name, course_code=course_code, display_without_reviews=True)
             return redirect('courses')
         else:
             return render(request, 'courses/create-course.html', {'form': form})

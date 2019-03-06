@@ -23,9 +23,10 @@ class Course(models.Model):
         ('Ikke trinnavhengig', 'Ikke trinnavhengig')
     ]
     name = models.CharField(max_length=300)
-    course_code = models.CharField(max_length=20)
-    reviews = models.ManyToManyField(CourseReview)
-    # class_year = models.CharField(max_length=20, choices=YEAR_CHOICES, default="Ikke trinnavhengig")
+    course_code = models.CharField(max_length=20, unique=True)
+    reviews = models.ManyToManyField(CourseReview, blank=True)
+    class_year = models.CharField(max_length=20, choices=YEAR_CHOICES, default="Ikke trinnavhengig")
+    display_without_reviews = models.BooleanField(default=False)
     slug = models.SlugField(blank=True)
 
     def __str__(self):
