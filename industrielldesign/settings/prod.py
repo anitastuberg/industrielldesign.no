@@ -1,17 +1,14 @@
+import dj_database_url
+import psycopg2
+
 from industrielldesign.settings.base import *
 
 # Override base.py settings here
 DEBUG = False
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'LeonardoLinjefor$industrielldesign',
-        'USER': 'LeonardoLinjefor',
-        'PASSWORD': config.DATABASE_PASSWORD,
-        'HOST': 'LeonardoLinjeforening.mysql.pythonanywhere-services.com'
-    }
-}
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # HTTPS
 CSRF_COOKIE_SECURE = True
@@ -23,3 +20,5 @@ X_FRAME_OPTIONS = 'DENY'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
