@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% load days_until %}
 
 {% block content %}
@@ -9,7 +10,7 @@
             {% for event in events %}
                 {% with event.event_start_time|days_until as days_left %}
                     <a class="event" href="{% url 'event' event_slug=event.slug %}">
-                        <img src="{{ event.image.url }}" alt="">
+                        <img class="dynamic-shadow" src="{{ event.image.url }}" alt="">
                         <div class="event-info">
                             <h3>{{ event.title }}</h3>
                             <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}
@@ -37,3 +38,31 @@
         </div>
     </div>
 {% endblock content %}
+{% block javascript %}
+    <script src="{% static "js/dynamicShadow.js" %}"></script>
+    <script>
+        let event = $('.event');
+        function addBorder(img) {
+            img.addClass('jubileum');
+        }
+        event.each(function() {
+            let title = $(this).find('h3');
+            let img = $(this).find('img');
+            switch (title.text()) {
+                case 'Jubileumsgalla':
+                    console.log("jub");
+                    addBorder(img);
+                    break;
+                case '[fullt] Digitalt sketchekurs med Fredrik Bostad':
+                    addBorder(img);
+                    break;
+                case 'Café au Leo':
+                    addBorder(img);
+                    break;
+                case 'Fra da til nå - instituttets historie i ord og bilder':
+                    addBorder(img);
+                    break;
+            }
+        });
+    </script>
+{% endblock javascript %}

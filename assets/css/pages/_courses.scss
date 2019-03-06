@@ -21,7 +21,13 @@
 // -------------------
 // Create courses page
 // -------------------
+#create-course {
+  max-width: $xs;
 
+  form {
+    margin-top: 20%;
+  }
+}
 
 // -----------------
 // Course detail page

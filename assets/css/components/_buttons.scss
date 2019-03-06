@@ -1,53 +1,55 @@
 button, .button {
-    font-size: 1rem;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background-color: $primary-dark;
-    outline: 0;
-    border: 0;
-    transition: all 400ms $animation-ease;
-    cursor: pointer;
-    color: $white;
-    padding: 0.5rem 1rem;
-    line-height: 1.2em;
-    font-weight: bold;
-    box-shadow: $low-shadow;
+  font-size: 1rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: $primary-dark;
+  outline: 0;
+  border: 0;
+  transition: all 400ms $animation-ease;
+  cursor: pointer;
+  color: $white;
+  padding: 0.5rem 1rem;
+  line-height: 1.2em;
+  font-weight: bold;
+  box-shadow: $low-shadow;
+
+  &:hover {
+    background-color: darken($primary-dark, 5%);
+    box-shadow: $med-shadow;
+    transform: scale(1.02);
+  }
+
+  &.cta {
+    background-color: $accent;
 
     &:hover {
-        background-color: darken($primary-dark, 5%);
-        box-shadow: $med-shadow;
-        transform: scale(1.02);
+      background-color: darken($accent, 5%);
     }
+  }
 
-    &.cta {
-        background-color: $accent;
-        &:hover {
-            background-color: darken($accent, 5%);
-        }
+  &.primary {
+    background-color: $primary;
+
+    &:hover {
+      background-color: darken($primary, 5%);
     }
+  }
 
-    &.primary {
-        background-color: $primary;
-        &:hover {
-            background-color: darken($primary, 5%);
-        }
+  &:disabled {
+    background-color: $gray;
+    color: $dark-gray;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: scale(0.98);
+
+    &:hover {
+      background-color: $gray;
     }
+  }
+}
 
-    &:disabled {
-        background-color: $gray;
-        color: $dark-gray;
-        cursor: not-allowed;
-        box-shadow: none;
-        transform: scale(0.98);
-
-        &:hover {
-            background-color: $gray;
-        }
-    }
-
-    a.button {
-        display: inline-block;
-    }
+a.button {
+  display: inline-block;
 }

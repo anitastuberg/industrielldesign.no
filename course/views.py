@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from authentication.models import Profile
-from courses.forms import CreateCourseForm, CreateCourseReviewForm
-from courses.models import Course, CourseReview, CourseLink
+from .forms import CreateCourseForm, CreateCourseReviewForm
+from .models import Course, CourseReview, CourseLink
 
 
 def courses(request):

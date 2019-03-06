@@ -1,21 +1,21 @@
 /*
-Error: File to import not found or unreadable: base/containers.
-        on line 10 of main.scss
+Error: File to import not found or unreadable: components/_cards.
+        on line 24 of main.scss
 
-5: 'base/mixins',
-6: 'base/variables',
-7: 'base/css-reset',
-8: 'base/typography',
-9: 'base/global',
-10: 'base/containers',
-11: 
-12: // Grid
-13: 'grid/grid',
-14: 'grid/flex',
-15: 
+19: 'components/hamburger',
+20: 'components/components',
+21: 'components/text-editor',
+22: 'components/tables',
+23: 'components/input',
+24: 'components/_cards',
+25: 
+26: // Pages:
+27: 'pages/projects',
+28: 'pages/event-page',
+29: 'pages/404',
 
 Backtrace:
-main.scss:10
+main.scss:24
 /Library/Ruby/Gems/2.3.0/gems/sass-3.5.2/lib/sass/tree/import_node.rb:67:in `rescue in import'
 /Library/Ruby/Gems/2.3.0/gems/sass-3.5.2/lib/sass/tree/import_node.rb:44:in `import'
 /Library/Ruby/Gems/2.3.0/gems/sass-3.5.2/lib/sass/tree/import_node.rb:28:in `imported_file'
@@ -53,4 +53,4 @@ main.scss:10
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: base/containers.\A         on line 10 of main.scss\A \A 5: 'base/mixins',\A 6: 'base/variables',\A 7: 'base/css-reset',\A 8: 'base/typography',\A 9: 'base/global',\A 10: 'base/containers',\A 11: \A 12: // Grid\A 13: 'grid/grid',\A 14: 'grid/flex',\A 15: "; }
+  content: "Error: File to import not found or unreadable: components/_cards.\A         on line 24 of main.scss\A \A 19: 'components/hamburger',\A 20: 'components/components',\A 21: 'components/text-editor',\A 22: 'components/tables',\A 23: 'components/input',\A 24: 'components/_cards',\A 25: \A 26: // Pages:\A 27: 'pages/projects',\A 28: 'pages/event-page',\A 29: 'pages/404',"; }

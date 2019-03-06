@@ -2,6 +2,7 @@
   position: relative;
   margin-bottom: 2rem;
   width: 100%;
+  min-height: 48px;
 
   label {
     position: absolute;
@@ -49,6 +50,36 @@
   textarea {
     resize: vertical;
     min-height: 6rem;
+  }
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    ~ label {
+      pointer-events: all;
+      padding-left: 2rem;
+      cursor: pointer;
+      @include no-select;
+      left: 0;
+    }
+
+    &:checked + .checkmark {
+      background-image: url('../img/icons/checkbox_checked.png');
+    }
+  }
+  .checkmark {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    height: 32px;
+    width: 32px;
+    background-image: url('../img/icons/checkbox_unchecked.png');
+    background-position: center;
+    background-size: 100%;
+    pointer-events: none;
   }
 
   .errorlist {

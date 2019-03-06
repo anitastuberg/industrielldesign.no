@@ -1,122 +1,23 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{%load staticfiles %} 
+{% load staticfiles %}
 
-{% block page_title %}Prosjekter{% endblock %} 
-{% block content %} 
-{% include 'components/navbar.html' %}
+{% block page_title %}Prosjekter{% endblock %}
 
-
-<!-- TODO Extend to include multiple images -->
-<img id="thumbnail" class="close" src="" alt="">
-<div id="content" class="close">
-    <a href="#!" class="tilbake">Tilbake</a>
-    <h1 id="title">{{ project.title }}</h1>
-    <p id="description"></p>
-</div>
-<div id="extra-info" class="close">
-    <h3 id="course"></h3>
-    <p id="creator"></p>
-</div>
-
-
-<div class="container nav" id="project-grid">
-    {% for project in projects %}
-    <a class="project-image close" href="#{{project.slug}}+detaljer" data-slug="{{ project.slug }}">
-        <img src="{{ project.thumbnail.url }}" alt="">
-        <div class="description">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.creator }}</p>
-        </div>
-    </a>
-    {% endfor %}
-</div>
-
-{% endblock content %}
+{% block content %}
+    {% include 'navbar.html' %}
+    <div class="container--nav" id="project-page">
+        {% for project in projects %}
+            <div class="project-image">
+                <img class="dynamic-shadow" src="{{ project.thumbnail.url }}">
+                <div class="description">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
 {% block javascript %}
-
-<script>
-    $(function() {
-        let data;
-        let body = $('body');
-        let extraInfo = $('#extra-info');
-        let content = $('#content');
-
-        let title = $('#title');
-        let description = $('#description');
-        let thumbnail = $('#thumbnail');
-        let course = $('#course');
-        let creator = $('#creator');
-
-        function openProjectDetail(data) {
-            console.log(data);
-            // Disabels scroll on page
-            body.css('overflow','hidden');
-            content.show(0).removeClass("close");
-            extraInfo.show(0).removeClass("close");
-            thumbnail.show(0).removeClass("close");
-
-            title.text(data.project_title);
-            description.text(data.project_description);
-            thumbnail.attr('src', data.project_image);
-            course.text(data.project_course + ' ' + data.project_semester + data.project_year);
-            creator.text(data.project_creator);
-
-        }
-        function closeProjectDetail(backUsed) {
-            body.attr('style','');
-            if (backUsed && /^((?!chrome|android).)*safari/i.test(navigator.userAgent)) { // Remove animation on safari
-                content.addClass("close").hide(0);
-                extraInfo.addClass("close").hide(0);
-                thumbnail.addClass("close").hide(0);    
-            }
-            content.addClass("close").delay(200).hide(0);
-            extraInfo.addClass("close").delay(200).hide(0);
-            thumbnail.addClass("close").delay(200).hide(0);
-        }
-
-        $('.tilbake').on('click', function(e) {
-            closeProjectDetail();
-        });
-        
-        $(window).on('popstate', function(event) {
-            if (!window.location.href.endsWith('+detaljer')) {
-                closeProjectDetail(true);
-            } else {
-                openProjectDetail(data);
-            }
-        });
-
-        function projectAjax(slug) {
-            $.ajax({
-                type: 'POST',
-                url: '{% url "projects" %}',
-                data: {
-                    'slug': slug,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function(data) {
-                    data = data;
-                    openProjectDetail(data);
-                },
-                error: function(data) {
-                    console.log("Error");
-                }
-            });
-        }
-
-        if (window.location.href.endsWith('+detaljer')) {
-            let slug = window.location.href.split('#');
-            slug = slug[1].split('+')[0];
-            projectAjax(slug);
-        }
-
-        $('.project-image').on('click', function(e) {
-            let slug = $(this).attr('data-slug');
-            console.log(slug);
-            projectAjax(slug);
-        });
-    });
-</script>
-
-{% endblock javascript %}
+    <script src="{% static "js/dynamicShadow.js" %}"></script>
+{% endblock %}

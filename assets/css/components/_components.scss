@@ -3,12 +3,18 @@
   position: relative;
   padding-left: 3rem;
   color: $text-color;
-  transition: transform 200ms ease-in-out;
   margin-bottom: 3rem;
   line-height: 1.4em;
 
-  &:hover {
-    transform: translateX(5px);
+  &::after, &::before {
+    transition: transform 200ms ease-in-out;
+  }
+
+  &:hover::before {
+    transform: translateX(-5px) rotate(135deg);
+  }
+  &:hover::after {
+    transform: translateX(-5px);
   }
 
   &::before {
@@ -22,7 +28,6 @@
     left: 0;
 
     transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
   }
 
   &::after {

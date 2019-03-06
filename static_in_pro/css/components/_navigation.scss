@@ -5,8 +5,6 @@ nav#main-navigation {
     top: 0;
     left: 0;
     z-index: 50;
-    border-bottom: 1px solid $primary-light;
-    border-top: 1px solid $primary-light;
     display: flex;
     align-items: center;
     &::before {
@@ -43,6 +41,11 @@ nav#main-navigation {
     .right-aligned {
         position: absolute;
         right: 0;
+    }
+
+    .user img {
+        width: 32px;
+        height: auto;
     }
 
     .nav-item {

@@ -3,7 +3,6 @@ $event-padding: 2rem;
 
 #student {
   .events {
-    width: 100vw;
   }
   .event {
     position: relative;
@@ -12,6 +11,27 @@ $event-padding: 2rem;
     padding: $event-padding $event-padding $event-padding calc(#{$event-image-size} + #{$event-padding} + 3rem);
     max-width: $lg;
     color: $text-color;
+    @media screen and (max-width: $sm) {
+      padding: $event-padding;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.05) translateY(-50%);
+      }
+      h3 {
+        transform: translateX(-5px);
+      }
+      .event-date > div {
+        transform: translateX(5px);
+      }
+      .dots .dot {
+
+      }
+      .days-left {
+        letter-spacing: 0.1em;
+      }
+    }
 
     img {
       position: absolute;
@@ -22,9 +42,25 @@ $event-padding: 2rem;
       height: $event-image-size;
       object-fit: cover;
       box-shadow: $high-shadow;
+      transition: transform 400ms ease-in-out;
+      &.jubileum {
+        border: #D4AF37 4px solid;
+      }
+      @media screen and (max-width: $sm) {
+        display: none;
+      }
+    }
+
+    .days-left {
+      transition: letter-spacing 500ms ease-in-out;
+    }
+
+    h3, img, .event-date > div {
+      transition: transform 500ms ease-in-out;
     }
 
     h3 {
+      @include text-wrap;
     }
 
     .dots {
@@ -37,6 +73,7 @@ $event-padding: 2rem;
         height: 6px;
         background-color: $accent;
         border-radius: 12px;
+        transition: margin-right 500ms ease-in-out;
         &:nth-child(7n) {
           margin-right: 8px;
         }
