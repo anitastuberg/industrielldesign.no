@@ -1,1 +1,1 @@
-web: gunicorn industrielldesign.wsgi --log-file -
+web: gunicorn industrielldesign.prod_wsgi --log-file -
