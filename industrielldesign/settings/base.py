@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'otmxj!sqb^b8$sdv@o-2&iiatwa0@bb6)rz$$1j6#hamw&jfn_'
 
-ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldesign.no', 'localhost']
+ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldesign.no', 'localhost', 'industrielldesign.herokuapp.com']
 
 AUTH_USER_MODEL = 'authentication.Profile'
 
