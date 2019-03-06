@@ -4,7 +4,7 @@ import psycopg2
 from industrielldesign.settings.base import *
 
 # Override base.py settings here
-DEBUG = False
+DEBUG = True
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
