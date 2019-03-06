@@ -1,4 +1,6 @@
 django==2.0.1
 Pillow
 django-imagekit
-faker
+mixer
+gunicorn
+django-heroku

@@ -1,0 +1,35 @@
+<div class="input-field fluid course-search">
+    <input id="course-search" type="text" autocomplete=""
+           placeholder="." v-model="searchQuery"
+           @input="searchCourses()"
+    >
+    <label for="course-search">Søk på fagnavn eller fagkode...</label>
+    <div class="suggestions-list">
+        <div class="suggestion" v-for="course in courseList">
+            [{ course }]
+        </div>
+    </div>
+</div>
+
+<script>
+    let courseSearch = new Vue({
+        el: '.course-search',
+        delimiters: ['[{','}]'],
+        data: {
+            'courseList': [],
+            'selectedCourse': '',
+            'searchQuery': ''
+        },
+        methods: {
+            changeCourse: function() {
+                this.selectedCourse = 'Testing';
+            },
+            searchCourses: function() {
+                console.log(this.searchQuery);
+                if (this.searchQuery.length >= 3) {
+                    this.courseList.push(this.searchQuery)
+                }
+            }
+        }
+    });
+</script>
