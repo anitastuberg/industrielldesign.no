@@ -6,9 +6,8 @@ from industrielldesign.settings.base import *
 # Override base.py settings here
 DEBUG = True
 
-DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # HTTPS
 CSRF_COOKIE_SECURE = True
@@ -20,5 +19,3 @@ X_FRAME_OPTIONS = 'DENY'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
