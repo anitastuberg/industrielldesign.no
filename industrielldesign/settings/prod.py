@@ -1,13 +1,17 @@
-import dj_database_url
-import psycopg2
-
 from industrielldesign.settings.base import *
 
 # Override base.py settings here
-DEBUG = True
+DEBUG = False
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'LeonardoLinjefor$industrielldesign',
+        'USER': 'LeonardoLinjefor',
+        'PASSWORD': config.DATABASE_PASSWORD,
+        'HOST': 'LeonardoLinjeforening.mysql.pythonanywhere-services.com'
+    }
+}
 
 # HTTPS
 CSRF_COOKIE_SECURE = True

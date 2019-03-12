@@ -14,7 +14,7 @@ import os
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import django_heroku
+from . import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,7 +34,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "mail.uniweb.no"
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = "ikkesvar@industrielldesign.no"
-EMAIL_HOST_PASSWORD = 'Jwa!6dq95xj^gvID'
+EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
 EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -142,5 +142,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_in_pro')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-django_heroku.settings(locals())
