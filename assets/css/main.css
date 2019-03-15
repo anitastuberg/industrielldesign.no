@@ -72,7 +72,6 @@ h6 {
 h1 {
   font-size: 3rem;
   font-weight: 300;
-  text-transform: uppercase;
   letter-spacing: .1em; }
   @media screen and (max-width: 48em) {
     h1 {
@@ -3268,6 +3267,21 @@ tbody td {
     cursor: pointer;
     transform: scale(1.01);
     box-shadow: -20px 20px 35px rgba(52, 79, 87, 0.24); }
+
+.course-search {
+  z-index: 2; }
+  .course-search .autocomplete {
+    position: absolute;
+    left: 0;
+    top: 48px;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+    .course-search .autocomplete div {
+      padding: 1rem 1rem;
+      cursor: pointer; }
+      .course-search .autocomplete div:hover, .course-search .autocomplete div.active-item {
+        background-color: #D0EAF1; }
 
 #project-page {
   padding: 10% 0;
