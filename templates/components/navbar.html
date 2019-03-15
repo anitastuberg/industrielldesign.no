@@ -14,6 +14,8 @@
            href="{% url 'students' %}">Student</a>
         <a class="nav-item" {% if 'project' in request.path %}class="selected"{% endif %}
            href="{% url 'projects' %}">Prosjekter</a>
+        <a class="nav-item" {% if 'jobb' in request.path %}class="selected"{% endif %}
+           href="{% url 'job' %}">Jobb</a>
         <a class="nav-item" {% if 'wiki' in request.path %}class="selected"{% endif %}
            href="">Fag</a>
         <a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}

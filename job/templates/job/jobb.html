@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'components/navbar.html' %}
+    <div id="job" class="container nav">
+        <div class="stilllingsannonser">
+            {% for job in jobs %}
+            <div class="annonse">
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
