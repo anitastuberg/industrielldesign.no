@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load days_until %}
+
+{% block content %}
+    {% include 'components/navbar.html' %}
+    <div id="job" class="container nav narrow">
+        <div class="stilllingsannonser">
+            {% for job in jobs %}
+            <div class="annonse">
+                <h3>{{ job.title }}</h3>
+                <p class="beskrivelse">{{ job.description }}</p>
+                <p class="deadline"><span class="label">Frist: </span>{{ job.deadline | date:'d. F' }}</p>
+                <p class="label">{{ job.deadline|days_until }} dager igjen</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
