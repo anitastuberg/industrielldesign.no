@@ -1,7 +1,7 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
-from courses.add_courses_to_db import readThroughNTNUCourses
-from courses.models import Course
+from courses.management.commands.add_courses_to_db import readThroughNTNUCourses
+
 
 class Command(BaseCommand):
     help = 'Adds all ntnu courses to db'

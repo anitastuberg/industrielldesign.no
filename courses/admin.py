@@ -20,7 +20,7 @@ class CourseReviewAdmin(admin.ModelAdmin):
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ["__str__"]
+    list_display = ["__str__", 'display_without_reviews', 'review_count']
     fields = ('name', 'course_code', 'class_year', 'reviews')
     filter_horizontal = ['reviews']
     ordering = ('-display_without_reviews', '-reviews')
