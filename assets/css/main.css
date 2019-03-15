@@ -3802,4 +3802,14 @@ tbody td {
   color: #6E787A;
   text-transform: capitalize; }
 
+#job .stilllingsannonser .annonse {
+  margin-bottom: 4rem; }
+  #job .stilllingsannonser .annonse h3 {
+    margin-bottom: 2rem; }
+  #job .stilllingsannonser .annonse p.beskrivelse {
+    margin-bottom: 2rem; }
+  #job .stilllingsannonser .annonse .label {
+    font-weight: 300;
+    text-transform: uppercase; }
+
 /*# sourceMappingURL=main.css.map */

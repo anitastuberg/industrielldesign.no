@@ -4,7 +4,7 @@ from job.models import Job
 
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ["__str__"]
+    list_display = ["__str__", 'deadline']
 
     class Meta:
         model = Job
