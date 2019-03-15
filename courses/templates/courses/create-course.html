@@ -1,19 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="container nav narrow">
-        {% include 'components/course-search.html' %}
-        <form method="post">
+    <div id="create-course" class="container">
+        <a href="{% url 'courses' %}" class="tilbake">Tilbake</a>
+        <form method="post" novalidate>
             {% csrf_token %}
-            <div class="input-field">
+            <div style="display: none">
                 {{ form.name }}
-                <label for="{{ form.name.id_for_label }}">Fag</label>
+                {{ form.course_code }}d
             </div>
+            {% include 'components/course-search.html' %}
             <div class="input-field">
-                {{ form.course_code }}
-                <label for="{{ form.course_code.id_for_label }}">Fagkode</label>
+                {{ form.class_year }}
             </div>
             <input type="submit" class="button cta" value="Opprett fag">
         </form>
     </div>
 {% endblock content %}
+{% block javascript %}
+    <script src="{% static '/js/ajaxSetup.js' %}"></script>
+    <script>
+        $('form').submit(function (e) {
+            e.preventDefault();
+            let courseInput = $('#course-input');
+            let courseCode = courseInput.data('course-code');
+            let courseName = courseInput.data('course-name');
+            $('#id_course_code').val(courseCode);
+            $('#id_name').val(courseName);
+            $(this).unbind('submit').submit();
+        });
+    </script>
+{% endblock %}

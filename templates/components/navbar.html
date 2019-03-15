@@ -17,7 +17,7 @@
         <a class="nav-item" {% if 'jobb' in request.path %}class="selected"{% endif %}
            href="{% url 'job' %}">Jobb</a>
         <a class="nav-item" {% if 'wiki' in request.path %}class="selected"{% endif %}
-           href="">Fag</a>
+           href="{% url 'courses' %}">Fag</a>
         <a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}
            href="{% url 'about' %}">Kontakt</a>
     </div>

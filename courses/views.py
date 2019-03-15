@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 from authentication.models import Profile
@@ -19,19 +19,22 @@ def create_course(request):
     if request.method == 'GET':
         return render(request, 'courses/create-course.html', {'form': form})
 
-    else: #POST
-        form = CreateCourseForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            course_code = form.cleaned_data['course_code']
-            if Course.objects.filter(course_code=course_code).exists():
-                existing_course = Course.objects.get(course_code=course_code)
-                existing_course.display_without_reviews = True
-                existing_course.save()
-            else:
-                Course.objects.create(name=name, course_code=course_code, display_without_reviews=True)
-            return redirect('courses')
+    else:  # POST
+        if request.POST.get('query'):  # ajax request
+            query = request.POST.get('query').upper()
+            course_suggestions = Course.objects.filter(Q(name__contains=query) | Q(course_code__contains=query)).values('name', 'course_code')
+            return JsonResponse({'suggestions': list(course_suggestions)[:10]})
         else:
+            form = CreateCourseForm(request.POST)
+            if form.is_valid():
+                course_code = form.cleaned_data['course_code']
+                if Course.objects.filter(course_code=course_code).exists():
+                    existing_course = Course.objects.get(course_code=course_code)
+                    existing_course.display_without_reviews = True
+                    existing_course.class_year = form.cleaned_data['class_year']
+                    existing_course.save()
+                    return redirect('courses')
+
             return render(request, 'courses/create-course.html', {'form': form})
 
 

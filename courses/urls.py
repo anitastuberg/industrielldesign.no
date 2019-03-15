@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from courses import views
 
 urlpatterns = [
     path('fag', views.courses, name="courses"),

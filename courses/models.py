@@ -35,7 +35,7 @@ class Course(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             # Only set the slug when the object is created.
-            self.slug = slugify(self.name)  # Or whatever you want the slug to use
+            self.slug = slugify(self.course_code)  # Or whatever you want the slug to use
         super(Course, self).save(*args, **kwargs)
 
 
