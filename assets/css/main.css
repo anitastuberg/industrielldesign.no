@@ -3658,7 +3658,7 @@ tbody td:hover:before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: calc(50% + 2rem);
+    left: calc(50% + 3rem);
     padding-right: 5%;
   }
   #project-page .project-image img {
@@ -3670,10 +3670,11 @@ tbody td:hover:before {
     object-fit: cover;
   }
   #project-page .project-image:nth-child(even) .description {
-    right: calc(50% + 2rem);
+    right: calc(50% + 3rem);
     left: auto;
     text-align: right;
     padding-left: 5%;
+    padding-right: 0;
   }
   #project-page .project-image:nth-child(even) img {
     left: 50%;

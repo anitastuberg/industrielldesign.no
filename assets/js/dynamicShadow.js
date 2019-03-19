@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    let shadowProject = $('.dynamic-shadow-project');
-    let shadowEvent = $('.dynamic-shadow-event');
+    let shadowLarge = $('.dynamic-shadow-large');
+    let shadowSmall = $('.dynamic-shadow-small');
 
 
     function changeShadow(e, item, sl, spred) {
@@ -19,16 +19,23 @@ $(document).ready(function () {
         })
     }
 
+    function createShadowEvent(e) {
+        if (shadowLarge.length > 0) {
+                changeShadow(e, shadowLarge, 200, 200);
+            }
+            if (shadowSmall.length > 0) {
+                changeShadow(e, shadowSmall, 70, 100);
+            }
+    }
+
     if (window.matchMedia("(max-width: 1000px)")) {
 
         document.onmousemove = function (e) {
-
-            if (shadowProject.length > 0) {
-                changeShadow(e, shadowProject, 200, 200);
-            }
-            if (shadowProject.length > 0) {
-                changeShadow(e, shadowEvent, 70, 100);
-            }
+            createShadowEvent(e);
         };
+        $(window).scroll(function(e) {
+
+            createShadowEvent(e);
+        })
     }
 });
