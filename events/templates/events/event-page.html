@@ -45,7 +45,7 @@
                                     <input type="password" name="password" id="password"
                                            autocomplete="current-password">
                                     <label for="password">Passord</label>
-                                    <span class="error"></span>
+                                    <ul class="errorlist password"></ul>
                                 </div>
                                 <input class="button cta" type="submit" value="Logg inn for å melde deg på">
                                 <a href="{% url 'register' %}" class="link">Eller registrer en ny bruker</a>
@@ -95,6 +95,7 @@
 
         $('#event-login-field').on('submit', function (e) {
             e.preventDefault();
+            $('.password.errorlist').empty();
 
             $.ajax({
                 type: 'POST',
@@ -105,7 +106,12 @@
                     'waiting_list': $('#waiting-list').data("waiting-list")
                 },
                 success: function (data) {
-                    loggedIn(data)
+                    if (data.loginSuccess) {
+                        loggedIn(data)
+                    } else {
+                        $('.password.errorlist').append(`<li>${data.errorMessage}</li>`);
+                        $('#password').val('');
+                    }
                 },
                 error: function (data) {
                     console.log("Error");

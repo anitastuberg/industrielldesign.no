@@ -3,12 +3,13 @@ from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.views.generic import View
 from django.core.exceptions import ValidationError
+
+from authentication.models import Profile
 from .forms import LoginForm, RegisterForm
 from django.core.mail import send_mail
 
-# Create your views here.
-class LoginFormView(View):
 
+class LoginFormView(View):
     template_name = 'home/login.html'
     form_class = LoginForm
 
@@ -20,22 +21,26 @@ class LoginFormView(View):
         form = self.form_class(request.POST)
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            login(request, user)
-            user.update_class_year()
-            return redirect('students')
+        if not Profile.objects.filter(email=email).exists():
+            form.add_error('email', 'Fant ingen bruker med den eposten')
+        else:
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                user.update_class_year()
+                return redirect('students')
     
+            form.add_error('password', 'Feil brukernavn eller passord')
         # Refreshes the login form if not correct
-        return  render(request, self.template_name, {'form': form})
-    
+        return render(request, self.template_name, {'form': form})
+
         
 def send_confiramtion_email(user_email):
     send_mail(
-        "Velkommen til Leonardos nettside", # Subject
-        "Hei!\nVelkommen til Leonardos nettside. Her kan du melde deg på arrangementer, legge ut prosjektene dine på prosjektsiden og skrive artikler til wikisiden vår.\n\nMvh. Leonardo linjeforening", # Message
-        settings.EMAIL_HOST_USER, # From email
-        [user_email], # To email
+        "Velkommen til Leonardos nettside",  # Subject
+        "Hei!\nVelkommen til Leonardos nettside. Her kan du melde deg på arrangementer, legge ut prosjektene dine på prosjektsiden og skrive artikler til wikisiden vår.\n\nMvh. Leonardo linjeforening",  # Message
+        settings.EMAIL_HOST_USER,  # From email
+        [user_email],  # To email
         fail_silently=False,
     )
 

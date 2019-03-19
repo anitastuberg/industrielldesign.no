@@ -168,6 +168,7 @@ def event(request, event_slug):
             # If user does not exist
             else:
                 context['loginSuccess'] = False
+                context['errorMessage'] = 'Feil epost eller passord, prøv igjen'
 
         elif not request.POST.get('email'):  # If request doesn't contain an email. It is a sign-up request
             if event.registration_required and checkClass(user, event) and (not context['not_open_yet']) and (not context['event_full']) and ((event.only_komite and user.is_komite) or (not event.only_komite)):

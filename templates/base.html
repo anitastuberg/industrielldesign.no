@@ -7,11 +7,15 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123511773-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'UA-123511773-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-123511773-1');
     </script>
 
     <meta charset="UTF-8">
@@ -21,17 +25,21 @@
     <title>{% block page_title %}{% endblock %} | Leonardo</title>
 
     <link rel="stylesheet" href="{% static '/css/main.css' %}">
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Montserrat:300,400,400i,700" rel="stylesheet">
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Montserrat:300,400,400i,700"
+          rel="stylesheet">
 
     <link rel="icon" type="image/png" href="{% static '/img/favicon/Logo_16.png' %}" sizes="16x16">
     <link rel="icon" type="image/png" href="{% static '/img/favicon/Logo_32.png' %}" sizes="32x32">
     <link rel="icon" type="image/png" href="{% static '/img/favicon/Logo_96.png' %}" sizes="96x96">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     {% block extra_head %}{% endblock extra_head %}
@@ -39,13 +47,14 @@
 </head>
 
 <body class="{% block body_class %}{% endblock body_class %}">
-    {% block content %}
+{% block content %}
 
-    {% endblock content %}
+{% endblock content %}
 
-    <script src="{% static 'js/modal.js' %}"></script>
-    {% block javascript %}
-    {% endblock %}
+<script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/navbar.js' %}"></script>
+{% block javascript %}
+{% endblock %}
 </body>
 
 </html>
