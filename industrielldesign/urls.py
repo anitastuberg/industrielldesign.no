@@ -13,7 +13,7 @@ urlpatterns = [
     path('', include('projects.urls')),
     path('', include('authentication.urls')),
     path('', include('profilepage.urls')),
-    path('', include('courses.urls')),
+    # path('', include('courses.urls')),
     path('', include('job.urls'))
 ]
 
