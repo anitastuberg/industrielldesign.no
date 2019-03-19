@@ -1,7 +1,7 @@
 from industrielldesign.settings.base import *
 
 # Override base.py settings here
-DEBUG = True
+DEBUG = False
 
 TEMPLATES = [
     {
