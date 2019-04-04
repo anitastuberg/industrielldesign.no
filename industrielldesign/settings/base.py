@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'courses',
     'job',
     # Third party apps:
-    'imagekit'
+    'imagekit',
+    'storages'
 
 ]
 
