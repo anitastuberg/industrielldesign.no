@@ -14,7 +14,7 @@ import os
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from . import config
+# from . import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,7 +34,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "mail.uniweb.no"
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = "ikkesvar@industrielldesign.no"
-EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
+EMAIL_HOST_PASSWORD = 'Jwa!6dq95xj^gvID'
 EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
