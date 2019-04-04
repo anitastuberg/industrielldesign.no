@@ -7,7 +7,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/LeonardoLinjeforening/industrielldesign.no/templates'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
