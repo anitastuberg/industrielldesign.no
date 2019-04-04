@@ -3,6 +3,7 @@ from industrielldesign.settings.base import *
 # Override base.py settings here
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 TEMPLATES = [
     {

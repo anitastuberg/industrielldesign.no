@@ -35,7 +35,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "mail.uniweb.no"
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = "ikkesvar@industrielldesign.no"
-EMAIL_HOST_PASSWORD = 'Jwa!6dq95xj^gvID'
 EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
