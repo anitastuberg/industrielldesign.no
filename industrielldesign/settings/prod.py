@@ -1,7 +1,8 @@
 from industrielldesign.settings.base import *
 
 # Override base.py settings here
-DEBUG = False
+DEBUG = os.environ.get('DEBUG_VALUE')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 TEMPLATES = [
     {
