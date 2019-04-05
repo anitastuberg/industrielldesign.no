@@ -19,6 +19,7 @@ class Event(models.Model):
         (YEAR+1, '4. og 5. klasse'),
         (YEAR, '5. klasse')
     ]
+
     def get_class_year(self, graduation_year):
         return graduation_year - self.YEAR
 

@@ -9,6 +9,7 @@ static_in_pro/*
 .vscode
 *.scssc
 *.sqlite3
+db.sqlite3
 .jshintrc
 
 # Created by https://www.gitignore.io/api/macos,python,windows,pycharm

@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from . import config
+# from . import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,7 +35,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "mail.uniweb.no"
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = "ikkesvar@industrielldesign.no"
-EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
 EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'courses',
     'job',
     # Third party apps:
-    'imagekit'
+    'imagekit',
+    'storages'
 
 ]
 
@@ -137,9 +138,11 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_in_pro')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
 
 # Django registration redux settings:
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+django_heroku.settings(locals())
