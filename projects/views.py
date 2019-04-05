@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
-from .models import Project
+from projects.forms import CreateProjectForm
+from .models import Project, ProjectImage
+
 
 # Create your views here.
 def projects(request):
@@ -30,3 +32,28 @@ def projects(request):
         }
 
         return JsonResponse(response_data)
+
+
+def create_project(request):
+    context = {
+        'form': CreateProjectForm()
+    }
+    if request.method == 'GET':
+        return render(request, 'projects/create-project.html', context)
+    else:
+        form = CreateProjectForm(request.POST, request.FILES or None)
+        context['form'] = form
+        if form.is_valid() and len(request.FILES.getlist('images')) <= 10:
+            project = form.save(commit=False)
+            files = request.FILES.getlist('images')
+            project.save()
+
+            try:
+                for f in files:
+                    ProjectImage.objects.create(image=f, project=project)
+            except:
+                project.delete()
+                return render(request, 'apartments/create-apartment.html', context)
+            return redirect('projects')
+        else:
+            return render(request, 'apartments/create-apartment.html')
