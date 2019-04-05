@@ -13,11 +13,12 @@ urlpatterns = [
     path('', include('projects.urls')),
     path('', include('authentication.urls')),
     path('', include('profilepage.urls')),
-    # path('', include('courses.urls')),
+    path('', include('courses.urls')),
     path('', include('job.urls'))
 ]
 
-handler404 = 'home.views.page_not_found'
+# handler404 = 'industrielldesign.views.handler404'
+# handler500 = 'industrielldesign.views.handler500'
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

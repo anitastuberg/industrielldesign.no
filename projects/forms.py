@@ -2,17 +2,16 @@ from django import forms
 
 from .models import Project
 
+
 class CreateProjectForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CreateProjectForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs['autocomplete'] = "off"
+        self.fields['title'].widget.attrs['placeholder'] = "."
+        self.fields['description'].widget.attrs['placeholder'] = "."
+        self.fields['creator'].widget.attrs['placeholder'] = "."
+        self.fields['course'].widget.attrs['placeholder'] = "."
 
     class Meta:
         model = Project
-        fields = ['title', 'description', 'creator', 'course', 'semester', 'year', 'thumbnail']
-
-    def clean_image(self):
-        image = self.cleaned_data.get('image', False)
-        if image:
-            if image.size > 20*1024*1024:
-                raise ValidationError("Image file too large ( > 20mb )")
-            return image
-        else:
-            raise ValidationError("Couldn't read uploaded image")
+        fields = ['title', 'description', 'creator', 'course', 'semester', 'year']
