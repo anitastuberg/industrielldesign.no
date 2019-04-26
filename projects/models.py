@@ -5,9 +5,12 @@ from django.conf import settings
 from django.template.defaultfilters import slugify  
 import datetime
 
+
 # Create your models here.
 class ProjectImage(models.Model):
     image = ProcessedImageField(upload_to='projectimages/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    project = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True, null=True)
+
 
 class Project(models.Model):
 
@@ -28,15 +31,13 @@ class Project(models.Model):
     semester = models.CharField(max_length=2, choices=SEMESTER_CHOICES, default=HØST)
     course = models.CharField(max_length=150, blank=False, null=False)
     
-    thumbnail = ProcessedImageField(upload_to='projects/', processors=[ResizeToFit(1500, 1500, False)], format='JPEG', options={'quality': 85})
-    
     creation_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     slug = models.SlugField(max_length=60, blank=True)
 
     def __str__(self):
-        return self.title;
+        return self.title
 
     def save(self, *args, **kwargs):
         if not self.id:

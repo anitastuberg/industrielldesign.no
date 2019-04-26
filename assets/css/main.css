@@ -3308,10 +3308,6 @@ tbody td {
   padding: 10% 0;
   width: 100%;
   overflow-x: hidden; }
-  #project-page .project-image:nth-child(odd) .description {
-    padding-right: 5%; }
-  #project-page .project-image:nth-child(even) .description {
-    padding-left: 5%; }
   @media screen and (max-width: 1000px) {
     #project-page .project-image {
       width: 100%;
@@ -3320,11 +3316,10 @@ tbody td {
       padding-top: 5rem; }
       #project-page .project-image .description {
         position: relative;
-        left: 10%; }
+        padding: 0 10% 0 10%;
+        text-align: justify; }
       #project-page .project-image:nth-child(even) .description {
-        right: 10%;
-        left: auto;
-        text-align: right; }
+        direction: rtl; }
       #project-page .project-image img {
         display: block;
         position: relative;
@@ -3342,7 +3337,8 @@ tbody td {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        left: calc(50% + 2rem); }
+        left: calc(50% + 3rem);
+        padding-right: 5%; }
       #project-page .project-image img {
         position: absolute;
         right: 50%;
@@ -3351,9 +3347,11 @@ tbody td {
         width: var(--image-size);
         object-fit: cover; }
       #project-page .project-image:nth-child(even) .description {
-        right: calc(50% + 2rem);
+        right: calc(50% + 3rem);
         left: auto;
-        text-align: right; }
+        text-align: right;
+        padding-left: 5%;
+        padding-right: 0; }
       #project-page .project-image:nth-child(even) img {
         left: 50%;
         right: auto; }
@@ -3693,101 +3691,105 @@ tbody td {
   height: auto;
   margin-bottom: 1rem; }
 
-.about-page .about-image, .about-page .about-text {
-  float: left; }
-.about-page .about-image {
-  width: 40%;
-  height: calc(100vh - 64px);
-  margin-bottom: 150px; }
-  @media screen and (max-width: 1000px) {
-    .about-page .about-image {
-      width: 10%; } }
-  @media screen and (max-width: 1000px) {
-    .about-page .about-image {
-      display: none; } }
-  .about-page .about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; }
-.about-page .about-text {
-  width: 60%;
-  padding: 0 5%;
-  margin-top: 3%;
-  margin-bottom: 150px; }
-  @media screen and (max-width: 1000px) {
-    .about-page .about-text {
-      width: 90%; } }
-.about-page h1 {
-  color: #3593B1;
-  font-weight: bold;
-  line-height: 1em;
-  font-size: 3rem; }
-  @media screen and (min-width: 600px) {
-    .about-page h1 {
-      font-size: 4.666666667rem; } }
-.about-page h5 {
-  position: relative;
-  font-size: 1.555555556rem; }
-.about-page .location {
-  position: relative;
-  margin: 50px 0;
-  font-weight: bold; }
-  .about-page .location i {
-    position: absolute;
-    top: 5px; }
-  .about-page .location p {
-    margin-left: 2rem;
-    line-height: 1.5em; }
-.about-page .styremedlemmer {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto; }
-  @media screen and (min-width: 700px) {
-    .about-page .styremedlemmer {
-      left: 30px; } }
-  @media screen and (max-width: 700px) {
-    .about-page .styremedlemmer {
-      grid-template-columns: 1fr; } }
-  .about-page .styremedlemmer .styremedlem {
+.about-page {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0; }
+  .about-page .about-image, .about-page .about-text {
+    float: left; }
+  .about-page .about-image {
+    width: 40%;
+    height: calc(100vh - 64px);
+    margin-bottom: 150px; }
+    @media screen and (max-width: 1000px) {
+      .about-page .about-image {
+        width: 10%; } }
+    @media screen and (max-width: 1000px) {
+      .about-page .about-image {
+        display: none; } }
+    .about-page .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+  .about-page .about-text {
+    width: 60%;
+    padding: 0 5%;
+    margin-top: 3%;
+    margin-bottom: 150px; }
+    @media screen and (max-width: 1000px) {
+      .about-page .about-text {
+        width: 90%; } }
+  .about-page h1 {
+    color: #3593B1;
+    font-weight: bold;
+    line-height: 1em;
+    font-size: 3rem; }
+    @media screen and (min-width: 600px) {
+      .about-page h1 {
+        font-size: 4.666666667rem; } }
+  .about-page h5 {
     position: relative;
-    margin-bottom: 80px; }
+    font-size: 1.555555556rem; }
+  .about-page .location {
+    position: relative;
+    margin: 50px 0;
+    font-weight: bold; }
+    .about-page .location i {
+      position: absolute;
+      top: 5px; }
+    .about-page .location p {
+      margin-left: 2rem;
+      line-height: 1.5em; }
+  .about-page .styremedlemmer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; }
     @media screen and (min-width: 700px) {
-      .about-page .styremedlemmer .styremedlem:nth-child(even) {
-        top: 90px; } }
+      .about-page .styremedlemmer {
+        left: 30px; } }
     @media screen and (max-width: 700px) {
-      .about-page .styremedlemmer .styremedlem div {
-        text-align: center; } }
-    @media screen and (min-width: 1080px) {
-      .about-page .styremedlemmer .styremedlem div {
-        float: left; } }
-    .about-page .styremedlemmer .styremedlem div .styretittel {
-      font-size: 1.333333333rem;
-      font-weight: bold;
-      margin-bottom: 0;
-      margin-top: 1.5rem; }
-    .about-page .styremedlemmer .styremedlem div .email, .about-page .styremedlemmer .styremedlem div .phone {
-      font-size: .777777778rem; }
-    .about-page .styremedlemmer .styremedlem div i {
+      .about-page .styremedlemmer {
+        grid-template-columns: 1fr; } }
+    .about-page .styremedlemmer .styremedlem {
       position: relative;
-      font-size: 16px;
-      top: 2px;
-      margin-right: 8px; }
-    .about-page .styremedlemmer .styremedlem img {
-      box-shadow: 8px 8px #C4CACC;
-      margin-right: 40px;
-      width: 150px;
-      height: auto; }
+      margin-bottom: 80px; }
+      @media screen and (min-width: 700px) {
+        .about-page .styremedlemmer .styremedlem:nth-child(even) {
+          top: 90px; } }
       @media screen and (max-width: 700px) {
-        .about-page .styremedlemmer .styremedlem img {
-          display: block;
-          margin: 0 auto; } }
+        .about-page .styremedlemmer .styremedlem div {
+          text-align: center; } }
       @media screen and (min-width: 1080px) {
-        .about-page .styremedlemmer .styremedlem img {
+        .about-page .styremedlemmer .styremedlem div {
           float: left; } }
+      .about-page .styremedlemmer .styremedlem div .styretittel {
+        font-size: 1.333333333rem;
+        font-weight: bold;
+        margin-bottom: 0;
+        margin-top: 1.5rem; }
+      .about-page .styremedlemmer .styremedlem div .email, .about-page .styremedlemmer .styremedlem div .phone {
+        font-size: .777777778rem; }
+      .about-page .styremedlemmer .styremedlem div i {
+        position: relative;
+        font-size: 16px;
+        top: 2px;
+        margin-right: 8px; }
+      .about-page .styremedlemmer .styremedlem img {
+        box-shadow: 8px 8px #C4CACC;
+        margin-right: 40px;
+        width: 150px;
+        height: auto; }
+        @media screen and (max-width: 700px) {
+          .about-page .styremedlemmer .styremedlem img {
+            display: block;
+            margin: 0 auto; } }
+        @media screen and (min-width: 1080px) {
+          .about-page .styremedlemmer .styremedlem img {
+            float: left; } }
 
 #profile-page {
   padding: 5% 10%;
