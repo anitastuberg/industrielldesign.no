@@ -13,7 +13,7 @@
     {% endif %}
         {% for project in projects %}
             <div class="project-image">
-                <img class="dynamic-shadow" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
+                <img class="dynamic-shadow-large" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
                 <div class="description">
                     <h3>{{ project.title }}</h3>
                     <p>{{ project.description }}</p>
@@ -24,4 +24,5 @@
 {% endblock %}
 {% block javascript %}
     <script src="{% static "js/dynamicShadow.js" %}"></script>
+    <script src="{% static "js/projects.js" %}"></script>
 {% endblock %}

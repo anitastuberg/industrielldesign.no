@@ -3308,10 +3308,6 @@ tbody td {
   padding: 10% 0;
   width: 100%;
   overflow-x: hidden; }
-  #project-page .project-image:nth-child(odd) .description {
-    padding-right: 5%; }
-  #project-page .project-image:nth-child(even) .description {
-    padding-left: 5%; }
   @media screen and (max-width: 1000px) {
     #project-page .project-image {
       width: 100%;
@@ -3320,11 +3316,10 @@ tbody td {
       padding-top: 5rem; }
       #project-page .project-image .description {
         position: relative;
-        left: 10%; }
+        padding: 0 10% 0 10%;
+        text-align: justify; }
       #project-page .project-image:nth-child(even) .description {
-        right: 10%;
-        left: auto;
-        text-align: right; }
+        direction: rtl; }
       #project-page .project-image img {
         display: block;
         position: relative;
@@ -3342,7 +3337,8 @@ tbody td {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        left: calc(50% + 2rem); }
+        left: calc(50% + 3rem);
+        padding-right: 5%; }
       #project-page .project-image img {
         position: absolute;
         right: 50%;
@@ -3351,9 +3347,11 @@ tbody td {
         width: var(--image-size);
         object-fit: cover; }
       #project-page .project-image:nth-child(even) .description {
-        right: calc(50% + 2rem);
+        right: calc(50% + 3rem);
         left: auto;
-        text-align: right; }
+        text-align: right;
+        padding-left: 5%;
+        padding-right: 0; }
       #project-page .project-image:nth-child(even) img {
         left: 50%;
         right: auto; }
