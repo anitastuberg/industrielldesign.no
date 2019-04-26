@@ -1,0 +1,70 @@
+{% load static %}
+<div class="input-field fluid course-search" @keydown="nextItem($event)">
+    <input type="text" id="course-input" v-model="courseQuery" @input="readQuery()" autocomplete="off" placeholder="."
+    :data-course-code="selectedCourse.course_code" :data-course-name="selectedCourse.name">
+    <label for="{{ form.name.id_for_label }}">Fag</label>
+    <div class="autocomplete" v-show="suggestions.length > 0">
+        <div v-for="(suggestion, index) in suggestions" @click="setSelectedCourse(suggestion)" :key='index'
+             :class='{"active-item": currentItem === index}'>
+            [{ suggestion.name }] - [{ suggestion.course_code }]
+        </div>
+    </div>
+</div>
+
+<script>
+    let courseSearch = new Vue({
+        el: '.course-search',
+        delimiters: ['[{', '}]'],
+        data: {
+            'suggestions': [],
+            'courseQuery': '',
+            'selectedCourse': {},
+            'currentItem': 0
+        },
+        methods: {
+            generateSelectedText: function(course) {
+              return `${course.name} - ${course.course_code}`
+            },
+            nextItem: function () {
+                if (event.keyCode === 38 && this.currentItem > 0) {
+                    this.currentItem--
+                } else if (event.keyCode === 40 && this.currentItem < this.suggestions.length - 1) {
+                    this.currentItem++
+                } else if (event.keyCode === 13) {
+                    this.selectedCourse = this.suggestions[this.currentItem];
+                    this.courseQuery = this.generateSelectedText(this.selectedCourse);
+                    this.suggestions = [];
+                    event.preventDefault();
+                }
+            },
+            setSelectedCourse: function (course) {
+                this.selectedCourse = course;
+                this.courseQuery = this.generateSelectedText(course);
+                this.suggestions = [];
+                $('#id_name').val(this.selectedCourse.name);
+                $('#id_course_code').val(this.selectedCourse.course_code);
+            },
+            readQuery: function () {
+                if (this.courseQuery.length >= 3) {
+                    this.searchCourses(this.courseQuery);
+                } else {
+                    this.suggestions = [];
+                }
+            },
+            searchCourses: function (query) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'create_course' %}',
+                    data: {
+                        'query': query,
+                    },
+                    success: function (data) {
+                        courseSearch.suggestions = data.suggestions;
+                    },
+                    error: function (data) {
+                    }
+                });
+            }
+        }
+    });
+</script>

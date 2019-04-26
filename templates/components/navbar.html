@@ -1,0 +1,33 @@
+{% load static %}
+
+<nav id="main-navigation">
+    <div id="hamburger">
+        <div class="bar"></div>
+        <div id="middle" class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <a href="{% url 'students' %}" id="leo-logo" class="nav-item">
+        <img src="{% static 'img/Logo/Inverse.svg' %}" alt="Leonardo-logoen">
+    </a>
+    <div class="left-aligned">
+        <a class="nav-item" {% if '' in request.path %}class="selected"{% endif %}
+           href="{% url 'students' %}">Student</a>
+        <a class="nav-item" {% if 'project' in request.path %}class="selected"{% endif %}
+           href="{% url 'projects' %}">Prosjekter</a>
+        {% comment %}<a class="nav-item" {% if 'jobb' in request.path %}class="selected"{% endif %}
+           href="{% url 'job' %}">Jobb</a>{% endcomment %}
+        {% comment %}<a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}
+           href="{% url 'courses' %}">Fag</a> {% endcomment %}
+        <a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}
+           href="{% url 'about' %}">Kontakt</a>
+    </div>
+
+    <div class="right-aligned">
+        {% if request.user.is_authenticated %}
+            <a class="nav-item user" href="{% url 'my_profile' %}"><img src="{% static 'img/icons/user.png' %}"></a>
+        {% else %}
+            <a class="register nav-item" href="{% url 'register' %}">Registrer ny bruker</a>
+            <a class="nav-item" id="login" href="/login">Logg in</a>
+        {% endif %}
+    </div>
+</nav>

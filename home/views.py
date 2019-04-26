@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render, redirect, get_object_or_404
 from events.models import Event
-from .models import Styremedlem, Komiteer, Jobb
+from .models import Styremedlem, Komiteer
 
 
 def index(request):
@@ -44,13 +44,6 @@ def komiteer(request):
         'komiteer': Komiteer.objects.all()
     }
     return render(request, 'home/komiteer.html', context)
-
-
-def jobb(request):
-    context = {
-        'Stillingsannonser': Jobb.objects.all()
-    }
-    return render(request, 'home/jobb.html', context)
 
 
 def terms(request):

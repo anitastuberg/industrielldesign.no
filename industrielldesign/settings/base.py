@@ -11,18 +11,21 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from . import config
+import django_heroku
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# from . import config
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.SECRET_KEY
+SECRET_KEY = 'otmxj!sqb^b8$sdv@o-2&iiatwa0@bb6)rz$$1j6#hamw&jfn_'
 
-ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldesign.no', 'localhost']
+ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldesign.no', 'localhost', 'industrielldesign.herokuapp.com']
 
 AUTH_USER_MODEL = 'authentication.Profile'
 
@@ -32,7 +35,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "mail.uniweb.no"
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = "ikkesvar@industrielldesign.no"
-EMAIL_HOST_PASSWORD = config.EMAIL_PASSWORD
 EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
@@ -54,9 +56,11 @@ INSTALLED_APPS = [
     'designsystem',
     'emails',
     'profilepage',
-    'course',
+    'courses',
+    'job',
     # Third party apps:
-    'imagekit'
+    'imagekit',
+    'storages'
 
 ]
 
@@ -75,7 +79,9 @@ ROOT_URLCONF = 'industrielldesign.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/LeonardoLinjeforening/industrielldesign.no/templates'],
+        'DIRS': [
+            'templates',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +93,13 @@ TEMPLATES = [
         },
     },
 ]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR,'..', 'db.sqlite3'),
+    }
+}
 
 WSGI_APPLICATION = 'industrielldesign.wsgi.application'
 
@@ -125,9 +138,11 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_in_pro')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
 
 # Django registration redux settings:
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+django_heroku.settings(locals())
