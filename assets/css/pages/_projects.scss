@@ -1,7 +1,24 @@
+#create-project {
+  margin-top: $nav-height;
+  top: $nav-height;
+}
+
 #project-page {
   padding: 10% 0;
   width: 100%;
-  overflow-x: hidden;
+
+  .project-image {
+    display: block;
+
+    img {
+      box-shadow: $high-shadow;
+    }
+
+    .description {
+      color: $white;
+      display: block;
+    }
+  }
 
   @media screen and (max-width: 1000px) {
     .project-image {
@@ -18,7 +35,7 @@
 
       &:nth-child(even) {
         .description {
-         direction: rtl;
+          direction: rtl;
         }
       }
 
@@ -32,6 +49,7 @@
       }
     }
   }
+  // Desktop
   @media screen and (min-width: 1000px) {
     .project-image {
       --image-size: 300px;
@@ -39,12 +57,39 @@
       width: 100%;
       height: var(--image-size);
 
+      &.active .description {
+        opacity: 1;
+      }
+
       .description {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         left: calc(50% + 3rem);
         padding-right: 5%;
+        opacity: 0;
+        transition: opacity $animation-duration $animation-ease;
+        overflow: hidden;
+        width: 40%;
+
+        p {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        h3, p {
+          transition: transform 200ms ease-in-out;
+          will-change: transform;
+          transform-origin: bottom left;
+        }
+
+        &:hover {
+          h3, p {
+            transform: skewX(-8deg);
+          }
+        }
       }
 
       img {
@@ -54,6 +99,7 @@
         height: 100%;
         width: var(--image-size);
         object-fit: cover;
+        box-shadow: $high-shadow;
       }
 
       &:nth-child(even) {
