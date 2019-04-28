@@ -7,7 +7,7 @@ a.block {
   display: block;
 }
 
-p a:not([type="button"]), a.link {
+p a:not([type="button"]), .link {
   font-family: inherit;
   position: relative;
   transition: color 150ms 50ms ease-in-out;

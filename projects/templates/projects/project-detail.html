@@ -34,9 +34,15 @@
         });
 
         function changeImage(index) {
-            images.eq(index - 1).removeClass('right').addClass('left');
-            images.eq(index + 1).removeClass('left').addClass('right');
-            images.eq(index).removeClass('left right');
+            images.each(function() {
+               if ($(this).index() < index) {
+                   $(this).removeClass('right').addClass('left');
+               } else if ($(this).index() === index) {
+                   $(this).removeClass('right left');
+               } else if ($(this).index() > index) {
+                   $(this).removeClass('left').addClass('right');
+               }
+            });
 
             dots.removeClass('selected');
             dots.eq(index).addClass('selected');

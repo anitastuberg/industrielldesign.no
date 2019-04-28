@@ -1,17 +1,41 @@
 #create-project {
-  margin-top: $nav-height;
-  top: $nav-height;
+  position: absolute;
+  right: 50vw;
+  transform: translateY(-48px);
 }
 
 #project-page {
-  padding: 10% 0;
+  padding: 5% 0 15%;
   width: 100%;
 
   .project-image {
     display: block;
 
+    .image:hover {
+      img {
+        transform: scale(1.05);
+      }
+    }
+
+    .description:hover {
+      ~ .image img {
+        transform: scale(1.05);
+      }
+      h3 {
+        transform: skewX(-8deg);
+      }
+    }
+
     img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms $animation-ease;
+    }
+
+    .image {
       box-shadow: $high-shadow;
+      overflow: hidden;
     }
 
     .description {
@@ -39,13 +63,12 @@
         }
       }
 
-      img {
+      .image {
         display: block;
         position: relative;
         height: 100%;
         width: 80%;
         margin: 0 auto 2rem;
-        object-fit: cover;
       }
     }
   }
@@ -71,34 +94,25 @@
         transition: opacity $animation-duration $animation-ease;
         overflow: hidden;
         width: 40%;
+        max-height: 40%;
 
-        p {
-          width: 100%;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        p.creator {
+          color: $dark-gray;
         }
 
         h3, p {
-          transition: transform 200ms ease-in-out;
+          transition: transform 300ms ease-in-out;
           will-change: transform;
           transform-origin: bottom left;
         }
-
-        &:hover {
-          h3, p {
-            transform: skewX(-8deg);
-          }
-        }
       }
 
-      img {
+      .image {
         position: absolute;
         right: 50%;
         top: 0;
         height: 100%;
         width: var(--image-size);
-        object-fit: cover;
         box-shadow: $high-shadow;
       }
 
@@ -111,7 +125,7 @@
           padding-right: 0;
         }
 
-        img {
+        .image {
           left: 50%;
           right: auto;
         }
@@ -148,7 +162,6 @@
       &:nth-child(8n+8) {
         --image-size: 350px;
       }
-
     }
   }
 }
