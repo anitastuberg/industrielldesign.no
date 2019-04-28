@@ -1,4 +1,17 @@
 $hamburger-bp: $sm;
+body.dark {
+  nav#main-navigation {
+    &::before {
+      background-color: $black;
+    }
+    .nav-item {
+      color: lighten($dark-gray, 5%);
+    }
+    .nav-item::before {
+      background-color: lighten($black, 5%);
+    }
+  }
+}
 
 nav#main-navigation {
   position: fixed;

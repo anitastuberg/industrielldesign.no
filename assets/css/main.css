@@ -167,6 +167,11 @@ ol li {
     padding: 5%;
     max-width: 48em; }
 
+body.dark {
+  background-color: #1A1A1A; }
+body.accent {
+  background-color: #F36868; }
+
 i, img {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -2806,6 +2811,13 @@ button, .button {
 a.button {
   display: inline-block; }
 
+body.dark nav#main-navigation::before {
+  background-color: #1A1A1A; }
+body.dark nav#main-navigation .nav-item {
+  color: #7a8587; }
+body.dark nav#main-navigation .nav-item::before {
+  background-color: #272727; }
+
 nav#main-navigation {
   position: fixed;
   width: 100%;
@@ -2891,7 +2903,8 @@ nav#main-navigation {
       transform: scaleY(1); }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #1A1A1A; }
 
 a.block {
   display: block; }
@@ -2923,6 +2936,14 @@ a[type="button"] {
   box-shadow: -20px 20px 35px rgba(52, 79, 87, 0.24);
   text-decoration: none;
   color: #1A1A1A; }
+
+.slanting {
+  display: inline-block;
+  transition: transform 200ms ease-in-out;
+  will-change: transform;
+  transform-origin: bottom left; }
+  .slanting:hover {
+    transform: skewX(-8deg); }
 
 #hamburger {
   cursor: pointer;
@@ -3255,6 +3276,9 @@ tbody td {
     background-position: center;
     background-size: 100%;
     pointer-events: none; }
+  .input-field .helper-text {
+    font-size: 0.75rem;
+    color: #6E787A; }
   .input-field .errorlist {
     margin: 0;
     text-align: left; }
@@ -3304,10 +3328,20 @@ tbody td {
       .course-search .autocomplete div:hover, .course-search .autocomplete div.active-item {
         background-color: #D0EAF1; }
 
+#create-project {
+  margin-top: 64px;
+  top: 64px; }
+
 #project-page {
   padding: 10% 0;
-  width: 100%;
-  overflow-x: hidden; }
+  width: 100%; }
+  #project-page .project-image {
+    display: block; }
+    #project-page .project-image img {
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+    #project-page .project-image .description {
+      color: #FFFFFF;
+      display: block; }
   @media screen and (max-width: 1000px) {
     #project-page .project-image {
       width: 100%;
@@ -3333,19 +3367,37 @@ tbody td {
       position: relative;
       width: 100%;
       height: var(--image-size); }
+      #project-page .project-image.active .description {
+        opacity: 1; }
       #project-page .project-image .description {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         left: calc(50% + 3rem);
-        padding-right: 5%; }
+        padding-right: 5%;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+        overflow: hidden;
+        width: 40%; }
+        #project-page .project-image .description p {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
+        #project-page .project-image .description h3, #project-page .project-image .description p {
+          transition: transform 200ms ease-in-out;
+          will-change: transform;
+          transform-origin: bottom left; }
+        #project-page .project-image .description:hover h3, #project-page .project-image .description:hover p {
+          transform: skewX(-8deg); }
       #project-page .project-image img {
         position: absolute;
         right: 50%;
         top: 0;
         height: 100%;
         width: var(--image-size);
-        object-fit: cover; }
+        object-fit: cover;
+        box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
       #project-page .project-image:nth-child(even) .description {
         right: calc(50% + 3rem);
         left: auto;
@@ -3841,5 +3893,109 @@ tbody td {
   #job .stilllingsannonser .annonse .label {
     font-weight: 300;
     text-transform: uppercase; }
+
+#books {
+  display: grid; }
+  @media screen and (min-width: 48em) {
+    #books {
+      grid-template-columns: 200px 1fr; } }
+  #books p.paragraph {
+    margin-top: 2rem;
+    color: #6E787A; }
+  #books .books .book {
+    position: relative;
+    min-height: 170px;
+    padding-left: calc(128px + 2rem);
+    margin-bottom: 6rem; }
+    @media screen and (max-width: 37.5em) {
+      #books .books .book {
+        padding-left: calc(64px + 1rem); } }
+    #books .books .book p.course, #books .books .book p.seller, #books .books .book p.date {
+      color: #6E787A; }
+    #books .books .book img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 128px;
+      height: 170px;
+      object-fit: cover;
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+      @media screen and (max-width: 37.5em) {
+        #books .books .book img {
+          width: 64px;
+          height: 85px; } }
+    #books .books .book h3.price {
+      color: #F36868;
+      text-transform: none; }
+    #books .books .book p.date {
+      font-size: 10px; }
+    @media screen and (min-width: 37.5em) {
+      #books .books .book div.bottom {
+        position: absolute;
+        bottom: 0; } }
+    #books .books .book div.bottom p {
+      line-height: 1.4em; }
+
+#project-detail {
+  min-height: 100vh; }
+  #project-detail .image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60vw;
+    z-index: 1; }
+    #project-detail .image-container img {
+      max-height: 70vh;
+      max-width: 50vw;
+      object-fit: cover;
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 600ms ease-in-out;
+      will-change: left, right;
+      z-index: 10; }
+    #project-detail .image-container img.right {
+      transform: translateX(140vw) translateY(-50%); }
+    #project-detail .image-container img.left {
+      transform: translateX(-140vw) translateY(-50%); }
+    #project-detail .image-container .dots {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      bottom: 10%;
+      cursor: default; }
+    #project-detail .image-container .dot {
+      height: 8px;
+      width: 8px;
+      background-color: #6E787A;
+      border-radius: 16px;
+      display: inline-block; }
+      #project-detail .image-container .dot.selected {
+        background-color: #EEF2F3; }
+      #project-detail .image-container .dot:not(.selected) {
+        cursor: pointer; }
+      #project-detail .image-container .dot:hover {
+        background-color: #EEF2F3; }
+  #project-detail .project-description {
+    margin-left: 60vw;
+    padding-left: 2rem;
+    padding-right: 6rem;
+    top: 30%;
+    position: relative;
+    color: #FFFFFF; }
+    #project-detail .project-description a {
+      margin-top: 10%;
+      margin-bottom: 20%; }
+    #project-detail .project-description h1 {
+      margin: 0.2rem 0 1rem; }
+    #project-detail .project-description .creator, #project-detail .project-description .course {
+      color: #6E787A; }
+    #project-detail .project-description .course {
+      margin-bottom: 1rem; }
+    #project-detail .project-description .description {
+      white-space: pre-wrap; }
 
 /*# sourceMappingURL=main.css.map */

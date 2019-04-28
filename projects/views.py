@@ -53,7 +53,15 @@ def create_project(request):
                     ProjectImage.objects.create(image=f, project=project)
             except:
                 project.delete()
-                return render(request, 'apartments/create-apartment.html', context)
+                return render(request, 'projects/create-project.html', context)
             return redirect('projects')
         else:
-            return render(request, 'apartments/create-apartment.html')
+            return render(request, 'projects/create-project.html')
+
+
+def project_detail(request, project_slug):
+    context = {
+        'project': Project.objects.get(slug=project_slug)
+    }
+    if request.method == 'GET':
+        return render(request, 'projects/project-detail.html', context)

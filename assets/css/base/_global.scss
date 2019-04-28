@@ -20,6 +20,15 @@
   }
 }
 
+body {
+  &.dark {
+    background-color: $black;
+  }
+  &.accent {
+    background-color: $accent;
+  }
+}
+
 i, img {
   @include no-select;
 }
