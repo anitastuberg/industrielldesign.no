@@ -20,7 +20,7 @@
             <a class="link block" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
         {% endif %}
         <h1>{{ event.title }}<img src="{{ event.image.url }}" alt=""></h1>
-        <a class="tilbake" href="{% url 'students' %}">-</a>
+        <a class="tilbake" href="{% url 'home' %}">-</a>
 
         <div class="time-and-place">
             <p><img src="" alt="">{{ event.event_start_time|date:"H:i d. F" }}</p>

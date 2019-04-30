@@ -1,20 +1,70 @@
-{% extends 'base.html' %} 
-{% load staticfiles %} 
+{% extends 'base.html' %}
 
-{% block page_title %}Hjem{% endblock page_title %}
+{% load static %}
+{% load days_until %}
+
+{% block page_title %}Hjem{% endblock %}
 
 {% block content %}
-<div>
-    <div id="landing-page">
-        <div class="row">
-            <a href="{% url 'students' %}" id="student" class="square"></a>
-            <a href="{% url 'projects' %}" id="prosjekter" class="square"></a>
-        </div>
-        <div class="row">
-            <a href="{% url 'login' %}" id="bedrift" class="square"></a>
-            <a href="{% url 'about' %}" id="kontakt" class="square"></a>
+    {% include 'components/navbar.html' %}
+    <div class="container nav" id="student">
+        <div class="events">
+            {% for event in events %}
+                {% with event.event_start_time|days_until as days_left %}
+                    <a class="event" href="{% url 'event' event_slug=event.slug %}">
+                        <img class="dynamic-shadow" src="{{ event.image.url }}" alt="">
+                        <div class="event-info">
+                            <h3>{{ event.title }}</h3>
+                            <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}
+                                dager{% endif %}
+                                igjen</p>
+                            <div class="dots">
+                                {% for i in days_left|times %}
+                                    <div class="dot"></div>
+                                {% endfor %}
+                            </div>
+                            <div class="event-date">
+                                <div>
+                                    <p class="label">Når</p>
+                                    <p>{{ event.event_start_time|date:"d. F H:i" }}</p>
+                                </div>
+                                <div>
+                                    <p class="label">Hvor</p>
+                                    <p>{{ event.location }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endwith %}
+            {% endfor %}
         </div>
     </div>
-</div>
-<script src="{% static '/js/home/landingPage.js' %}"></script>
 {% endblock content %}
+{% block javascript %}
+    <script src="{% static "js/dynamicShadow.js" %}"></script>
+    <script>
+        let event = $('.event');
+        function addBorder(img) {
+            img.addClass('jubileum');
+        }
+        event.each(function() {
+            let title = $(this).find('h3');
+            let img = $(this).find('img');
+            switch (title.text()) {
+                case 'Jubileumsgalla':
+                    console.log("jub");
+                    addBorder(img);
+                    break;
+                case '[fullt] Digitalt sketchekurs med Fredrik Bostad':
+                    addBorder(img);
+                    break;
+                case 'Café au Leo':
+                    addBorder(img);
+                    break;
+                case 'Fra da til nå - instituttets historie i ord og bilder':
+                    addBorder(img);
+                    break;
+            }
+        });
+    </script>
+{% endblock javascript %}

@@ -1,12 +1,20 @@
 #project-detail {
   min-height: 100vh;
+  .tilbake {
+    &::after {
+      background-color: $white;
+    }
+    &::before {
+      border-color: $white;
+    }
+  }
   .image-container {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 60vw;
-    z-index: 1;
+    // z-index: 1;
     img {
       max-height: 70vh;
       max-width: 50vw;
@@ -18,7 +26,6 @@
       transform: translate(-50%, -50%);
       transition: transform 600ms $animation-ease;
       will-change: left, right;
-      z-index: 10;
     }
     img.right {
       transform: translateX(140vw) translateY(-50%);
@@ -53,11 +60,12 @@
   }
   .project-description {
     margin-left: 60vw;
-    padding-left: 2rem;
-    padding-right: 6rem;
+    padding: 0 6rem 8rem 2rem;
     top: 30%;
     position: relative;
     color: $white;
+    background-color: $black;
+    min-height: 100vh;
 
     a {
       margin-top: 10%;

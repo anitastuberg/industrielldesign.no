@@ -107,6 +107,10 @@ nav#main-navigation {
     color: $text-color;
     position: relative;
 
+    &.selected {
+      font-weight: bold;
+    }
+
     @media screen and (max-width: $hamburger-bp) {
       padding: 1rem;
       &:last-child {

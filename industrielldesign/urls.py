@@ -15,7 +15,8 @@ urlpatterns = [
     path('', include('profilepage.urls')),
     path('', include('courses.urls')),
     path('', include('job.urls')),
-    path('', include('books.urls'))
+    path('', include('books.urls')),
+    path('', include('tips.urls'))
 ]
 
 # handler404 = 'industrielldesign.views.handler404'

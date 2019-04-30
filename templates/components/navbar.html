@@ -6,20 +6,22 @@
         <div id="middle" class="bar"></div>
         <div class="bar"></div>
     </div>
-    <a href="{% url 'students' %}" id="leo-logo" class="nav-item">
+    <a href="{% url 'home' %}" id="leo-logo" class="nav-item">
         <img src="{% static 'img/Logo/Inverse.svg' %}" alt="Leonardo-logoen">
     </a>
     <div class="left-aligned">
-        <a class="nav-item" {% if '' in request.path %}class="selected"{% endif %}
-           href="{% url 'students' %}">Student</a>
-        <a class="nav-item" {% if 'project' in request.path %}class="selected"{% endif %}
+        <a class="nav-item {% if 'leonardo' in request.path %}selected{% endif %}"
+           href="{% url 'leonardo' %}">Leonardo</a>
+        <a class="nav-item {% if 'student' in request.path %}selected{% endif %}"
+           href="{% url 'student' %}">Student</a>
+        <a class="nav-item {% if 'prosjekt' in request.path %}selected{% endif %}"
            href="{% url 'projects' %}">Prosjekter</a>
-        <a class="nav-item" {% if 'jobb' in request.path %}class="selected"{% endif %}
+        <a class="nav-item {% if 'tips' in request.path %}selected{% endif %}"
+           href="{% url 'tips' %}">Tips og triks</a>
+        <a class="nav-item {% if 'jobb' in request.path %}selected{% endif %}"
            href="{% url 'job' %}">Jobb</a>
-        <a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}
-           href="{% url 'courses' %}">Fag</a>
-        <a class="nav-item" {% if 'fag' in request.path %}class="selected"{% endif %}
-           href="{% url 'about' %}">Kontakt</a>
+{#        <a class="nav-item {% if 'fag' in request.path %}selected{% endif %}"#}
+{#           href="{% url 'about' %}">Kontakt</a>#}
     </div>
 
     <div class="right-aligned">
