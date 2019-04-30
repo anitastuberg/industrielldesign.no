@@ -28,7 +28,7 @@ class LoginFormView(View):
             if user is not None:
                 login(request, user)
                 user.update_class_year()
-                return redirect('students')
+                return redirect('home')
     
             form.add_error('password', 'Feil brukernavn eller passord')
         # Refreshes the login form if not correct
@@ -75,7 +75,7 @@ class RegisterFormView(View):
                 send_confiramtion_email(user.email)
                 if user.is_active:
                     login(request, user) # Loging in user to the website
-                    return redirect('students')
+                    return redirect('home')
 
         return  render(request, self.template_name, {'form': form})
 

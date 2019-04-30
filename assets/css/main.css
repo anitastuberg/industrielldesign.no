@@ -1,3 +1,4 @@
+/* mixin for multiline */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -2880,6 +2881,8 @@ nav#main-navigation {
     align-items: center;
     color: #1A1A1A;
     position: relative; }
+    nav#main-navigation .nav-item.selected {
+      font-weight: bold; }
     @media screen and (max-width: 37.5em) {
       nav#main-navigation .nav-item {
         padding: 1rem; }
@@ -3091,7 +3094,8 @@ a[type="button"] {
   .url-preview h1, .url-preview h2, .url-preview h3, .url-preview h4, .url-preview h5, .url-preview h6 {
     font-size: 1rem;
     font-weight: bold;
-    text-transform: none; }
+    text-transform: none;
+    font-family: "Montserrat", sans-serif; }
   .url-preview .description {
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -3344,6 +3348,27 @@ tbody td {
       transform: scale(1.05); }
     #project-page .project-image .description:hover h3 {
       transform: skewX(-8deg); }
+    #project-page .project-image .text {
+      overflow: hidden;
+      position: relative;
+      line-height: 1.6em;
+      max-height: 4.8em;
+      text-align: justify;
+      margin-right: -1em;
+      padding-right: 1em; }
+      #project-page .project-image .text:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0; }
+      #project-page .project-image .text:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: #1A1A1A; }
     #project-page .project-image img {
       width: 100%;
       height: 100%;
@@ -3351,7 +3376,8 @@ tbody td {
       transition: transform 600ms ease-in-out; }
     #project-page .project-image .image {
       box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
-      overflow: hidden; }
+      overflow: hidden;
+      background-color: #C4CACC; }
     #project-page .project-image .description {
       color: #FFFFFF;
       display: block; }
@@ -3365,8 +3391,6 @@ tbody td {
         position: relative;
         padding: 0 10% 0 10%;
         text-align: justify; }
-      #project-page .project-image:nth-child(even) .description {
-        direction: rtl; }
       #project-page .project-image .image {
         display: block;
         position: relative;
@@ -3381,6 +3405,8 @@ tbody td {
       height: var(--image-size); }
       #project-page .project-image.active .description {
         opacity: 1; }
+      #project-page .project-image:not(.active) .image {
+        opacity: 0.5; }
       #project-page .project-image .description {
         position: absolute;
         top: 50%;
@@ -3390,8 +3416,7 @@ tbody td {
         opacity: 0;
         transition: opacity 200ms ease-in-out;
         overflow: hidden;
-        width: 40%;
-        max-height: 40%; }
+        width: 40%; }
         #project-page .project-image .description p.creator {
           color: #6E787A; }
         #project-page .project-image .description h3, #project-page .project-image .description p {
@@ -3404,13 +3429,15 @@ tbody td {
         top: 0;
         height: 100%;
         width: var(--image-size);
-        box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+        box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+        transition: opacity 200ms ease-in-out; }
       #project-page .project-image:nth-child(even) .description {
         right: calc(50% + 3rem);
         left: auto;
         text-align: right;
         padding-left: 5%;
-        padding-right: 0; }
+        padding-right: 0;
+        direction: rtl; }
       #project-page .project-image:nth-child(even) .image {
         left: 50%;
         right: auto; }
@@ -3945,13 +3972,16 @@ tbody td {
 
 #project-detail {
   min-height: 100vh; }
+  #project-detail .tilbake::after {
+    background-color: #FFFFFF; }
+  #project-detail .tilbake::before {
+    border-color: #FFFFFF; }
   #project-detail .image-container {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    width: 60vw;
-    z-index: 1; }
+    width: 60vw; }
     #project-detail .image-container img {
       max-height: 70vh;
       max-width: 50vw;
@@ -3962,8 +3992,7 @@ tbody td {
       left: 50%;
       transform: translate(-50%, -50%);
       transition: transform 600ms ease-in-out;
-      will-change: left, right;
-      z-index: 10; }
+      will-change: left, right; }
     #project-detail .image-container img.right {
       transform: translateX(140vw) translateY(-50%); }
     #project-detail .image-container img.left {
@@ -3988,11 +4017,12 @@ tbody td {
         background-color: #EEF2F3; }
   #project-detail .project-description {
     margin-left: 60vw;
-    padding-left: 2rem;
-    padding-right: 6rem;
+    padding: 0 6rem 8rem 2rem;
     top: 30%;
     position: relative;
-    color: #FFFFFF; }
+    color: #FFFFFF;
+    background-color: #1A1A1A;
+    min-height: 100vh; }
     #project-detail .project-description a {
       margin-top: 10%;
       margin-bottom: 20%; }
