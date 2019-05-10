@@ -12,10 +12,10 @@ Ny nettside til Leonardo, linjeforeningen for studentene ved industriell design 
     * `icons` – Icons in the project
     * `illustrations` – Illustrations in the project.
     * `Logo` – Both an inverse and normal logo in svg.
-    * `js` – Javascript files for the project. 
-      * `404/snake.js` – A snake game made with canvas that's used on the 404-page.
-      * `ajaxSetup.js` – Add this script if you're going to use ajax somewhere. It deals with csrf-tokens.
-      * `dynamicShadow.js` – A script that creates a moving shadow around an element based on the cursor position.
+  * `js` – Javascript files for the project. 
+    * `404/snake.js` – A snake game made with canvas that's used on the 404-page.
+    * `ajaxSetup.js` – Add this script if you're going to use ajax somewhere. It deals with csrf-tokens.
+    * `dynamicShadow.js` – A script that creates a moving shadow around an element based on the cursor position.
 * `authentication` – Logic for user handling. Authentication and database.
 * `books` – Logic to handle book sales
 * `courses` – Logic to handle courses. Includes code that populates the database with all NTNU courses (updated spring 2019).
