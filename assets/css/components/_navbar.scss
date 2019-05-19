@@ -4,11 +4,19 @@ body.dark {
     &::before {
       background-color: $black;
     }
+
     .nav-item {
       color: lighten($dark-gray, 5%);
     }
+
     .nav-item::before {
       background-color: lighten($black, 5%);
+    }
+    .dropdown {
+      background-color: lighten($black, 5%);
+      ul li a {
+        color: $dark-gray;
+      }
     }
   }
 }
@@ -99,6 +107,10 @@ nav#main-navigation {
     }
   }
 
+  a.nav-item {
+    cursor: pointer;
+  }
+
   .nav-item {
     height: 100%;
     padding: 0 1rem;
@@ -106,6 +118,7 @@ nav#main-navigation {
     align-items: center;
     color: $text-color;
     position: relative;
+    cursor: default;
 
     &.selected {
       font-weight: bold;
@@ -129,14 +142,49 @@ nav#main-navigation {
       transform: scaleY(0);
       will-change: transform;
       transition: transform $animation-duration $animation-ease;
-      transform-origin: top;
+      transform-origin: bottom;
       background-color: $white;
       z-index: -1;
       opacity: 1;
     }
 
-    &:hover::before {
-      transform: scaleY(1);
+    &:hover {
+      &::before {
+        transform: scaleY(1);
+      }
+      .dropdown {
+        transform: scaleY(1);
+      }
+    }
+
+    .dropdown {
+      position: fixed;
+      top: $nav-height;
+      left: 0;
+      width: 100vw;
+      background-color: $white;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform $animation-duration ease-out;
+      font-weight: normal;
+      padding-top: 2rem;
+      padding-left: 4rem;
+      box-shadow: $high-shadow;
+      z-index: -2;
+
+      ul li {
+        list-style-type: none;
+
+        a {
+          display: block;
+          transition: transform $animation-duration $animation-ease;
+          transform-origin: bottom;
+          cursor: pointer;
+          &:hover {
+            transform: skewX(-8deg);
+          }
+        }
+      }
     }
   }
 }

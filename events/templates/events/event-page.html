@@ -37,13 +37,13 @@
                         {% if not request.user.is_authenticated %}
                             <div class="input-fields">
                                 <div class="input-field">
-                                    <input type="text" name="email" id="email" autocomplete="email">
+                                    <input type="text" name="email" id="email" autocomplete="email" placeholder=".">
                                     <label for="email">E-post</label>
                                     <span class="error"></span>
                                 </div>
                                 <div class="input-field">
                                     <input type="password" name="password" id="password"
-                                           autocomplete="current-password">
+                                           autocomplete="current-password" placeholder=".">
                                     <label for="password">Passord</label>
                                     <ul class="errorlist password"></ul>
                                 </div>

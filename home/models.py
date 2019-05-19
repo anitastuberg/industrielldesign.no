@@ -2,6 +2,7 @@ from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 
+
 # Create your models here.
 class Styremedlem(models.Model):
     styretittel = models.CharField(max_length=100)
@@ -33,6 +34,7 @@ class Komiteer(models.Model):
     class Meta:
         verbose_name = 'Komité'
         verbose_name_plural = 'Komiteer'
+
 
 class Nyhet(models.Model):
     title = models.CharField(max_length=100)
