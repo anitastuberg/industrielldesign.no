@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Tips & triks{% endblock %}
+
+{% block content %}
+    {% include 'components/navbar.html' %}
+    <div class="container nav">
+        <h1>Tips</h1>
+        <a href="{% url 'new-tip' %}" class="button cta">Nytt tips</a>
+    </div>
+{% endblock %}

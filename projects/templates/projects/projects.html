@@ -5,19 +5,24 @@
 
 {% block page_title %}Prosjekter{% endblock %}
 
+{% block body_class %}dark{% endblock %}
+
 {% block content %}
     {% include 'components/navbar.html' %}
-    <div class="container--nav" id="project-page">
-    {% if request.user.is_authenticated %}
-        <a class="button cta" href="{% url 'create-project' %}">Opprett prosjekt</a>
-    {% endif %}
+    <div class="container nav" id="project-page">
+        {% if request.user.is_authenticated %}
+            <a class="button" id="create-project" href="{% url 'create-project' %}">Legg ut prosjekt</a>
+        {% endif %}
         {% for project in projects %}
-            <div class="project-image">
-                <img class="dynamic-shadow-large" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
-                <div class="description">
+            <div class="project-image {% if forloop.first %}active{% endif %}">
+                <a class="image" href="{% url 'project-detail' project_slug=project.slug %}">
+                    <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
+                </a>
+                <a class="description" href="{% url 'project-detail' project_slug=project.slug %}">
                     <h3>{{ project.title }}</h3>
-                    <p>{{ project.description }}</p>
-                </div>
+                    <p class="creator">{{ project.creator }} – {{ project.semester }} {{ project.year }}</p>
+                    <p class="text">{{ project.description }}</p>
+                </a>
             </div>
         {% endfor %}
     </div>
@@ -25,4 +30,35 @@
 {% block javascript %}
     <script src="{% static "js/dynamicShadow.js" %}"></script>
     <script src="{% static "js/projects.js" %}"></script>
+    <script>
+        let currentScroll;
+        let url;
+        let projectImages = $('.project-image');
+
+        function saveLocation(scroltop) {
+
+            url = window.location.href;
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function () {
+                localStorage.setItem(url, scroltop);
+            }, 250));
+        }
+
+        $(window).scroll(function () {
+            currentScroll = $(this).scrollTop();
+            saveLocation(currentScroll);
+            projectImages.each(function() {
+               if (Math.abs(($(this).offset().top) - currentScroll) < 400) {
+                   projectImages.removeClass("active");
+                   $(this).addClass("active")
+               }
+            });
+        });
+
+        if (localStorage.getItem(window.location.href)) {
+            url = window.location.href;
+            scroltop = localStorage.getItem(url);
+            $(window).scrollTop(scroltop);
+        }
+    </script>
 {% endblock %}

@@ -19,11 +19,7 @@
                 <label for="{{ form.creator.id_for_label }}">Hvem har laget det?</label>
                 {{ form.creator.errors }}
             </div>
-            <div class="input-field">
-                {{ form.course }}
-                <label for="{{ form.course.id_for_label }}">Fag</label>
-                {{ form.course.errors }}
-            </div>
+            {% include 'components/course-search.html' %}
             <div class="input-field">
                 {{ form.semester }}
                 <label for="{{ form.semester.id_for_label }}">Semster</label>

@@ -82,6 +82,11 @@
     pointer-events: none;
   }
 
+  .helper-text {
+    font-size: 0.75rem;
+    color: $dark-gray;
+  }
+
   .errorlist {
     margin: 0;
     text-align: left;

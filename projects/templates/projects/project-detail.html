@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block page_title %}{{ project.title }}{% endblock %}
+
+{% block body_class %}dark{% endblock %}
+
+{% block content %}
+    <div id="project-detail">
+        <div class="image-container">
+            {% for image in project.projectimage_set.all %}
+                <img src="{{ image.image.url }}" alt="{{ project.title }}"
+                     class="project-image {% if not forloop.first %}right{% endif %}">
+            {% endfor %}
+            <div class="dots">
+                {% for i in project.projectimage_set.all %}
+                    <div class="dot {% if  forloop.first %}selected{% endif %}"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="project-description">
+            <a href="{% url 'projects' %}" class="tilbake">-</a>
+            <p class="creator">{{ project.creator }}</p>
+            <h1>{{ project.title }}</h1>
+            <p class="course">{{ project.course }}</p>
+            <p class="description">{{ project.description }}</p>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script>
+        let images = $('.project-image');
+        let dots = $('.dot');
+        let selectedImageIndex = 0;
+
+        dots.click(function () {
+            changeImage($(this).index());
+        });
+
+        function changeImage(index) {
+            images.each(function() {
+               if ($(this).index() < index) {
+                   $(this).removeClass('right').addClass('left');
+               } else if ($(this).index() === index) {
+                   $(this).removeClass('right left');
+               } else if ($(this).index() > index) {
+                   $(this).removeClass('left').addClass('right');
+               }
+            });
+
+            dots.removeClass('selected');
+            dots.eq(index).addClass('selected');
+
+            selectedImageIndex = index;
+        }
+        function oneStepMove(direction) {
+            let i = selectedImageIndex;
+            if (direction && i < images.length - 1) {
+                i++;
+            } else if (!direction && i > 0) {
+                i--;
+            }
+            changeImage(i);
+        }
+        $(document).on('keydown', function(e) {
+            if (e.which == 37) {
+                oneStepMove(false);
+            } else if (e.which == 39) {
+                oneStepMove(true);
+            }
+        });
+    </script>
+{% endblock %}

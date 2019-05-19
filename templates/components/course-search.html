@@ -1,8 +1,9 @@
 {% load static %}
 <div class="input-field fluid course-search" @keydown="nextItem($event)">
     <input type="text" id="course-input" v-model="courseQuery" @input="readQuery()" autocomplete="off" placeholder="."
-    :data-course-code="selectedCourse.course_code" :data-course-name="selectedCourse.name">
+    :data-course-code="selectedCourse.course_code" :data-course-name="selectedCourse.name" name="course">
     <label for="{{ form.name.id_for_label }}">Fag</label>
+    <p class="helper-text">Søk på navn eller fagkode</p>
     <div class="autocomplete" v-show="suggestions.length > 0">
         <div v-for="(suggestion, index) in suggestions" @click="setSelectedCourse(suggestion)" :key='index'
              :class='{"active-item": currentItem === index}'>
@@ -11,6 +12,7 @@
     </div>
 </div>
 
+<script src="{% static 'js/ajaxSetup.js' %}"></script>
 <script>
     let courseSearch = new Vue({
         el: '.course-search',

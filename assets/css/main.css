@@ -1,3 +1,4 @@
+/* mixin for multiline */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -166,6 +167,11 @@ ol li {
   .container.narrow {
     padding: 5%;
     max-width: 48em; }
+
+body.dark {
+  background-color: #1A1A1A; }
+body.accent {
+  background-color: #F36868; }
 
 i, img {
   -webkit-touch-callout: none;
@@ -2806,6 +2812,17 @@ button, .button {
 a.button {
   display: inline-block; }
 
+body.dark nav#main-navigation::before {
+  background-color: #1A1A1A; }
+body.dark nav#main-navigation .nav-item {
+  color: #7a8587; }
+body.dark nav#main-navigation .nav-item::before {
+  background-color: #272727; }
+body.dark nav#main-navigation .dropdown {
+  background-color: #272727; }
+  body.dark nav#main-navigation .dropdown ul li a {
+    color: #6E787A; }
+
 nav#main-navigation {
   position: fixed;
   width: 100%;
@@ -2861,13 +2878,18 @@ nav#main-navigation {
         display: block;
         width: 32px;
         height: auto; } }
+  nav#main-navigation a.nav-item {
+    cursor: pointer; }
   nav#main-navigation .nav-item {
     height: 100%;
     padding: 0 1rem;
     display: flex;
     align-items: center;
     color: #1A1A1A;
-    position: relative; }
+    position: relative;
+    cursor: default; }
+    nav#main-navigation .nav-item.selected {
+      font-weight: bold; }
     @media screen and (max-width: 37.5em) {
       nav#main-navigation .nav-item {
         padding: 1rem; }
@@ -2883,27 +2905,53 @@ nav#main-navigation {
       transform: scaleY(0);
       will-change: transform;
       transition: transform 200ms ease-in-out;
-      transform-origin: top;
+      transform-origin: bottom;
       background-color: #FFFFFF;
       z-index: -1;
       opacity: 1; }
     nav#main-navigation .nav-item:hover::before {
       transform: scaleY(1); }
+    nav#main-navigation .nav-item:hover .dropdown {
+      transform: scaleY(1); }
+    nav#main-navigation .nav-item .dropdown {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100vw;
+      background-color: #FFFFFF;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 200ms ease-out;
+      font-weight: normal;
+      padding-top: 2rem;
+      padding-left: 4rem;
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+      z-index: -2; }
+      nav#main-navigation .nav-item .dropdown ul li {
+        list-style-type: none; }
+        nav#main-navigation .nav-item .dropdown ul li a {
+          display: block;
+          transition: transform 200ms ease-in-out;
+          transform-origin: bottom;
+          cursor: pointer; }
+          nav#main-navigation .nav-item .dropdown ul li a:hover {
+            transform: skewX(-8deg); }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #1A1A1A; }
 
 a.block {
   display: block; }
 
-p a:not([type="button"]), a.link {
+p a:not([type="button"]), .link {
   font-family: inherit;
   position: relative;
   transition: color 150ms 50ms ease-in-out;
   overflow: hidden; }
-  p a:not([type="button"]), p a:not([type="button"]):visited, a.link, a.link:visited {
+  p a:not([type="button"]), p a:not([type="button"]):visited, .link, .link:visited {
     color: #3593B1; }
-  p a:not([type="button"])::before, a.link::before {
+  p a:not([type="button"])::before, .link::before {
     content: '';
     position: absolute;
     left: 0;
@@ -2915,7 +2963,7 @@ p a:not([type="button"]), a.link {
     transition: transform 200ms ease-in-out;
     transform: scaleX(0);
     transform-origin: bottom left; }
-  p a:not([type="button"]):hover::before, a.link:hover::before {
+  p a:not([type="button"]):hover::before, .link:hover::before {
     transform: scaleX(1); }
 
 a[type="button"] {
@@ -2923,6 +2971,14 @@ a[type="button"] {
   box-shadow: -20px 20px 35px rgba(52, 79, 87, 0.24);
   text-decoration: none;
   color: #1A1A1A; }
+
+.slanting {
+  display: inline-block;
+  transition: transform 200ms ease-in-out;
+  will-change: transform;
+  transform-origin: bottom left; }
+  .slanting:hover {
+    transform: skewX(-8deg); }
 
 #hamburger {
   cursor: pointer;
@@ -3070,7 +3126,8 @@ a[type="button"] {
   .url-preview h1, .url-preview h2, .url-preview h3, .url-preview h4, .url-preview h5, .url-preview h6 {
     font-size: 1rem;
     font-weight: bold;
-    text-transform: none; }
+    text-transform: none;
+    font-family: "Montserrat", sans-serif; }
   .url-preview .description {
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -3255,6 +3312,9 @@ tbody td {
     background-position: center;
     background-size: 100%;
     pointer-events: none; }
+  .input-field .helper-text {
+    font-size: 0.75rem;
+    color: #6E787A; }
   .input-field .errorlist {
     margin: 0;
     text-align: left; }
@@ -3304,10 +3364,65 @@ tbody td {
       .course-search .autocomplete div:hover, .course-search .autocomplete div.active-item {
         background-color: #D0EAF1; }
 
+.ql-snow {
+  border: 0 !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09); }
+  .ql-snow span {
+    outline: 0; }
+
+.ql-editor {
+  padding: 2rem !important; }
+
+#create-project {
+  position: absolute;
+  right: 50vw;
+  transform: translateY(-48px); }
+
 #project-page {
-  padding: 10% 0;
-  width: 100%;
-  overflow-x: hidden; }
+  padding: 5% 0 15%;
+  width: 100%; }
+  #project-page .project-image {
+    display: block;
+    margin-bottom: 8rem; }
+    #project-page .project-image .image:hover img {
+      transform: scale(1.05); }
+    #project-page .project-image .description:hover ~ .image img {
+      transform: scale(1.05); }
+    #project-page .project-image .description:hover h3 {
+      transform: skewX(-8deg); }
+    #project-page .project-image .text {
+      overflow: hidden;
+      position: relative;
+      line-height: 1.6em;
+      max-height: 4.8em;
+      text-align: justify;
+      margin-right: -1em;
+      padding-right: 1em; }
+      #project-page .project-image .text:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0; }
+      #project-page .project-image .text:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: #1A1A1A; }
+    #project-page .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms ease-in-out; }
+    #project-page .project-image .image {
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+      overflow: hidden;
+      background-color: #C4CACC; }
+    #project-page .project-image .description {
+      color: #FFFFFF;
+      display: block; }
   @media screen and (max-width: 1000px) {
     #project-page .project-image {
       width: 100%;
@@ -3318,41 +3433,54 @@ tbody td {
         position: relative;
         padding: 0 10% 0 10%;
         text-align: justify; }
-      #project-page .project-image:nth-child(even) .description {
-        direction: rtl; }
-      #project-page .project-image img {
+      #project-page .project-image .image {
         display: block;
         position: relative;
         height: 100%;
         width: 80%;
-        margin: 0 auto 2rem;
-        object-fit: cover; } }
+        margin: 0 auto 2rem; } }
   @media screen and (min-width: 1000px) {
     #project-page .project-image {
       --image-size: 300px;
       position: relative;
       width: 100%;
       height: var(--image-size); }
+      #project-page .project-image.active .description {
+        opacity: 1; }
+      #project-page .project-image:not(.active) .image {
+        opacity: 0.5; }
       #project-page .project-image .description {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         left: calc(50% + 3rem);
-        padding-right: 5%; }
-      #project-page .project-image img {
+        padding-right: 5%;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+        overflow: hidden;
+        width: 40%; }
+        #project-page .project-image .description p.creator {
+          color: #6E787A; }
+        #project-page .project-image .description h3, #project-page .project-image .description p {
+          transition: transform 300ms ease-in-out;
+          will-change: transform;
+          transform-origin: bottom left; }
+      #project-page .project-image .image {
         position: absolute;
         right: 50%;
         top: 0;
         height: 100%;
         width: var(--image-size);
-        object-fit: cover; }
+        box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+        transition: opacity 200ms ease-in-out; }
       #project-page .project-image:nth-child(even) .description {
         right: calc(50% + 3rem);
         left: auto;
         text-align: right;
         padding-left: 5%;
-        padding-right: 0; }
-      #project-page .project-image:nth-child(even) img {
+        padding-right: 0;
+        direction: rtl; }
+      #project-page .project-image:nth-child(even) .image {
         left: 50%;
         right: auto; }
       #project-page .project-image:nth-child(8n+1) {
@@ -3841,5 +3969,112 @@ tbody td {
   #job .stilllingsannonser .annonse .label {
     font-weight: 300;
     text-transform: uppercase; }
+
+#books {
+  display: grid; }
+  @media screen and (min-width: 48em) {
+    #books {
+      grid-template-columns: 200px 1fr; } }
+  #books p.paragraph {
+    margin-top: 2rem;
+    color: #6E787A; }
+  #books .books .book {
+    position: relative;
+    min-height: 170px;
+    padding-left: calc(128px + 2rem);
+    margin-bottom: 6rem; }
+    @media screen and (max-width: 37.5em) {
+      #books .books .book {
+        padding-left: calc(64px + 1rem); } }
+    #books .books .book p.course, #books .books .book p.seller, #books .books .book p.date {
+      color: #6E787A; }
+    #books .books .book img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 128px;
+      height: 170px;
+      object-fit: cover;
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3); }
+      @media screen and (max-width: 37.5em) {
+        #books .books .book img {
+          width: 64px;
+          height: 85px; } }
+    #books .books .book h3.price {
+      color: #F36868;
+      text-transform: none; }
+    #books .books .book p.date {
+      font-size: 10px; }
+    @media screen and (min-width: 37.5em) {
+      #books .books .book div.bottom {
+        position: absolute;
+        bottom: 0; } }
+    #books .books .book div.bottom p {
+      line-height: 1.4em; }
+
+#project-detail {
+  min-height: 100vh; }
+  #project-detail .tilbake::after {
+    background-color: #FFFFFF; }
+  #project-detail .tilbake::before {
+    border-color: #FFFFFF; }
+  #project-detail .image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60vw; }
+    #project-detail .image-container img {
+      max-height: 70vh;
+      max-width: 50vw;
+      object-fit: cover;
+      box-shadow: -40px 40px 80px rgba(52, 79, 87, 0.3);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 600ms ease-in-out;
+      will-change: left, right; }
+    #project-detail .image-container img.right {
+      transform: translateX(140vw) translateY(-50%); }
+    #project-detail .image-container img.left {
+      transform: translateX(-140vw) translateY(-50%); }
+    #project-detail .image-container .dots {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      bottom: 10%;
+      cursor: default; }
+    #project-detail .image-container .dot {
+      height: 8px;
+      width: 8px;
+      background-color: #6E787A;
+      border-radius: 16px;
+      display: inline-block; }
+      #project-detail .image-container .dot.selected {
+        background-color: #EEF2F3; }
+      #project-detail .image-container .dot:not(.selected) {
+        cursor: pointer; }
+      #project-detail .image-container .dot:hover {
+        background-color: #EEF2F3; }
+  #project-detail .project-description {
+    margin-left: 60vw;
+    padding: 0 6rem 8rem 2rem;
+    top: 30%;
+    position: relative;
+    color: #FFFFFF;
+    background-color: #1A1A1A;
+    min-height: 100vh; }
+    #project-detail .project-description a {
+      margin-top: 10%;
+      margin-bottom: 20%; }
+    #project-detail .project-description h1 {
+      margin: 0.2rem 0 1rem; }
+    #project-detail .project-description .creator, #project-detail .project-description .course {
+      color: #6E787A; }
+    #project-detail .project-description .course {
+      margin-bottom: 1rem; }
+    #project-detail .project-description .description {
+      white-space: pre-wrap; }
 
 /*# sourceMappingURL=main.css.map */
