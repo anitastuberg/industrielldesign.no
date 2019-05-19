@@ -21,8 +21,8 @@ def create_course(request):
 
     else:  # POST
         if request.POST.get('query'):  # ajax request
-            query = request.POST.get('query').upper()
-            course_suggestions = Course.objects.filter(Q(name__contains=query) | Q(course_code__contains=query)).values('name', 'course_code')
+            query = request.POST.get('query')
+            course_suggestions = Course.objects.filter(Q(name__icontains=query) | Q(course_code__icontains=query)).values('name', 'course_code')
             return JsonResponse({'suggestions': list(course_suggestions)[:10]})
         else:
             form = CreateCourseForm(request.POST)
