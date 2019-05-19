@@ -10,7 +10,7 @@ urlpatterns = [
     # Leonardo
     path('leonardo', views.leonardo, name='leonardo'),
     path('leonardo/butikk/', views.leonardo_shop, name='leonardo-shop'),
-    path('leonardo/komiteer/', views.Komiteer, name='komiteer'),
+    path('leonardo/komiteer/', views.komiteer, name='komiteer'),
     path('leonardo/om/', views.about, name='about'),
     path('leonardo/thesign/', views.thesign, name='thesign'),
     # Student
