@@ -1,0 +1,59 @@
+#event-page {
+  padding: 10% 5%;
+  background-color: $primary-light;
+
+  .beskrivelse {
+    position: relative;
+    max-width: $sm;
+    margin: 0 auto;
+    z-index: 0;
+
+    h1 {
+      position: relative;
+      margin-top: 6rem;
+      text-shadow: 2px 2px 0px $primary-light;
+      @media screen and (max-width: $md) {
+        @include text-wrap;
+      }
+    }
+
+    img {
+      max-width: 320px;
+      max-height: 320px;
+      width: 50%;
+      position: absolute;
+      bottom: -2rem;
+      right: 0;
+      z-index: -1;
+    }
+
+    .time-and-place {
+      margin: 2rem 0;
+
+      p {
+        display: block;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 1.2rem;
+      }
+    }
+
+
+
+    p {
+      span {
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+    }
+
+    .signup {
+      margin-bottom: 4rem;
+    }
+
+    p.content-markdown {
+      white-space: pre-line;
+      text-align: justify;
+    }
+  }
+}

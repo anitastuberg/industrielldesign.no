@@ -1,4 +1,4 @@
-django==2.0.1
+django==2.2.1
 Pillow
 django-imagekit
 mixer

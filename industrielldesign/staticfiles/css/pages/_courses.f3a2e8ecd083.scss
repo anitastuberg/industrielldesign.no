@@ -1,0 +1,60 @@
+// -------------
+// Courses page
+// -------------
+#courses {
+  a.button {
+    display: inline-flex;
+    margin-bottom: 1rem;
+  }
+  .course-list {
+    display: grid;
+    grid-gap: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr) ) ;
+  }
+  .course {
+    h3 {
+      @include text-wrap;
+    }
+  }
+}
+
+// -------------------
+// Create courses page
+// -------------------
+#create-course {
+  max-width: $xs;
+
+  form {
+    margin-top: 20%;
+  }
+}
+
+// -----------------
+// Course detail page
+// -----------------
+#course-detail {
+  .useful-links {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    .url-preview {
+      @extend .card;
+      @extend .clickable;
+    }
+  }
+  .reviews {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    margin-bottom: 3rem;
+  }
+  .review {
+    white-space: pre-line;
+    margin: 0;
+  }
+  .review-date {
+    font-size: 0.8rem;
+    color: $dark-gray;
+    text-transform: capitalize;
+  }
+}

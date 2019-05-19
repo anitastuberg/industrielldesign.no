@@ -1,0 +1,119 @@
+.input-field {
+  position: relative;
+  margin-bottom: 2rem;
+  width: 100%;
+  min-height: 48px;
+
+  label {
+    position: absolute;
+    font-size: 1rem;
+    top: 1rem;
+    left: 0.5rem;
+    transition: top 200ms ease-in-out, color 200ms ease-in-out;
+    will-change: top, color;
+    color: $dark-gray;
+    pointer-events: none;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: $white;
+    outline: 0;
+    font-size: 1rem;
+    padding: 1.2rem 0.5rem 0.6rem;
+    border: 0;
+    height: 48px;
+    min-width: 200px;
+    transition: box-shadow $animation-duration $animation-ease;
+    box-shadow: $low-shadow;
+
+    &:hover, &:focus {
+      box-shadow: $med-shadow;
+    }
+
+    &::placeholder {
+      visibility: hidden;
+    }
+
+    &:not(:placeholder-shown) + label {
+      top: -0.4rem;
+      font-size: 0.75rem;
+      color: $gray;
+    }
+  }
+
+  select {
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 6rem;
+  }
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    ~ label {
+      pointer-events: all;
+      padding-left: 2rem;
+      cursor: pointer;
+      @include no-select;
+      left: 0;
+    }
+
+    &:checked + .checkmark {
+      background-image: url('../img/icons/checkbox_checked.png');
+    }
+  }
+  .checkmark {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    height: 32px;
+    width: 32px;
+    background-image: url('../img/icons/checkbox_unchecked.png');
+    background-position: center;
+    background-size: 100%;
+    pointer-events: none;
+  }
+
+  .helper-text {
+    font-size: 0.75rem;
+    color: $dark-gray;
+  }
+
+  .errorlist {
+    margin: 0;
+    text-align: left;
+    li {
+      position: relative;
+      color: $error;
+      margin-left: 1rem;
+      padding-left: 0.5rem;
+
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        background-color: $error;
+        width: 2px;
+        height: 10px;
+        border-radius: 10px;
+      }
+
+      &::after {
+        transform: rotate(45deg);
+      }
+
+      &::before {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

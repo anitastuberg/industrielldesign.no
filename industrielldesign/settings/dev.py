@@ -2,7 +2,7 @@ from industrielldesign.settings.base import *
 
 # Override base.py settings here
 
-DEBUG = True
+DEBUG = False
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '..', 'assets'),

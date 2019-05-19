@@ -1,0 +1,91 @@
+$hamburger-delay: .15s;
+
+@mixin hamburger-timing {
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#hamburger {
+  cursor: pointer;
+  position: absolute;
+  height: 16px;
+  width: 40px;
+  top: $nav-height / 2 - 14px;
+  right: 2rem;
+
+  .bar {
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 3px;
+    background-color: $primary-dark;
+
+    &:first-child {
+      transform-origin: 0 0;
+    }
+
+    &:nth-child(2) {
+      display: none;
+      width: 30px;
+      margin-left: 10px;
+      top: 12px;
+      // margin-right: -2px;
+    }
+
+    &:last-child {
+      width: 30px;
+      top: 12px;
+      margin-left: 5px;
+      transform-origin: 40px 0;
+    }
+  }
+
+  &.closed {
+    .bar:first-child {
+      transform: translateX(7px) rotate(45deg);
+      transition: transform $hamburger-delay $hamburger-delay;
+      @include hamburger-timing;
+    }
+
+    .bar:nth-child(2) {
+      top: 0;
+      opacity: 0;
+      transition: top $hamburger-delay, opacity 50ms $hamburger-delay;
+      @include hamburger-timing;
+    }
+
+    .bar:last-child {
+      top: 0;
+      transform: translateX(-7px) rotate(-45deg);
+      transition: $hamburger-delay, transform $hamburger-delay $hamburger-delay, width $hamburger-delay;
+      @include hamburger-timing;
+      width: 40px;
+      margin-left: 0;
+    }
+  }
+
+  &:not(.closed) {
+    .bar:first-child {
+      transform: rotate(0deg);
+      transition: transform $hamburger-delay;
+      @include hamburger-timing;
+
+    }
+
+    .bar:nth-child(2) {
+      top: 12px;
+      opacity: 1;
+      transition: top $hamburger-delay $hamburger-delay, opacity 50ms $hamburger-delay;
+      @include hamburger-timing;
+
+    }
+
+    .bar:last-child {
+      transform: rotate(0deg);
+      transition: $hamburger-delay $hamburger-delay, transform $hamburger-delay, width $hamburger-delay;
+      @include hamburger-timing;
+    }
+  }
+}
