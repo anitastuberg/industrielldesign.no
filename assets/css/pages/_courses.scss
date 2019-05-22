@@ -6,11 +6,92 @@
     display: inline-flex;
     margin-bottom: 1rem;
   }
-  .course-list {
-    display: grid;
-    grid-gap: 3rem;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr) ) ;
+
+  .filter {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: $dark-gray;
+    transition: color 150ms ease-in-out;
+    margin-right: 2rem;
+    @include no-select;
+
+
+    &:not(.selected) .color {
+      box-shadow: 0 0 0 1px $dark-gray;
+      background: none !important;
+    }
+
+    &:hover {
+      color: $black;
+      .color {
+        box-shadow: 0 0 0 1px $black;
+      }
+    }
+
+    .color {
+      $dot-size: 18px;
+      width: $dot-size;
+      height: $dot-size;
+      border-radius: $dot-size;
+      margin-right: 0.5rem;
+      transition: box-shadow 150ms ease-in-out;
+    }
   }
+
+  .course-list {
+    margin-top: 4rem;
+
+    div.labels, a {
+      display: grid;
+      grid-template-columns: 150px 1fr 300px 100px;
+    }
+
+    div.labels {
+      color: $dark-gray;
+      font-weight: 500;
+
+      span:last-child {
+        text-align: center;
+      }
+    }
+
+    a {
+      padding: 2rem 0 1.5rem;
+      border-bottom: 1px solid $gray;
+
+      div:first-child {
+        color: $dark-gray;
+      }
+      div.color {
+        $dot-size: 16px;
+        position: relative;
+        height: $dot-size;
+        width: $dot-size;
+        border-radius: $dot-size;
+        margin: 0 auto;
+        cursor: help;
+
+        &:hover span {
+          transform: translateX(-50%) scaleY(1);
+        }
+
+        span {
+          position: absolute;
+          bottom: -1.5rem;
+          background-color: $black;
+          color: white;
+          left: 50%;
+          transform: translateX(-50%) scaleY(0);
+          transform-origin: top;
+          transition: transform 200ms ease-in-out;
+          will-change: transform;
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+
   .course {
     h3 {
       @include text-wrap;
@@ -37,21 +118,25 @@
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+
     .url-preview {
       @extend .card;
       @extend .clickable;
     }
   }
+
   .reviews {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     margin-bottom: 3rem;
   }
+
   .review {
     white-space: pre-line;
     margin: 0;
   }
+
   .review-date {
     font-size: 0.8rem;
     color: $dark-gray;
