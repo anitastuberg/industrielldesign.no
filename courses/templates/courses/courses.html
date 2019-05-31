@@ -5,12 +5,12 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <div class="container nav" id="courses">
-        <div class="row">
-            <a href="{% url 'create_course' %}" class="button cta">Legg til nytt fag</a>
+        <div class="course-top">
             <div class="input-field">
                 <input type="text" id="search" placeholder=".">
                 <label for="search">Søk</label>
             </div>
+            <a href="{% url 'create_course' %}" class="button cta">Legg til nytt fag</a>
         </div>
         <div class="filters">
             {% for filter in filters %}
@@ -48,5 +48,8 @@
         filters.click(function () {
             $(this).toggleClass('selected');
         });
+        function search() {
+            $.ajax()
+        }
     </script>
 {% endblock javascript %}

@@ -2,9 +2,18 @@
 // Courses page
 // -------------
 #courses {
-  a.button {
-    display: inline-flex;
+  .course-top {
     margin-bottom: 1rem;
+
+    .input-field {
+      display: inline-flex;
+      max-width: 400px;
+    }
+
+    a.button {
+      display: inline-flex;
+      margin: 0 0 1rem auto;
+    }
   }
 
   .filter {
@@ -24,6 +33,7 @@
 
     &:hover {
       color: $black;
+
       .color {
         box-shadow: 0 0 0 1px $black;
       }
@@ -57,12 +67,20 @@
     }
 
     a {
-      padding: 2rem 0 1.5rem;
+      padding: 2rem 1rem 1.5rem;
+      margin: 0 -1rem;
       border-bottom: 1px solid $gray;
+      transition: box-shadow 200ms ease-in-out;
+      will-change: box-shadow;
+
+      &:hover {
+        box-shadow: $low-shadow;
+      }
 
       div:first-child {
         color: $dark-gray;
       }
+
       div.color {
         $dot-size: 16px;
         position: relative;
