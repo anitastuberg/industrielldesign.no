@@ -5,19 +5,51 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <div class="container nav" id="courses">
-        <a href="{% url 'create_course' %}" class="button cta">Legg til nytt fag</a>
+        <div class="course-top">
+            <div class="input-field">
+                <input type="text" id="search" placeholder=".">
+                <label for="search">Søk</label>
+            </div>
+            <a href="{% url 'create_course' %}" class="button cta">Legg til nytt fag</a>
+        </div>
+        <div class="filters">
+            {% for filter in filters %}
+                <div class="filter">
+                    <div class="color" style="background-color: {{ filter.color }}"></div>
+                    {{ filter.name }}
+                </div>
+            {% endfor %}
+        </div>
         <div class="course-list">
+            <div class="labels">
+                <span>Fagkode</span>
+                <span>Fag</span>
+                <span>Klasse</span>
+                <span>Type</span>
+            </div>
             {% for course in courses %}
-                <a href="{% url 'course_detail' course_slug=course.slug %}" class="course card clickable dynamic-shadow">
-                    <h3>{{ course.name }}</h3>
-                    <p>{{ course.course_code }}</p>
-                    <p>{{ course.class_year }}</p>
-                    <p>{{ course.reviews.all.count }} erfaringer</p>
+                <a href="{% url 'course_detail' course_slug=course.slug %}">
+                    <div>{{ course.course_code }}</div>
+                    <div>{{ course.name }}</div>
+                    <div>{{ course.class_year }}</div>
+                    <div>
+                        <div class="color" style="background-color: {{ course.filter.color }}">
+                            <span>{{ course.filter.name }}</span></div>
+                    </div>
                 </a>
             {% endfor %}
         </div>
     </div>
 {% endblock content %}
 {% block javascript %}
-    {% comment %}<script src="{% static 'js/shadow' %}"></script>{% endcomment %}
+    <script>
+        let filters = $('.filter');
+
+        filters.click(function () {
+            $(this).toggleClass('selected');
+        });
+        function search() {
+            $.ajax()
+        }
+    </script>
 {% endblock javascript %}

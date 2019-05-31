@@ -13,6 +13,14 @@ class CourseReview(models.Model):
         return self.text[:50] + '...'
 
 
+class CourseFilter(models.Model):
+    name = models.CharField(max_length=200)
+    color = models.CharField(max_length=7)
+
+    def __str__(self):
+        return self.name
+
+
 class Course(models.Model):
     YEAR_CHOICES = [
         ('1.klasse', '1.klasse'),
@@ -27,6 +35,7 @@ class Course(models.Model):
     reviews = models.ManyToManyField(CourseReview, blank=True)
     class_year = models.CharField(max_length=20, choices=YEAR_CHOICES, default="Ikke trinnavhengig")
     display_without_reviews = models.BooleanField(default=False)
+    filter = models.ForeignKey(CourseFilter, on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(blank=True)
 
     def __str__(self):

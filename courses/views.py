@@ -4,14 +4,20 @@ from django.shortcuts import render, redirect
 
 from authentication.models import Profile
 from .forms import CreateCourseForm, CreateCourseReviewForm
-from .models import Course, CourseReview, CourseLink
+from .models import Course, CourseReview, CourseLink, CourseFilter
 
 
 def courses(request):
     context = {
-        'courses': Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True)).order_by('-reviews', 'name')
+        'courses': Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True)).order_by('-reviews', 'name'),
+        'filters': CourseFilter.objects.all
     }
-    return render(request, 'courses/courses.html', context)
+    if request.method == 'GET':
+        return render(request, 'courses/courses.html', context)
+    else:
+        query = request.get('q')
+        response = Course.objects.filter(Q(name__icontains=query) | Q(course_code__icontains=query) | Q(display_without_reviews=True) | Q(reviews__isnull=False))
+        return JsonResponse(response)
 
 
 def create_course(request):

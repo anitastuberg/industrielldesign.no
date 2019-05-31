@@ -26,6 +26,7 @@
             <div class="dropdown">
                 <ul>
                     <li><a href="{% url 'ny-student' %}" disabled="">Ny student?</a></li>
+                    <li><a href="{% url 'courses' %}">Fag</a></li>
                     <li><a href="{% url 'books' %}">Boksalg</a></li>
                     <li><a href="{% url 'utveksling' %}">Utveksling</a></li>
                     <li><a href="{% url 'klassetur' %}">Klasseturer</a></li>
@@ -47,7 +48,7 @@
             <a class="nav-item user" href="{% url 'my_profile' %}"><img src="{% static 'img/icons/user.png' %}"></a>
         {% else %}
             <a class="register nav-item" href="{% url 'register' %}">Registrer ny bruker</a>
-            <a class="nav-item" id="login" href="/login">Logg in</a>
+            <a class="nav-item" id="login" href="{% url 'login' %}">Logg in</a>
         {% endif %}
     </div>
 </nav>
