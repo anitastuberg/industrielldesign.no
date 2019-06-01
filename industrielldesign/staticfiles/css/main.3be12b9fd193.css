@@ -3301,14 +3301,14 @@ tbody td {
                                     supported by Chrome and Opera */
       left: 0; }
     .input-field input[type="checkbox"]:checked + .checkmark {
-      background-image: url("../img/icons/checkbox_checked.png"); }
+      background-image: url("../img/icons/checkbox_checked.66e14b3226d8.png"); }
   .input-field .checkmark {
     position: absolute;
     bottom: 4px;
     left: 0;
     height: 32px;
     width: 32px;
-    background-image: url("../img/icons/checkbox_unchecked.png");
+    background-image: url("../img/icons/checkbox_unchecked.4edd61391753.png");
     background-position: center;
     background-size: 100%;
     pointer-events: none; }
@@ -4151,4 +4151,4 @@ tbody td {
     #project-detail .project-description .description {
       white-space: pre-wrap; }
 
-/*# sourceMappingURL=main.e43b10937ee9.css.map */
+/*# sourceMappingURL=main.css.map */

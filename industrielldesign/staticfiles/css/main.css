@@ -3926,13 +3926,87 @@ tbody td {
   #profile-page form {
     margin-bottom: 4rem; }
 
-#courses a.button {
-  display: inline-flex;
+#courses .course-top {
   margin-bottom: 1rem; }
+  #courses .course-top .input-field {
+    display: inline-flex;
+    max-width: 400px; }
+  #courses .course-top a.button {
+    display: inline-flex;
+    margin: 0 0 1rem auto; }
+#courses .filter {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #6E787A;
+  transition: color 150ms ease-in-out;
+  margin-right: 2rem;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                supported by Chrome and Opera */ }
+  #courses .filter:not(.selected) .color {
+    box-shadow: 0 0 0 1px #6E787A;
+    background: none !important; }
+  #courses .filter:hover {
+    color: #1A1A1A; }
+    #courses .filter:hover .color {
+      box-shadow: 0 0 0 1px #1A1A1A; }
+  #courses .filter .color {
+    width: 18px;
+    height: 18px;
+    border-radius: 18px;
+    margin-right: 0.5rem;
+    transition: box-shadow 150ms ease-in-out; }
 #courses .course-list {
-  display: grid;
-  grid-gap: 3rem;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); }
+  margin-top: 4rem; }
+  #courses .course-list div.labels, #courses .course-list a {
+    display: grid;
+    grid-template-columns: 150px 1fr 300px 100px; }
+  #courses .course-list div.labels {
+    color: #6E787A;
+    font-weight: 500; }
+    #courses .course-list div.labels span:last-child {
+      text-align: center; }
+  #courses .course-list a {
+    padding: 2rem 1rem 1.5rem;
+    margin: 0 -1rem;
+    border-bottom: 1px solid #C4CACC;
+    transition: box-shadow 200ms ease-in-out;
+    will-change: box-shadow; }
+    #courses .course-list a:hover {
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09); }
+    #courses .course-list a div:first-child {
+      color: #6E787A; }
+    #courses .course-list a div.color {
+      position: relative;
+      height: 16px;
+      width: 16px;
+      border-radius: 16px;
+      margin: 0 auto;
+      cursor: help; }
+      #courses .course-list a div.color:hover span {
+        transform: translateX(-50%) scaleY(1); }
+      #courses .course-list a div.color span {
+        position: absolute;
+        bottom: -1.5rem;
+        background-color: #1A1A1A;
+        color: white;
+        left: 50%;
+        transform: translateX(-50%) scaleY(0);
+        transform-origin: top;
+        transition: transform 200ms ease-in-out;
+        will-change: transform;
+        padding: 0 8px; }
 #courses .course h3 {
   overflow-wrap: break-word;
   word-wrap: break-word;
