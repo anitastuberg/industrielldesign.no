@@ -3975,8 +3975,34 @@ tbody td {
   #courses .course-list div.labels {
     color: #6E787A;
     font-weight: 500; }
-    #courses .course-list div.labels span:last-child {
-      text-align: center; }
+    #courses .course-list div.labels span {
+      margin: auto auto auto 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Safari */
+      -khtml-user-select: none;
+      /* Konqueror HTML */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */ }
+      #courses .course-list div.labels span.active img {
+        opacity: 1; }
+      #courses .course-list div.labels span.descending img {
+        transform: rotate(180deg); }
+      #courses .course-list div.labels span img {
+        opacity: 0;
+        margin-left: 0.5rem;
+        transition: transform 200ms ease-in-out; }
+      #courses .course-list div.labels span:last-child {
+        margin: 0 auto; }
   #courses .course-list a {
     padding: 2rem 1rem 1.5rem;
     margin: 0 -1rem;

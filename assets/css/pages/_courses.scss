@@ -61,8 +61,29 @@
       color: $dark-gray;
       font-weight: 500;
 
-      span:last-child {
-        text-align: center;
+      span {
+        margin: auto auto auto 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        @include no-select;
+
+        &.active img {
+          opacity: 1;
+        }
+        &.descending img {
+          transform: rotate(180deg);
+        }
+
+        img {
+          opacity: 0;
+          margin-left: 0.5rem;
+          transition: transform 200ms $animation-bounce;
+        }
+
+        &:last-child {
+          margin: 0 auto;
+        }
       }
     }
 

@@ -1,3 +1,4 @@
+import simplejson
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
@@ -8,15 +9,28 @@ from .models import Course, CourseReview, CourseLink, CourseFilter
 
 
 def courses(request):
+    course_list = list(Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True))
+                        .order_by('-reviews', 'name')
+                        .values('name', 'class_year', 'course_code', 'slug', 'filter__name', 'filter__color'))
     context = {
-        'courses': Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True)).order_by('-reviews', 'name'),
+        'courses': simplejson.dumps(course_list),
         'filters': CourseFilter.objects.all
     }
     if request.method == 'GET':
         return render(request, 'courses/courses.html', context)
-    else:
-        query = request.get('q')
-        response = Course.objects.filter(Q(name__icontains=query) | Q(course_code__icontains=query) | Q(display_without_reviews=True) | Q(reviews__isnull=False))
+    else:  # POST
+        query = request.POST.get('q')
+        filters = request.POST.getlist('filters[]')
+        if filters:
+            course_response = Course.objects.filter(filter__name__in=filters).filter(Q(display_without_reviews=True) | Q(reviews__isnull=False)).\
+                filter(Q(name__icontains=query) | Q(course_code__icontains=query))
+        else:
+            course_response = Course.objects.filter(Q(display_without_reviews=True) | Q(reviews__isnull=False)). \
+                filter(Q(name__icontains=query) | Q(course_code__icontains=query))
+
+        response = {
+            'courses': list(course_response.values('name', 'class_year', 'course_code', 'slug', 'filter__name', 'filter__color'))
+        }
         return JsonResponse(response)
 
 
@@ -27,8 +41,8 @@ def create_course(request):
 
     else:  # POST
         if request.POST.get('query'):  # ajax request
-            query = request.POST.get('query').upper()
-            course_suggestions = Course.objects.filter(Q(name__contains=query) | Q(course_code__contains=query)).values('name', 'course_code')
+            query = request.POST.get('query')
+            course_suggestions = Course.objects.filter(Q(name__icontains=query) | Q(course_code__icontains=query)).values('name', 'course_code')
             return JsonResponse({'suggestions': list(course_suggestions)[:10]})
         else:
             form = CreateCourseForm(request.POST)

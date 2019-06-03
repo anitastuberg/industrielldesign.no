@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block page_title %}Fag{% endblock %}
 
 {% block content %}
+    {% csrf_token %}
     {% include 'components/navbar.html' %}
     <div class="container nav" id="courses">
         <div class="course-top">
             <div class="input-field">
-                <input type="text" id="search" placeholder=".">
+                <input type="text" id="search" placeholder="." v-model="query" @input="doRequest()">
                 <label for="search">Søk</label>
             </div>
             <a href="{% url 'create_course' %}" class="button cta">Legg til nytt fag</a>
@@ -22,34 +25,128 @@
         </div>
         <div class="course-list">
             <div class="labels">
-                <span>Fagkode</span>
-                <span>Fag</span>
-                <span>Klasse</span>
-                <span>Type</span>
+                <span data-key="course_code" class="sort-label" :class="{active: sortKey === 'course_code'}">
+                    Fagkode
+                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
+                </span>
+                <span data-key="name" class="sort-label" :class="{active: sortKey === 'name'}">
+                    Fag
+                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
+                </span>
+                <span data-key="class_year" class="sort-label" :class="{active: sortKey === 'class_year'}">
+                    Klasse
+                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
+                </span>
+                <span data-key="filter__name" class="sort-label" :class="{active: sortKey === 'filter__name'}">
+                    Type
+                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
+                </span>
             </div>
-            {% for course in courses %}
-                <a href="{% url 'course_detail' course_slug=course.slug %}">
-                    <div>{{ course.course_code }}</div>
-                    <div>{{ course.name }}</div>
-                    <div>{{ course.class_year }}</div>
+            <!-- List for search results -->
+            <template>
+                <a :href="'fag/' + course.slug" v-for="course in sorted_courses">
+                    <div>[{ course.course_code }]</div>
+                    <div>[{ course.name }]</div>
+                    <div>[{ course.class_year }]</div>
                     <div>
-                        <div class="color" style="background-color: {{ course.filter.color }}">
-                            <span>{{ course.filter.name }}</span></div>
+                        <div class="color" :style="{ backgroundColor: course.filter__color }">
+                            <span>[{ course.filter__name }]</span></div>
                     </div>
                 </a>
-            {% endfor %}
+                <p v-if="courses.length === 0">Fant ingen fag med søket: '[{ query }]'</p>
+            </template>
         </div>
     </div>
 {% endblock content %}
 {% block javascript %}
+    <script src="{% static 'js/ajaxSetup.js' %}"></script>
     <script>
-        let filters = $('.filter');
+        const debounce = (func, delay) => {
+            let inDebounce;
+            return function () {
+                const context = this;
+                const args = arguments;
+                clearTimeout(inDebounce);
+                inDebounce = setTimeout(() => func.apply(context, args), delay);
+            }
+        };
+        // VUE APP
+        let app = new Vue({
+            el: '#courses',
+            delimiters: ['[{', '}]'],
+            data: {
+                'query': '',
+                'searching': false,
+                'courses': {{ courses|safe }},
+                'filters': [],
+                'sortKey': 'class_year',
+                'sortDirection': 1,
 
-        filters.click(function () {
-            $(this).toggleClass('selected');
+                'courseCodeClass': [],
+                'courseClass': [],
+                'classYearClass': [],
+                'typeClass': []
+            },
+            mounted: function () {
+                self = this;
+                let filters = $('.filter');
+                let sortLabels = $('.sort-label');
+                filters.click(function () {
+                    self.toggleFilter();
+                });
+                sortLabels.click(function() {
+                    self.changeSort($(this).data('key')) === -1 ? $(this).addClass('descending') : $(this).removeClass('descending');
+                    console.log(self.sortDirection);
+                    self.courses = self.courses.sort(self.sortCourses);
+                })
+            },
+            methods: {
+                changeSort: function(key) {
+                    this.sortDirection = this.sortKey === key ? this.sortDirection * -1 : 1;
+                    this.sortKey = key;
+                    return this.sortDirection;
+                },
+                toggleFilter: function () {
+                    let f = [];
+                    this.filters = Array.from(document.querySelectorAll('.filter.selected')).map(el => {
+                        console.log(el.innerText);
+                        f.push(el.innerText);
+                    });
+                    this.filters = f;
+                    this.doRequest();
+                },
+                doRequest: debounce(function () {
+                    self = this;
+                    this.courses = [];
+                    // Searching = true if either query or filter is activated
+                    this.searching = !this.query.length || !this.filters.length;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url 'courses' %}',
+                        data: {
+                            'q': self.query,
+                            'filters': self.filters
+                        },
+                        success: function (data) {
+                            self.courses = data.courses;
+                            console.log(self.courses);
+                        },
+                        error: function (data) {
+                            this.searching = false;
+                        }
+                    });
+                }, 300),
+                sortCourses: function (a, b) {
+                    return ((a[this.sortKey] > b[this.sortKey]) ? 1 : ((b[this.sortKey] > a[this.sortKey]) ? -1 : 0)) * this.sortDirection;
+                }
+            },
+            computed: {
+                sorted_courses() {
+                    return this.courses.sort(this.sortCourses);
+                },
+            }
         });
-        function search() {
-            $.ajax()
-        }
+        console.log(app.filters);
     </script>
 {% endblock javascript %}
