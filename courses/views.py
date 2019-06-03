@@ -1,3 +1,4 @@
+import simplejson
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
@@ -8,8 +9,11 @@ from .models import Course, CourseReview, CourseLink, CourseFilter
 
 
 def courses(request):
+    course_list = list(Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True))
+                        .order_by('-reviews', 'name')
+                        .values('name', 'class_year', 'course_code', 'slug', 'filter__name', 'filter__color'))
     context = {
-        'courses': Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True)).order_by('-reviews', 'name'),
+        'courses': simplejson.dumps(course_list),
         'filters': CourseFilter.objects.all
     }
     if request.method == 'GET':
