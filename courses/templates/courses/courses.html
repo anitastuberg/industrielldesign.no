@@ -92,6 +92,7 @@
                 let filters = $('.filter');
                 let sortLabels = $('.sort-label');
                 filters.click(function () {
+                    $(this).toggleClass('selected');
                     self.toggleFilter();
                 });
                 sortLabels.click(function() {
@@ -102,16 +103,19 @@
             },
             methods: {
                 changeSort: function(key) {
+                    // Changes direction if selected filter is clicked twice
                     this.sortDirection = this.sortKey === key ? this.sortDirection * -1 : 1;
+                    // Changes filter
                     this.sortKey = key;
                     return this.sortDirection;
                 },
                 toggleFilter: function () {
                     let f = [];
+                    // Adds all selected filters to ajax call variable
                     this.filters = Array.from(document.querySelectorAll('.filter.selected')).map(el => {
-                        console.log(el.innerText);
                         f.push(el.innerText);
                     });
+                    // Resets and updates active filters
                     this.filters = f;
                     this.doRequest();
                 },
