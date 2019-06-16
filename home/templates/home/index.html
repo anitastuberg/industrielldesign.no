@@ -2,36 +2,39 @@
 
 {% load static %}
 {% load days_until %}
+{% load project_filters %}
 
 {% block page_title %}Hjem{% endblock %}
 
 {% block content %}
-    {% include 'components/navbar.html' %}
-    <div class="container nav" id="student">
-        <div class="events">
+        {% include 'components/navbar.html' %}
+    <div class="container nav" id="homepage">
+        <h1>Velkommen <br>til IPD</h1>
+        <br>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+        <br><br>
+        <h4>Kommende hendelser</h4>
+        <br>
+        <div class="events box-container">
             {% for event in events %}
                 {% with event.event_start_time|days_until as days_left %}
-                    <a class="event" href="{% url 'event' event_slug=event.slug %}">
-                        <img class="dynamic-shadow" src="{{ event.image.url }}" alt="">
+                    <a class="event box" href="{% url 'event' event_slug=event.slug %}">
                         <div class="event-info">
-                            <h3>{{ event.title }}</h3>
+                            <h4>{{ event.title }}</h4>
                             <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}
                                 dager{% endif %}
                                 igjen</p>
-                            <div class="dots">
-                                {% for i in days_left|times %}
-                                    <div class="dot"></div>
-                                {% endfor %}
+                        </div>
+                        <p class="date">{{ event.event_start_time|date:"d" }}<br>
+                            <span>{{ event.event_start_time|date:"M" }}</span></p>
+                        <div class="image-viewer">
+                            <img src="{{ event.eventimage_set.all|get_first_project_image_url }}" alt="">
+                            <div class="counter">
+
                             </div>
-                            <div class="event-date">
-                                <div>
-                                    <p class="label">Når</p>
-                                    <p>{{ event.event_start_time|date:"d. F H:i" }}</p>
-                                </div>
-                                <div>
-                                    <p class="label">Hvor</p>
-                                    <p>{{ event.location }}</p>
-                                </div>
+                            <div class="dots">
+
                             </div>
                         </div>
                     </a>
@@ -41,30 +44,4 @@
     </div>
 {% endblock content %}
 {% block javascript %}
-    <script src="{% static "js/dynamicShadow.js" %}"></script>
-    <script>
-        let event = $('.event');
-        function addBorder(img) {
-            img.addClass('jubileum');
-        }
-        event.each(function() {
-            let title = $(this).find('h3');
-            let img = $(this).find('img');
-            switch (title.text()) {
-                case 'Jubileumsgalla':
-                    console.log("jub");
-                    addBorder(img);
-                    break;
-                case '[fullt] Digitalt sketchekurs med Fredrik Bostad':
-                    addBorder(img);
-                    break;
-                case 'Café au Leo':
-                    addBorder(img);
-                    break;
-                case 'Fra da til nå - instituttets historie i ord og bilder':
-                    addBorder(img);
-                    break;
-            }
-        });
-    </script>
 {% endblock javascript %}

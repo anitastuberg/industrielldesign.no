@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="image-viewer">
+    <div class="images">
+        {% for img in images %}
+            <img class="image-viewer-image{% if not forloop.first %} right{% endif %}" src="{{ img.image.url }}" alt="{{ event.title }}">
+        {% endfor %}
+    </div>
+    <div class="image-viewer-counter">
+        <span class="current-count"><b>01</b></span>/<span
+            class="total-count">{{ images.count|stringformat:"02d" }}</span>
+    </div>
+    <div class="dots">
+        {% for i in images %}
+            <div class="image-viewer-dot {% if forloop.first %}selected{% endif %}"></div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'js/imageViewer.js' %}"></script>

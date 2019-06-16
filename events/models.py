@@ -5,6 +5,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 import datetime
 
+
 class Event(models.Model):
     NOW = datetime.datetime.now()
     YEAR = NOW.year
@@ -26,7 +27,6 @@ class Event(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField()
     location = models.CharField(max_length=50, blank=True, null=True)
-    image = ProcessedImageField(upload_to='events/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     event_start_time = models.DateTimeField()
     event_end_time = models.DateTimeField(blank=True, null=True)
     registration_required = models.BooleanField(default=False)
@@ -76,3 +76,8 @@ class Event(models.Model):
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
         ordering = ['event_start_time']
+
+
+class EventImage(models.Model):
+    image = ProcessedImageField(upload_to='events/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
