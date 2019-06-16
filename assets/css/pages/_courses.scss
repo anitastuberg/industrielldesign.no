@@ -78,7 +78,7 @@
         img {
           opacity: 0;
           margin-left: 0.5rem;
-          transition: transform 200ms $animation-bounce;
+          transition: transform 200ms $animation-bounce, opacity 200ms ease-in-out;
         }
 
         &:last-child {
@@ -93,6 +93,9 @@
       border-bottom: 1px solid $gray;
       transition: box-shadow 200ms ease-in-out;
       will-change: box-shadow;
+      @media screen and (max-width: $lg + 4em) {
+        grid-template-columns: 150px 1fr;
+      }
 
       &:hover {
         box-shadow: $low-shadow;
