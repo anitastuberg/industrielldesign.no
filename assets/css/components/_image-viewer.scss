@@ -2,6 +2,7 @@
   width: 100%;
   height: 400px;
   position: relative;
+  overflow-x: hidden;
 
   img {
     position: absolute;
@@ -23,7 +24,7 @@
 
   .dots, .image-viewer-counter {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
   }
 
   .dots {

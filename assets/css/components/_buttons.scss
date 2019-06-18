@@ -1,0 +1,38 @@
+button, .button {
+  $button-animation-settings: 200ms ease-in-out;
+  display: block;
+  position: relative;
+  font-size: 1rem;
+  background-color: $black;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: transform $button-animation-settings;
+
+  $button-shadow-offset: 4px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    border: $border-width solid $black;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translate($button-shadow-offset, $button-shadow-offset);
+    transition: transform $button-animation-settings;
+  }
+
+  &:hover {
+    transform: translate($button-shadow-offset, $button-shadow-offset);
+    &::after, &::before {
+      bottom: 0;
+    }
+    &::after {
+      transform: translate(0, 0);
+    }
+  }
+}

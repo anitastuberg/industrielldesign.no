@@ -127,7 +127,8 @@ p a {
 .image-viewer {
   width: 100%;
   height: 400px;
-  position: relative; }
+  position: relative;
+  overflow-x: hidden; }
   .image-viewer img {
     position: absolute;
     top: 0;
@@ -142,7 +143,7 @@ p a {
     transform: translateX(-140vw); }
   .image-viewer .dots, .image-viewer .image-viewer-counter {
     position: absolute;
-    bottom: 0; }
+    bottom: 10px; }
   .image-viewer .dots {
     right: 0; }
     .image-viewer .dots .image-viewer-dot {
@@ -155,6 +156,35 @@ p a {
       margin-right: 2px; }
       .image-viewer .dots .image-viewer-dot.selected {
         background: black; }
+
+button, .button {
+  display: block;
+  position: relative;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: transform 200ms ease-in-out; }
+  button::after, .button::after {
+    content: '';
+    position: absolute;
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translate(4px, 4px);
+    transition: transform 200ms ease-in-out; }
+  button:hover, .button:hover {
+    transform: translate(4px, 4px); }
+    button:hover::after, button:hover::before, .button:hover::after, .button:hover::before {
+      bottom: 0; }
+    button:hover::after, .button:hover::after {
+      transform: translate(0, 0); }
 
 #homepage .event {
   position: relative; }
@@ -178,5 +208,42 @@ p a {
     margin-right: 0;
     margin-left: auto;
     margin-bottom: 5rem; }
+
+#event-detail h3 {
+  margin-top: 1rem; }
+#event-detail .time-and-place {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 1rem 0; }
+#event-detail .button {
+  margin: 3rem auto 0; }
+
+#project-page h1 {
+  margin-bottom: 1rem; }
+#project-page .button {
+  margin: 2rem 0;
+  display: inline-block; }
+#project-page .box-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; }
+#project-page .project-image {
+  text-align: center;
+  padding-bottom: 0.5rem; }
+  #project-page .project-image:nth-child(3n+1) {
+    grid-column: span 2; }
+    #project-page .project-image:nth-child(3n+1) .image {
+      height: 350px; }
+  #project-page .project-image:hover img {
+    transform: scale(1.1); }
+  #project-page .project-image .image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 0.5rem; }
+    #project-page .project-image .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 200ms ease-in-out; }
 
 /*# sourceMappingURL=main.css.map */

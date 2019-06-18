@@ -3,7 +3,8 @@
 <div class="image-viewer">
     <div class="images">
         {% for img in images %}
-            <img class="image-viewer-image{% if not forloop.first %} right{% endif %}" src="{{ img.image.url }}" alt="{{ event.title }}">
+            <img class="image-viewer-image{% if not forloop.first %} right{% endif %}" src="{{ img.image.url }}"
+                 alt="{{ event.title }}">
         {% endfor %}
     </div>
     <div class="image-viewer-counter">

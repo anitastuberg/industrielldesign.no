@@ -5,7 +5,7 @@
 {% block page_title %}{{ event.title }}{% endblock page_title %}
 
 {% block content %}
-    <div class="container">
+    <div class="container" id="event-detail">
         <div class="beskrivelse">
             {% if request.user.is_staff %}
                 <a class="link block" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
@@ -13,14 +13,14 @@
             {% include "components/image-viewer.html" with images=event.eventimage_set.all %}
 
             <h3>{{ event.title }}<img src="{{ event.image.url }}" alt=""></h3>
-            <a class="tilbake" href="{% url 'home' %}">-</a>
 
             <div class="time-and-place">
-                <p><img src="" alt="">{{ event.event_start_time|date:"H:i d. F" }}</p>
                 {% if event.location %}
                     <p><img src="" alt="">{{ event.location }}</p>
                 {% endif %}
+                <p>{{ event.event_start_time|date:"K\l: H:i | d. F" }}</p>
             </div>
+            <p class="content-markdown">{{ event.description }}</p>
             <div class="signup">
                 {% if event.registration_required %}
                     <p id="open-for"><span>Åpent for: </span>{{ open_for }}</p>
@@ -44,8 +44,7 @@
                                     <a href="{% url 'register' %}" class="link">Eller registrer en ny bruker</a>
                                 </div>
                             {% else %}
-                                <input class="button cta" type="submit" value="{{ buttonText }}"
-                                       {% if not buttonState %}disabled{% endif %}>
+                                <button class="button cta" type="submit" {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</button>
                                 {% if event.registration_start_time and not_open_yet %}
                                     <p class="registration-start-time">Påmelding
                                         åpner: {{ event.registration_start_time|date:"j. F H:i" }}</p>
@@ -55,8 +54,6 @@
                     </form>
                 {% endif %}
             </div>
-            <!-- Description -->
-            <p class="content-markdown">{{ event.description }}</p>
         </div>
     </div>
 

@@ -7,7 +7,7 @@
 {% block page_title %}Hjem{% endblock %}
 
 {% block content %}
-        {% include 'components/navbar.html' %}
+    {% include 'components/navbar.html' %}
     <div class="container nav" id="homepage">
         <h1>Velkommen <br>til IPD</h1>
         <br>
@@ -28,15 +28,7 @@
                         </div>
                         <p class="date">{{ event.event_start_time|date:"d" }}<br>
                             <span>{{ event.event_start_time|date:"M" }}</span></p>
-                        <div class="image-viewer">
-                            <img src="{{ event.eventimage_set.all|get_first_project_image_url }}" alt="">
-                            <div class="counter">
-
-                            </div>
-                            <div class="dots">
-
-                            </div>
-                        </div>
+                        <img src="{{ event.eventimage_set.all|get_first_project_image_url }}" alt="">
                     </a>
                 {% endwith %}
             {% endfor %}
