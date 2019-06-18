@@ -2,7 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 from .forms import CreateEventForm
-from .models import Event
+from .models import Event, EventImage
+
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ["__str__", "event_start_time"]
@@ -12,4 +13,13 @@ class EventAdmin(admin.ModelAdmin):
     class Meta:
         model = Event
 
+
+class EventImageAdmin(admin.ModelAdmin):
+    list_display = ['event']
+
+    class Meta:
+        model = EventImage
+
+
 admin.site.register(Event, EventAdmin)
+admin.site.register(EventImage, EventImageAdmin)

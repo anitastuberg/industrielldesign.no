@@ -1,61 +1,28 @@
-.errorlist li {
-  list-style: none;
-  color: $error;
-  font-size: 0.8rem;
-  margin: 0;
+body {
+  background-color: $background-color;
 }
 
+// CONTAINER
 .container {
-  margin: 1rem auto;
-  padding: 1rem;
-  max-width: $xxl;
+  margin: 5% $body-padding;
 
   &.nav {
-    margin-top: calc(#{$nav-height} + 1rem);
-  }
-
-  &.narrow {
-    padding: 5%;
-    max-width: $md;
+    margin-top: calc(#{$nav-height} + 5%);
   }
 }
 
-body {
-  &.dark {
-    background-color: $black;
+.box-container {
+  margin-left: -$body-padding;
+  margin-right: -$body-padding;
+}
+
+.box {
+  padding: $body-padding * 2 $body-padding;
+  border: $border-width solid $black;
+  margin-top: -1px;
+  margin-left: -1px;
+  &:last-child {
+    //border-bottom: $border-width solid $black;
   }
-  &.accent {
-    background-color: $accent;
-  }
 }
 
-i, img {
-  @include no-select;
-}
-
-// Scrollbar
-
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 6px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: $light-gray;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $gray;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $dark-gray;
-}
-
-::selection {
-  background: #ff9;
-}

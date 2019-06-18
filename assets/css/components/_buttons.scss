@@ -1,55 +1,38 @@
 button, .button {
+  $button-animation-settings: 200ms ease-in-out;
+  display: block;
+  position: relative;
   font-size: 1rem;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  background-color: $primary-dark;
-  outline: 0;
-  border: 0;
-  transition: all 400ms $animation-ease;
-  cursor: pointer;
-  color: $white;
+  background-color: $black;
+  color: white;
   padding: 0.5rem 1rem;
-  line-height: 1.2em;
-  font-weight: bold;
-  box-shadow: $low-shadow;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: transform $button-animation-settings;
+
+  $button-shadow-offset: 4px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    border: $border-width solid $black;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translate($button-shadow-offset, $button-shadow-offset);
+    transition: transform $button-animation-settings;
+  }
 
   &:hover {
-    background-color: darken($primary-dark, 5%);
-    box-shadow: $med-shadow;
-    transform: scale(1.02);
-  }
-
-  &.cta {
-    background-color: $accent;
-
-    &:hover {
-      background-color: darken($accent, 5%);
+    transform: translate($button-shadow-offset, $button-shadow-offset);
+    &::after, &::before {
+      bottom: 0;
+    }
+    &::after {
+      transform: translate(0, 0);
     }
   }
-
-  &.primary {
-    background-color: $primary;
-
-    &:hover {
-      background-color: darken($primary, 5%);
-    }
-  }
-
-  &:disabled {
-    background-color: $gray;
-    color: $dark-gray;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: scale(0.98);
-
-    &:hover {
-      background-color: $gray;
-    }
-  }
-}
-
-a.button {
-  display: inline-block;
 }
