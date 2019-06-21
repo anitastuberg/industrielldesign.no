@@ -88,12 +88,12 @@ b {
   font-size: 0.625rem; }
 
 body {
-  background-color: #1A1A1A;
-  margin-bottom: 200px; }
+  background-color: #F3F2EF; }
 
 .container {
-  padding: 5% 1rem;
-  background: #F3F2EF; }
+  padding: 5% 1rem 200px;
+  background: #F3F2EF;
+  margin-bottom: 200px; }
   .container.nav {
     padding-top: calc(4rem + 5%); }
   .container.max-mobile {
@@ -226,7 +226,6 @@ button, .button {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -1;
     transform: translate(4px, 4px);
     transition: transform 200ms ease-in-out; }
   button:not(:disabled):hover, .button:not(:disabled):hover {
@@ -338,7 +337,7 @@ footer {
   margin-bottom: 1rem; }
 #project-page .button {
   margin: 2rem 0;
-  display: inline-block; }
+  display: inline-flex; }
 #project-page .box-container {
   display: grid;
   grid-template-columns: 1fr 1fr; }

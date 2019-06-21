@@ -1,13 +1,12 @@
 body {
-  background-color: $footer-color;
-  margin-bottom: $footer-height;
-
+  background-color: $background-color;
 }
 
 // CONTAINER
 .container {
-  padding: 5% $body-padding;
+  padding: 5% $body-padding $footer-height;
   background: $background-color;
+  margin-bottom: $footer-height;
 
   &.nav {
     padding-top: calc(#{$nav-height} + 5%);

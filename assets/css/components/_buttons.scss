@@ -32,7 +32,6 @@ button, .button {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -1;
     transform: translate($button-shadow-offset, $button-shadow-offset);
     transition: transform $button-animation-settings;
   }
