@@ -7,6 +7,10 @@
   z-index: $z-navbar;
   background: $background-color;
 
+  #leo-logo {
+    display: inline-block;
+  }
+
   #hamburger {
     cursor: pointer;
     position: absolute;

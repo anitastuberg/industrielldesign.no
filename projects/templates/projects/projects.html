@@ -11,9 +11,11 @@
     {% include 'components/navbar.html' %}
     <div class="container nav" id="project-page">
         <h1>Prosjekter</h1>
-        <p>Dette er prosjekter laget av studenter på industriell design ved NTNU i Trondheim</p>b
+        <p>Dette er prosjekter laget av studenter på industriell design ved NTNU i Trondheim</p>
         {% if request.user.is_authenticated %}
             <a class="button" id="create-project" href="{% url 'create-project' %}">Legg ut prosjekt</a>
+        {% else %}
+            <a class="button" id="create-project" href="{% url 'login' %}?next={{ request.path }}">Legg ut prosjekt</a>
         {% endif %}
         <div class="box-container">
             {% for project in projects %}

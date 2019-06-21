@@ -8,7 +8,7 @@
 
 {% block content %}
     {% include 'components/navbar.html' %}
-    <div class="container nav" id="homepage">
+    <main class="container nav" id="homepage">
         <h1>Velkommen <br>til IPD</h1>
         <br>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -33,7 +33,8 @@
                 {% endwith %}
             {% endfor %}
         </div>
-    </div>
+    </main>
+    {% include 'components/footer.html' %}
 {% endblock content %}
 {% block javascript %}
 {% endblock javascript %}

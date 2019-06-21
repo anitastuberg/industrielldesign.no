@@ -4,11 +4,12 @@
 {% block page_title %}Logg inn{% endblock %}
 
 {% block content %}
-
-<div id="login-page" class="container nav">
+    {% include 'components/navbar.html' %}
+    <div id="login-page" class="container nav max-mobile center">
+        <h1 class="center">Logg inn</h1>
+        <br><br><br><br>
         <form method="POST">
             {% csrf_token %}
-            <img src="{% static 'img/login.png' %}" alt="">
             <div class="input-field fluid">
                 {{ form.email }}
                 <label for="{{ form.email.id_for_label }}">E-post</label>
@@ -19,12 +20,12 @@
                 <label for="{{ form.email.id_for_label }}">Passord</label>
                 {{ form.password.errors }}
             </div>
-            <input class="button cta" type="submit" value="Logg inn">
-            <div class="links">
-                <a class="link" href="/accounts/password_reset">Glemt passordet?</a>|
-                <a class="link" href="{% url 'register' %}">Registrer ny bruker</a>
-            </div>
+            <button class="button fluid" type="submit">Logg inn</button>
+            <br><br><br>
+            <a class="button secondary center" href="{% url 'register' %}" style="width: 80%">Registrer ny bruker</a>
+            <br>
+            <a class="link center" href="/accounts/password_reset">Glemt passordet?</a>
         </form>
-</div>
+    </div>
 
 {% endblock content %}
