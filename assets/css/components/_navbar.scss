@@ -1,3 +1,5 @@
+$hamburger-bp: $md;
+
 #main-navigation {
   position: fixed;
   top: 0;
@@ -9,6 +11,7 @@
 
   #leo-logo {
     display: inline-block;
+    z-index: 10;
   }
 
   #hamburger {
@@ -16,6 +19,11 @@
     position: absolute;
     right: $body-padding * 2;
     top: 2rem;
+    z-index: $z-navbar + 1;
+    @media screen and (min-width: $hamburger-bp) {
+      display: none;
+    }
+
     .bar {
       width: 24px;
       height: 3px;
@@ -27,6 +35,89 @@
         margin-right: 0;
         margin-left: auto;
       }
+    }
+  }
+
+  // Mobile navigation
+  @media screen and (max-width: $hamburger-bp) {
+    #hamburger:not(.closed) {
+      display: none;
+    }
+    #hamburger.closed {
+      + .item-list {
+        z-index: -1;
+      }
+      + .item-list::after {
+        opacity: 0;
+      }
+      + .item-list .nav-item {
+        transform: translateX(100%);
+      }
+    }
+    .item-list {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: scroll;
+      padding-bottom: 4rem;
+
+      &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba($background-color, 0.9);
+        position: fixed;
+        overflow-y: scroll;
+        z-index: -1;
+        transition: opacity 200ms ease-in-out;
+        pointer-events: none;
+      }
+    }
+    #close-nav {
+      cursor: pointer;
+      height: 56px;
+      text-align: right;
+
+      img {
+        top: 4px;
+        position: relative;
+      }
+    }
+    .nav-item:not(#leo-logo), .nav-item.dropdown span {
+      display: block;
+      padding: 1rem;
+      background: $black;
+      transition: transform 200ms ease-in-out;
+      margin-bottom: 4px;
+      width: 80%;
+      margin-left: auto;
+      color: white;
+      margin-right: 0;
+      font-size: 1.3rem;
+      font-weight: bold;
+      @include no-select;
+
+      @for $i from 1 through 20 {
+        &:nth-child(#{$i}) {
+          transition-delay: 50ms * $i;
+        }
+      }
+
+      a {
+        color: white;
+      }
+
+      &.dropdown {
+        background: none;
+        padding: 0;
+      }
+    }
+    .nav-item.dropdown span {
+      width: 100%;
     }
   }
 }

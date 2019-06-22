@@ -1,6 +1,6 @@
 {% load static %}
-<div class="input-field fluid course-search" @keydown="nextItem($event)">
-    <input type="text" id="course-input" v-model="courseQuery" @input="readQuery()" autocomplete="off" placeholder="."
+<div class="input-field course-search" @keydown="nextItem($event)">
+    <input type="text" id="course-input" v-model="courseQuery" @input="readQuery()" autocomplete="off" placeholder="Fag"
            :data-course-code="selectedCourse.course_code" :data-course-name="selectedCourse.name" name="course">
     <label for="{{ form.name.id_for_label }}">Fag</label>
     <p class="helper-text">Søk på navn eller fagkode</p>

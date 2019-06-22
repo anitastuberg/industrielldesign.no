@@ -2,7 +2,7 @@
 let canvas = document.getElementById('leo-snake')
 let ctx = canvas.getContext('2d');
 
-let leoBlue = '#0093bc';
+let leoBlue = '#000';
 let cellSize = 0;
 let cellCount = 50;
 let gameStarted = false;
