@@ -75,7 +75,6 @@ $hamburger-bp: $md;
 
         &.dropdown {
           padding: 0 2rem;
-          border: 0;
 
           span {
             margin: 0 -2rem;
@@ -118,6 +117,9 @@ $hamburger-bp: $md;
               height: 0;
               transform: scaleY(0);
             }
+            span {
+              border: 0;
+            }
           }
           &.open {
             ul {
@@ -132,10 +134,6 @@ $hamburger-bp: $md;
 
         a {
           color: white;
-        }
-
-        &:first-child {
-          border-top: $border-width solid white;
         }
       }
     }
