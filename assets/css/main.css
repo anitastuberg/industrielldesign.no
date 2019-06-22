@@ -174,110 +174,66 @@ p a {
     #main-navigation #hamburger:not(.closed) {
       display: none; }
     #main-navigation #hamburger.closed + .item-list {
-      z-index: -1; }
-    #main-navigation #hamburger.closed + .item-list::after {
-      opacity: 0; }
-    #main-navigation #hamburger.closed + .item-list .nav-item {
       transform: translateX(100%); }
+    #main-navigation #close-nav {
+      text-align: right;
+      padding-top: 1.5rem; }
     #main-navigation .item-list {
       position: fixed;
+      background: #1A1A1A;
       top: 0;
-      left: 0;
-      width: 100vw;
+      right: 0;
+      width: 90vw;
       height: 100vh;
       overflow-y: scroll;
-      padding-bottom: 4rem; }
-      #main-navigation .item-list::after {
-        content: '';
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(243, 242, 239, 0.9);
-        position: fixed;
-        overflow-y: scroll;
-        z-index: -1;
-        transition: opacity 200ms ease-in-out;
-        pointer-events: none; }
-    #main-navigation #close-nav {
-      cursor: pointer;
-      height: 56px;
-      text-align: right; }
-      #main-navigation #close-nav img {
-        top: 4px;
-        position: relative; }
-    #main-navigation .nav-item:not(#leo-logo), #main-navigation .nav-item.dropdown span {
-      display: block;
-      padding: 1rem;
-      background: #1A1A1A;
-      transition: transform 200ms ease-in-out;
-      margin-bottom: 4px;
-      width: 80%;
-      margin-left: auto;
-      color: white;
-      margin-right: 0;
-      font-size: 1.3rem;
-      font-weight: bold;
-      -webkit-touch-callout: none;
-      /* iOS Safari */
-      -webkit-user-select: none;
-      /* Safari */
-      -khtml-user-select: none;
-      /* Konqueror HTML */
-      -moz-user-select: none;
-      /* Firefox */
-      -ms-user-select: none;
-      /* Internet Explorer/Edge */
-      user-select: none;
-      /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */ }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(1), #main-navigation .nav-item.dropdown span:nth-child(1) {
-        transition-delay: 50ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(2), #main-navigation .nav-item.dropdown span:nth-child(2) {
-        transition-delay: 100ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(3), #main-navigation .nav-item.dropdown span:nth-child(3) {
-        transition-delay: 150ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(4), #main-navigation .nav-item.dropdown span:nth-child(4) {
-        transition-delay: 200ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(5), #main-navigation .nav-item.dropdown span:nth-child(5) {
-        transition-delay: 250ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(6), #main-navigation .nav-item.dropdown span:nth-child(6) {
-        transition-delay: 300ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(7), #main-navigation .nav-item.dropdown span:nth-child(7) {
-        transition-delay: 350ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(8), #main-navigation .nav-item.dropdown span:nth-child(8) {
-        transition-delay: 400ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(9), #main-navigation .nav-item.dropdown span:nth-child(9) {
-        transition-delay: 450ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(10), #main-navigation .nav-item.dropdown span:nth-child(10) {
-        transition-delay: 500ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(11), #main-navigation .nav-item.dropdown span:nth-child(11) {
-        transition-delay: 550ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(12), #main-navigation .nav-item.dropdown span:nth-child(12) {
-        transition-delay: 600ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(13), #main-navigation .nav-item.dropdown span:nth-child(13) {
-        transition-delay: 650ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(14), #main-navigation .nav-item.dropdown span:nth-child(14) {
-        transition-delay: 700ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(15), #main-navigation .nav-item.dropdown span:nth-child(15) {
-        transition-delay: 750ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(16), #main-navigation .nav-item.dropdown span:nth-child(16) {
-        transition-delay: 800ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(17), #main-navigation .nav-item.dropdown span:nth-child(17) {
-        transition-delay: 850ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(18), #main-navigation .nav-item.dropdown span:nth-child(18) {
-        transition-delay: 900ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(19), #main-navigation .nav-item.dropdown span:nth-child(19) {
-        transition-delay: 950ms; }
-      #main-navigation .nav-item:not(#leo-logo):nth-child(20), #main-navigation .nav-item.dropdown span:nth-child(20) {
-        transition-delay: 1000ms; }
-      #main-navigation .nav-item:not(#leo-logo) a, #main-navigation .nav-item.dropdown span a {
-        color: white; }
-      #main-navigation .nav-item:not(#leo-logo).dropdown, #main-navigation .nav-item.dropdown span.dropdown {
-        background: none;
-        padding: 0; }
-    #main-navigation .nav-item.dropdown span {
-      width: 100%; } }
+      padding-bottom: 4rem;
+      transform: translateX(0);
+      transition: transform 200ms ease-in-out; }
+      #main-navigation .item-list .nav-item, #main-navigation .item-list .nav-item.dropdown span {
+        position: relative;
+        display: block;
+        border-bottom: 1px solid white;
+        color: white;
+        padding: 1rem 2rem;
+        font-size: 1.125rem;
+        font-weight: bold; }
+        #main-navigation .item-list .nav-item.dropdown, #main-navigation .item-list .nav-item.dropdown span.dropdown {
+          padding: 0 2rem;
+          border: 0; }
+          #main-navigation .item-list .nav-item.dropdown span, #main-navigation .item-list .nav-item.dropdown span.dropdown span {
+            margin: 0 -2rem; }
+          #main-navigation .item-list .nav-item.dropdown ul, #main-navigation .item-list .nav-item.dropdown span.dropdown ul {
+            transform-origin: top; }
+          #main-navigation .item-list .nav-item.dropdown::after, #main-navigation .item-list .nav-item.dropdown::before, #main-navigation .item-list .nav-item.dropdown span.dropdown::after, #main-navigation .item-list .nav-item.dropdown span.dropdown::before {
+            content: '';
+            width: 16px;
+            height: 3px;
+            background: white;
+            position: absolute;
+            right: 2rem;
+            top: 26px; }
+          #main-navigation .item-list .nav-item.dropdown::before, #main-navigation .item-list .nav-item.dropdown span.dropdown::before {
+            transform: rotate(90deg);
+            transition: transform 100ms ease-in-out; }
+          #main-navigation .item-list .nav-item.dropdown .nav-item, #main-navigation .item-list .nav-item.dropdown span.dropdown .nav-item {
+            border-left: 1px solid white;
+            margin-right: -2rem; }
+            #main-navigation .item-list .nav-item.dropdown .nav-item:first-child, #main-navigation .item-list .nav-item.dropdown span.dropdown .nav-item:first-child {
+              border-top: 0; }
+            #main-navigation .item-list .nav-item.dropdown .nav-item:last-child, #main-navigation .item-list .nav-item.dropdown span.dropdown .nav-item:last-child {
+              border-bottom: 0; }
+          #main-navigation .item-list .nav-item.dropdown:not(.open) ul, #main-navigation .item-list .nav-item.dropdown span.dropdown:not(.open) ul {
+            height: 0;
+            transform: scaleY(0); }
+          #main-navigation .item-list .nav-item.dropdown.open ul, #main-navigation .item-list .nav-item.dropdown span.dropdown.open ul {
+            height: auto;
+            transform: scaleY(1); }
+          #main-navigation .item-list .nav-item.dropdown.open::before, #main-navigation .item-list .nav-item.dropdown span.dropdown.open::before {
+            transform: rotate(0deg); }
+        #main-navigation .item-list .nav-item a, #main-navigation .item-list .nav-item.dropdown span a {
+          color: white; }
+        #main-navigation .item-list .nav-item:first-child, #main-navigation .item-list .nav-item.dropdown span:first-child {
+          border-top: 1px solid white; } }
 
 .image-viewer {
   width: 100%;

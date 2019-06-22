@@ -45,79 +45,99 @@ $hamburger-bp: $md;
     }
     #hamburger.closed {
       + .item-list {
-        z-index: -1;
-      }
-      + .item-list::after {
-        opacity: 0;
-      }
-      + .item-list .nav-item {
         transform: translateX(100%);
       }
     }
+    #close-nav {
+      text-align: right;
+      padding-top: 1.5rem;
+    }
     .item-list {
       position: fixed;
+      background: $black;
       top: 0;
-      left: 0;
-      width: 100vw;
+      right: 0;
+      width: 90vw;
       height: 100vh;
       overflow-y: scroll;
       padding-bottom: 4rem;
-
-      &::after {
-        content: '';
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba($background-color, 0.9);
-        position: fixed;
-        overflow-y: scroll;
-        z-index: -1;
-        transition: opacity 200ms ease-in-out;
-        pointer-events: none;
-      }
-    }
-    #close-nav {
-      cursor: pointer;
-      height: 56px;
-      text-align: right;
-
-      img {
-        top: 4px;
-        position: relative;
-      }
-    }
-    .nav-item:not(#leo-logo), .nav-item.dropdown span {
-      display: block;
-      padding: 1rem;
-      background: $black;
+      transform: translateX(0);
       transition: transform 200ms ease-in-out;
-      margin-bottom: 4px;
-      width: 80%;
-      margin-left: auto;
-      color: white;
-      margin-right: 0;
-      font-size: 1.3rem;
-      font-weight: bold;
-      @include no-select;
 
-      @for $i from 1 through 20 {
-        &:nth-child(#{$i}) {
-          transition-delay: 50ms * $i;
+      .nav-item, .nav-item.dropdown span {
+        position: relative;
+        display: block;
+        border-bottom: $border-width solid white;
+        color: white;
+        padding: 1rem 2rem;
+        font-size: 1.125rem;
+        font-weight: bold;
+
+        &.dropdown {
+          padding: 0 2rem;
+          border: 0;
+
+          span {
+            margin: 0 -2rem;
+          }
+
+          ul {
+            transform-origin: top;
+          }
+
+          &::after, &::before {
+            content: '';
+            width: 16px;
+            height: 3px;
+            background: white;
+            position: absolute;
+            right: 2rem;
+            top: 26px;
+          }
+
+          &::before {
+            transform: rotate(90deg);
+            transition: transform 100ms ease-in-out;
+          }
+
+          & .nav-item {
+            border-left: $border-width solid white;
+            margin-right: -2rem;
+
+            &:first-child {
+              border-top: 0;
+            }
+
+            &:last-child {
+              border-bottom: 0;
+            }
+          }
+
+          &:not(.open) {
+            ul {
+              height: 0;
+              transform: scaleY(0);
+            }
+          }
+          &.open {
+            ul {
+              height: auto;
+              transform: scaleY(1);
+            }
+            &::before {
+              transform: rotate(0deg);
+            }
+          }
+        }
+
+        a {
+          color: white;
+        }
+
+        &:first-child {
+          border-top: $border-width solid white;
         }
       }
-
-      a {
-        color: white;
-      }
-
-      &.dropdown {
-        background: none;
-        padding: 0;
-      }
-    }
-    .nav-item.dropdown span {
-      width: 100%;
     }
   }
 }
