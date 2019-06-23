@@ -1,8 +1,6 @@
 .idea/*
-# Passwords that shouldn't be distributed
-config.py
+config.py # Passwords that shouldn't be distributed
 .idea
-*.css.map
 media/*
 static_in_pro/*
 

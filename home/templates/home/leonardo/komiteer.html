@@ -1,22 +1,8 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
-{% block page_title %}Komiteer{% endblock %}
-
-{% block extra_head %}
-<style>
-    .phone-test img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-</style>
-{% endblock extra_head %}
-
 {% block content %}
-{% include 'components/navbar.html' %}
-<div class="container nav">
-<h1>Komiteer</h1>
-</div>
-{% endblock content %}
+    {% load 'components/navbar.html' %}
+    <div class="container nav">
+        <h1>Komiteer</h1>
+    </div>
+{% endblock %}
