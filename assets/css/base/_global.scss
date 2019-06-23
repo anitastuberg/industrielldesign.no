@@ -18,24 +18,10 @@ body {
   }
 }
 
-.box-container {
-  margin-left: -$body-padding;
-  margin-right: -$body-padding;
-}
-
 .full-width {
   width: 100%;
 }
 
-.box {
-  padding: $body-padding * 2 $body-padding;
-  border: $border-width solid $black;
-  margin-top: -1px;
-  margin-left: -1px;
-  &:last-child {
-    //border-bottom: $border-width solid $black;
-  }
-}
 
 .center {
   text-align: center;

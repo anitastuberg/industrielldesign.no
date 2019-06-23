@@ -73,11 +73,16 @@ $hamburger-bp: $md;
         font-size: 1.125rem;
         font-weight: bold;
 
+        &.selected, &.selected > a, &.selected span {
+          color: $dark-gray;
+        }
+
         &.dropdown {
           padding: 0 2rem;
 
           span {
             margin: 0 -2rem;
+            cursor: pointer;
           }
 
           ul {

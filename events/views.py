@@ -118,6 +118,7 @@ def updateButtonEventButton(user, context):
 
     return context
 
+
 def event(request, event_slug):
     user = request.user
     # user.update_class_year() # Updates user to alumni if old enough

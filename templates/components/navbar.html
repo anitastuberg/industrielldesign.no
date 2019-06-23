@@ -13,20 +13,20 @@
         <li class="nav-item dropdown {% if 'leonardo' in request.path %}selected{% endif %}">
             <span>Leonardo</span>
             <ul>
-                <li class="nav-item"><a href="{% url 'komiteer' %}">Komiteer</a></li>
-                <li class="nav-item"><a href="{% url 'leonardo-shop' %}">Butikk</a></li>
-                <li class="nav-item"><a href="{% url 'thesign' %}">TheSign</a></li>
-                <li class="nav-item"><a href="{% url 'about' %}">Om oss</a></li>
+                <li class="nav-item {% if 'komiteer' in request.path %}selected{% endif %}"><a href="{% url 'komiteer' %}">Komiteer</a></li>
+                <li class="nav-item {% if 'butikk' in request.path %}selected{% endif %}"><a href="{% url 'leonardo-shop' %}">Butikk</a></li>
+                <li class="nav-item {% if 'thesign' in request.path %}selected{% endif %}"><a href="{% url 'thesign' %}">TheSign</a></li>
+                <li class="nav-item {% if 'om' in request.path %}selected{% endif %}"><a href="{% url 'about' %}">Om oss</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {% if 'student' in request.path %}selected{% endif %}">
             <span>Student</span>
             <ul>
-                <li class="nav-item"><a href="{% url 'ny-student' %}" disabled="">Ny student?</a></li>
-                <li class="nav-item"><a href="{% url 'courses' %}">Fag</a></li>
-                <li class="nav-item"><a href="{% url 'books' %}">Boksalg</a></li>
-                <li class="nav-item"><a href="{% url 'utveksling' %}">Utveksling</a></li>
-                <li class="nav-item"><a href="{% url 'klassetur' %}">Klasseturer</a></li>
+                <li class="nav-item {% if 'ny-student' in request.path %}selected{% endif %}"><a href="{% url 'ny-student' %}" disabled="">Ny student?</a></li>
+                <li class="nav-item {% if 'fag' in request.path %}selected{% endif %}"><a href="{% url 'courses' %}">Fag</a></li>
+                <li class="nav-item {% if 'boksalg' in request.path %}selected{% endif %}"><a href="{% url 'books' %}">Boksalg</a></li>
+                <li class="nav-item {% if 'utveksling' in request.path %}selected{% endif %}"><a href="{% url 'utveksling' %}">Utveksling</a></li>
+                <li class="nav-item {% if 'klassetur' in request.path %}selected{% endif %}"><a href="{% url 'klassetur' %}">Klasseturer</a></li>
             </ul>
         </li>
         <li><a class="nav-item {% if 'prosjekt' in request.path %}selected{% endif %}"
@@ -35,10 +35,8 @@
                href="{% url 'tips' %}">Tips og triks</a></li>
         <li><a class="nav-item {% if 'jobb' in request.path %}selected{% endif %}"
                href="{% url 'job' %}">Jobb</a></li>
-        <li><a class="nav-item {% if 'fag' in request.path %}selected{% endif %}"
-               href="{% url 'about' %}">Kontakt</a></li>
         {% if request.user.is_authenticated %}
-            <li><a class="nav-item user" href="{% url 'my_profile' %}">Min bruker</a></li>
+            <li><a class="nav-item user" href="{% url 'my_profile' %}">Min side</a></li>
         {% else %}
             <li><a class="register nav-item" href="{% url 'register' %}">Registrer ny bruker</a></li>
             <li><a class="nav-item" id="login" href="{% url 'login' %}">Logg in</a></li>

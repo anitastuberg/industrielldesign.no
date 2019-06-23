@@ -1,11 +1,78 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block page_title %}Tips & triks{% endblock %}
 
 {% block content %}
     {% include 'components/navbar.html' %}
-    <div class="container nav">
+    <div id="tips-page" class="container nav">
         <h1>Tips</h1>
         <a href="{% url 'new-tip' %}" class="button cta">Nytt tips</a>
+        <br><br><br><br>
+        {% for tag in tags %}
+            <div class="tag filter">{{ tag.name }}</div>
+        {% endfor %}
+        <br><br>
+        <div class="box-container">
+            <a class="box clickable" :href="tip.slug" v-for="tip in tips">
+                <h3>[{ tip.title }]</h3>
+                <span v-for="(tag, index) in tip.tags">
+                    [{ tag.name }]<span v-if="index + 1 < tip.tags.length">, </span>
+                </span>
+            </a>
+        </div>
     </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'js/ajaxSetup.js' %}"></script>
+    <script>
+        let tipsPage = new Vue({
+                el: '#tips-page',
+                delimiters: ['[{', '}]'],
+                data: {
+                    'tagNames': {{ tags_hack|safe }},
+                    'selectedTags': [],
+                    'originalTips': {{ tips|safe }},
+                    'tips': {{ tips|safe }},
+                },
+                mounted: function () {
+                    $('.tag').click(function () {
+                        $(this).toggleClass('selected');
+                        tipsPage.toggleFilter();
+                    });
+                },
+                methods: {
+                    toggleFilter: function () {
+                        let f = [];
+                        Array.from(document.querySelectorAll('.tag.selected')).map(el => {
+                            f.push(el.innerText);
+                        });
+                        this.filters = f;
+                        if (this.filters.length === 0) {
+                            this.tips = this.originalTips;
+                        } else {
+                            this.sendTagFilterRequest();
+                        }
+                    },
+                    sendTagFilterRequest: function () {
+                        self = this;
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ request.path }}',
+                            data: {
+                                'tags': self.filters,
+                            },
+                            success: function (data) {
+                                self.tips = data.tips
+                            },
+                            error: function (data) {
+                                console.log(data);
+                            }
+                        });
+                    },
+                }
+            })
+        ;
+    </script>
 {% endblock %}

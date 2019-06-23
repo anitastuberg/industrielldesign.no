@@ -1,4 +1,4 @@
-button, .button {
+.button {
   $button-animation-settings: 200ms ease-in-out;
   $button-shadow-offset: 4px;
 
@@ -18,6 +18,8 @@ button, .button {
   text-transform: uppercase;
   letter-spacing: .08em;
   margin-bottom: $button-shadow-offset;
+
+  @include no-select;
 
   &.fluid {
     width: 100%;

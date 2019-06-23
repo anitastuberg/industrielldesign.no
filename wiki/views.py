@@ -104,12 +104,11 @@ def edit_article(request, article_slug):
                 message = "Oppdatert: %s av %s %s\nindustrielldesign.no/wiki/%s" % (now.strftime("%d.%m.%y %H:%M"), request.user.first_name, request.user.last_name, article.slug)
                 wiki_email(subject, message) # Sends email to "webredaktør"
                 updated_article = form.save(commit=False)
-                updated_article.updated = now;
+                updated_article.updated = now
                 updated_article.save()
                 return redirect('article', article_slug=article.slug)
         # If GET request or not valid data
         return render(request, 'wiki/new-article.html', {'form' : form})
-
 
     # If user is not signed in. Redirect to 403-page
     else:

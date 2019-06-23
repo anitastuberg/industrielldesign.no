@@ -37,8 +37,12 @@ p {
   line-height: 1.4em;
 }
 
-b {
+b, strong {
   font-weight: bold;
+}
+
+em {
+  font-style: italic;
 }
 
 .caption {
