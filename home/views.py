@@ -53,7 +53,7 @@ def about(request):
     context = {
         "styremedlemmer": Styremedlem.objects.all()
     }
-    return render(request, 'home/Leonardo/about.html', context)
+    return render(request, 'home/leonardo/about.html', context)
 
 
 def snake(request):
@@ -68,7 +68,7 @@ def komiteer(request):
     context = {
         'komiteer': Komiteer.objects.all()
     }
-    return render(request, 'home/Leonardo/komiteer.html', context)
+    return render(request, 'home/leonardo/komiteer.html', context)
 
 
 def terms(request):

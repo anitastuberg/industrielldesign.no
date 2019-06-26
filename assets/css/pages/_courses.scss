@@ -1,0 +1,52 @@
+#courses {
+  @media screen and (min-width: $md) {
+    .box, .labels {
+      display: grid;
+      grid-template-columns: 100px 1fr 200px 150px;
+    }
+    .labels {
+      cursor: pointer;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+    .caption {
+      font-size: 1rem;
+    }
+    .sort-label {
+      display: flex;
+      align-items: center;
+      color: $dark-gray;
+      @include no-select;
+
+      &.active {
+        color: $black;
+        font-weight: bold;
+      }
+
+      &.descending img {
+        transform: rotate(180deg);
+      }
+
+      img {
+        position: relative;
+        margin-left: 4px;
+        top: 2px;
+        transition: transform 200ms ease-in-out;
+      }
+    }
+  }
+  // Mobile
+  @media screen and (max-width: $md) {
+    .course-item {
+      padding: 1.5rem 1rem;
+    }
+    .class-year {
+      position: absolute;
+      top: 1.5rem;
+      right: 1rem;
+    }
+    .caption strong {
+      margin-top: 8px;
+    }
+  }
+}

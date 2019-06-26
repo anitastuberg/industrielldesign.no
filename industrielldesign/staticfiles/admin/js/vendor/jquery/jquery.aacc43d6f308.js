@@ -3398,11 +3398,11 @@ jQuery.extend( {
 				stateString = tuple[ 3 ];
 
 			// promise[ done | fail | progress ] = list.add
-			promise[ tuple[ 1 ] ] = list.add;
+			promise[ tuple[ 1 ] ] = list.add_white;
 
 			// Handle state
 			if ( stateString ) {
-				list.add( function() {
+				list.add_white( function() {
 
 					// state = [ resolved | rejected ]
 					state = stateString;
@@ -4159,7 +4159,7 @@ jQuery.fn.extend( {
 			tmp = dataPriv.get( elements[ i ], type + "queueHooks" );
 			if ( tmp && tmp.empty ) {
 				count++;
-				tmp.empty.add( resolve );
+				tmp.empty.add_white( resolve );
 			}
 		}
 		resolve();
@@ -4599,8 +4599,8 @@ jQuery.event = {
 				}
 			}
 
-			if ( special.add ) {
-				special.add.call( elem, handleObj );
+			if ( special.add_white ) {
+				special.add_white.call( elem, handleObj );
 
 				if ( !handleObj.handler.guid ) {
 					handleObj.handler.guid = handler.guid;

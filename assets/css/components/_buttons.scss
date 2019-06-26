@@ -25,6 +25,19 @@
     width: 100%;
   }
 
+  &.fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 3rem;
+    right: $body-padding;
+    width: 50px;
+    height: 48px;
+    padding: 0;
+    z-index: $z-navbar;
+  }
+
 
   &:not(:disabled)::after {
     content: '';

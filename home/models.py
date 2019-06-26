@@ -26,7 +26,7 @@ class Komiteer(models.Model):
     komite = models.CharField(max_length=100)
     post_title = models.CharField(max_length=100)
     post_description = models.TextField()
-    post_image = ProcessedImageField(upload_to='styremedlem/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    post_image = ProcessedImageField(upload_to='komiteer/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
 
     def __str__(self):
         return self.komite

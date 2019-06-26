@@ -7,8 +7,10 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <div id="tips-page" class="container nav">
-        <h1>Tips</h1>
-        <a href="{% url 'new-tip' %}" class="button cta">Nytt tips</a>
+        <h1>Tips og triks</h1>
+        <br>
+        <p>Del noe lurt med dine medstudenter!</p>
+        <a href="{% url 'new-tip' %}" class="button fab"><img src="{% static 'img/icons/add_white.svg' %}" alt="add"></a>
         <br><br><br><br>
         {% for tag in tags %}
             <div class="tag filter">{{ tag.name }}</div>

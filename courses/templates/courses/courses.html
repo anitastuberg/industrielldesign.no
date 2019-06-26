@@ -10,10 +10,11 @@
     <div class="container nav" id="courses">
         <div class="course-top">
             <div class="input-field">
-                <input type="text" id="search" placeholder="." v-model="query" @input="doRequest()">
-                <label for="search">Søk</label>
+                <input type="text" id="search" placeholder="Søk etter fag..." v-model="query" @input="doRequest()">
+                <label for="search">Fag</label>
             </div>
-            <a href="{% url 'create_course' %}" class="button cta">Legg til nytt fag</a>
+            <a href="{% url 'create_course' %}" class="button fab"><img src="{% static 'img/icons/add_white.svg' %}"
+                                                                        alt="add"></a>
         </div>
         <div class="filters">
             {% for filter in filters %}
@@ -37,24 +38,24 @@
                     Klasse
                     <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
                 </span>
-                <span data-key="filter__name" class="sort-label" :class="{active: sortKey === 'filter__name'}">
-                    Type
-                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
-                </span>
+{#                <span data-key="filter__name" class="sort-label" :class="{active: sortKey === 'filter__name'}">#}
+{#                    Type#}
+{#                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">#}
+{#                </span>#}
             </div>
             <!-- List for search results -->
-            <template>
-                <a :href="'fag/' + course.slug" v-for="course in sorted_courses">
-                    <div>[{ course.course_code }]</div>
-                    <div>[{ course.name }]</div>
-                    <div>[{ course.class_year }]</div>
+            <ul class="box-container">
+                <li><a :href="'fag/' + course.slug" v-for="course in sorted_courses" class="box clickable course-item">
+                    <p class="caption">[{ course.course_code }]</p>
+                    <p><strong>[{ course.name }]</strong></p>
+                    <p class="caption class-year">[{ course.class_year }]</p>
+                    <b class="caption" v-if="course.filter__name">#[{ course.filter__name }]</b>
                     <div>
-                        <div class="color" :style="{ backgroundColor: course.filter__color }">
-                            <span>[{ course.filter__name }]</span></div>
                     </div>
                 </a>
-                <p v-if="courses.length === 0">Fant ingen fag med søket: '[{ query }]'</p>
-            </template>
+                </li>
+                <li v-if="courses.length === 0">Fant ingen fag med søket: '[{ query }]'</li>
+            </ul>
         </div>
     </div>
 {% endblock content %}
@@ -95,14 +96,14 @@
                     $(this).toggleClass('selected');
                     self.toggleFilter();
                 });
-                sortLabels.click(function() {
+                sortLabels.click(function () {
                     self.changeSort($(this).data('key')) === -1 ? $(this).addClass('descending') : $(this).removeClass('descending');
                     console.log(self.sortDirection);
                     self.courses = self.courses.sort(self.sortCourses);
                 })
             },
             methods: {
-                changeSort: function(key) {
+                changeSort: function (key) {
                     // Changes direction if selected filter is clicked twice
                     this.sortDirection = this.sortKey === key ? this.sortDirection * -1 : 1;
                     // Changes filter
