@@ -12,7 +12,7 @@
         <a href="{% url 'courses' %}" class="tilbake">Tilbake</a>
         <h1>{{ course.name }}</h1>
         <p>{{ course.course_code }}</p>
-        <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">Gå til fagsiden</a>
+        <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">Gå til NTNUs fagside</a>
         <br><br>
         <div class="useful-links">
             {% for link in links %}

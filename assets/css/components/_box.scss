@@ -23,3 +23,27 @@
     }
   }
 }
+
+.box.box-image {
+  margin-top: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+
+  h4 {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    img {
+      position: absolute;
+      right: 1rem;
+    }
+  }
+
+  > img {
+    border-top: 2px solid $black;
+    margin: 0 -1rem -1rem -1rem;
+    width: calc(100% + 2rem);
+    height: calc(100% - 1rem);
+    object-fit: cover;
+  }
+}

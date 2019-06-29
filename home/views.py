@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render, redirect, get_object_or_404
 from events.models import Event
-from .models import Styremedlem, Komiteer
+from .models import Styremedlem, Komiteer, TheSign
 
 
 def home(request):
@@ -29,7 +29,10 @@ def leonardo_shop(request):
 
 
 def thesign(request):
-    return render(request, 'home/leonardo/theSign.html')
+    context = {
+        'thesigns': TheSign.objects.all
+    }
+    return render(request, 'home/leonardo/theSign.html', context)
 
 
 # STUDENT

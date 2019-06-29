@@ -496,6 +496,24 @@ footer {
       box-shadow: inset 0 -3px 0 #1A1A1A;
       cursor: pointer; }
 
+.box.box-image {
+  margin-top: 1rem;
+  padding: 1rem;
+  cursor: pointer; }
+  .box.box-image h4 {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem; }
+    .box.box-image h4 img {
+      position: absolute;
+      right: 1rem; }
+  .box.box-image > img {
+    border-top: 2px solid #1A1A1A;
+    margin: 0 -1rem -1rem -1rem;
+    width: calc(100% + 2rem);
+    height: calc(100% - 1rem);
+    object-fit: cover; }
+
 #homepage .event {
   position: relative; }
   #homepage .event img {
@@ -608,5 +626,21 @@ footer {
     right: 1rem; }
   #courses .caption strong, #courses .input-field label strong, .input-field #courses label strong, #courses .input-field .helper-text strong, .input-field #courses .helper-text strong {
     margin-top: 8px; } }
+
+#komite .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 1rem; }
+
+#thesign .box-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center; }
+  #thesign .box-container .box:first-child {
+    grid-column: span 2; }
+  #thesign .box-container .box img {
+    width: 100%;
+    height: 84%;
+    object-fit: cover; }
 
 /*# sourceMappingURL=main.css.map */
