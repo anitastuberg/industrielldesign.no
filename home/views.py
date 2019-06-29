@@ -74,5 +74,12 @@ def komiteer(request):
     return render(request, 'home/leonardo/komiteer.html', context)
 
 
+def komite_detail(request, komite_pk):
+    context = {
+        'komite': Komiteer.objects.get(pk=komite_pk)
+    }
+    return render(request, 'home/leonardo/komite-details.html', context)
+
+
 def terms(request):
     return render(request, 'home/terms-conditions.html', {})
