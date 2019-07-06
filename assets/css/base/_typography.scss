@@ -41,8 +41,14 @@ b, strong {
   font-weight: bold;
 }
 
-ul li {
-  list-style-type: circle;
+ul, ol {
+  margin-left: 1.2rem;
+}
+
+ul {
+  li {
+    list-style-type: circle;
+  }
 }
 
 ol li {

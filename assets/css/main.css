@@ -80,6 +80,9 @@ p {
 b, strong {
   font-weight: bold; }
 
+ul, ol {
+  margin-left: 1.2rem; }
+
 ul li {
   list-style-type: circle; }
 
