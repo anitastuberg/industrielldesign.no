@@ -41,6 +41,14 @@ b, strong {
   font-weight: bold;
 }
 
+ul li {
+  list-style-type: circle;
+}
+
+ol li {
+  list-style-type: decimal-leading-zero;
+}
+
 em {
   font-style: italic;
 }
