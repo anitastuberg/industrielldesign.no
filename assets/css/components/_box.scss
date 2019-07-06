@@ -7,8 +7,8 @@
   position: relative;
   padding: $body-padding * 2 $body-padding;
   border: $border-width solid $black;
-  margin-top: -1px;
-  margin-left: -1px;
+  margin-top: -$border-width;
+  margin-left: -$border-width;
 
   &:last-child {
     //border-bottom: $border-width solid $black;

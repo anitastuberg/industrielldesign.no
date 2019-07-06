@@ -1,13 +1,30 @@
 #homepage {
-  .events {
+  section {
+    max-width: $xxl;
+    margin-right: auto;
+    margin-left: auto;
   }
+
+  .events {
+    @media screen and (min-width: $lg) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .event:nth-child(4n+2), .event:nth-child(4n+3) {
+      grid-column: span 2;
+    }
+  }
+
   .event {
     position: relative;
+
     img {
       width: 80%;
-      max-height: 200px;
+      height: 300px;
       object-fit: cover;
     }
+
     .date {
       position: absolute;
       top: $body-padding * 2;
@@ -15,11 +32,13 @@
       font-size: 48px;
       font-weight: bold;
       line-height: 0.4em;
+
       span {
         font-size: 1rem;
         font-weight: 400;
       }
     }
+
     .event-info {
       text-align: right;
       width: 70%;
