@@ -28,21 +28,22 @@
                         {% csrf_token %}
                         <div id="log-in-fields">
                             {% if not request.user.is_authenticated %}
-                                <div class="input-fields">
-                                    <div class="input-field">
-                                        <input type="text" name="email" id="email" autocomplete="email" placeholder=".">
-                                        <label for="email">E-post</label>
-                                        <span class="error"></span>
-                                    </div>
-                                    <div class="input-field">
-                                        <input type="password" name="password" id="password"
-                                               autocomplete="current-password" placeholder=".">
-                                        <label for="password">Passord</label>
-                                        <ul class="errorlist password"></ul>
-                                    </div>
-                                    <input class="button cta" type="submit" value="Logg inn for å melde deg på">
-                                    <a href="{% url 'register' %}" class="link">Eller registrer en ny bruker</a>
-                                </div>
+{#                                <div class="input-fields">#}
+{#                                    <div class="input-field">#}
+{#                                        <input type="text" name="email" id="email" autocomplete="email" placeholder=".">#}
+{#                                        <label for="email">E-post</label>#}
+{#                                        <span class="error"></span>#}
+{#                                    </div>#}
+{#                                    <div class="input-field">#}
+{#                                        <input type="password" name="password" id="password"#}
+{#                                               autocomplete="current-password" placeholder=".">#}
+{#                                        <label for="password">Passord</label>#}
+{#                                        <ul class="errorlist password"></ul>#}
+{#                                    </div>#}
+{#                                    <input class="button cta" type="submit" value="Logg inn for å melde deg på">#}
+{#                                    <a href="{% url 'register' %}" class="link">Eller registrer en ny bruker</a>#}
+{#                                </div>#}
+                                <a href="{% url 'login' %}?next={{ request.path }}" class="button cta" {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</a>
                             {% else %}
                                 <button class="button cta" type="submit" {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</button>
                                 {% if event.registration_start_time and not_open_yet %}
@@ -64,7 +65,6 @@
 {% block javascript %}
 
     <script src="{% static 'js/ajaxSetup.js' %}"></script>
-    <script src="{% static 'js/eventPage.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
     <script>
         $(document).ready(function () {

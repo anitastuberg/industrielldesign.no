@@ -1,0 +1,16 @@
+#thesign {
+  .box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+
+    .box:first-child {
+      grid-column: span 2;
+    }
+    .box img {
+      width: 100%;
+      height: 84%;
+      object-fit: cover;
+    }
+  }
+}

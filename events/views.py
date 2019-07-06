@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 
-
+from home.models import TheSign
 from .models import Event
 from .forms import CreateEventForm
 
@@ -118,6 +118,7 @@ def updateButtonEventButton(user, context):
 
     return context
 
+
 def event(request, event_slug):
     user = request.user
     # user.update_class_year() # Updates user to alumni if old enough
@@ -206,3 +207,4 @@ def send_event_confirmation_mail(subject, message, user_email):
         [user_email],  # To email
         fail_silently=False,
     )
+

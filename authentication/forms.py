@@ -10,15 +10,15 @@ class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['autocomplete'] = "email"
-        self.fields['email'].widget.attrs['placeholder'] = "."
+        self.fields['email'].widget.attrs['placeholder'] = "E-post"
         self.fields['first_name'].widget.attrs['autocomplete'] = "given-name"
-        self.fields['first_name'].widget.attrs['placeholder'] = "."
+        self.fields['first_name'].widget.attrs['placeholder'] = "Fornavn"
         self.fields['last_name'].widget.attrs['autocomplete'] = "family-name"
-        self.fields['last_name'].widget.attrs['placeholder'] = "."
+        self.fields['last_name'].widget.attrs['placeholder'] = "Etternavn"
         self.fields['allergies'].widget.attrs['autocomplete'] = "off"
-        self.fields['allergies'].widget.attrs['placeholder'] = "."
-        self.fields['password'].widget.attrs['autocomplete'] = "current-password"
-        self.fields['password'].widget.attrs['placeholder'] = "."
+        self.fields['allergies'].widget.attrs['placeholder'] = "Allergier"
+        self.fields['password'].widget.attrs['autocomplete'] = "new-password"
+        self.fields['password'].widget.attrs['placeholder'] = "Passord"
         self.fields['graduation_year'].choices = [("", ""),] + list(self.fields["graduation_year"].choices)[1:]
     
     class Meta:
@@ -31,10 +31,10 @@ class RegisterForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs={
-        'placeholder': '.',
-        'autocomplete': 'email'
+        'placeholder': 'E-post',
+        'autocomplete': 'username'
     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': '.',
-        'autocomplete': 'password',
+        'placeholder': 'Passord',
+        'autocomplete': 'current-password',
     }))

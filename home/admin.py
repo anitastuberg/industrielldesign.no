@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Styremedlem, Komiteer, Nyhet
+from .models import Styremedlem, Komiteer, TheSign
 
 # Register your models here.
 class StyrmedlemAdmin(admin.ModelAdmin):
@@ -15,13 +15,14 @@ class KomiteerAdmin(admin.ModelAdmin):
     class Meta:
         model = Komiteer
 
-class NyheterAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "timestamp", "updated"]
-    
+
+class TheSignAdmin(admin.ModelAdmin):
+    list_display = ["__str__"]
+
     class Meta:
-        model = Nyhet
+        model = TheSign
 
 
 admin.site.register(Styremedlem, StyrmedlemAdmin)
 admin.site.register(Komiteer, KomiteerAdmin)
-admin.site.register(Nyhet, NyheterAdmin)
+admin.site.register(TheSign, TheSignAdmin)
