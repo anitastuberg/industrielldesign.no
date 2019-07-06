@@ -1,61 +1,42 @@
-.errorlist li {
-  list-style: none;
-  color: $error;
-  font-size: 0.8rem;
-  margin: 0;
+body {
+  background-color: $background-color;
 }
 
+// CONTAINER
 .container {
-  margin: 1rem auto;
-  padding: 1rem;
-  max-width: $xxl;
+  padding: 5% $body-padding $footer-height;
+  background: $background-color;
+  margin-bottom: $footer-height;
 
   &.nav {
-    margin-top: calc(#{$nav-height} + 1rem);
+    padding-top: calc(#{$nav-height} + 5%);
   }
-
-  &.narrow {
-    padding: 5%;
-    max-width: $md;
-  }
-}
-
-body {
-  &.dark {
-    background-color: $black;
-  }
-  &.accent {
-    background-color: $accent;
+  &.max-mobile {
+    max-width: 375px;
+    padding-left: auto;
+    padding-right: auto;
   }
 }
 
-i, img {
-  @include no-select;
+.full-width {
+  width: 100%;
 }
 
-// Scrollbar
 
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 6px;
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: $light-gray;
+.right {
+  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $gray;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $dark-gray;
-}
-
-::selection {
-  background: #ff9;
+.left {
+  text-align: left;
+  margin-right: auto;
+  margin-left: 0;
 }

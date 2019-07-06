@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'components/navbar.html' %}
+    <div class="container nav ql-container">
+    <a class="button secondary" href="{% url 'edit-tip' tip_slug=tip.slug %}">Rediger</a>
+        <div class="content">
+            {{ tip.html|safe }}
+        </div>
+    </div>
+{% endblock %}

@@ -4,16 +4,16 @@
   .autocomplete {
     position: absolute;
     left: 0;
-    top: 48px;
+    top: 56px;
     width: 100%;
-    background-color: $white;
-    box-shadow: $high-shadow;
+    background-color: white;
+    border: $border-width solid $black;
 
     div {
       padding: 1rem 1rem;
       cursor: pointer;
       &:hover, &.active-item {
-        background-color: $primary-light;
+        background-color: $gray;
       }
     }
   }

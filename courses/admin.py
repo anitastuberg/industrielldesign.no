@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Course, CourseReview, CourseLink
+from .models import Course, CourseReview, CourseLink, CourseFilter
 
 
 class CourseLinkAdmin(admin.ModelAdmin):
@@ -9,6 +9,13 @@ class CourseLinkAdmin(admin.ModelAdmin):
 
     class Meta:
         model = CourseLink
+
+
+class CourseFilterAdmin(admin.ModelAdmin):
+    list_display = ['name', 'color']
+
+    class Meta:
+        model = CourseFilter
 
 
 class CourseReviewAdmin(admin.ModelAdmin):
@@ -20,8 +27,8 @@ class CourseReviewAdmin(admin.ModelAdmin):
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ["__str__", 'display_without_reviews', 'review_count']
-    fields = ('name', 'course_code', 'class_year', 'reviews')
+    list_display = ["__str__", 'display_without_reviews', 'review_count', 'filter']
+    fields = ('name', 'course_code', 'class_year', 'reviews', 'filter', 'display_without_reviews')
     filter_horizontal = ['reviews']
     ordering = ('-display_without_reviews', '-reviews')
 
@@ -35,3 +42,4 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseReview, CourseReviewAdmin)
 admin.site.register(CourseLink, CourseLinkAdmin)
+admin.site.register(CourseFilter, CourseFilterAdmin)

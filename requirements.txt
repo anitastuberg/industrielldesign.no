@@ -1,4 +1,4 @@
-django==2.2.1
+django==2.2.2
 Pillow
 django-imagekit
 mixer
@@ -9,3 +9,4 @@ dj-database-url
 boto3
 django-storages
 whitenoise
+simplejson

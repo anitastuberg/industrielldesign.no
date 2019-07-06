@@ -1,21 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block page_title %}Boksalg{% endblock %}
 
 {% block content %}
     {% include 'components/navbar.html' %}
     <div class="container nav" id="books">
-        <div class="filters">
-            <form>
-                {% csrf_token %}
-                <div class="input-field">
-                    <input type="checkbox" id="{{ course.course_code }}">
-                    <label for="{{ course.course_code }}">{{ course.name }}</label>
-                </div>
-            </form>
-        </div>
         <div class="books">
-            {% if request.user.is_authenticated %}<a href="{% url 'create-book' %}" class="button cta">Legg ut bok for salg</a>{% endif %}
+            {% if request.user.is_authenticated %}<a href="{% url 'create-book' %}" class="button">Legg ut bok for salg</a>{% endif %}
             <p class="paragraph">Finner du en bok du ønsker å kjøpe kan du enten løpe inn i klasserommet og prate med personen, eller sende en melding med favoritt-meldingstjenesten din.</p>
             <br><br><br>
             {% for book in books %}

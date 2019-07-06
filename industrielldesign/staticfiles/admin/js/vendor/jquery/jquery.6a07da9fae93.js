@@ -3645,7 +3645,7 @@ jQuery.extend( {
 					return jQuery.Deferred( function( newDefer ) {
 
 						// progress_handlers.add( ... )
-						tuples[ 0 ][ 3 ].add(
+						tuples[ 0 ][ 3 ].add_white(
 							resolve(
 								0,
 								newDefer,
@@ -3657,7 +3657,7 @@ jQuery.extend( {
 						);
 
 						// fulfilled_handlers.add( ... )
-						tuples[ 1 ][ 3 ].add(
+						tuples[ 1 ][ 3 ].add_white(
 							resolve(
 								0,
 								newDefer,
@@ -3668,7 +3668,7 @@ jQuery.extend( {
 						);
 
 						// rejected_handlers.add( ... )
-						tuples[ 2 ][ 3 ].add(
+						tuples[ 2 ][ 3 ].add_white(
 							resolve(
 								0,
 								newDefer,
@@ -3696,11 +3696,11 @@ jQuery.extend( {
 			// promise.progress = list.add
 			// promise.done = list.add
 			// promise.fail = list.add
-			promise[ tuple[ 1 ] ] = list.add;
+			promise[ tuple[ 1 ] ] = list.add_white;
 
 			// Handle state
 			if ( stateString ) {
-				list.add(
+				list.add_white(
 					function() {
 
 						// state = "resolved" (i.e., fulfilled)
@@ -3727,7 +3727,7 @@ jQuery.extend( {
 			// progress_handlers.fire
 			// fulfilled_handlers.fire
 			// rejected_handlers.fire
-			list.add( tuple[ 3 ].fire );
+			list.add_white( tuple[ 3 ].fire );
 
 			// deferred.notify = function() { deferred.notifyWith(...) }
 			// deferred.resolve = function() { deferred.resolveWith(...) }
@@ -4452,7 +4452,7 @@ jQuery.fn.extend( {
 			tmp = dataPriv.get( elements[ i ], type + "queueHooks" );
 			if ( tmp && tmp.empty ) {
 				count++;
-				tmp.empty.add( resolve );
+				tmp.empty.add_white( resolve );
 			}
 		}
 		resolve();
@@ -5041,8 +5041,8 @@ jQuery.event = {
 				}
 			}
 
-			if ( special.add ) {
-				special.add.call( elem, handleObj );
+			if ( special.add_white ) {
+				special.add_white.call( elem, handleObj );
 
 				if ( !handleObj.handler.guid ) {
 					handleObj.handler.guid = handler.guid;

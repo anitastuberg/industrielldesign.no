@@ -1,7 +1,7 @@
 {% load static %}
-<div class="input-field fluid course-search" @keydown="nextItem($event)">
-    <input type="text" id="course-input" v-model="courseQuery" @input="readQuery()" autocomplete="off" placeholder="."
-    :data-course-code="selectedCourse.course_code" :data-course-name="selectedCourse.name" name="course">
+<div class="input-field course-search" @keydown="nextItem($event)">
+    <input type="text" id="course-input" v-model="courseQuery" @input="readQuery()" autocomplete="off" placeholder="Fag"
+           :data-course-code="selectedCourse.course_code" :data-course-name="selectedCourse.name" name="course">
     <label for="{{ form.name.id_for_label }}">Fag</label>
     <p class="helper-text">Søk på navn eller fagkode</p>
     <div class="autocomplete" v-show="suggestions.length > 0">
@@ -14,6 +14,15 @@
 
 <script src="{% static 'js/ajaxSetup.js' %}"></script>
 <script>
+    const debounce = (func, delay) => {
+        let inDebounce;
+        return function () {
+            const context = this;
+            const args = arguments;
+            clearTimeout(inDebounce);
+            inDebounce = setTimeout(() => func.apply(context, args), delay);
+        }
+    };
     let courseSearch = new Vue({
         el: '.course-search',
         delimiters: ['[{', '}]'],
@@ -24,8 +33,8 @@
             'currentItem': 0
         },
         methods: {
-            generateSelectedText: function(course) {
-              return `${course.name} - ${course.course_code}`
+            generateSelectedText: function (course) {
+                return `${course.name} - ${course.course_code}`
             },
             nextItem: function () {
                 if (event.keyCode === 38 && this.currentItem > 0) {
@@ -53,7 +62,7 @@
                     this.suggestions = [];
                 }
             },
-            searchCourses: function (query) {
+            searchCourses: debounce(function (query) {
                 $.ajax({
                     type: 'POST',
                     url: '{% url 'create_course' %}',
@@ -66,7 +75,7 @@
                     error: function (data) {
                     }
                 });
-            }
+            }, 300)
         }
     });
 </script>

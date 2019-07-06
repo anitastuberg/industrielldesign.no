@@ -1,17 +1,37 @@
+import simplejson
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 from authentication.models import Profile
 from .forms import CreateCourseForm, CreateCourseReviewForm
-from .models import Course, CourseReview, CourseLink
+from .models import Course, CourseReview, CourseLink, CourseFilter
 
 
 def courses(request):
+    course_list = list(Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True))
+                        .order_by('-reviews', 'name')
+                        .values('name', 'class_year', 'course_code', 'slug', 'filter__name', 'filter__color'))
     context = {
-        'courses': Course.objects.filter(Q(reviews__isnull=False) | Q(display_without_reviews=True)).order_by('-reviews', 'name')
+        'courses': simplejson.dumps(course_list),
+        'filters': CourseFilter.objects.all
     }
-    return render(request, 'courses/courses.html', context)
+    if request.method == 'GET':
+        return render(request, 'courses/courses.html', context)
+    else:  # POST
+        query = request.POST.get('q')
+        filters = request.POST.getlist('filters[]')
+        if filters:
+            course_response = Course.objects.filter(filter__name__in=filters).filter(Q(display_without_reviews=True) | Q(reviews__isnull=False)).\
+                filter(Q(name__icontains=query) | Q(course_code__icontains=query))
+        else:
+            course_response = Course.objects.filter(Q(display_without_reviews=True) | Q(reviews__isnull=False)). \
+                filter(Q(name__icontains=query) | Q(course_code__icontains=query))
+
+        response = {
+            'courses': list(course_response.values('name', 'class_year', 'course_code', 'slug', 'filter__name', 'filter__color'))
+        }
+        return JsonResponse(response)
 
 
 def create_course(request):

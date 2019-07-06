@@ -5,23 +5,14 @@
 {% block body_class %}dark{% endblock %}
 
 {% block content %}
-    <div id="project-detail">
-        <div class="image-container">
-            {% for image in project.projectimage_set.all %}
-                <img src="{{ image.image.url }}" alt="{{ project.title }}"
-                     class="project-image {% if not forloop.first %}right{% endif %}">
-            {% endfor %}
-            <div class="dots">
-                {% for i in project.projectimage_set.all %}
-                    <div class="dot {% if  forloop.first %}selected{% endif %}"></div>
-                {% endfor %}
-            </div>
-        </div>
+    {% include 'components/navbar.html' %}
+    <div id="project-detail" class="container">
+        {% include 'components/image-viewer.html' with images=project.projectimage_set.all %}
         <div class="project-description">
-            <a href="{% url 'projects' %}" class="tilbake">-</a>
-            <p class="creator">{{ project.creator }}</p>
-            <h1>{{ project.title }}</h1>
+            <br>
             <p class="course">{{ project.course }}</p>
+            <h3 class="creator">{{ project.creator }}</h3>
+            <br>
             <p class="description">{{ project.description }}</p>
         </div>
     </div>

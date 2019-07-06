@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render, redirect, get_object_or_404
 from events.models import Event
-from .models import Styremedlem, Komiteer
+from .models import Styremedlem, Komiteer, TheSign
 
 
 def home(request):
@@ -29,7 +29,10 @@ def leonardo_shop(request):
 
 
 def thesign(request):
-    return render(request, 'home/leonardo/theSign.html')
+    context = {
+        'thesigns': TheSign.objects.all
+    }
+    return render(request, 'home/leonardo/theSign.html', context)
 
 
 # STUDENT
@@ -53,7 +56,7 @@ def about(request):
     context = {
         "styremedlemmer": Styremedlem.objects.all()
     }
-    return render(request, 'home/Leonardo/about.html', context)
+    return render(request, 'home/leonardo/about.html', context)
 
 
 def snake(request):
@@ -68,7 +71,14 @@ def komiteer(request):
     context = {
         'komiteer': Komiteer.objects.all()
     }
-    return render(request, 'home/Leonardo/komiteer.html', context)
+    return render(request, 'home/leonardo/komiteer.html', context)
+
+
+def komite_detail(request, komite_pk):
+    context = {
+        'komite': Komiteer.objects.get(pk=komite_pk)
+    }
+    return render(request, 'home/leonardo/komite-details.html', context)
 
 
 def terms(request):

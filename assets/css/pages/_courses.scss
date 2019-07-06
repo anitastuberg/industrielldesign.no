@@ -1,60 +1,52 @@
-// -------------
-// Courses page
-// -------------
 #courses {
-  a.button {
-    display: inline-flex;
-    margin-bottom: 1rem;
-  }
-  .course-list {
-    display: grid;
-    grid-gap: 3rem;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr) ) ;
-  }
-  .course {
-    h3 {
-      @include text-wrap;
+  @media screen and (min-width: $md) {
+    .box, .labels {
+      display: grid;
+      grid-template-columns: 100px 1fr 200px 150px;
+    }
+    .labels {
+      cursor: pointer;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+    .caption {
+      font-size: 1rem;
+    }
+    .sort-label {
+      display: flex;
+      align-items: center;
+      color: $dark-gray;
+      @include no-select;
+
+      &.active {
+        color: $black;
+        font-weight: bold;
+      }
+
+      &.descending img {
+        transform: rotate(180deg);
+      }
+
+      img {
+        position: relative;
+        margin-left: 4px;
+        top: 2px;
+        transition: transform 200ms ease-in-out;
+      }
     }
   }
-}
-
-// -------------------
-// Create courses page
-// -------------------
-#create-course {
-  max-width: $xs;
-
-  form {
-    margin-top: 20%;
-  }
-}
-
-// -----------------
-// Course detail page
-// -----------------
-#course-detail {
-  .useful-links {
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    .url-preview {
-      @extend .card;
-      @extend .clickable;
+  // Mobile
+  @media screen and (max-width: $md) {
+    .course-item {
+      padding: 1.5rem 1rem;
     }
-  }
-  .reviews {
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    margin-bottom: 3rem;
-  }
-  .review {
-    white-space: pre-line;
-    margin: 0;
-  }
-  .review-date {
-    font-size: 0.8rem;
-    color: $dark-gray;
-    text-transform: capitalize;
+    .class-year {
+      position: absolute;
+      top: 1.5rem;
+      right: 1rem;
+    }
+    .caption strong {
+      margin-top: 8px;
+    }
   }
 }

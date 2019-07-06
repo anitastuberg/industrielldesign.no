@@ -3,43 +3,29 @@
 
 // Base:
 'base/mixins',
-'base/variables',
 'base/css-reset',
+'base/variables',
 'base/typography',
 'base/global',
 
-// Grid
-'grid/grid',
-'grid/flex',
-
 // Components:
-'components/buttons',
-'components/navbar',
 'components/links',
-'components/hamburger',
-'components/components',
-'components/text-editor',
-'components/tables',
-'components/input',
-'components/_cards',
+'components/navbar',
+'components/image-viewer',
+'components/buttons',
+'components/inputs',
+'components/footer',
 'components/course-search',
-'components/quill-customization',
+'components/quill',
+'components/filter',
+'components/box',
 
 // Pages:
+'pages/homepage',
+'pages/event-detail',
 'pages/projects',
-'pages/event-page',
-'pages/404',
-'pages/wiki/wiki',
-'pages/wiki/article',
-'pages/students',
-'pages/authentication/register',
-'pages/authentication/login',
-'pages/authentication/_forgot-password',
 'pages/about',
-'pages/profile-page',
 'pages/courses',
-'pages/job',
-'pages/books',
-'pages/project-detail'
-
+'pages/komite',
+'pages/thesign'
 ;

@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
-{% load staticfiles %}
+{% load static %}
 {% block page_title %}Registrer ny bruker{% endblock %}
 
 {% block content %}
 
 {% include 'components/navbar.html' %}
 
-<div id="register" class=" container nav narrow">
+<div id="register" class=" container nav max-mobile">
+    <h1 class="center">Ny bruker</h1>
+    <br><br>
     <div class="register-inputs">
         <form method="POST">
             {% csrf_token %}
             <div class="input-field">
                 {{ form.email }}
-                <label for="{{ form.email.id_for_label }}">Epost@stud.ntnu.no</label>
+                <label for="{{ form.email.id_for_label }}">E-post</label>
                 {{ form.email.errors }}
             </div>
             <div class="input-field">
@@ -51,7 +53,7 @@
                 <div class="checkmark"></div>
                 <label id="checkboxLabel" for="accepted">Jeg godtar <a class="link" href="{% url 'terms' %}" target="_blank">Leonardos nettsidevilkår</a></label>
             </div>
-            <input id="submitButton" class="button blue" type="submit" value="Opprett bruker">
+            <button id="submitButton" class="button center" type="submit">Opprett bruker</button>
         </form>
     </div>
 </div>

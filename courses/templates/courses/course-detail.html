@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_head %}
-    <style>body { background-color: #D0EAF1}</style>
+    <style>body { background-color: #D0EAF1; }</style>
 {% endblock extra_head %}
 
 {% block page_title %}{{ course.name }}{% endblock %}
@@ -12,7 +12,7 @@
         <a href="{% url 'courses' %}" class="tilbake">Tilbake</a>
         <h1>{{ course.name }}</h1>
         <p>{{ course.course_code }}</p>
-        <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">Gå til fagsiden</a>
+        <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">Gå til NTNUs fagside</a>
         <br><br>
         <div class="useful-links">
             {% for link in links %}
@@ -69,7 +69,7 @@
     </div>
 {% endblock content %}
 {% block javascript %}
-    <script src="{% static '/js/ajaxSetup.js' %}"></script>
+    <script src="{% static 'js/ajaxSetup.js' %}"></script>
     <script>
         const key = "5c711d38873ba9da2ac9e3a2b49e0917ba99efe61623e";
         const urlInput = $('#url');
