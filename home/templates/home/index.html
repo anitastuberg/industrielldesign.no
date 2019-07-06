@@ -9,30 +9,33 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <main class="container nav" id="homepage">
-        <h1>Velkommen <br>til IPD</h1>
-        <br>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-        <br><br>
-        <h4>Kommende hendelser</h4>
-        <br>
-        <div class="events box-container">
-            {% for event in events %}
-                {% with event.event_start_time|days_until as days_left %}
-                    <a class="event box" href="{% url 'event' event_slug=event.slug %}">
-                        <div class="event-info">
-                            <h4>{{ event.title }}</h4>
-                            <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}
-                                dager{% endif %}
-                                til</p>
-                        </div>
-                        <p class="date">{{ event.event_start_time|date:"d" }}<br>
-                            <span>{{ event.event_start_time|date:"M" }}</span></p>
-                        <img src="{{ event.eventimage_set.all|get_first_project_image_url }}" alt="">
-                    </a>
-                {% endwith %}
-            {% endfor %}
-        </div>
+        <section>
+            <h1>Velkommen <br>til IPD</h1>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+            <br><br>
+            <h4>Kommende hendelser</h4>
+            <br>
+            <div class="events box-container">
+                {% for event in events %}
+                    {% with event.event_start_time|days_until as days_left %}
+                        <a class="event box" href="{% url 'event' event_slug=event.slug %}">
+                            <div class="event-info">
+                                <h4>{{ event.title }}</h4>
+                                <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}
+                                    dager{% endif %}
+                                    til</p>
+                            </div>
+                            <p class="date">{{ event.event_start_time|date:"d" }}<br>
+                                <span>{{ event.event_start_time|date:"M" }}</span></p>
+                            <img src="{{ event.eventimage_set.all|get_first_project_image_url }}" alt="">
+                        </a>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </section>
     </main>
     {% include 'components/footer.html' %}
 {% endblock content %}
