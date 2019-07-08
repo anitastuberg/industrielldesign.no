@@ -1,0 +1,40 @@
+#project-page {
+  h1 {
+    margin-bottom: 1rem;
+  }
+  .button {
+    margin: 2rem 0;
+    display: inline-flex;
+  }
+  .box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .project-image {
+    text-align: center;
+    padding-bottom: $body-padding / 2;
+    &:nth-child(3n+1) {
+      grid-column: span 2;
+      .image {
+        height: 350px;
+      }
+    }
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+    .image {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 200ms ease-in-out;
+      }
+    }
+  }
+}

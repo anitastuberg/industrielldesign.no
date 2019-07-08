@@ -1,0 +1,47 @@
+.image-viewer {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow-x: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 600ms ease-in-out;
+  }
+
+  img.right {
+    transform: translateX(140vw);
+  }
+
+  img.left {
+    transform: translateX(-140vw);
+  }
+
+  .dots, .image-viewer-counter {
+    position: absolute;
+    bottom: 10px;
+  }
+
+  .dots {
+    right: 0;
+    .image-viewer-dot {
+      cursor: pointer;
+      $dot-size: 14px;
+      width: $dot-size;
+      height: $dot-size;
+      border-radius: $dot-size;
+      border: 2px solid $black;
+      display: inline-block;
+      margin-right: 2px;
+
+      &.selected {
+        background: $black;
+      }
+    }
+  }
+}
