@@ -1,8 +1,16 @@
 #homepage {
+
   section {
-    max-width: $xxl;
-    margin-right: auto;
-    margin-left: auto;
+    text-align: center;
+    h1 {
+      margin-bottom: 0;
+    }
+    img {
+      width: 100%;
+    }
+    h4 {
+      text-align: left;
+    }
   }
 
   .events {
@@ -26,6 +34,7 @@
     }
 
     .date {
+      text-align: center;
       position: absolute;
       top: $body-padding * 2;
       left: $body-padding;
@@ -34,8 +43,7 @@
       line-height: 0.4em;
 
       span {
-        font-size: 1rem;
-        font-weight: 400;
+        font-size: 1.1rem;
       }
     }
 

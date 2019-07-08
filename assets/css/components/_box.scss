@@ -6,9 +6,9 @@
 .box {
   position: relative;
   padding: $body-padding * 2 $body-padding;
-  border: $border-width solid $black;
-  margin-top: -$border-width;
-  margin-left: -$border-width;
+  border: 2px solid $black;
+  margin-top: -2px;
+  margin-left: -2px;
 
   &:last-child {
     //border-bottom: $border-width solid $black;

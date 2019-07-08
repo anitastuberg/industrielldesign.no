@@ -25,5 +25,6 @@ class CreateEventForm(forms.ModelForm):
             'registration_start_time',
             'available_spots',
             'registered_users',
-            'waiting_list'
+            'waiting_list',
+            'image'
         ]

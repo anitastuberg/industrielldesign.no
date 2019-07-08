@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from imagekit.models import ProcessedImageField
+from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit
 import datetime
 
@@ -42,7 +42,10 @@ class Event(models.Model):
     registered_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='registerd_users')
     waiting_list = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='waiting_list_users')
     slug = models.SlugField(max_length=60, blank=True)
-    # registration_year_limit = models.IntegerField('Åpent for:', choices=YEAR_CHOICES, blank=True, null=True)
+    image = ProcessedImageField(upload_to='events/', processors=[ResizeToFit(2000, 2000, False)], format='JPEG',
+                                options={'quality': 85})
+    # image_thumbnail = ImageSpecField(source=image, processors=[ResizeToFit(600, 600, False)], format='JPEG',
+    #                                  options={'quality': 60})
 
     # Event header image:
     # image = models.ImageField()
@@ -76,8 +79,3 @@ class Event(models.Model):
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
         ordering = ['event_start_time']
-
-
-class EventImage(models.Model):
-    image = ProcessedImageField(upload_to='events/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)

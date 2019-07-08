@@ -102,9 +102,15 @@ em {
 body {
   background-color: #F3F2EF; }
 
+.full-width-container {
+  width: 100%;
+  background: #F3F2EF; }
+
 .container {
+  max-width: 81.25em;
+  margin-right: auto;
+  margin-left: auto;
   padding: 5% 1rem 200px;
-  background: #F3F2EF;
   margin-bottom: 200px; }
   .container.nav {
     padding-top: calc(4rem + 5%); }
@@ -422,7 +428,7 @@ footer {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   position: fixed;
   bottom: 0;
   z-index: -1;
@@ -504,9 +510,9 @@ footer {
 .box {
   position: relative;
   padding: 2rem 1rem;
-  border: 1px solid #1A1A1A;
-  margin-top: -1px;
-  margin-left: -1px; }
+  border: 2px solid #1A1A1A;
+  margin-top: -2px;
+  margin-left: -2px; }
   .box.clickable {
     transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out; }
     .box.clickable:hover {
@@ -532,9 +538,13 @@ footer {
     object-fit: cover; }
 
 #homepage section {
-  max-width: 81.25em;
-  margin-right: auto;
-  margin-left: auto; }
+  text-align: center; }
+  #homepage section h1 {
+    margin-bottom: 0; }
+  #homepage section img {
+    width: 100%; }
+  #homepage section h4 {
+    text-align: left; }
 @media screen and (min-width: 56.25em) {
   #homepage .events {
     display: grid;
@@ -548,6 +558,7 @@ footer {
     height: 300px;
     object-fit: cover; }
   #homepage .event .date {
+    text-align: center;
     position: absolute;
     top: 2rem;
     left: 1rem;
@@ -555,8 +566,7 @@ footer {
     font-weight: bold;
     line-height: 0.4em; }
     #homepage .event .date span {
-      font-size: 1rem;
-      font-weight: 400; }
+      font-size: 1.1rem; }
   #homepage .event .event-info {
     text-align: right;
     width: 70%;
@@ -564,14 +574,29 @@ footer {
     margin-left: auto;
     margin-bottom: 5rem; }
 
-#event-detail h3 {
-  margin-top: 1rem; }
-#event-detail .time-and-place {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin: 1rem 0; }
-#event-detail .button {
-  margin: 3rem auto 0; }
+#event-detail {
+  margin-top: 5%;
+  max-width: 48em; }
+  #event-detail header {
+    position: relative;
+    border-bottom: 2px solid #1A1A1A;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    margin-bottom: 1rem; }
+    #event-detail header h2 {
+      margin-bottom: 4px; }
+    #event-detail header div {
+      position: absolute;
+      bottom: 4px;
+      right: 0;
+      text-align: right; }
+  #event-detail section {
+    display: grid;
+    grid-gap: 3rem;
+    grid-template-columns: 3fr 1fr; }
+  #event-detail > img {
+    width: 100%;
+    margin-top: 4rem; }
 
 #project-page h1 {
   margin-bottom: 1rem; }

@@ -45,8 +45,11 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-{% block content %}
-{% endblock content %}
+<div class="full-width-container">
+    {% block content %}
+    {% endblock content %}
+</div>
+{% include 'components/footer.html' %}
 
 <script src="{% static 'js/navbar.js' %}"></script>
 {% block javascript %}

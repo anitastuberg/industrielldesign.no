@@ -2,15 +2,24 @@ body {
   background-color: $background-color;
 }
 
+// Works with the footer
+.full-width-container {
+  width: 100%;
+  background: $background-color;
+}
+
 // CONTAINER
 .container {
+  max-width: $xxl;
+  margin-right: auto;
+  margin-left: auto;
   padding: 5% $body-padding $footer-height;
-  background: $background-color;
   margin-bottom: $footer-height;
 
   &.nav {
     padding-top: calc(#{$nav-height} + 5%);
   }
+
   &.max-mobile {
     max-width: 375px;
     padding-left: auto;

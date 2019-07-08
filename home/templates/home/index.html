@@ -10,12 +10,9 @@
     {% include 'components/navbar.html' %}
     <main class="container nav" id="homepage">
         <section>
-            <h1>Velkommen <br>til IPD</h1>
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-            <br><br>
+            <h1>Velkommen til Leonardo</h1>
+            <p>Studentene ved Industriell design på NTNU</p>
+            <img src="{% static 'img/illustrations/home-page.png' %}" alt="">
             <h4>Kommende hendelser</h4>
             <br>
             <div class="events box-container">
@@ -30,14 +27,13 @@
                             </div>
                             <p class="date">{{ event.event_start_time|date:"d" }}<br>
                                 <span>{{ event.event_start_time|date:"M" }}</span></p>
-                            <img src="{{ event.eventimage_set.all|get_first_project_image_url }}" alt="">
+                            <img src="{{ event.image.url }}" alt="">
                         </a>
                     {% endwith %}
                 {% endfor %}
             </div>
         </section>
     </main>
-    {% include 'components/footer.html' %}
 {% endblock content %}
 {% block javascript %}
 {% endblock javascript %}

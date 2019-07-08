@@ -3,7 +3,7 @@ footer {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: $footer-height;
+  min-height: $footer-height;
   position: fixed;
   bottom: 0;
   z-index: -1;
@@ -15,6 +15,7 @@ footer {
     height: 64px;
     width: auto;
   }
+
   #sit-logo {
     height: 48px;
   }
