@@ -434,7 +434,8 @@ footer {
   z-index: -1;
   background-color: #1A1A1A;
   color: #757573;
-  padding: 2rem; }
+  padding: 2rem;
+  max-width: 100vw; }
   footer img {
     height: 64px;
     width: auto; }
@@ -538,13 +539,27 @@ footer {
     object-fit: cover; }
 
 #homepage section {
-  text-align: center; }
-  #homepage section h1 {
-    margin-bottom: 0; }
-  #homepage section img {
-    width: 100%; }
-  #homepage section h4 {
-    text-align: left; }
+  display: block;
+  height: 100vh;
+  position: relative;
+  padding-top: 30vh;
+  padding-left: 5%;
+  overflow-x: hidden; }
+  #homepage section h1, #homepage section p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1; }
+  #homepage section > img {
+    position: absolute;
+    top: 55%;
+    right: -5%;
+    transform: translateY(-50%);
+    height: 90%; }
+    @media screen and (max-width: 48em) {
+      #homepage section > img {
+        right: auto;
+        left: 50%;
+        transform: translate(-40%, -50%); } }
 @media screen and (min-width: 56.25em) {
   #homepage .events {
     display: grid;

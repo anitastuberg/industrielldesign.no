@@ -2,19 +2,20 @@
 
 {% load static %}
 {% load days_until %}
-{% load project_filters %}
 
 {% block page_title %}Hjem{% endblock %}
 
 {% block content %}
     {% include 'components/navbar.html' %}
-    <main class="container nav" id="homepage">
+    <main id="homepage">
         <section>
             <h1>Velkommen til Leonardo</h1>
             <p>Studentene ved Industriell design på NTNU</p>
-            <img src="{% static 'img/illustrations/home-page.png' %}" alt="">
-            <h4>Kommende hendelser</h4>
-            <br>
+            <img src="{% static 'img/illustrations/bao.png' %}" alt="Velkommen til Leonardo linjeforening">
+        </section>
+        <br>
+        <div class="container">
+            <h4>Kommende hendelser</h4><br>
             <div class="events box-container">
                 {% for event in events %}
                     {% with event.event_start_time|days_until as days_left %}
@@ -32,7 +33,7 @@
                     {% endwith %}
                 {% endfor %}
             </div>
-        </section>
+        </div>
     </main>
     {% include 'components/footer.html' %}
 {% endblock content %}
