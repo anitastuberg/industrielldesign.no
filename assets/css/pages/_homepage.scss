@@ -4,7 +4,7 @@
     display: block;
     height: 100vh;
     position: relative;
-    padding-top: 30vh;
+    padding-top: 25vh;
     padding-left: 5%;
     overflow-x: hidden;
     h1, p {
@@ -18,7 +18,7 @@
       right: -5%;
       transform: translateY(-50%);
       height: 90%;
-      @media screen and (max-width: $md){
+      @media screen and (max-width: $xl){
         right: auto;
         left: 50%;
         transform: translate(-40%, -50%);

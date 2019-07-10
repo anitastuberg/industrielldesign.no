@@ -166,7 +166,7 @@ p a {
     right: 2rem;
     top: 2rem;
     z-index: 10001; }
-    @media screen and (min-width: 48em) {
+    @media screen and (min-width: 49em) {
       #main-navigation #hamburger {
         display: none; } }
     #main-navigation #hamburger .bar {
@@ -178,7 +178,7 @@ p a {
         width: 18px;
         margin-right: 0;
         margin-left: auto; }
-  @media screen and (min-width: 48em) {
+  @media screen and (min-width: 49em) {
     #main-navigation .item-list {
       display: inline-block; }
     #main-navigation #close-nav {
@@ -542,7 +542,7 @@ footer {
   display: block;
   height: 100vh;
   position: relative;
-  padding-top: 30vh;
+  padding-top: 25vh;
   padding-left: 5%;
   overflow-x: hidden; }
   #homepage section h1, #homepage section p {
@@ -555,7 +555,7 @@ footer {
     right: -5%;
     transform: translateY(-50%);
     height: 90%; }
-    @media screen and (max-width: 48em) {
+    @media screen and (max-width: 68.75em) {
       #homepage section > img {
         right: auto;
         left: 50%;
