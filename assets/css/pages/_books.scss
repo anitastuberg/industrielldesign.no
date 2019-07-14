@@ -1,0 +1,19 @@
+// Books page
+#books {
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+  }
+  .book {
+    padding-bottom: 1rem;
+    img {
+      width: calc(100% + #{2 * $body-padding});
+      margin: #{-$body-padding} #{-$body-padding} #{$body-padding};
+    }
+    .bottom {
+      margin-top: 1rem;
+    }
+  }
+}
+
+// New book
