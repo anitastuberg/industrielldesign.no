@@ -1,8 +1,20 @@
 // Books page
 #books {
+  position: relative;
+  > img {
+    width: calc(100% + #{2* $body-padding});
+    //max-width: 650px;
+    margin: 0 -#{$body-padding};
+    @media screen and (min-width: $md) {
+      display: none;
+    }
+  }
   .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+    @media screen and (min-width: $md) {
+      width: 50vw;
+    }
   }
   .book {
     padding-bottom: 1rem;

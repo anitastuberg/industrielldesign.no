@@ -102,6 +102,9 @@ em {
 .gray {
   color: #757573; }
 
+.p-width {
+  max-width: 70ch; }
+
 body {
   background-color: #F3F2EF; }
 
@@ -713,15 +716,26 @@ footer {
     height: 84%;
     object-fit: cover; }
 
-#books .box-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(186px, 1fr)); }
-#books .book {
-  padding-bottom: 1rem; }
-  #books .book img {
+#books {
+  position: relative; }
+  #books > img {
     width: calc(100% + 2rem);
-    margin: -1rem -1rem 1rem; }
-  #books .book .bottom {
-    margin-top: 1rem; }
+    margin: 0 -1rem; }
+    @media screen and (min-width: 48em) {
+      #books > img {
+        display: none; } }
+  #books .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(186px, 1fr)); }
+    @media screen and (min-width: 48em) {
+      #books .box-container {
+        width: 50vw; } }
+  #books .book {
+    padding-bottom: 1rem; }
+    #books .book img {
+      width: calc(100% + 2rem);
+      margin: -1rem -1rem 1rem; }
+    #books .book .bottom {
+      margin-top: 1rem; }
 
 /*# sourceMappingURL=main.css.map */
