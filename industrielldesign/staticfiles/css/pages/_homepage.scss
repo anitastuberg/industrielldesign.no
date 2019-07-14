@@ -1,15 +1,28 @@
 #homepage {
 
   section {
-    text-align: center;
-    h1 {
+    display: block;
+    height: 100vh;
+    position: relative;
+    padding-top: 25vh;
+    padding-left: 5%;
+    overflow-x: hidden;
+    h1, p {
       margin-bottom: 0;
+      position: relative;
+      z-index: 1;
     }
-    img {
-      width: 100%;
-    }
-    h4 {
-      text-align: left;
+    > img {
+      position: absolute;
+      top: 55%;
+      right: -5%;
+      transform: translateY(-50%);
+      height: 90%;
+      @media screen and (max-width: $xl){
+        right: auto;
+        left: 50%;
+        transform: translate(-40%, -50%);
+      }
     }
   }
 

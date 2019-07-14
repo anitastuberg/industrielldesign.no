@@ -1,3 +1,5 @@
+industrielldesign/staticfiles/*
+
 .idea/*
 config.py # Passwords that shouldn't be distributed
 .idea

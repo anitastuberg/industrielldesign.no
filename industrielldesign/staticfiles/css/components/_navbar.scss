@@ -20,7 +20,7 @@ $hamburger-bp: $md;
     right: $body-padding * 2;
     top: 2rem;
     z-index: $z-navbar + 1;
-    @media screen and (min-width: $hamburger-bp) {
+    @media screen and (min-width: $hamburger-bp + 1) {
       display: none;
     }
 
@@ -39,7 +39,7 @@ $hamburger-bp: $md;
   }
 
   // Desktop navigation
-  @media screen and (min-width: $hamburger-bp) {
+  @media screen and (min-width: $hamburger-bp + 1) {
     .item-list {
       display: inline-block;
     }
