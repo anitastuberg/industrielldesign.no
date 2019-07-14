@@ -18,9 +18,19 @@
   }
   .book {
     padding-bottom: 1rem;
-    img {
+    .image-container {
       width: calc(100% + #{2 * $body-padding});
       margin: #{-$body-padding} #{-$body-padding} #{$body-padding};
+      padding-top: calc(3 / 2 * 100%);
+      position: relative;
+      overflow: hidden;
+      img {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+      }
     }
     .bottom {
       margin-top: 1rem;

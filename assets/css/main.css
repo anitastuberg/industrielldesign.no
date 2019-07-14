@@ -732,9 +732,18 @@ footer {
         width: 50vw; } }
   #books .book {
     padding-bottom: 1rem; }
-    #books .book img {
+    #books .book .image-container {
       width: calc(100% + 2rem);
-      margin: -1rem -1rem 1rem; }
+      margin: -1rem -1rem 1rem;
+      padding-top: calc(3 / 2 * 100%);
+      position: relative;
+      overflow: hidden; }
+      #books .book .image-container img {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0; }
     #books .book .bottom {
       margin-top: 1rem; }
 

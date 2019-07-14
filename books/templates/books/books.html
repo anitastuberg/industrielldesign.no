@@ -7,7 +7,8 @@
     {% include 'components/navbar.html' %}
     <div class="container nav" id="books">
         <h1>Boksalg</h1>
-        <p class="paragraph p-width">Finner du en bok du ønsker å kjøpe kan du enten løpe inn i klasserommet og prate med
+        <p class="paragraph p-width">Finner du en bok du ønsker å kjøpe kan du enten løpe inn i klasserommet og prate
+            med
             personen, eller sende en melding med favoritt-meldingstjenesten din.</p>
         <img src="{% static 'img/illustrations/trond-are.png' %}" alt="Trond Are selger bøker">
         {% if request.user.is_authenticated %}
@@ -16,7 +17,9 @@
         <div class="box-container">
             {% for book in books %}
                 <div class="book box">
-                    <img src="{{ book.image.url }}" alt="">
+                    <div class="image-container">
+                        <img src="{{ book.image.url }}" alt="">
+                    </div>
                     <p class="caption gray">{{ book.course.name }} – {{ book.course.course_code }}</p>
                     <p class="">{{ book.title }}</p>
                     <div class="bottom">
