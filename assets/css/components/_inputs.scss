@@ -61,4 +61,18 @@
     margin-left: 1rem;
     margin-top: 4px;
   }
+  .errorlist {
+    margin-left: 1rem;
+    li {
+      @extend .caption;
+      margin: 0;
+      list-style-type: none;
+      color: $error;
+    }
+  }
+  .preloader {
+    position: absolute;
+    right: 1rem;
+    top: (3.5rem - $preloader-size) / 2;
+  }
 }

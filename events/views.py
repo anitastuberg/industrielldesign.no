@@ -1,5 +1,8 @@
+import datetime
+
+from django.db import models
+from django.db.models import F
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
@@ -7,12 +10,30 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
 
-from home.models import TheSign
 from .models import Event
 from .forms import CreateEventForm
 
 
 # Create your views here.
+
+def all_events(request):
+    now = timezone.now()
+    events = (Event.objects.annotate(
+        relevance=models.Case(
+            models.When(event_start_time__gte=now, then=1),
+            models.When(event_start_time__lt=now, then=2),
+            output_field=models.IntegerField(),
+        )).annotate(
+        timediff=models.Case(
+            models.When(event_start_time__gte=now, then=F('event_start_time') - now),
+            models.When(event_start_time__lt=now, then=now - F('event_start_time')),
+            output_field=models.DurationField(),
+        )).order_by('relevance', 'timediff'))
+    context = {
+        'events': events
+    }
+    return render(request, 'events/all-events.html', context)
+
 
 def create_event(request):
     # Calls 403 - permission denied if not logged in

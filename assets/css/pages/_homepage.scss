@@ -27,14 +27,30 @@
   }
 
   .events {
+    display: grid;
     @media screen and (min-width: $lg) {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media screen and (max-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+      .event:nth-child(4) {display: none};
+    }
+    @media screen and (max-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+      .event {
+        h3 {
+          font-size: 1.125rem;
+        }
+        p {
+          font-size: 0.825rem;
+        }
+      }
+      .event:nth-child(4) {display: block};
     }
 
-    .event:nth-child(4n+2), .event:nth-child(4n+3) {
-      grid-column: span 2;
-    }
+    //.event:nth-child(4n+2), .event:nth-child(4n+3) {
+    //  grid-column: span 2;
+    //}
   }
 
   .event {

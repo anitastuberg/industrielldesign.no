@@ -1,22 +1,38 @@
 import datetime
 
-from django.shortcuts import render, redirect, get_object_or_404
+from django.db import models
+from django.db.models import F
+from django.shortcuts import render
+from django.utils import timezone
+
 from events.models import Event
 from .models import Styremedlem, Komiteer, TheSign
 
 
 def home(request):
-    def add_years():
+    def add_years(years):
         d = datetime.date.today()
-        years = 1
         try:
             return d.replace(year=d.year + years)
         except ValueError:
             return d + (datetime.date(d.year + years, 1, 1) - datetime.date(d.year, 1, 1))
+
+    now = timezone.now()
+    events = (Event.objects.annotate(
+        relevance=models.Case(
+            models.When(event_start_time__gte=now, then=1),
+            models.When(event_start_time__lt=now, then=2),
+            output_field=models.IntegerField(),
+        )).annotate(
+        timediff=models.Case(
+            models.When(event_start_time__gte=now, then=F('event_start_time') - now),
+            models.When(event_start_time__lt=now, then=now - F('event_start_time')),
+            output_field=models.DurationField(),
+        )).order_by('relevance', 'timediff'))
+
     context = {
-        "events": Event.objects.filter(event_start_time__range=(datetime.date.today(), add_years()))
+        "events": events[0:4]
     }
-    print(context['events'])
     return render(request, 'home/index.html', context)
 
 

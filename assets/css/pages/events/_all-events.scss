@@ -1,0 +1,36 @@
+#all-events {
+  header {
+    position: relative;
+    margin-top: 15%;
+    h1 {
+      padding-bottom: 2rem;
+    }
+    img {
+      position: absolute;
+      bottom: 0;
+      width: 60%;
+      right: 0;
+    }
+  }
+  .box-container {
+    display: grid;
+    @media screen and (min-width: $lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media screen and (max-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (max-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+      .event {
+        h3 {
+          font-size: 1.125rem;
+        }
+
+        p {
+          font-size: 0.825rem;
+        }
+      }
+    }
+  }
+}

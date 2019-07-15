@@ -1,48 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_head %}
-    <style>body { background-color: #D0EAF1; }</style>
-{% endblock extra_head %}
-
 {% block page_title %}{{ course.name }}{% endblock %}
 
 {% block content %}
     <div class="container nav narrow" id="course-detail">
-        <a href="{% url 'courses' %}" class="tilbake">Tilbake</a>
         <h1>{{ course.name }}</h1>
-        <p>{{ course.course_code }}</p>
-        <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">Gå til NTNUs fagside</a>
+        <h4>{{ course.course_code }} // <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">https://www.ntnu.no/studier/emner/{{ course.course_code }}</a></h4>
         <br><br>
-        <div class="useful-links">
+        <div class="useful-links box-container">
             {% for link in links %}
                 <a class="url-preview" href="{{ link.url }}" target="_blank">
-                    <img src="{{ link.img_url }}" alt="">
+{#                    <img src="{{ link.img_url }}" alt="">#}
                     <div>
-                        <h3>{{ link.url_title }}</h3>
-                        <p class="description">{{ link.url_description }}</p>
-                        <p class="url">{{ link.url }}</p>
+                        <b>{{ link.url_title }}</b>
+                        <br>
+                        <p class="caption">{{ link.url_description }}</p>
+{#                        <p class="url">{{ link.url }}</p>#}
                     </div>
                 </a>
             {% endfor %}
+            <div class="add-link" onclick="openModal()"><img src="{% static 'img/icons/add.svg' %}"><p>Legg til lenke</p></div>
         </div>
         {% if request.user.is_authenticated %}
             <br>
-            <button class="button" onclick="openModal()">Legg til nyttig lesestoff</button>
             <div class="scrim"></div>
             <div class="modal">
                 <form method="post" id="link-form">
                     {% csrf_token %}
-                    <div class="input-field">
-                        <input id="url" type="url" placeholder="." autocomplete="off">
-                        <label for="url">Lenke til det nyttige lesestoffet</label>
-                    </div>
                     <div class="url-preview">
-                        <img id="preview-image" src="" alt="">
                         <div>
-                            <h4 id="preview-title"></h4>
+                            <b id="preview-title"></b>
                             <p id="preview-description" class="description"></p>
                         </div>
+                    </div>
+                    <div class="input-field">
+                        <input id="url" type="url" placeholder="url" autocomplete="off">
+                        <label for="url">url</label>
+                        <div class="preloader" id="url-preloader"></div>
                     </div>
                     <button type="submit" class="button">Lagre</button>
                 </form>
@@ -70,9 +65,11 @@
 {% endblock content %}
 {% block javascript %}
     <script src="{% static 'js/ajaxSetup.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
     <script>
         const key = "5c711d38873ba9da2ac9e3a2b49e0917ba99efe61623e";
         const urlInput = $('#url');
+        const urlPreloader = $('#url-preloader');
         const usefulLinks = $('.useful-links');
         const preview = {
             'title': $('#preview-title'),
@@ -95,7 +92,7 @@
 
         function getPreviewRequest() {
             let url = urlInput.val();
-            console.log("change");
+            urlPreloader.addClass('loading');
             if (url.length > 0 && url.includes("http") && url.includes("://") && url.includes(".")) {
                 console.log("Calling: " + url);
                 $.ajax({
@@ -106,20 +103,17 @@
                         console.log(response);
                         globalResponse = response;
                         displayPreview(response);
+                        urlPreloader.removeClass('loading');
                     }
                 });
             } else {
                 displayPreview({});
+                urlPreloader.removeClass('loading');
                 globalResponse = {}
             }
         }
 
-        urlInput.on('change paste', getPreviewRequest);
-        urlInput.on("input", function () {
-            if (urlInput.val().length === 0) {
-                getPreviewRequest();
-            }
-        });
+        urlInput.on('change paste input', getPreviewRequest);
 
         $('#link-form').on('submit', function (e) {
             e.preventDefault();
@@ -133,11 +127,9 @@
                     },
                     success: function () {
                         usefulLinks.append(`<a class="url-preview" href="${globalResponse.url}">
-                                <img src="${globalResponse.image}">
                                 <div>
-                                    <h3>${globalResponse.title}</h3>
-                                    <p class="description">${globalResponse.description}</p>
-                                    <p class="url">${globalResponse.url}</p>
+                                    <b>${globalResponse.title}</h3>
+                                    <p class="caption">${globalResponse.description}</p>
                                 </div>
                             </a>`
                         )

@@ -8,16 +8,16 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-field">
-                <input type="text" id="title" name="title" placeholder=".">
+                <input type="text" id="title" name="title" placeholder="Boktittel">
                 <label for="title">Boktittel</label>
             </div>
             {% include 'components/course-search.html' %}
             <div class="input-field">
-                <input type="number" min="0" id="price" name="price" placeholder=".">
+                <input type="number" min="0" id="price" name="price" placeholder="Pris i kr">
                 <label for="title">Pris i kr</label>
             </div>
             <div class="input-field">
-                <input type="file" id="image" name="image" placeholder=".">
+                <input type="file" id="image" name="image" placeholder="Bilde">
                 <label for="image">Bilde</label>
                 <p class="helper-text">Bruk et bilde i stående format for best resultat</p>
             </div>

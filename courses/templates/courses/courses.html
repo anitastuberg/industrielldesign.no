@@ -38,21 +38,22 @@
                     Klasse
                     <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">
                 </span>
-{#                <span data-key="filter__name" class="sort-label" :class="{active: sortKey === 'filter__name'}">#}
-{#                    Type#}
-{#                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">#}
-{#                </span>#}
+                {#                <span data-key="filter__name" class="sort-label" :class="{active: sortKey === 'filter__name'}">#}
+                {#                    Type#}
+                {#                    <img src="{% static 'img/icons/dropdown.svg' %}" alt="sortering">#}
+                {#                </span>#}
             </div>
             <!-- List for search results -->
             <ul class="box-container">
-                <li><a :href="'fag/' + course.slug" v-for="course in sorted_courses" class="box clickable course-item">
-                    <p class="caption">[{ course.course_code }]</p>
-                    <p><strong>[{ course.name }]</strong></p>
-                    <p class="caption class-year">[{ course.class_year }]</p>
-                    <b class="caption" v-if="course.filter__name">#[{ course.filter__name }]</b>
-                    <div>
-                    </div>
-                </a>
+                <li v-for="course in sorted_courses">
+                    <a :href="'fag/' + course.slug" class="box clickable course-item">
+                        <p class="caption">[{ course.course_code }]</p>
+                        <p><strong>[{ course.name }]</strong></p>
+                        <p class="caption class-year">[{ course.class_year }]</p>
+                        <b class="caption" v-if="course.filter__name">#[{ course.filter__name }]</b>
+                        <div>
+                        </div>
+                    </a>
                 </li>
                 <li v-if="courses.length === 0">Fant ingen fag med søket: '[{ query }]'</li>
             </ul>

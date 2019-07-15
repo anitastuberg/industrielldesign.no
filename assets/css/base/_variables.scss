@@ -5,6 +5,7 @@ $body-padding: 1rem;
 $footer-height: 200px;
 
 $nav-height: 4rem;
+$preloader-size: 1rem;
 
 $black: #1A1A1A;
 $dark-gray: #757573;
@@ -15,7 +16,8 @@ $footer-color: $black;
 $accent: #F64229;
 $error: #D83163;
 
-$z-navbar: 10000;
+$z-navbar: 50;
+$z-modal: 100;
 
 // Responsive
 $xxs: 20em; // (320px)

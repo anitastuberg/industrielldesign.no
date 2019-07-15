@@ -9,24 +9,22 @@
 
 {% block content %}
     {% include 'components/navbar.html' %}
-    <div class="container nav" id="project-page">
-        <h1>Prosjekter</h1>
-        <p>Dette er prosjekter laget av studenter på industriell design ved NTNU i Trondheim</p>
-        {% if request.user.is_authenticated %}
-            <a class="button" id="create-project" href="{% url 'create-project' %}">Legg ut prosjekt</a>
-        {% else %}
-            <a class="button" id="create-project" href="{% url 'login' %}?next={{ request.path }}">Legg ut prosjekt</a>
-        {% endif %}
+    <div id="project-page">
+        <div class="container nav">
+            <h1>Prosjekter</h1>
+            <p class="p-width">Dette er prosjekter laget av studenter på industriell design ved NTNU i Trondheim</p>
+            {% if request.user.is_authenticated %}
+                <a class="button" id="create-project" href="{% url 'create-project' %}">Legg ut prosjekt</a>
+            {% else %}
+                <a class="button" id="create-project" href="{% url 'login' %}?next={% url 'create-project' %}">Legg ut
+                    prosjekt</a>
+            {% endif %}
+        </div>
         <div class="box-container">
             {% for project in projects %}
-                <div class="project-image box {% if forloop.first %}active{% endif %}">
-                    <a class="image" href="{% url 'project-detail' project_slug=project.slug %}">
-                        <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
-                    </a>
-                    <a class="description" href="{% url 'project-detail' project_slug=project.slug %}">
-                        <p class="creator">{{ project.creator }} - {{ project.course }} // {{ project.semester }} {{ project.year }}</p>
-                    </a>
-                </div>
+                <a class="box" href="{% url 'project-detail' project_slug=project.slug %}">
+                    <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
+                </a>
             {% endfor %}
         </div>
     </div>

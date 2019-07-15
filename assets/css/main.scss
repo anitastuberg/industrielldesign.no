@@ -19,13 +19,18 @@
 'components/quill',
 'components/filter',
 'components/box',
+'components/url-preview',
+'components/modal',
+'components/event',
 
 // Pages:
 'pages/homepage',
-'pages/event-detail',
+'pages/events/event-detail',
+'pages/events/all-events',
 'pages/projects',
 'pages/about',
-'pages/courses',
+'pages/courses/courses',
+'pages/courses/course-detail',
 'pages/komite',
 'pages/thesign',
 'pages/books'

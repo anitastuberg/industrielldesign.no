@@ -25,7 +25,7 @@ def days_until(value):
         return 0
     else:
         # Date is in the past; return expired message
-        return 0
+        return -1
 
 
 @register.filter(name='times')
