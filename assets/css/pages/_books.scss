@@ -11,7 +11,7 @@
   }
   .box-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(179px, 1fr));
     @media screen and (min-width: $md) {
       width: 50vw;
     }
