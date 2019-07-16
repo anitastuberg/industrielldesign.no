@@ -7,9 +7,17 @@
     padding-top: 25vh;
     padding-left: 5%;
     overflow-x: hidden;
+    h1 {
+      $h1: (576: 48, 1024: 64);
+      font-size: least-squares-fit($h1);
+      line-height: 1em;
+      font-family: 'PT Serif';
+      top: 4rem;
+    }
     h1, p {
-      margin-bottom: 0;
-      position: relative;
+      display: block;
+      max-width: $xxl;
+      margin: 0 auto;
       z-index: 1;
     }
     > img {
@@ -52,36 +60,48 @@
     //  grid-column: span 2;
     //}
   }
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "b1 b1 b2 b3"
+        "b1 b1 b4 b4"
+        "b5 b6 b4 b4";
+    margin-top: 6rem;
 
-  .event {
-    position: relative;
+    .box {
+      position: relative;
+      max-width: none;
+      background-color: $black;
+      padding-top: 100%;
+      cursor: pointer;
 
-    img {
-      width: 80%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .date {
-      text-align: center;
-      position: absolute;
-      top: $body-padding * 2;
-      left: $body-padding;
-      font-size: 48px;
-      font-weight: bold;
-      line-height: 0.4em;
-
-      span {
-        font-size: 1.1rem;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
-    }
-
-    .event-info {
-      text-align: right;
-      width: 70%;
-      margin-right: 0;
-      margin-left: auto;
-      margin-bottom: 5rem;
+      &:nth-child(1) {
+        grid-area: b1;
+      }
+      &:nth-child(2) {
+        grid-area: b2;
+      }
+      &:nth-child(3) {
+        grid-area: b3;
+      }
+      &:nth-child(4) {
+        grid-area: b4;
+      }
+      &:nth-child(5) {
+        grid-area: b5;
+      }
+      &:nth-child(6) {
+        grid-area: b6;
+      }
     }
   }
 }

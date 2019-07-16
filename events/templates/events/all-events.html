@@ -12,19 +12,8 @@
     </header>
         <div class="box-container">
             {% for event in events %}
-                <a class="event {% if event.event_start_time|days_until < 0 %}old{% endif %}"
-                   href="{% url 'event' event_slug=event.slug %}">
-                    <div>
-                        <h3>{{ event.event_start_time|date:"d.m.y" }}</h3>
-                        <h3>{{ event.title }}</h3>
-                        <p>{{ event.description }}</p>
-                        {#                                <p class="label days-left">{{ days_left }} {% if days_left == 1 %}dag{% else %}#}
-                        {#                                    dager{% endif %}#}
-                        {#                                    til</p>#}
-                    </div>
-                </a>
+                {% include 'components/event.html' with event=event %}
             {% endfor %}
         </div>
     </div>
-
 {% endblock %}

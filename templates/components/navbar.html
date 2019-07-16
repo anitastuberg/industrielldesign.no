@@ -10,6 +10,8 @@
     </div>
     <ul class="item-list">
         <li id="close-nav" class="nav-item"><img src="{% static 'img/icons/close_white.svg' %}" alt="close"></li>
+        <li><a class="nav-item {% if 'arrangementer' in request.path %}selected{% endif %}"
+               href="{% url 'all_events' %}">Arrangementer</a></li>
         <li class="nav-item dropdown {% if 'leonardo' in request.path %}selected{% endif %}">
             <span>Leonardo</span>
             <ul>
@@ -43,3 +45,14 @@
         {% endif %}
     </ul>
 </nav>
+
+
+<script>
+    const items = $('.item-list > li');
+    const dropdownItem = $('.item-list > li.dropdown');
+    dropdownItem.hover(function() {
+        $(this).siblings().addClass('gray');
+    }, function() {
+        items.removeClass('gray');
+    })
+</script>

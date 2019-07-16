@@ -5,59 +5,66 @@
 {% block body_class %}dark{% endblock %}
 
 {% block content %}
-    {% include 'components/navbar.html' %}
-    <div id="project-detail" class="container">
-        {% include 'components/image-viewer.html' with images=project.projectimage_set.all %}
-        <div class="project-description">
-            <br>
-            <p class="course">{{ project.course }}</p>
-            <h3 class="creator">{{ project.creator }}</h3>
-            <br>
-            <p class="description">{{ project.description }}</p>
+{% include 'components/navbar.html' %}
+<div id="project-detail" class="container nav">
+    <div class="project-description">
+        <br>
+        <h3 class="creator">{{ project.creator }}</h3>
+        <p class="caption">{{ project.class_year }} // {{ project.course }}</p>
+        <br>
+        <p class="description">{{ project.description }}</p>
+    </div>
+    <div class="box-container">
+        <div class="images">
+            {% for image in project.projectimage_set.all %}
+            <img src="{{ image.image.url }}" alt="{{ project.creator }}">
+            {% endfor %}
         </div>
     </div>
+</div>
 {% endblock %}
 {% block javascript %}
-    <script>
-        let images = $('.project-image');
-        let dots = $('.dot');
-        let selectedImageIndex = 0;
+<script>
+    let images = $('.project-image');
+    let dots = $('.dot');
+    let selectedImageIndex = 0;
 
-        dots.click(function () {
-            changeImage($(this).index());
-        });
+    dots.click(function () {
+        changeImage($(this).index());
+    });
 
-        function changeImage(index) {
-            images.each(function() {
-               if ($(this).index() < index) {
-                   $(this).removeClass('right').addClass('left');
-               } else if ($(this).index() === index) {
-                   $(this).removeClass('right left');
-               } else if ($(this).index() > index) {
-                   $(this).removeClass('left').addClass('right');
-               }
-            });
-
-            dots.removeClass('selected');
-            dots.eq(index).addClass('selected');
-
-            selectedImageIndex = index;
-        }
-        function oneStepMove(direction) {
-            let i = selectedImageIndex;
-            if (direction && i < images.length - 1) {
-                i++;
-            } else if (!direction && i > 0) {
-                i--;
-            }
-            changeImage(i);
-        }
-        $(document).on('keydown', function(e) {
-            if (e.which == 37) {
-                oneStepMove(false);
-            } else if (e.which == 39) {
-                oneStepMove(true);
+    function changeImage(index) {
+        images.each(function () {
+            if ($(this).index() < index) {
+                $(this).removeClass('right').addClass('left');
+            } else if ($(this).index() === index) {
+                $(this).removeClass('right left');
+            } else if ($(this).index() > index) {
+                $(this).removeClass('left').addClass('right');
             }
         });
-    </script>
+
+        dots.removeClass('selected');
+        dots.eq(index).addClass('selected');
+
+        selectedImageIndex = index;
+    }
+
+    function oneStepMove(direction) {
+        let i = selectedImageIndex;
+        if (direction && i < images.length - 1) {
+            i++;
+        } else if (!direction && i > 0) {
+            i--;
+        }
+        changeImage(i);
+    }
+    $(document).on('keydown', function (e) {
+        if (e.which == 37) {
+            oneStepMove(false);
+        } else if (e.which == 39) {
+            oneStepMove(true);
+        }
+    });
+</script>
 {% endblock %}

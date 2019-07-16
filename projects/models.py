@@ -16,19 +16,20 @@ class Project(models.Model):
 
     HØST = 'Høst'
     VÅR = 'Vår'
-    YEAR_CHOICES = [(r,r) for r in range(datetime.datetime.now().year-10, datetime.datetime.now().year+1)]
-    SEMESTER_CHOICES = (
-        (HØST, 'Høst'),
-        (VÅR, 'Vår')
-    )
+    YEAR_CHOICES = [
+        ('1. klasse', '1. klasse'),
+        ('2. klasse', '2. klasse'),
+        ('3. klasse', '3. klasse'),
+        ('4. klasse', '4. klasse'),
+        ('5. klasse', '5. klasse'),
+    ]
     
 
     title = models.CharField(max_length=150, unique=True)
     description = models.TextField()
 
     creator = models.CharField(max_length=300)
-    year = models.IntegerField('År', choices=YEAR_CHOICES, default=datetime.datetime.now().year)
-    semester = models.CharField(max_length=5, choices=SEMESTER_CHOICES, default=HØST)
+    class_year = models.CharField('Klasse', choices=YEAR_CHOICES, max_length=10)
     course = models.CharField(max_length=150, blank=False, null=False)
     
     creation_date = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -47,4 +48,4 @@ class Project(models.Model):
     class Meta:
         verbose_name = "Prosjekt"
         verbose_name_plural = "Prosjekter"
-        ordering = ('-year', '-semester')
+        ordering = ('creation_date', 'title')

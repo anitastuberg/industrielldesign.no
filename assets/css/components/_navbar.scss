@@ -20,6 +20,7 @@ $hamburger-bp: $md;
     right: $body-padding * 2;
     top: 2rem;
     z-index: $z-navbar + 1;
+
     @media screen and (min-width: $hamburger-bp + 1) {
       display: none;
     }
@@ -40,14 +41,78 @@ $hamburger-bp: $md;
 
   // Desktop navigation
   @media screen and (min-width: $hamburger-bp + 1) {
+    display: flex;
+    align-items: center;
+
     .item-list {
-      display: inline-block;
+      width: 100%;
+      max-width: $xl;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 5rem;
     }
+
     #close-nav {
       display: none;
     }
+
     li {
+      list-style-type: none;
       display: inline-block;
+
+      &.gray {
+        &, > a {
+          color: gray;
+        }
+      }
+    }
+
+    .nav-item {
+      position: relative;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 200ms ease-in-out;
+
+      &.selected,
+      li.selected {
+        font-weight: bold;
+
+        li:not(.selected) {
+          font-weight: normal;
+        }
+      }
+
+      &.dropdown {
+        cursor: default;
+
+        &:hover {
+          ul {
+            transform: translateY(0);
+            pointer-events: all;
+            opacity: 1;
+          }
+        }
+      }
+
+      ul {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        padding: 3rem 0 2rem;
+        transform: translateY(-10px);
+        transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+        opacity: 0;
+
+        li {
+          display: inline-block;
+          margin-right: 2vw;
+          white-space: nowrap;
+        }
+      }
     }
   }
 
@@ -56,15 +121,18 @@ $hamburger-bp: $md;
     #hamburger:not(.closed) {
       display: none;
     }
+
     #hamburger.closed {
-      + .item-list {
+      +.item-list {
         transform: translateX(100%);
       }
     }
+
     #close-nav {
       text-align: right;
       padding-top: 1.5rem;
     }
+
     .item-list {
       position: fixed;
       background: $black;
@@ -78,7 +146,8 @@ $hamburger-bp: $md;
       transition: transform 200ms ease-in-out;
       @include no-select;
 
-      .nav-item, .nav-item.dropdown span {
+      .nav-item,
+      .nav-item.dropdown span {
         position: relative;
         display: block;
         border-bottom: $border-width solid white;
@@ -87,7 +156,9 @@ $hamburger-bp: $md;
         font-size: 1.125rem;
         font-weight: bold;
 
-        &.selected, &.selected > a, &.selected span {
+        &.selected,
+        &.selected>a,
+        &.selected span {
           color: $dark-gray;
         }
 
@@ -103,7 +174,8 @@ $hamburger-bp: $md;
             transform-origin: top;
           }
 
-          &::after, &::before {
+          &::after,
+          &::before {
             content: '';
             width: 16px;
             height: 3px;

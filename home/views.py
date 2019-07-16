@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from events.models import Event
 from .models import Styremedlem, Komiteer, TheSign
+from projects.models import Project
 
 
 def home(request):
@@ -31,7 +32,8 @@ def home(request):
         )).order_by('relevance', 'timediff'))
 
     context = {
-        "events": events[0:4]
+        "events": events[0:4],
+        'projects': Project.objects.all()[0:7]
     }
     return render(request, 'home/index.html', context)
 

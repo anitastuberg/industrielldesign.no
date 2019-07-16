@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from imagekit.models import ProcessedImageField, ImageSpecField
+from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 import datetime
 
@@ -25,6 +25,7 @@ class Event(models.Model):
         return graduation_year - self.YEAR
 
     title = models.CharField(max_length=200, unique=True)
+    short_description = models.TextField(blank=True, null=True)
     description = models.TextField()
     location = models.CharField(max_length=50, blank=True, null=True)
     event_start_time = models.DateTimeField()
@@ -44,11 +45,6 @@ class Event(models.Model):
     slug = models.SlugField(max_length=60, blank=True)
     image = ProcessedImageField(upload_to='events/', processors=[ResizeToFit(2000, 2000, False)], format='JPEG',
                                 options={'quality': 85})
-    # image_thumbnail = ImageSpecField(source=image, processors=[ResizeToFit(600, 600, False)], format='JPEG',
-    #                                  options={'quality': 60})
-
-    # Event header image:
-    # image = models.ImageField()
 
     def __str__(self):
         return self.title

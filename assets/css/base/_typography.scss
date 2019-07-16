@@ -11,6 +11,7 @@ h1, .header1 {
   $h1: (576: 48, 1024: 56);
   font-size: least-squares-fit($h1);
   line-height: 1.2em;
+  // font-family: 'PT Serif';
 }
 
 h2, .header2 {

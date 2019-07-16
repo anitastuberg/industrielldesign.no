@@ -9,6 +9,10 @@
       display: none;
     }
   }
+  > .button {
+    margin-top: 2rem;
+    display: inline-flex;
+  }
   .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(179px, 1fr));

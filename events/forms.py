@@ -8,7 +8,8 @@ class CreateEventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = [
-            'title', 
+            'title',
+            'short_description',
             'description', 
             'location',
             'event_start_time', 
