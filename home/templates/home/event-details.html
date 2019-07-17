@@ -1,8 +1,0 @@
-
-<a class="event" href="{% url 'event' event_slug=event.slug %}" data-year="{{ event.event_start_time|date:"Y" }}">
-    <h1 class="event-title">{{ event.title }}</h1>
-    <img src="{{ event.image.url }}" alt="{{ event.title }}">
-    <p class="time"><b>{{ event.event_start_time|date:"l" }}</b>
-        {{ event.event_start_time|date:"d.m" }} {% if event.location %}//
-        {{ event.location }}{% endif %}</p>
-</a>

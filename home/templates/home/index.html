@@ -6,6 +6,8 @@
 
 {% block page_title %}Hjem{% endblock %}
 
+{% block meta %}Industriell design er nettsiden for alle designstudentene på NTNU i Trondheim. Her kan man melde seg på arrangmenter, lese seg opp på fag, se andres prosjekter og mye mye mer.{% endblock %}
+
 {% block content %}
 {% include 'components/navbar.html' %}
 <main id="homepage">
@@ -19,7 +21,7 @@
         <h4>Kommende hendelser</h4><br>
         <div class="events box-container">
             {% for event in events %}
-            {% include 'components/event.html' with event=event %}
+            {% include 'components/event-component.html' with event=event %}
             {% endfor %}
         </div>
         <div class="projects box-container">

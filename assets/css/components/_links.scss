@@ -4,7 +4,7 @@ a {
   text-decoration: none;
 }
 
-.link {
+p a, .link {
   display: inline-block;
   border-bottom: $border-width dashed $black;
 }

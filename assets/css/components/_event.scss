@@ -1,6 +1,5 @@
 .event {
   @extend .box;
-  @extend .box.heavy;
   padding-top:100%;
   &:not(.old) {
     @extend .box.clickable;

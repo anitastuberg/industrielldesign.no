@@ -167,7 +167,7 @@ def event(request, event_slug):
     # GET (On page load)
     if request.method == 'GET':
         context = updateButtonEventButton(user, context)
-        return render(request, 'events/event-page.html', context)
+        return render(request, 'events/event-detail.html', context)
 
     # POST (User sending data) requests are only necessary if event
     # has registration

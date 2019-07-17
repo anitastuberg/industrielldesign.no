@@ -11,21 +11,11 @@
 }
 
 .box {
-  --border-width: 2px;
-  .box.heavy {
-    @media screen and (min-width: $md) {
-      --border-width: 3px;
-    }
-  }
   position: relative;
   padding: $body-padding;
-  border: var(--border-width) solid $black;
+  border: $thick-border;
   margin-top: calc(-1 * var(--border-width));
   margin-left: calc(-1 * var(--border-width));
-
-  &:last-child {
-    //border-bottom: $border-width solid $black;
-  }
 
   &.clickable {
     transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out;

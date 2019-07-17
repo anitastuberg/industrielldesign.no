@@ -58,6 +58,16 @@ table {
   border-spacing: 0;
 }
 
+:root {
+  --border-width: 2px;
+}
+
+@media screen and (min-width: 48em) {
+  :root {
+    --border-width: 3px;
+  }
+}
+
 html {
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
@@ -251,7 +261,7 @@ a {
   text-decoration: none;
 }
 
-.link {
+p a, .link {
   display: inline-block;
   border-bottom: 1px dashed #1A1A1A;
 }
@@ -936,18 +946,11 @@ footer #sit-logo {
 }
 
 .box, .url-preview, .event, #course-detail .add-link {
-  --border-width: 2px;
   position: relative;
   padding: 1rem;
   border: var(--border-width) solid #1A1A1A;
   margin-top: calc(-1 * var(--border-width));
   margin-left: calc(-1 * var(--border-width));
-}
-
-@media screen and (min-width: 48em) {
-  .box .box.heavy, .url-preview .box.heavy, .event .box.heavy, #course-detail .add-link .box.heavy, .box .heavy.url-preview, .url-preview .heavy.url-preview, .event .heavy.url-preview, #course-detail .add-link .heavy.url-preview, .box .event, .url-preview .event, .event .event, #course-detail .add-link .event, .box #course-detail .heavy.add-link, #course-detail .box .heavy.add-link, .url-preview #course-detail .heavy.add-link, #course-detail .url-preview .heavy.add-link, .event #course-detail .heavy.add-link, #course-detail .event .heavy.add-link, #course-detail .add-link .heavy.add-link {
-    --border-width: 3px;
-  }
 }
 
 .box.clickable, .clickable.url-preview, .clickable.event, .event:not(.old), #course-detail .clickable.add-link {
@@ -1239,43 +1242,104 @@ footer #sit-logo {
   grid-area: b6;
 }
 
-#event-detail {
-  margin-top: 5%;
-  max-width: 48em;
+@media screen and (max-width: 68.75em) {
+  #event-detail {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: 'i' 'h' 'b';
+  }
+}
+
+#event-detail header, #event-detail .image {
+  border: var(--border-width) solid #1A1A1A;
+  background: #F3F2EF;
 }
 
 #event-detail header {
-  position: relative;
-  border-bottom: 2px solid #1A1A1A;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 200px;
-      grid-template-columns: 1fr 200px;
-  margin-bottom: 1rem;
+  padding: 5%;
+  grid-area: h;
 }
 
-#event-detail header h2 {
-  margin-bottom: 4px;
+@media screen and (min-width: 68.75em) {
+  #event-detail header {
+    padding: calc(5% + 4rem) 30% 5% 10%;
+    position: fixed;
+    height: 55vh;
+    top: 0;
+    left: 0;
+  }
 }
 
-#event-detail header div {
-  position: absolute;
-  bottom: 4px;
-  right: 0;
-  text-align: right;
+#event-detail header h3 {
+  text-transform: uppercase;
+  margin-bottom: 2rem;
 }
 
-#event-detail section {
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 3rem;
-  -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
+#event-detail header h2 + p {
+  text-transform: uppercase;
+  margin-top: 0.5em;
+  font-size: 1.1rem;
+  margin-bottom: 3em;
 }
 
-#event-detail > img {
+#event-detail .body {
+  padding: 5%;
+  grid-area: b;
+}
+
+@media screen and (min-width: 68.75em) {
+  #event-detail .body {
+    margin-top: 55vh;
+    margin-right: 40vw;
+    overflow-y: auto;
+    padding: 2rem 2rem 4rem 10%;
+  }
+}
+
+@media screen and (max-width: 68.75em) {
+  #event-detail .body {
+    border: var(--border-width) solid #1A1A1A;
+    position: relative;
+    top: calc(-1 * var(--border-width));
+  }
+}
+
+#event-detail .body p {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+#event-detail .image {
+  max-width: 100vw;
+  grid-area: i;
+}
+
+@media screen and (min-width: 68.75em) {
+  #event-detail .image {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: calc(45vh + 2px);
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 68.75em) {
+  #event-detail .image, #event-detail .image img {
+    max-height: 30vh;
+  }
+}
+
+#event-detail .image img {
   width: 100%;
-  margin-top: 4rem;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-bottom: var(--border-width) solid #1A1A1A;
 }
 
 #all-events header {

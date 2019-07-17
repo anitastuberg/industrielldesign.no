@@ -5,19 +5,12 @@
 {% block page_title %}{{ event.title }}{% endblock page_title %}
 
 {% block content %}
-    {% include 'components/navbar.html' %}
-    <div class="container" id="event-detail">
+    {% comment %} {% include 'components/navbar.html' %} {% endcomment %}
+    <div class="" id="event-detail">
         <header>
-            <h2>{{ event.title }}</h2>
-            <div>
-                <h4>{{ event.location }}</h4>
-                <h4>{{ event.event_start_time|date:"d. F k\l: H:i " }}</h4>
-            </div>
-        </header>
-        {% if event.location %}
-        {% endif %}
-        <section>
-            <p class="content-markdown description">{{ event.description }}</p>
+            <h3>{{ event.title }}</h3>
+            <h2>{{ event.short_description }}</h2>
+            <p>{{ event.event_start_time|date:"d. F k\l. H:i " }}{% if event.location %} // @{{ event.location }}{% endif %}</p>
             <div class="signup">
                 {% if event.registration_required %}
                     <form id="event-login-field" method="POST">
@@ -37,11 +30,16 @@
                     <p id="open-for"><span>Åpent for: </span>{{ open_for }}</p>
                 {% endif %}
             </div>
-        </section>
-        <img src="{{ event.image.url }}" alt="">
-        {% if request.user.is_staff %}
-            <a class="link block" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
-        {% endif %}
+            {% if request.user.is_staff %}
+                <a class="link block" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
+            {% endif %}
+        </header>
+        <div class="body">
+            <p class="content-markdown p-width">{{ event.description }}</p>
+        </div>
+        <div class="image">
+            <img  src="{{ event.image.url }}" alt="{{ event.short_description }}">
+        </div>
     </div>
 
 {% endblock content %}
