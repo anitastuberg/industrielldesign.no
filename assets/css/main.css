@@ -1128,8 +1128,9 @@ footer #sit-logo {
   font-weight: normal;
 }
 
-.event div:not(.image-container) p:last-child {
-  margin-top: 2rem;
+.event div:not(.image-container) p {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .event .image-container {
