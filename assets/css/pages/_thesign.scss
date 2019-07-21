@@ -3,9 +3,11 @@
     display: grid;
     text-align: center;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-row-gap: 1rem;
 
     @media screen and (max-width: $sm) {
       grid-template-columns: 1fr 1fr;
+      grid-row-gap: 0;
 
       .box:first-child {
         grid-column: span 2;
@@ -14,7 +16,6 @@
 
 
     .box {
-
       .image-container {
         position: relative;
         width: calc(100% + 2 * $body-padding);

@@ -10,6 +10,7 @@
         <h1>Arrangementer</h1>
         {% if request.user.is_authenticated %}
             <a class="button" href="/admin/events/event/add/">Nytt arrangment</a>
+            <br><br>
         {% endif %}
         <img src="{% static 'img/illustrations/siri.png' %}" alt="Bli med på Leonardos arrangmenter som Siri" />
     </header>

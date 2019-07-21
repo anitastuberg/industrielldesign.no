@@ -1730,12 +1730,14 @@ footer #sit-logo {
   text-align: center;
   -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-row-gap: 1rem;
 }
 
 @media screen and (max-width: 37.5em) {
   #thesign .box-container {
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
+    grid-row-gap: 0;
   }
   #thesign .box-container .box:first-child, #thesign .box-container .url-preview:first-child, #thesign .box-container .event:first-child, #thesign .box-container #course-detail .add-link:first-child, #course-detail #thesign .box-container .add-link:first-child {
     grid-column: span 2;
