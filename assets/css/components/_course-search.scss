@@ -1,0 +1,20 @@
+.course-search {
+  z-index: 2;
+
+  .autocomplete {
+    position: absolute;
+    left: 0;
+    top: 56px;
+    width: 100%;
+    background-color: white;
+    border: $border;
+
+    div {
+      padding: 1rem 1rem;
+      cursor: pointer;
+      &:hover, &.active-item {
+        background-color: $gray;
+      }
+    }
+  }
+}

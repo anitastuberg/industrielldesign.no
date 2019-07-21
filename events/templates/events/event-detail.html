@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_title %}{{ event.title }}{% endblock page_title %}
+
+{% block content %}
+    {% comment %} {% include 'components/navbar.html' %} {% endcomment %}
+    <div class="" id="event-detail">
+        <header>
+            <h3>{{ event.title }}</h3>
+            <h2>{{ event.short_description }}</h2>
+            <p>{{ event.event_start_time|date:"d. F k\l. H:i " }}{% if event.location %} // @{{ event.location }}{% endif %}</p>
+            <div class="signup">
+                {% if event.registration_required %}
+                    <form id="event-login-field" method="POST">
+                        {% csrf_token %}
+                        {% if not request.user.is_authenticated %}
+                            <a href="{% url 'login' %}?next={{ request.path }}" class="button cta"
+                               {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</a>
+                        {% else %}
+                            <button class="button cta" type="submit"
+                                    {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</button>
+                            {% if event.registration_start_time and not_open_yet %}
+                                <p class="registration-start-time">Påmelding
+                                    åpner: {{ event.registration_start_time|date:"j. F H:i" }}</p>
+                            {% endif %}
+                        {% endif %}
+                    </form>
+                    <p id="open-for"><span>Åpent for: </span>{{ open_for }}</p>
+                {% endif %}
+            </div>
+            {% if request.user.is_staff %}
+                <a class="link block" href="{% url 'event_admin' event_slug=event.slug %}">Se påmeldte</a>
+            {% endif %}
+        </header>
+        <div class="body">
+            <p class="content-markdown p-width">{{ event.description }}</p>
+        </div>
+        <div class="image">
+            <img  src="{{ event.image.url }}" alt="{{ event.short_description }}">
+        </div>
+    </div>
+
+{% endblock content %}
+
+<input class="button" type="submit" value="data.buttonText" disabled>
+
+{% block javascript %}
+
+    <script src="{% static 'js/ajaxSetup.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Renders markdown from db to html
+            marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
+            let content = $('.content-markdown');
+            let markedContent = marked(content.text());
+            content.html(markedContent);
+        });
+
+        function loggedIn(data) {
+            if (data.loginSuccess) {
+                $('#open-for').text(data.open_for);
+                let form = $('#log-in-fields');
+                form.empty();
+                form.append(`<input class="button" type="submit" value="${data.buttonText}" ${data.buttonState ? '' : 'disabled'}>`);
+            }
+        }
+
+        $('#event-login-field').on('submit', function (e) {
+            e.preventDefault();
+            $('.password.errorlist').empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "event" event_slug=event.slug %}',
+                data: {
+                    'email': $('#email').val(),
+                    'password': $('#password').val(),
+                    'waiting_list': $('#waiting-list').data("waiting-list")
+                },
+                success: function (data) {
+                    if (data.loginSuccess) {
+                        loggedIn(data)
+                    } else {
+                        $('.password.errorlist').append(`<li>${data.errorMessage}</li>`);
+                        $('#password').val('');
+                    }
+                },
+                error: function (data) {
+                    console.log("Error");
+                }
+            })
+        });
+    </script>
+{% endblock javascript %}

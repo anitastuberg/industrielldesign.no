@@ -1,0 +1,10 @@
+{% extends 'emails/base-email.html' %}
+
+{% block title %}{{ subject }}{% endblock title %}
+
+{% block body %}
+    <h1>{{ event.title }}</h1>
+{% endblock body %}
+
+{% block footer %}
+{% endblock footer %}

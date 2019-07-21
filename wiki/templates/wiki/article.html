@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+
+{% load static %}
+
+{% block page_title %}{{ article.title }}{% endblock page_title %}
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<div class="article container--margin-bottom container nav" id="article">
+    <a href="{% url 'wiki' %}" class="tilbake">Tilbake</a>
+    <h1 class="article__title">{{ article.title }}</h1>
+    <p class="article__last-updated">Oppdatert: {{ article.updated|date:"j. F Y" }}</p>
+    <p class="article__introduction">
+        {% if article.introduction %}
+            {{ article.introduction }}
+        {% endif %}
+    </p>
+    {% if request.user.is_authenticated %}
+    {% if article.editable or request.user.is_staff %}
+    <a href="{% url 'edit-article' article_slug=article.slug %}" class="article__edit button text center icon"><i class="material-icons">edit</i>Rediger</a>
+    {% endif %}
+    {% endif %}
+    <div class="content-markdown markdown-preview">{{ article.body_text }}</div>
+</div>
+
+{% endblock content %}
+
+<!-- JAVASCRIPT -->
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+<script>
+
+    // Renders markdown from db to html
+    $(document).ready(function() {
+        marked.setOptions({sanitize: true, tables: true, baseUrl: "../"});
+        let content = $('.content-markdown');
+        let markedContent = marked(content.text());
+        content.html(markedContent);
+    });
+</script>
+{% endblock javascript %}

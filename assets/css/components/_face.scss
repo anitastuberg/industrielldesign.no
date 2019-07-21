@@ -1,0 +1,36 @@
+.face {
+    $face-size: 20px;
+    position: relative;
+    height: $face-size;
+    width: $face-size;
+    border: 2px solid $black;
+    border-radius: 50%;
+    .eyes, .mouth {
+        position: absolute;
+        background: $black;
+    }
+    .eyes {
+        $eye-size: 3px;
+        $eye-placement: 4px;
+
+        top: 4px;
+        width: $eye-size;
+        height: $eye-size;
+        border-radius: 50%;
+        &.left {
+            left: $eye-placement;
+        }
+        &.right {
+            right: $eye-placement;
+        }
+    }
+    .mouth {
+        width: 7px;
+        height: 2px;
+        left: 50%;
+        transition: transform 200ms ease-in-out;
+        transform: translateX(-50%) scaleX(0);
+        bottom: 4px;
+        will-change: transform;
+    }
+}

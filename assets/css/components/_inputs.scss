@@ -1,0 +1,78 @@
+.input-field {
+  position: relative;
+  margin-bottom: 1.5rem;
+  width: 100%;
+
+  input:not([type="checkbox"]), select {
+    height: 56px;
+  }
+  select {
+    cursor: pointer;
+    &:hover {
+      box-shadow: inset 0 -3px 0 0 $black;
+    }
+  }
+
+  input:not([type="checkbox"]), select, textarea {
+    font-size: 16px;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 200ms linear;
+    color: $black;
+    font-weight: 400;
+    -webkit-appearance: none;
+    border: $border;
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    outline: 0;
+
+    &:focus {
+      box-shadow: inset 0 -3px 0 0 $black;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 20px;
+    left: 1rem;
+    opacity: 0;
+    transition: all .3s ease;
+    color: $dark-gray;
+    pointer-events: none;
+    @extend .caption;
+  }
+
+  input {
+    display: flex;
+  }
+
+  input:not(:placeholder-shown) {
+    padding: 28px 1rem 12px 1rem;
+  }
+
+  input:not(:placeholder-shown) + label {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  .helper-text {
+    @extend .caption;
+    color: $dark-gray;
+    margin-left: 1rem;
+    margin-top: 4px;
+  }
+  .errorlist {
+    margin-left: 1rem;
+    li {
+      @extend .caption;
+      margin: 0;
+      list-style-type: none;
+      color: $error;
+    }
+  }
+  .preloader {
+    position: absolute;
+    right: 1rem;
+    top: (3.5rem - $preloader-size) / 2;
+  }
+}

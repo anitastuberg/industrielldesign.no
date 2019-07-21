@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}{{ course.name }}{% endblock %}
+
+{% block content %}
+    <div class="container nav narrow" id="course-detail">
+        <h1>{{ course.name }}</h1>
+        <h4>{{ course.course_code }} // <a target="_blank" href="https://www.ntnu.no/studier/emner/{{ course.course_code }}" class="link">https://www.ntnu.no/studier/emner/{{ course.course_code }}</a></h4>
+        <br><br>
+        <div class="useful-links box-container">
+            {% for link in links %}
+                <a class="url-preview" href="{{ link.url }}" target="_blank">
+{#                    <img src="{{ link.img_url }}" alt="">#}
+                    <div>
+                        <b>{{ link.url_title }}</b>
+                        <br>
+                        <p class="caption">{{ link.url_description }}</p>
+{#                        <p class="url">{{ link.url }}</p>#}
+                    </div>
+                </a>
+            {% endfor %}
+            <div class="add-link" onclick="openModal()"><img src="{% static 'img/icons/add.svg' %}"><p>Legg til lenke</p></div>
+        </div>
+        {% if request.user.is_authenticated %}
+            <br>
+            <div class="scrim"></div>
+            <div class="modal">
+                <form method="post" id="link-form">
+                    {% csrf_token %}
+                    <div class="url-preview">
+                        <div>
+                            <b id="preview-title"></b>
+                            <p id="preview-description" class="description"></p>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <input id="url" type="url" placeholder="url" autocomplete="off">
+                        <label for="url">url</label>
+                        <div class="preloader" id="url-preloader"></div>
+                    </div>
+                    <button type="submit" class="button">Lagre</button>
+                </form>
+            </div>
+        {% endif %}
+        <div class="reviews">
+            {% for review in course.reviews.all %}
+                <div class="review">
+                    <p>"{{ review.text }}"</p>
+                    <p class="review-date">{{ review.timestamp|date:'F Y' }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{ form.text }}
+                    <label for="{{ form.text.id_for_label }}">Har du noen erfaringer du kan dele fra faget?</label>
+                </div>
+                <input type="submit" class="button" value="Legg inn anmeldelse">
+            </form>
+        {% endif %}
+    </div>
+{% endblock content %}
+{% block javascript %}
+    <script src="{% static 'js/ajaxSetup.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
+    <script>
+        const key = "5c711d38873ba9da2ac9e3a2b49e0917ba99efe61623e";
+        const urlInput = $('#url');
+        const urlPreloader = $('#url-preloader');
+        const usefulLinks = $('.useful-links');
+        const preview = {
+            'title': $('#preview-title'),
+            'description': $('#preview-description'),
+            'image': $('#preview-image')
+        };
+        let globalResponse = {};
+
+        function displayPreview(response) {
+            if (Object.keys(response).length) {
+                preview.title.text(response.title);
+                preview.description.text(response.description);
+                preview.image.attr('src', response.image);
+            } else {
+                preview.title.text('');
+                preview.description.text('');
+                preview.image.attr('src', '');
+            }
+        }
+
+        function getPreviewRequest() {
+            let url = urlInput.val();
+            urlPreloader.addClass('loading');
+            if (url.length > 0 && url.includes("http") && url.includes("://") && url.includes(".")) {
+                console.log("Calling: " + url);
+                $.ajax({
+                    url: "https://api.linkpreview.net",
+                    dataType: "jsonp",
+                    data: {q: url, key: key},
+                    success: function (response) {
+                        console.log(response);
+                        globalResponse = response;
+                        displayPreview(response);
+                        urlPreloader.removeClass('loading');
+                    }
+                });
+            } else {
+                displayPreview({});
+                urlPreloader.removeClass('loading');
+                globalResponse = {}
+            }
+        }
+
+        urlInput.on('change paste input', getPreviewRequest);
+
+        $('#link-form').on('submit', function (e) {
+            e.preventDefault();
+            console.log("Save to server", globalResponse);
+            if (Object.keys(globalResponse).length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "course_detail" course_slug=course.slug %}',
+                    data: {
+                        'url_data': globalResponse
+                    },
+                    success: function () {
+                        usefulLinks.append(`<a class="url-preview" href="${globalResponse.url}">
+                                <div>
+                                    <b>${globalResponse.title}</h3>
+                                    <p class="caption">${globalResponse.description}</p>
+                                </div>
+                            </a>`
+                        )
+                    },
+                    error: function (data) {
+                        console.log("Error");
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock javascript %}

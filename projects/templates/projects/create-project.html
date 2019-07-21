@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container nav narrow">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-field">
+                {{ form.title }}
+                <label for="{{ form.title.id_for_label }}">Tittel</label>
+                {{ form.title.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.description }}
+                <label for="{{ form.description.id_for_label }}">Beskrivelse av prosjektet</label>
+                {{ form.description.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.creator }}
+                <label for="{{ form.creator.id_for_label }}">Hvem har laget det?</label>
+                {{ form.creator.errors }}
+            </div>
+            {% include 'components/course-search.html' %}
+            <div class="input-field">
+                {{ form.semester }}
+                <label for="{{ form.semester.id_for_label }}">Semster</label>
+                {{ form.semester.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.year }}
+                <label for="{{ form.year.id_for_label }}">År</label>
+                {{ form.year.errors }}
+            </div>
+            <div class="input-field">
+                <input type="file" multiple name="images" id="images">
+                <label for="images">Prosjektbilder</label>
+            </div>
+            <button type="submit" class="cta">Legg ut prosjektet</button>
+        </form>
+    </div>
+{% endblock %}

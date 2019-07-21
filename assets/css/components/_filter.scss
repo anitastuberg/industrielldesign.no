@@ -1,0 +1,22 @@
+.filter {
+  background: white;
+  color: $black;
+  box-shadow: 1px 1px 0 $black;
+  padding: 4px 12px;
+  display: inline-block;
+  border: $border;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: box-shadow 200ms ease-in-out;
+  @extend caption;
+  @include no-select;
+
+  &:hover {
+    box-shadow: 2px 2px 0 $black;
+  }
+
+  &.selected {
+    background: $black;
+    color: white;
+  }
+}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block page_title %}Registrer ny bruker{% endblock %}
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<div id="register" class=" container nav max-mobile">
+    <h1 class="center">Ny bruker</h1>
+    <br><br>
+    <div class="register-inputs">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                {{ form.email }}
+                <label for="{{ form.email.id_for_label }}">E-post</label>
+                {{ form.email.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.first_name }}
+                <label for="{{ form.first_name.id_for_label }}">Fornavn</label>
+                {{ form.first_name.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.last_name }}
+                <label for="{{ form.last_name.id_for_label }}">Etternavn</label>
+                {{ form.last_name.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.allergies }}
+                <label for="{{ form.allergies.id_for_label }}">Allergier</label>
+                {{ form.allergies.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.graduation_year }}
+                <label for="{{ form.graduation_year.id_for_label }}">Klasse</label>
+                {{ form.graduation_year.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.password }}
+                <label for="{{ form.password.id_for_label }}">Passord</label>
+                {{ form.password.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.is_komite }}
+                <div class="checkmark"></div>
+                <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label>
+            </div>
+            <div class="input-field">
+                <input type="checkbox" id="accepted">
+                <div class="checkmark"></div>
+                <label id="checkboxLabel" for="accepted">Jeg godtar <a class="link" href="{% url 'terms' %}" target="_blank">Leonardos nettsidevilkår</a></label>
+            </div>
+            <button id="submitButton" class="button center" type="submit">Opprett bruker</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript %}

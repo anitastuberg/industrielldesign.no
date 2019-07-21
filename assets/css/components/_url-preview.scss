@@ -1,0 +1,18 @@
+.url-preview {
+  @extend .box;
+  display: block;
+  padding-top: 100%;
+  div {
+    position: absolute;
+    width: calc(100% - 2rem);
+    top: 50%;
+    max-height: 100%;
+    overflow: hidden;
+    left: 1rem;
+    transform: translateY(-50%);
+    @include text-wrap;
+    p {
+      margin-top: 0.25rem;
+    }
+  }
+}
