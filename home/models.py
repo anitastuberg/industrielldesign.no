@@ -26,9 +26,9 @@ class Styremedlem(models.Model):
     
 class Komiteer(models.Model):
     name = models.CharField(max_length=100)
-    post_title = models.CharField(max_length=100)
-    post_description = models.TextField()
-    post_image = ProcessedImageField(upload_to='komiteer/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = ProcessedImageField(processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
 
     def __str__(self):
         return self.name
