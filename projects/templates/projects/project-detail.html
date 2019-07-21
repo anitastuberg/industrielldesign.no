@@ -5,14 +5,13 @@
 {% block body_class %}dark{% endblock %}
 
 {% block content %}
-{% include 'components/navbar.html' %}
 <div id="project-detail" class="container nav">
     <div class="project-description">
         <br>
-        <h3 class="creator">{{ project.creator }}</h3>
-        <p class="caption">{{ project.class_year }} // {{ project.course }}</p>
+        <h2 class="creator">{{ project.creator }}</h2>
+        <p>{{ project.class_year }} // {{ project.course }}</p>
         <br>
-        <p class="description">{{ project.description }}</p>
+        <p class="description p-width">{{ project.description }}</p>
     </div>
     <div class="box-container">
         <div class="images">

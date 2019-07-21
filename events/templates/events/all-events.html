@@ -1,19 +1,20 @@
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} 
+{% load static %} 
 {% load days_until %}
+{% block content %} 
+{% include 'components/navbar.html' %}
 
-{% block content %}
-    {% include 'components/navbar.html' %}
-    <div id="all-events" class="container nav">
+<div id="all-events" class="container nav">
+    
     <header>
         <h1>Arrangementer</h1>
-        <img src="{% static 'img/illustrations/siri.png' %}" alt="Bli med på Leonardos arrangmenter som Siri">
+        {% if request.user.is_authenticated %}
+            <a class="button" href="/admin/events/event/add/">Nytt arrangment</a>
+        {% endif %}
+        <img src="{% static 'img/illustrations/siri.png' %}" alt="Bli med på Leonardos arrangmenter som Siri" />
     </header>
-        <div class="box-container">
-            {% for event in events %}
-                {% include 'components/event-component.html' with event=event %}
-            {% endfor %}
-        </div>
+    <div class="box-container">
+        {% for event in events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
     </div>
+</div>
 {% endblock %}

@@ -52,13 +52,13 @@
             {% endfor %}
         </div>
         {% if request.user.is_authenticated %}
-            <form method="post">
+            <form method="post" class="p-width">
                 {% csrf_token %}
                 <div class="input-field">
                     {{ form.text }}
                     <label for="{{ form.text.id_for_label }}">Har du noen erfaringer du kan dele fra faget?</label>
                 </div>
-                <input type="submit" class="button" value="Legg inn anmeldelse">
+                <button type="submit" class="button">Legg inn anmeldelse</button>
             </form>
         {% endif %}
     </div>

@@ -2,10 +2,12 @@
   h1 {
     @include text-wrap;
   }
+
   .useful-links {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
+
   .add-link {
     @extend .box;
     text-align: center;
@@ -16,14 +18,20 @@
     cursor: pointer;
     //color: white;
     flex-direction: column;
-    img { margin-bottom: 1rem }
+
+    img {
+      margin-bottom: 1rem
+    }
+
     border-style: dashed;
   }
+
   .modal {
     padding-left: calc(180px + #{2 * $body-padding});
     min-height: calc(180px + #{2 * $body-padding});
     width: 500px;
     max-width: 90%;
+
     .url-preview {
       position: absolute;
       left: $body-padding;
@@ -31,6 +39,14 @@
       width: 180px;
       height: 180px;
       padding: 0;
+    }
+  }
+
+  .reviews {
+    .review {
+      p:last-child {
+        @extend .caption;
+      }
     }
   }
 }

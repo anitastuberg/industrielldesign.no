@@ -1,16 +1,36 @@
 #thesign {
   .box-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     text-align: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-    .box:first-child {
-      grid-column: span 2;
+    @media screen and (max-width: $sm) {
+      grid-template-columns: 1fr 1fr;
+
+      .box:first-child {
+        grid-column: span 2;
+      }
     }
-    .box img {
-      width: 100%;
-      height: 84%;
-      object-fit: cover;
+
+
+    .box {
+
+      .image-container {
+        position: relative;
+        width: calc(100% + 2 * $body-padding);
+        margin: -$body-padding;
+        margin-bottom: 1rem;
+        padding-top: 119.047619%;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
   }
 }

@@ -124,7 +124,7 @@ em {
   font-style: italic;
 }
 
-.caption, .input-field label, .input-field .helper-text, .input-field .errorlist li {
+.caption, .input-field label, .input-field .helper-text, .input-field .errorlist li, #course-detail .reviews .review p:last-child {
   font-size: 0.75rem;
   line-height: 1.2em;
 }
@@ -345,7 +345,8 @@ p a {
             align-items: center;
     margin-right: 3rem;
   }
-  #main-navigation li.gray, #main-navigation li.gray > a {
+  #main-navigation li.gray,
+  #main-navigation li.gray > a {
     color: gray;
   }
   #main-navigation .nav-item {
@@ -425,6 +426,9 @@ p a {
     -webkit-transform: translateX(100%);
             transform: translateX(100%);
   }
+  #main-navigation .face {
+    display: none;
+  }
   #main-navigation #close-nav {
     text-align: right;
     padding-top: 1.5rem;
@@ -456,6 +460,9 @@ p a {
     user-select: none;
     /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+  }
+  #main-navigation .item-list li {
+    list-style-type: none;
   }
   #main-navigation .item-list .nav-item,
   #main-navigation .item-list .nav-item.dropdown span {
@@ -602,9 +609,9 @@ p a {
 }
 
 .button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -658,9 +665,9 @@ p a {
   position: fixed;
   bottom: 3rem;
   right: 1rem;
-  width: 50px;
-  height: 48px;
-  padding: 0;
+  min-width: 50px;
+  height: 56px;
+  padding: 0 1rem;
   z-index: 50;
 }
 
@@ -712,6 +719,12 @@ p a {
 .button.secondary::after {
   border-color: white;
   border-width: 2px;
+}
+
+a.button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 @-webkit-keyframes button-press {
@@ -1459,6 +1472,7 @@ footer #sit-logo {
 
 #project-page .container {
   margin-bottom: 0;
+  padding-bottom: 3rem;
 }
 
 #project-page .container .button {
@@ -1471,13 +1485,16 @@ footer #sit-logo {
 #project-page .box-container {
   display: -ms-grid;
   display: grid;
+  grid-auto-rows: calc(100vh / 3);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 37.5em) {
   #project-page .box-container {
-    -ms-grid-columns: (1fr)[1];
-        grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: calc(100vh / 3);
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  #project-page .box-container .box:nth-child(3n), #project-page .box-container .url-preview:nth-child(3n), #project-page .box-container .event:nth-child(3n), #project-page .box-container #course-detail .add-link:nth-child(3n), #course-detail #project-page .box-container .add-link:nth-child(3n) {
+    grid-column: span 2;
   }
 }
 
@@ -1485,7 +1502,6 @@ footer #sit-logo {
   #project-page .box-container {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: calc(100vh / 3);
   }
 }
 
@@ -1493,7 +1509,6 @@ footer #sit-logo {
   #project-page .box-container {
     -ms-grid-columns: (1fr)[4];
         grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: calc(100vh / 3);
   }
 }
 
@@ -1502,6 +1517,12 @@ footer #sit-logo {
   max-width: none;
   background-color: #1A1A1A;
   cursor: pointer;
+  overflow: hidden;
+}
+
+#project-page .box-container .box:hover img, #project-page .box-container .url-preview:hover img, #project-page .box-container .event:hover img, #project-page .box-container #course-detail .add-link:hover img, #course-detail #project-page .box-container .add-link:hover img {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
 #project-page .box-container .box img, #project-page .box-container .url-preview img, #project-page .box-container .event img, #project-page .box-container #course-detail .add-link img, #course-detail #project-page .box-container .add-link img {
@@ -1512,6 +1533,11 @@ footer #sit-logo {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-transition: -webkit-transform 600ms ease-in-out;
+  transition: -webkit-transform 600ms ease-in-out;
+  transition: transform 600ms ease-in-out;
+  transition: transform 600ms ease-in-out, -webkit-transform 600ms ease-in-out;
+  will-change: transform;
 }
 
 @media screen and (min-width: 960px) {
@@ -1539,6 +1565,12 @@ footer #sit-logo {
 
 #project-detail {
   color: white;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+#project-detail .box-container {
+  margin-top: 3rem;
 }
 
 #project-detail img {
@@ -1573,7 +1605,7 @@ footer #sit-logo {
     margin-top: 3rem;
     margin-bottom: 1rem;
   }
-  #courses .caption, #courses .input-field label, .input-field #courses label, #courses .input-field .helper-text, .input-field #courses .helper-text, #courses .input-field .errorlist li, .input-field .errorlist #courses li {
+  #courses .caption, #courses .input-field label, .input-field #courses label, #courses .input-field .helper-text, .input-field #courses .helper-text, #courses .input-field .errorlist li, .input-field .errorlist #courses li, #courses #course-detail .reviews .review p:last-child, #course-detail .reviews .review #courses p:last-child {
     font-size: 1rem;
   }
   #courses .sort-label {
@@ -1625,7 +1657,7 @@ footer #sit-logo {
     top: 1.5rem;
     right: 1rem;
   }
-  #courses .caption strong, #courses .input-field label strong, .input-field #courses label strong, #courses .input-field .helper-text strong, .input-field #courses .helper-text strong, #courses .input-field .errorlist li strong, .input-field .errorlist #courses li strong {
+  #courses .caption strong, #courses .input-field label strong, .input-field #courses label strong, #courses .input-field .helper-text strong, .input-field #courses .helper-text strong, #courses .input-field .errorlist li strong, .input-field .errorlist #courses li strong, #courses #course-detail .reviews .review p:last-child strong, #course-detail .reviews .review #courses p:last-child strong {
     margin-top: 8px;
   }
 }
@@ -1695,18 +1727,35 @@ footer #sit-logo {
 #thesign .box-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
   text-align: center;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-#thesign .box-container .box:first-child, #thesign .box-container .url-preview:first-child, #thesign .box-container .event:first-child, #thesign .box-container #course-detail .add-link:first-child, #course-detail #thesign .box-container .add-link:first-child {
-  grid-column: span 2;
+@media screen and (max-width: 37.5em) {
+  #thesign .box-container {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  #thesign .box-container .box:first-child, #thesign .box-container .url-preview:first-child, #thesign .box-container .event:first-child, #thesign .box-container #course-detail .add-link:first-child, #course-detail #thesign .box-container .add-link:first-child {
+    grid-column: span 2;
+  }
 }
 
-#thesign .box-container .box img, #thesign .box-container .url-preview img, #thesign .box-container .event img, #thesign .box-container #course-detail .add-link img, #course-detail #thesign .box-container .add-link img {
+#thesign .box-container .box .image-container, #thesign .box-container .url-preview .image-container, #thesign .box-container .event .image-container, #thesign .box-container #course-detail .add-link .image-container, #course-detail #thesign .box-container .add-link .image-container {
+  position: relative;
+  width: calc(100% + 2 * $body-padding);
+  margin: -1rem;
+  margin-bottom: 1rem;
+  padding-top: 119.047619%;
+}
+
+#thesign .box-container .box .image-container img, #thesign .box-container .url-preview .image-container img, #thesign .box-container .event .image-container img, #thesign .box-container #course-detail .add-link .image-container img, #course-detail #thesign .box-container .add-link .image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 84%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }

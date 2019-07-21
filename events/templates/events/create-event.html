@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block page_title %}Opprett arrangement{% endblock %}
+
+{% block content %}
+
+
+<div>
+    <div class="container nav">
+        <h3>Nytt arrangement</h3>
+        <br>
+        <form type="post">
+            {% comment %} Important that the name of inputs match the ones in CreateEventForm {% endcomment %}
+            <div class="input-field">
+                <input type="text" name="title" placeholder="Tittel" autocomplete="off" required>
+                <label for="{{ form.title.id_for_label }}">Tittel</label>
+                {{ form.title.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.short_description }}
+                <label for="short_description">Kort beskrivelse</label>
+                {{ form.short_description.errors }}
+            </div>
+            <div class="input-field">
+                <input type="text" id="description" name="description" placeholder="Lengre beskrivelse"
+                    autocomplete="off">
+                <label for="description">Lengre beskrivelse</label>
+                {{ form.description.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.event_start_time }}
+                <label for="event_start_time">Når begynner arrangementet?</label>
+                {{ form.event_start_time.errors }}
+            </div>
+            <div class="input-field">
+                {{ form.event_end_time }}
+                <label for="event_end_time">Når slutter arrangementet?</label>
+                {{ form.event_end_time.errors }}
+            </div>
+            <div class="input-field">
+                <input type="checkbox" id="registration_required" name="registration_required"
+                    placeholder="Arrangement med påmelding" autocomplete="off">
+                <label for="registration_required">Arrangement med påmelding</label>
+                {{ form.registration_required.errors }}
+            </div>
+            <div class="input-field">
+                <input type="checkbox" id="only_komite" name="only_komite" placeholder="Bare for komitemedlemmer"
+                    autocomplete="off">
+                <label for="only_komite">Bare for komitemedlemmer</label>
+                {{ form.only_komite.errors }}
+            </div>
+            <div class="input-field">
+                <input type="checkbox" id="alumni" name="alumni" placeholder="Alumni" autocomplete="off">
+                <label for="alumni">Alumni</label>
+                {{ form.alumni.errors }}
+            </div>
+            <div class="input-field">
+                <input type="checkbox" id="class_1" name="class_1" placeholder="class_1" autocomplete="off">
+                <label for="class_1">class_1</label>
+                {{ form.class_1.errors }}
+            </div>
+            <div class="button" type="submit">Opprett arrangement</div>
+        </form>
+    </div>
+    <div>
+
+        {% endblock content %}

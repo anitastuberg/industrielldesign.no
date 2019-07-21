@@ -6,6 +6,7 @@
   .container {
     //padding-bottom: 0;
     margin-bottom: 0;
+    padding-bottom: 3rem;
 
     .button {
       display: inline-flex;
@@ -15,18 +16,22 @@
 
   .box-container {
     display: grid;
+    grid-auto-rows: calc(100vh / 3);
 
-    @media screen and (max-width: 480px) {
-      grid-template-columns: repeat(1, 1fr);
-      grid-auto-rows: calc(100vh / 3);
+    @media screen and (max-width: $sm) {
+      grid-template-columns: repeat(2, 1fr);
+
+      .box:nth-child(3n) {
+        grid-column: span 2;
+      }
     }
+
     @media screen and (min-width: 480px) {
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: calc(100vh / 3);
     }
+
     @media screen and (min-width: 960px) {
       grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: calc(100vh / 3);
     }
 
     .box {
@@ -34,6 +39,11 @@
       max-width: none;
       background-color: $black;
       cursor: pointer;
+      overflow: hidden;
+
+      &:hover img {
+        transform: scale(1.02);
+      }
 
       img {
         position: absolute;
@@ -42,27 +52,35 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 600ms ease-in-out;
+        will-change: transform;
       }
 
       @media screen and (min-width: 960px) {
+
         // "Random" grid sizes
         &:nth-child(22n+1) {
           grid-column: span 2;
           grid-row: span 2;
         }
+
         &:nth-child(22n+5) {
           grid-row: span 2;
         }
+
         &:nth-child(22n+9) {
           grid-column: span 2;
         }
+
         &:nth-child(22n+14) {
           grid-column: span 2;
           grid-row: span 2;
         }
+
         &:nth-child(22n+15) {
           grid-row: span 2;
         }
+
         &:nth-child(22n+22) {
           grid-column: span 2;
         }

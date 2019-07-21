@@ -63,7 +63,9 @@ $hamburger-bp: $xl;
       margin-right: 3rem;
 
       &.gray {
-        &, > a {
+
+        &,
+        >a {
           color: gray;
         }
       }
@@ -84,15 +86,18 @@ $hamburger-bp: $xl;
         }
       }
 
-      &.user, &.login {
+      &.user,
+      &.login {
         position: absolute;
         right: 5%;
         display: flex;
         align-items: center;
+
         .face {
           position: absolute;
           right: -32px;
         }
+
         &:hover .face .mouth {
           transform: translateX(-50%) scaleX(1);
         }
@@ -143,6 +148,10 @@ $hamburger-bp: $xl;
       }
     }
 
+    .face {
+      display: none;
+    }
+
     #close-nav {
       text-align: right;
       padding-top: 1.5rem;
@@ -160,6 +169,10 @@ $hamburger-bp: $xl;
       transform: translateX(0);
       transition: transform 200ms ease-in-out;
       @include no-select;
+
+      li {
+        list-style-type: none;
+      }
 
       .nav-item,
       .nav-item.dropdown span {

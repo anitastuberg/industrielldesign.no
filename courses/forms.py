@@ -13,7 +13,7 @@ class CreateCourseForm(forms.Form):
 
     name = forms.CharField(max_length=400, widget=forms.TextInput(attrs={
         'autocomplete': 'off',
-        'placeholder': '.'
+        'placeholder': 'Navn'
     }))
     course_code = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
         'autocomplete': 'off',
@@ -26,5 +26,5 @@ class CreateCourseForm(forms.Form):
 class CreateCourseReviewForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea(attrs={
         'autocomplete': 'off',
-        'placeholder': '.'
+        'placeholder': 'Skriv noe om faget...'
     }))

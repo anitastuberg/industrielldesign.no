@@ -51,7 +51,7 @@ def create_event(request):
             instance.save()
             return redirect('event', event_slug=instance.slug)
 
-        return render(request, 'events/event-creation.html', context)
+        return render(request, 'events/create-event.html', context)
     else:
         raise PermissionDenied
 
