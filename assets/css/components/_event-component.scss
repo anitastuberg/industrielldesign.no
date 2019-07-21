@@ -1,28 +1,49 @@
 .event {
+  position: relative;
   @extend .box;
-  padding-top:100%;
+  padding-top: 120%;
+
   &:not(.old) {
     @extend .box.clickable;
     z-index: 1;
   }
+
   &.old {
-    color: $gray;
+    opacity: 0.5;
     cursor: default;
-    border-color: $gray;
   }
-  div {
+
+  div:not(.image-container) {
     position: absolute;
-    height: calc(100% - #{5 * $body-padding});
-    width: calc(100% - #{2 * $body-padding});
-    top: 2 * $body-padding;
-    left: $body-padding;
-    overflow: hidden;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: $background-color;
+    padding: $body-padding;
+    z-index: 1;
+    border-bottom: var(--border-width) solid $black;
     @include text-wrap;
+
     h3:first-child {
-     font-weight: normal;
+      font-weight: normal;
     }
+
     p:last-child {
       margin-top: 2rem;
+    }
+  }
+
+  .image-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }

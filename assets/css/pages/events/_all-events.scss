@@ -2,9 +2,11 @@
   header {
     position: relative;
     margin-top: 25%;
+
     h1 {
       padding-bottom: 2rem;
     }
+
     img {
       position: absolute;
       bottom: 0;
@@ -12,16 +14,23 @@
       right: 0;
     }
   }
+
   .box-container {
     display: grid;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1.5rem;
+
     @media screen and (min-width: $lg) {
       grid-template-columns: repeat(4, 1fr);
     }
+
     @media screen and (max-width: $lg) {
       grid-template-columns: repeat(3, 1fr);
     }
+
     @media screen and (max-width: $md) {
       grid-template-columns: repeat(2, 1fr);
+
       .event {
         h3 {
           font-size: 1.125rem;

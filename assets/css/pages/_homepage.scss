@@ -7,6 +7,7 @@
     padding-top: 25vh;
     padding-left: 5%;
     overflow-x: hidden;
+
     h1 {
       $h1: (576: 48, 1024: 64);
       font-size: least-squares-fit($h1);
@@ -14,19 +15,23 @@
       font-family: 'PT Serif';
       top: 4rem;
     }
-    h1, p {
+
+    h1,
+    p {
       display: block;
       max-width: $xxl;
       margin: 0 auto;
       z-index: 1;
     }
-    > img {
+
+    >img {
       position: absolute;
       top: 55%;
       right: -5%;
       transform: translateY(-50%);
       height: 90%;
-      @media screen and (max-width: $xl){
+
+      @media screen and (max-width: $xl) {
         right: auto;
         left: 50%;
         transform: translate(-40%, -50%);
@@ -36,37 +41,54 @@
 
   .events {
     display: grid;
+    grid-column-gap: 1rem;
+
     @media screen and (min-width: $lg) {
       grid-template-columns: repeat(4, 1fr);
     }
+
     @media screen and (max-width: $lg) {
       grid-template-columns: repeat(3, 1fr);
-      .event:nth-child(4) {display: none};
+
+      .event:nth-child(4) {
+        display: none
+      }
+
+      ;
     }
+
     @media screen and (max-width: $md) {
       grid-template-columns: repeat(2, 1fr);
+
       .event {
         h3 {
           font-size: 1.125rem;
         }
+
         p {
           font-size: 0.825rem;
         }
       }
-      .event:nth-child(4) {display: block};
+
+      .event:nth-child(4) {
+        display: block
+      }
+
+      ;
     }
 
     //.event:nth-child(4n+2), .event:nth-child(4n+3) {
     //  grid-column: span 2;
     //}
   }
+
   .projects {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-        "b1 b1 b2 b3"
-        "b1 b1 b4 b4"
-        "b5 b6 b4 b4";
+      "b1 b1 b2 b3"
+      "b1 b1 b4 b4"
+      "b5 b6 b4 b4";
     margin-top: 6rem;
 
     .box {
@@ -84,21 +106,27 @@
         height: 100%;
         object-fit: cover;
       }
+
       &:nth-child(1) {
         grid-area: b1;
       }
+
       &:nth-child(2) {
         grid-area: b2;
       }
+
       &:nth-child(3) {
         grid-area: b3;
       }
+
       &:nth-child(4) {
         grid-area: b4;
       }
+
       &:nth-child(5) {
         grid-area: b5;
       }
+
       &:nth-child(6) {
         grid-area: b6;
       }

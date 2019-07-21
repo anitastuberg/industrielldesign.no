@@ -4,10 +4,12 @@
 <a class="event {% if days < 0 %}old{% endif %}"
     href="{% url 'event' event_slug=event.slug %}">
     <div>
+        {% if days >= 0 %}<p>{{ days }} dager til</p>{% endif %}
         <h3>{{ event.event_start_time|date:"d.m.y" }}</h3>
         <h3>{{ event.title }}</h3>
-        {% if days >= 0 %}<p>{{ days }} dager til</p>{% endif %}
-        <p>{{ event.short_description }}</p>
+    </div>
+    <div class="image-container">
+        <img src="{{ event.image.url }}" alt="{{ event.short_description }}">
     </div>
 </a>
 {% endwith %}
