@@ -12,7 +12,7 @@
             <a class="button" href="/admin/events/event/add/">Nytt arrangment</a>
             <br><br>
         {% endif %}
-        <img src="{% static 'img/illustrations/siri.png' %}" alt="Bli med på Leonardos arrangmenter som Siri" />
+        <img src="{% static 'img/illustrations/all-events.png' %}" alt="Bli med på Leonardos arrangmenter som Siri" />
     </header>
     <div class="box-container">
         {% for event in events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
