@@ -15,7 +15,7 @@ def komiteer(request):
 
 def komite_detail(request, komite_slug):
     context = {
-        'komite': Komite.objects.filter(komite_slug=komite_slug)
+        'komite': Komite.objects.get(slug=komite_slug)
     }
     return render(request, 'leonardo/komite-detail.html', context)
 

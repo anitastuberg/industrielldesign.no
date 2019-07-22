@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block page_title %}Komiteer{% endblock page_title %}
+
 {% block content %}
 <div id="komite" class="container nav">
     {% include 'components/navbar.html' %}
@@ -15,10 +17,10 @@
     <br>
     <div class="box-container">
         {% for komite in komiteer  %}
-        <div class="box box-image">
+        <a class="box box-image" href="{% url 'komite_detail' komite_slug=komite.slug %}">
             <h4>{{ komite.name }}<img src="{% static 'img/icons/arrow.svg' %}" alt="pil"></h4>
             <img src="{{ komite.image.url }}" alt="{{ komite.name }}">
-        </div>
+        </a>
         {% endfor %}
     </div>
 </div>

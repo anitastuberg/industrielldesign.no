@@ -73,20 +73,33 @@ html {
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .header1, .ql-container h1, .header2, .header3 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.header1,
+.ql-container h1,
+.header2,
+.header3 {
   font-weight: bold;
 }
 
-h1, .header1, .ql-container h1 {
+h1,
+.header1,
+.ql-container h1 {
   font-size: calc(1.78571vw + 37.71429px);
   line-height: 1.2em;
 }
 
-h2, .header2 {
+h2,
+.header2 {
   font-size: calc(0.89286vw + 26.85714px);
 }
 
-h3, .header3 {
+h3,
+.header3 {
   font-size: calc(0vw + 24px);
 }
 
@@ -104,11 +117,13 @@ p {
   line-height: 1.4em;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bold;
 }
 
-ul, ol {
+ul,
+ol {
   margin-left: 1.2rem;
 }
 
@@ -139,6 +154,10 @@ em {
 
 .p-width {
   max-width: 70ch;
+}
+
+p.break {
+  white-space: pre-wrap;
 }
 
 body {

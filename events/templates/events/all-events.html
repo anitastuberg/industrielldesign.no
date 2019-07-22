@@ -1,9 +1,10 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% load days_until %}
-{% block content %} 
-{% include 'components/navbar.html' %}
+{% block page_title %}Arrangementer{% endblock page_title %}
 
+{% block content %}
+{% include 'components/navbar.html' %}
 <div id="all-events" class="container nav">
     
     <header>

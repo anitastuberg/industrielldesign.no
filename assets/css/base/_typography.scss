@@ -3,23 +3,34 @@ html {
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .header1, .header2, .header3 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.header1,
+.header2,
+.header3 {
   font-weight: bold;
 }
 
-h1, .header1 {
+h1,
+.header1 {
   $h1: (576: 48, 1024: 56);
   font-size: least-squares-fit($h1);
   line-height: 1.2em;
   // font-family: 'PT Serif';
 }
 
-h2, .header2 {
+h2,
+.header2 {
   $h2: (576: 32, 1024: 36);
   font-size: least-squares-fit($h2);
 }
 
-h3, .header3 {
+h3,
+.header3 {
   $h3: (576: 24, 1024: 24);
   font-size: least-squares-fit($h3);
 }
@@ -38,11 +49,13 @@ p {
   line-height: 1.4em;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bold;
 }
 
-ul, ol {
+ul,
+ol {
   margin-left: 1.2rem;
 }
 
@@ -75,4 +88,8 @@ em {
 
 .p-width {
   max-width: 70ch;
+}
+
+p.break {
+  white-space: pre-wrap;
 }

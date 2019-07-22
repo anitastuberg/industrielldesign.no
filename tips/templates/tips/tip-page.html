@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block page_title %}{{tip.title}}{% endblock page_title %}
+
 {% block content %}
     {% include 'components/navbar.html' %}
     <div class="container nav ql-container">
