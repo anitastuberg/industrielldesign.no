@@ -35,11 +35,9 @@
             <ul>
                 <li class="{% if 'komiteer' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'komiteer' %}">Komiteer</a></li>
-                <li class="{% if 'butikk' in request.path %}selected{% endif %}"><a class="nav-item"
-                        href="{% url 'leonardo-shop' %}">Butikk</a></li>
                 <li class="{% if 'thesign' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'thesign' %}">TheSign</a></li>
-                <li class="{% if 'om' in request.path %}selected{% endif %}"><a class="nav-item"
+                <li class="{% if 'om-leonardo' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'about' %}">Om oss</a></li>
             </ul>
         </li>

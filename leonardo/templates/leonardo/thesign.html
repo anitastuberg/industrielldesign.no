@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="thesign" class="container nav">
+    {% include 'components/navbar.html' %}
+    <h1>TheSign</h1>
+    <p class="p-width">Linjeforeningsmagasinet til Leonardo laget av gjengen i Redda</p>
+    <br>
+    <br>
+    <br>
+    <div class="box-container">
+    {% for thesign in thesigns  %}
+        <a class="box" href="{{ thesign.url }}" target="_blank">
+            <div class="image-container">
+            <img src="{{ thesign.image.url }}" alt="{{ thesign.edition }} {{ thesign.year }}">
+            </div>
+            <p>{{ thesign.edition }} {{ thesign.year }}</p>
+        </a>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

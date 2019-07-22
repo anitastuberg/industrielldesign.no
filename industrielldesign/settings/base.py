@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # My apps:
-    'home',
     'wiki',
     'events',
     'projects',
@@ -62,6 +61,8 @@ INSTALLED_APPS = [
     'job',
     'books',
     'tips',
+    'leonardo',
+    'student',
     # Third party apps:
     'imagekit',
     'storages'

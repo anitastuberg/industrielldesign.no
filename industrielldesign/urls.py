@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('designsystem.urls')),
-    path('', include('home.urls')),
     path('wiki/', include('wiki.urls')),
     path('', include('events.urls')),
     path('', include('projects.urls')),
@@ -18,7 +17,9 @@ urlpatterns = [
     path('', include('courses.urls')),
     path('', include('job.urls')),
     path('', include('books.urls')),
-    path('', include('tips.urls'))
+    path('', include('tips.urls')),
+    path('', include('student.urls')),
+    path('', include('leonardo.urls')),
 ]
 
 # handler404 = 'industrielldesign.views.handler404'

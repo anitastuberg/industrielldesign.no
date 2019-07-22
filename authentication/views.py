@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 
 
 class LoginFormView(View):
-    template_name = 'home/login.html'
+    template_name = 'login.html'
     form_class = LoginForm
 
     def get(self, request):
@@ -50,7 +50,7 @@ def send_confiramtion_email(user_email):
 
 class RegisterFormView(View):
     form_class = RegisterForm
-    template_name = 'home/register.html'
+    template_name = 'register.html'
 
     # display a blank form
     def get(self, request):
@@ -84,7 +84,7 @@ class RegisterFormView(View):
 
 
 def PasswordResetView(request):
-    template_name = 'home/password_reset_form.html'
+    template_name = 'password_reset_form.html'
 
     return render(request, template_name, {})
 

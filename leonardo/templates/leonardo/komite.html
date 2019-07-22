@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="komite" class="container nav">
+    {% include 'components/navbar.html' %}
+    <h1>Komiteer</h1>
+    <p class="p-width">
+        Komitéene er grunnen til at Leonardo linjeforening går rundt. Her er det mange forskjellige alternativer til
+        hva man kan drive med, hvor man samtidig får masse god erfaring og givende arbeid. Bli med å drifte Leonardo
+        da vel!
+    </p>
+    <br>
+    <br>
+    <div class="box-container">
+        {% for komite in komiteer  %}
+        <div class="box box-image">
+            <h4>{{ komite.name }}<img src="{% static 'img/icons/arrow.svg' %}" alt="pil"></h4>
+            <img src="{{ komite.image.url }}" alt="{{ komite.name }}">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
