@@ -1,0 +1,20 @@
+#tips-page {
+    header {
+        position: relative;
+
+        >img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            max-height: 30vh;
+            max-width: 55vw;
+            z-index: 0;
+        }
+    }
+
+    .tag {
+        position: relative;
+        z-index: 1;
+    }
+
+}

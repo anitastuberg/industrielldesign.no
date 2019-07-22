@@ -7,15 +7,18 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <div id="tips-page" class="container nav">
-        <h1>Tips og triks</h1>
-        <br>
-        <p>Del noe lurt med dine medstudenter!</p>
-        <a href="{% url 'new-tip' %}" class="button fab"><img src="{% static 'img/icons/add_white.svg' %}" alt="add"></a>
+        <header>
+            <h1>Tips og triks</h1>
+            <br>
+            <p>Del noe lurt med dine medstudenter!</p>
+            <a href="{% url 'new-tip' %}" class="button fab"><img src="{% static 'img/icons/add_white.svg' %}" alt="add"></a>
+            <img src="{% static 'img/illustrations/herman.png' %}" alt="Tips og triks for designstudenter">
         <br><br><br><br>
         {% for tag in tags %}
             <div class="tag filter">{{ tag.name }}</div>
         {% endfor %}
         <br><br>
+        </header>
         <div class="box-container">
             <a class="box clickable" :href="tip.slug" v-for="tip in tips">
                 <h3>[{ tip.title }]</h3>

@@ -1872,4 +1872,22 @@ footer #sit-logo {
 #books .book .bottom {
   margin-top: 1rem;
 }
+
+#tips-page header {
+  position: relative;
+}
+
+#tips-page header > img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-height: 30vh;
+  max-width: 55vw;
+  z-index: 0;
+}
+
+#tips-page .tag {
+  position: relative;
+  z-index: 1;
+}
 /*# sourceMappingURL=main.css.map */
