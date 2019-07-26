@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.db.models import F
+from django.db.models import Case, CharField, Value, When
 from django.shortcuts import render, redirect
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import authenticate, login
@@ -23,15 +24,11 @@ def all_events(request):
             models.When(event_start_time__gte=now, then=1),
             models.When(event_start_time__lt=now, then=2),
             output_field=models.IntegerField(),
-        )).annotate(
-        timediff=models.Case(
-            models.When(event_start_time__gte=now, then=F('event_start_time') - now),
-            models.When(event_start_time__lt=now, then=now - F('event_start_time')),
-            output_field=models.DurationField(),
-        )).order_by('relevance', 'timediff'))
+        )).order_by('relevance', 'event_start_time'))
     context = {
         'events': events
     }
+    
     return render(request, 'events/all-events.html', context)
 
 

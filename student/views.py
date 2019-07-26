@@ -23,12 +23,7 @@ def home(request):
             models.When(event_start_time__gte=now, then=1),
             models.When(event_start_time__lt=now, then=2),
             output_field=models.IntegerField(),
-        )).annotate(
-        timediff=models.Case(
-            models.When(event_start_time__gte=now, then=F('event_start_time') - now),
-            models.When(event_start_time__lt=now, then=now - F('event_start_time')),
-            output_field=models.DurationField(),
-        )).order_by('relevance', 'timediff'))
+        )).order_by('relevance', 'event_start_time'))
 
     context = {
         "events": events[0:4],

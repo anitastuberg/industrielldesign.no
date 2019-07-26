@@ -45,8 +45,13 @@
       position: absolute;
       bottom: 10vh;
 
+      @media screen and (max-width: $xl) {
+        display: none;
+      }
+
       img {
-        animation: scroll-down 1200ms ease-in-out infinite;
+        animation: scroll-down 3200ms ease-in-out;
+        animation-delay: 1.5s;
         transform: rotate(90deg);
       }
     }

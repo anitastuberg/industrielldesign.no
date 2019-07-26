@@ -57,13 +57,6 @@ class Event(models.Model):
             self.registration_start_time = self.event_start_time
         super(Event, self).save(*args, **kwargs)
 
-    # def update_waiting_list(self):
-    #     if self.waiting_list.all().count() > 0:  # Checks if there are anyone in the waiting list
-    #         if self.registered_users.all().count() < self.available_spots:  # See if there are any free spots left
-    #             self.registered_users.add(self.waiting_list.all()[0].id)  # Adds user to registered list
-    #             self.waiting_list.remove(self.waiting_list.all()[0].id)  # Removes use from waiting list
-    #             self.update_waiting_list()  # Recursive call
-
     def is_now(self, month):
         if month == datetime.datetime.now().month:
             return True
@@ -74,4 +67,4 @@ class Event(models.Model):
         # ordering = ['event_start_date']
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
-        ordering = ['event_start_time']
+        ordering = ['event_start_time', 'title']

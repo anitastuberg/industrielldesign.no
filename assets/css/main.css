@@ -1259,9 +1259,17 @@ footer #sit-logo {
   bottom: 10vh;
 }
 
+@media screen and (max-width: 68.75em) {
+  #homepage section .scroll-down {
+    display: none;
+  }
+}
+
 #homepage section .scroll-down img {
-  -webkit-animation: scroll-down 1200ms ease-in-out infinite;
-          animation: scroll-down 1200ms ease-in-out infinite;
+  -webkit-animation: scroll-down 3200ms ease-in-out;
+          animation: scroll-down 3200ms ease-in-out;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
 }
