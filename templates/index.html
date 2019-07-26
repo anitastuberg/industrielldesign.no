@@ -12,9 +12,10 @@
 {% include 'components/navbar.html' %}
 <main id="homepage">
     <section>
-        <h1>Leonardo og<br>gjengen</h1>
+        <h1>Skjerpings<br>Bao</h1>
         <p>Studentene ved Industriell design på NTNU</p>
-        <img src="{% static 'img/illustrations/bao.png' %}" alt="Velkommen til Leonardo linjeforening">
+        <img src="{% static 'img/illustrations/bao.webp' %}" alt="Velkommen til Leonardo linjeforening">
+        <div class="scroll-down"><img src="{% static 'img/icons/arrow.svg' %}" alt="pil">Scroll ned</div>
     </section>
     <br>
     <div class="container">
@@ -24,6 +25,8 @@
             {% include 'components/event-component.html' with event=event %}
             {% endfor %}
         </div>
+        <br>
+        <a href="{% url 'all_events' %}" class="header3 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
         <div class="projects box-container">
             {% for project in projects %}
             <a class="box" href="{% url 'project-detail' project_slug=project.slug %}">
@@ -31,6 +34,8 @@
             </a>
             {% endfor %}
         </div>
+        <br>
+        <a href="{% url 'projects' %}" class="header3 right">Se alle prosjektene <img src="{% static 'img/icons/arrow.svg' %}" /></a>
     </div>
 </main>
 {% include 'components/footer.html' %}

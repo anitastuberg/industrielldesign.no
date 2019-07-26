@@ -1229,8 +1229,11 @@ footer #sit-logo {
 #homepage section p {
   display: block;
   max-width: 81.25em;
-  margin: 0 auto;
   z-index: 1;
+}
+
+#homepage section p {
+  font-size: 1.5rem;
 }
 
 #homepage section > img {
@@ -1251,10 +1254,22 @@ footer #sit-logo {
   }
 }
 
+#homepage section .scroll-down {
+  position: absolute;
+  bottom: 10vh;
+}
+
+#homepage section .scroll-down img {
+  -webkit-animation: scroll-down 1200ms ease-in-out infinite;
+          animation: scroll-down 1200ms ease-in-out infinite;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
 #homepage .events {
   display: -ms-grid;
   display: grid;
-  grid-column-gap: 1rem;
+  grid-gap: 1rem;
 }
 
 @media screen and (min-width: 56.25em) {
@@ -1355,6 +1370,64 @@ footer #sit-logo {
   -ms-grid-row: 3;
   -ms-grid-column: 2;
   grid-area: b6;
+}
+
+@-webkit-keyframes scroll-down {
+  0%,
+  100% {
+    -webkit-transform: translateY(0) rotate(90deg);
+            transform: translateY(0) rotate(90deg);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-8px) rotate(90deg);
+            transform: translateY(-8px) rotate(90deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(8px) rotate(90deg);
+            transform: translateY(8px) rotate(90deg);
+  }
+  80% {
+    -webkit-transform: translateY(6.4px) rotate(90deg);
+            transform: translateY(6.4px) rotate(90deg);
+  }
+  90% {
+    -webkit-transform: translateY(-6.4px) rotate(90deg);
+            transform: translateY(-6.4px) rotate(90deg);
+  }
+}
+
+@keyframes scroll-down {
+  0%,
+  100% {
+    -webkit-transform: translateY(0) rotate(90deg);
+            transform: translateY(0) rotate(90deg);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-8px) rotate(90deg);
+            transform: translateY(-8px) rotate(90deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(8px) rotate(90deg);
+            transform: translateY(8px) rotate(90deg);
+  }
+  80% {
+    -webkit-transform: translateY(6.4px) rotate(90deg);
+            transform: translateY(6.4px) rotate(90deg);
+  }
+  90% {
+    -webkit-transform: translateY(-6.4px) rotate(90deg);
+            transform: translateY(-6.4px) rotate(90deg);
+  }
 }
 
 @media screen and (max-width: 68.75em) {
