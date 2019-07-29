@@ -19,15 +19,9 @@ def create_initial_project(request):
 
 def remove_project_image(request):
     filename = request.POST.get('filename')
-    project = request.POST.get('project_pk')
-    try:
-        project_image = ProjectImage.objects.get(name=filename)
-        if project_image.project.pk == project:
-            project_image.delete()
-            return HttpResponse(status=200)
-        return HttpResponse(status=403)
-    except ProjectImage.DoesNotExist:
-        return HttpResponse(status=404)
+    project = request.POST.get('project')
+    project_image = ProjectImage.objects.filter(project__pk=project).filter(name=filename).delete()
+    return HttpResponse("Bilde slettet");
 
 
 def upload_project_image(request):

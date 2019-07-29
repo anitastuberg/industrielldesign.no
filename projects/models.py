@@ -18,6 +18,11 @@ class ProjectImage(models.Model):
             return str(self.pk)
         else:
             return "Bilde til prosjekt nummer: %d" % self.project.pk
+    
+    class Meta:
+        verbose_name = "Prosjektbilde"
+        verbose_name_plural = "Prosjektbilder"
+        ordering = ('order',)
 
 
 class Project(models.Model):

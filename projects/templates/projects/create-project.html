@@ -4,15 +4,14 @@
 
 {% block page_title %}Last opp prosjekt{% endblock page_title %}
 {% block extra_head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
 {% endblock extra_head %}
 
 {% block content %}
 <div class="container nav narrow">
-<h1>Last opp prosjekt</h1>
-<br>
-<br>
-<br>
+    <h1>Last opp prosjekt</h1>
+    <br>
+    <br>
+    <br>
     <form id="app">
         <div class="input-field">
             <textarea name="description" id="id_description" v-model="description"
@@ -20,7 +19,8 @@
             <label for="{{ form.description.id_for_label }}">Beskrivelse av prosjektet</label>
         </div>
         <div class="input-field">
-            <input type="text" name="creator" id="id_creator" v-model="creator" placeholder="Hvem har laget det?" required>
+            <input type="text" name="creator" id="id_creator" v-model="creator" placeholder="Hvem har laget det?"
+                required>
             <label for="{{ form.creator.id_for_label }}">Hvem har laget det?</label>
         </div>
         <div class="input-field">
@@ -48,16 +48,28 @@
     </form>
     <br>
     <div class="dropzone-previews"></div>
+    <br>
+    <br>
+    <br>
     <button onclick="app.checkForm()" class="button">Legg ut prosjektet</button>
     <br>
 </div>
-<div id="tpl" style="display: none">
-    <div data-dz-name></div>
-    <div data-dz-size></div>
-    <img data-dz-thumbnail>
-    <div data-dz-uploadprogress></div>
-    <div data-dz-errormessage></div>
-    <img src="{% static 'img/icons/arrow.svg' %}" alt="Click me to remove the file." data-dz-remove />
+
+<!-- This is used as the file preview template -->
+<div id="preview-template" style="display: none;">
+    <div class="dz-preview dz-file-preview">
+        <div class="dz-image"><img data-dz-thumbnail="" /></div>
+            <div>
+            <div class="dz-size"><span data-dz-size=""></span></div>
+            <div class="dz-filename"><span data-dz-name=""></span></div>
+            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+            <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
+            <div class="dz-success-mark"></div>
+            <div class="dz-error-mark"></div>
+            <a data-dz-remove="">Fjern bildet</a>
+            <a data-dz-cancel="">Avbryt opplasting</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
@@ -93,7 +105,8 @@
                 app.errors = [];
                 app.course = courseSelector.value;
                 if (!app.description.length) app.errors.push('Du må skrive litt om prosjektet');
-                if (!app.creator.length) app.errors.push('Vi vil gjerne vite hvem som har laget dette');
+                if (!app.creator.length) app.errors.push(
+                    'Vi vil gjerne vite hvem som har laget dette');
                 if (!app.course.length) app.errors.push('Velg faget dette prosjektet ble gjort i');
                 if (!app.class_year.length) app.errors.push('Når ble det laget?');
                 if (!app.project_pk) app.errors.push('Du må laste opp minst ett bilde');
@@ -125,18 +138,29 @@
         }
     });
 
-    let isFirstFile = true;
-
     // DROPZONE
     Dropzone.options.dropzone = {
-        addRemoveLinks: true,
         previewsContainer: document.querySelector('.dropzone-previews'),
-        previewTemplate: document.querySelector('#tpl').innerHTML,
+        previewTemplate: document.querySelector('#preview-template').innerHTML,
         dictDefaultMessage: 'Klikk her eller dra prosjektbilder hit for å laste opp',
-        dictCancelUpload: 'Avbryt opplasting',
-        dictRemoveFile: 'Fjern bildet',
+        thumbnailHeight: 60,
+        thumbnailWidth: 60,
         maxFiles: 10,
         maxFileSize: 10,
+        thumbnail: function (file, dataUrl) {
+            if (file.previewElement) {
+                file.previewElement.classList.remove("dz-file-preview");
+                var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+                for (var i = 0; i < images.length; i++) {
+                    var thumbnailElement = images[i];
+                    thumbnailElement.alt = file.name;
+                    thumbnailElement.src = dataUrl;
+                }
+                setTimeout(function () {
+                    file.previewElement.classList.add("dz-image-preview");
+                }, 1);
+            }
+        },
         init: function () {
             this.on('success', (file, response) => {
 
@@ -156,7 +180,7 @@
                     url: "{% url 'remove_project_image' %}",
                     data: {
                         'project': app.project_pk,
-                        'filename':  file.name
+                        'filename': file.name
                     },
                     success: () => {
                         console.log("fil fjernet fra server");

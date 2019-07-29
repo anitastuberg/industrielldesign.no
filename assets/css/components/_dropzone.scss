@@ -1,21 +1,50 @@
+$dz-preview-size: 60px;
+
 .dropzone {
-    border: var(--border-width) dashed $black;
-    background: none;
-    border-radius: 0;
+  border: var(--border-width) dashed $black;
+  background: none;
+  border-radius: 0;
 
-    .dz-preview {
-        background: none;
+  .dz-default {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    cursor: pointer;
 
-        .dz-image {
-            border-radius: 0;
-        }
-
-        .dz-progress {
-            display: none;
-        }
-
-        .dz-remove {
-            position: relative;
-        }
+    &.dz-drag-hover {
+      border-style: solid;
     }
+  }
+}
+
+.dz-preview {
+  display: grid;
+  grid-template-columns: $dz-preview-size 1fr;
+  grid-column-gap: 2rem;
+  border: var(--border-width) solid $black;
+  height: calc(#{$dz-preview-size} + 2 * var(--border-width));
+  position: relative;
+  margin-top: calc(-1 * var(--border-width));
+
+  .dz-image {
+    background: $black;
+    height: $dz-preview-size;
+    width: $dz-preview-size;
+    border-right: var(--border-width) solid $black;
+  }
+
+  .dz-progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 4px;
+    width: 0%;
+    background: $black;
+  }
+
+  .dz-remove {
+    position: relative;
+  }
 }
