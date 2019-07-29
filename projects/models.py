@@ -11,7 +11,7 @@ class ProjectImage(models.Model):
     name = models.CharField(max_length=500, blank=True, null=True)
     image = ProcessedImageField(upload_to='projectimages/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     project = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True, null=True)
-    order = models.PositiveIntegerField(default=0)
+    creation_date = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         if not self.project:
@@ -22,7 +22,7 @@ class ProjectImage(models.Model):
     class Meta:
         verbose_name = "Prosjektbilde"
         verbose_name_plural = "Prosjektbilder"
-        ordering = ('order',)
+        ordering = ('creation_date',)
 
 
 class Project(models.Model):

@@ -28,7 +28,7 @@ def all_events(request):
     context = {
         'events': events
     }
-    
+
     return render(request, 'events/all-events.html', context)
 
 
@@ -100,8 +100,8 @@ def stringBuilder(event):
 
 def updateButtonEventButton(user, context):
     if context['event'].available_spots:
-        context['spots_left'] = context['event'].available_spots - context['event'].registered_users.count()
-        print(context['spots_left'])
+        context['spots_left'] = context['event'].available_spots - \
+            context['event'].registered_users.count()
     if context['event'].available_spots is not None:
         if context['event'].registered_users.all().count() >= context['event'].available_spots:
             context['buttonText'] = "Legg deg i ventelisten"
@@ -173,7 +173,6 @@ def event(request, event_slug):
             email = request.POST.get('email')  # Get username/email
             password = request.POST.get('password')  # Get password
 
-
             # Retrieves the user
             user = authenticate(request, email=email, password=password)
 
@@ -189,7 +188,8 @@ def event(request, event_slug):
                 context['loginSuccess'] = False
                 context['errorMessage'] = 'Feil epost eller passord, prøv igjen'
 
-        elif not request.POST.get('email'):  # If request doesn't contain an email. It is a sign-up request
+        # If request doesn't contain an email. It is a sign-up request
+        elif not request.POST.get('email'):
             if event.registration_required and checkClass(user, event) and (not context['not_open_yet']) and (not context['event_full']) and ((event.only_komite and user.is_komite) or (not event.only_komite)):
                 event.registered_users.add(user)
                 context['registerSuccess'] = True
@@ -203,7 +203,6 @@ def event(request, event_slug):
         del context['event']
         del context['user']
         return JsonResponse(context)
-
 
 
 def event_admin(request, event_slug):
@@ -225,4 +224,3 @@ def send_event_confirmation_mail(subject, message, user_email):
         [user_email],  # To email
         fail_silently=False,
     )
-

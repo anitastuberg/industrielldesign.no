@@ -44,7 +44,37 @@ $dz-preview-size: 60px;
     background: $black;
   }
 
-  .dz-remove {
-    position: relative;
+  &:hover {
+    .dz-remove,
+    .dz-cancel {
+      opacity: 1;
+    }
+  }
+
+  &.dz-processing:not(.dz-complete) {
+    .dz-remove {
+      display: none;
+    }
+  }
+  &.dz-processing.dz-complete {
+    .dz-remove {
+      display: flex;
+    }
+    .dz-cancel {
+      display: none;
+    }
+  }
+  .dz-remove,
+  .dz-cancel {
+    position: absolute;
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    width: $dz-preview-size;
+    height: $dz-preview-size;
+    top: 0;
+    left: 0;
   }
 }

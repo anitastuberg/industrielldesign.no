@@ -12,6 +12,7 @@ def projects(request):
     }
     return render(request, 'projects/projects.html', context)
 
+
 def create_initial_project(request):
     project = Project.objects.create()
     return HttpResponse(project.pk)
@@ -20,8 +21,9 @@ def create_initial_project(request):
 def remove_project_image(request):
     filename = request.POST.get('filename')
     project = request.POST.get('project')
-    project_image = ProjectImage.objects.filter(project__pk=project).filter(name=filename).delete()
-    return HttpResponse("Bilde slettet");
+    project_image = ProjectImage.objects.filter(
+        project__pk=project).filter(name=filename).delete()
+    return HttpResponse("Bilde slettet")
 
 
 def upload_project_image(request):
@@ -32,7 +34,8 @@ def upload_project_image(request):
         return HttpResponse("Project does not exist")
 
     uploaded_file = request.FILES['file']
-    ProjectImage.objects.create(image=uploaded_file, project=project, name=uploaded_file.name)
+    ProjectImage.objects.create(
+        image=uploaded_file, project=project, name=uploaded_file.name)
     return HttpResponse("File uploaded")
 
 
@@ -58,14 +61,12 @@ def create_project(request):
         try:
             project = Project.objects.get(pk=project_pk)
             form = CreateProjectForm(request.POST, instance=project)
-            print(request.POST)
             context['form'] = form
             if form.is_valid():
                 project = form.save(commit=False)
                 project.save()
                 return JsonResponse({'pk': project.pk})
             else:
-                print(form.errors)
                 return HttpResponse('error')
         except Project.DoesNotExist:
             project = Project.objects.create()

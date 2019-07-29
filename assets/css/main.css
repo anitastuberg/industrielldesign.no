@@ -1276,8 +1276,43 @@ footer #sit-logo {
   background: #1A1A1A;
 }
 
-.dz-preview .dz-remove {
-  position: relative;
+.dz-preview:hover .dz-remove,
+.dz-preview:hover .dz-cancel {
+  opacity: 1;
+}
+
+.dz-preview.dz-processing:not(.dz-complete) .dz-remove {
+  display: none;
+}
+
+.dz-preview.dz-processing.dz-complete .dz-remove {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dz-preview.dz-processing.dz-complete .dz-cancel {
+  display: none;
+}
+
+.dz-preview .dz-remove,
+.dz-preview .dz-cancel {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 60px;
+  height: 60px;
+  top: 0;
+  left: 0;
 }
 
 #homepage section {

@@ -1,7 +1,7 @@
+from models import Profile
 import django
 django.setup()
 
-from models import Profile
 
 users = Profile.objects.all()
 

@@ -19,9 +19,9 @@ class ProfileManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            first_name = first_name,
-            last_name = last_name,
-            graduation_year = graduation_year
+            first_name=first_name,
+            last_name=last_name,
+            graduation_year=graduation_year
             # allergies = allergies
         )
 
@@ -36,9 +36,9 @@ class ProfileManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
-            first_name = first_name,
-            last_name = last_name,
-            graduation_year = graduation_year
+            first_name=first_name,
+            last_name=last_name,
+            graduation_year=graduation_year
             # allergies = allergies,
         )
         user.is_admin = True
@@ -104,13 +104,10 @@ class Profile(AbstractBaseUser):
             return 4
         elif self.graduation_year == self.YEAR:
             return 5
-    
+
     # Sets the user to alumni if they've finished
     def update_class_year(self):
-        print("Update class year")
-        print("Graduation year: %s\nCurrent year: %s" % (self.graduation_year, self.YEAR))
         if self.graduation_year < self.YEAR:
-            print("Set alumni")
             self.graduation_year = 5000
             self.save()
 

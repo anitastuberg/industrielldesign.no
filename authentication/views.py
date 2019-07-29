@@ -16,7 +16,7 @@ class LoginFormView(View):
     def get(self, request):
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
-    
+
     def post(self, request):
         form = self.form_class(request.POST)
         email = request.POST.get('email')
@@ -32,12 +32,12 @@ class LoginFormView(View):
                 if next_url:
                     return redirect(next_url)
                 return redirect('home')
-    
+
             form.add_error('password', 'Feil brukernavn eller passord')
         # Refreshes the login form if not correct
         return render(request, self.template_name, {'form': form})
 
-        
+
 def send_confiramtion_email(user_email):
     send_mail(
         "Velkommen til Leonardos nettside",  # Subject
@@ -62,8 +62,7 @@ class RegisterFormView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            print(form.cleaned_data['email'])
-            
+
             # Cleaned (normalized) data
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
@@ -77,14 +76,13 @@ class RegisterFormView(View):
             if user is not None:
                 send_confiramtion_email(user.email)
                 if user.is_active:
-                    login(request, user) # Loging in user to the website
+                    login(request, user)  # Loging in user to the website
                     return redirect('home')
 
-        return  render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 def PasswordResetView(request):
     template_name = 'password_reset_form.html'
 
     return render(request, template_name, {})
-

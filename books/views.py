@@ -29,12 +29,10 @@ def create_book(request):
         else:  # POST
             title = request.POST.get('title')
             course_code = request.POST.get('course').split(" ")[-1]
-            print(course_code)
             user = Profile.objects.get(pk=request.user.pk)
             course = Course.objects.get(course_code=course_code)
             price = request.POST.get('price')
             image = request.FILES.get('image')
-            print(image)
             Book.objects.create(title=title,
                                 seller=user,
                                 course=course,
