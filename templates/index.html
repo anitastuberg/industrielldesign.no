@@ -6,6 +6,10 @@
 
 {% block page_title %}Hjem{% endblock %}
 
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css?family=PT+Serif:700&display=swap" rel="stylesheet">
+{% endblock extra_head %}
+
 {% block meta %}Industriell design er nettsiden for alle designstudentene på NTNU i Trondheim. Her kan man melde seg på arrangmenter, lese seg opp på fag, se andres prosjekter og mye mye mer.{% endblock %}
 
 {% block content %}
@@ -14,7 +18,7 @@
     <section>
         <h1>Skjerpings<br>Bao</h1>
         <p>Studentene ved Industriell design på NTNU</p>
-        <img src="{% static 'img/illustrations/bao.webp' %}" alt="Velkommen til Leonardo linjeforening">
+        <img src="{% static 'img/illustrations/bao.png' %}" alt="Velkommen til Leonardo linjeforening">
         <div class="scroll-down"><img src="{% static 'img/icons/arrow.svg' %}" alt="pil">Scroll ned</div>
     </section>
     <br>
