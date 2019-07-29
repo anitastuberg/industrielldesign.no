@@ -6,8 +6,8 @@ from .forms import CreateProjectForm
 
 # Register your models here.
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['__str__', 'course', 'class_year']
-    form = CreateProjectForm
+    list_display = ['pk', 'course', 'creator', 'class_year', 'creation_date']
+    fields = ['description', 'creator', 'class_year', 'course' ]
     # ordering = ('creation_date',)
 
     class Meta:

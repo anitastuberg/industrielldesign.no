@@ -1,40 +1,184 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block page_title %}Last opp prosjekt{% endblock page_title %}
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
+{% endblock extra_head %}
+
 {% block content %}
-    <div class="container nav narrow">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="input-field">
-                {{ form.title }}
-                <label for="{{ form.title.id_for_label }}">Tittel</label>
-                {{ form.title.errors }}
-            </div>
-            <div class="input-field">
-                {{ form.description }}
-                <label for="{{ form.description.id_for_label }}">Beskrivelse av prosjektet</label>
-                {{ form.description.errors }}
-            </div>
-            <div class="input-field">
-                {{ form.creator }}
-                <label for="{{ form.creator.id_for_label }}">Hvem har laget det?</label>
-                {{ form.creator.errors }}
-            </div>
-            {% include 'components/course-search.html' %}
-            <div class="input-field">
-                {{ form.semester }}
-                <label for="{{ form.semester.id_for_label }}">Semster</label>
-                {{ form.semester.errors }}
-            </div>
-            <div class="input-field">
-                {{ form.year }}
-                <label for="{{ form.year.id_for_label }}">År</label>
-                {{ form.year.errors }}
-            </div>
-            <div class="input-field">
-                <input type="file" multiple name="images" id="images">
-                <label for="images">Prosjektbilder</label>
-            </div>
-            <button type="submit" class="cta">Legg ut prosjektet</button>
-        </form>
-    </div>
+<div class="container nav narrow">
+<h1>Last opp prosjekt</h1>
+<br>
+<br>
+<br>
+    <form id="app">
+        <div class="input-field">
+            <textarea name="description" id="id_description" v-model="description"
+                placeholder="Beskrivelse av projsektet" required></textarea>
+            <label for="{{ form.description.id_for_label }}">Beskrivelse av prosjektet</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="creator" id="id_creator" v-model="creator" placeholder="Hvem har laget det?" required>
+            <label for="{{ form.creator.id_for_label }}">Hvem har laget det?</label>
+        </div>
+        <div class="input-field">
+            <select name="class_year" id="id_class_year" v-model="class_year" required>
+                <option value="">---------</option>
+                <option value="1. klasse" selected>1. klasse</option>
+                <option value="2. klasse">2. klasse</option>
+                <option value="3. klasse">3. klasse</option>
+                <option value="4. klasse">4. klasse</option>
+                <option value="5. klasse">5. klasse</option>
+            </select>
+            <label for="{{ form.class_year.id_for_label }}">År</label>
+        </div>
+        <div class="input-field">
+            <ul class="errorlist" v-if="errors.length">
+                <li v-for="error in errors">[{ error }]</li>
+            </ul>
+        </div>
+    </form>
+    {% include 'components/course-search.html' %}
+    <br>
+    <form id="dropzone" action="{% url 'upload_project_image' %}" method="post" enctype="multipart/form-data"
+        class="dropzone">
+        {% csrf_token %}
+    </form>
+    <br>
+    <div class="dropzone-previews"></div>
+    <button onclick="app.checkForm()" class="button">Legg ut prosjektet</button>
+    <br>
+</div>
+<div id="tpl" style="display: none">
+    <div data-dz-name></div>
+    <div data-dz-size></div>
+    <img data-dz-thumbnail>
+    <div data-dz-uploadprogress></div>
+    <div data-dz-errormessage></div>
+    <img src="{% static 'img/icons/arrow.svg' %}" alt="Click me to remove the file." data-dz-remove />
+</div>
 {% endblock %}
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+<script src="{% static 'js/ajaxSetup.js' %}"></script>
+<script>
+    const courseSelector = document.getElementById('course-input');
+
+    const app = new Vue({
+        el: '#app',
+        delimiters: ['[{', '}]'],
+        data: {
+            description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos illum natus error commodi deleniti delectus. Accusamus exercitationem asperiores aspernatur excepturi optio. Blanditiis soluta odio repellendus! Cum temporibus dolores asperiores saepe.',
+            creator: 'Tobias Wulvik',
+            course: '',
+            class_year: '1. klasse',
+            project_pk: null,
+            errors: []
+        },
+        mounted: () => {
+            $.ajax({
+                type: 'POST',
+                url: '{% url "create_project" %}',
+                data: {},
+                success: (response) => {
+                    app.project_pk = response.pk;
+                }
+            });
+        },
+        methods: {
+            checkForm: (e) => {
+                app.errors = [];
+                app.course = courseSelector.value;
+                if (!app.description.length) app.errors.push('Du må skrive litt om prosjektet');
+                if (!app.creator.length) app.errors.push('Vi vil gjerne vite hvem som har laget dette');
+                if (!app.course.length) app.errors.push('Velg faget dette prosjektet ble gjort i');
+                if (!app.class_year.length) app.errors.push('Når ble det laget?');
+                if (!app.project_pk) app.errors.push('Du må laste opp minst ett bilde');
+
+
+                console.log(app.errors);
+
+                !app.errors.length && app.project_pk !== null ? app.saveProject() : null;
+                // this.errors.length && this.project_pk ? this.saveProject() : null;
+            },
+            saveProject: () => {
+                self = app;
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "create_project" %}',
+                    data: {
+                        'description': self.description,
+                        'creator': self.creator,
+                        'course': self.course,
+                        'class_year': self.class_year,
+                        'project_pk': self.project_pk,
+                    },
+                    success: () => {
+                        window.onbeforeunload = () => {};
+                        window.location.href = "{% url 'projects' %}";
+                    }
+                });
+            }
+        }
+    });
+
+    let isFirstFile = true;
+
+    // DROPZONE
+    Dropzone.options.dropzone = {
+        addRemoveLinks: true,
+        previewsContainer: document.querySelector('.dropzone-previews'),
+        previewTemplate: document.querySelector('#tpl').innerHTML,
+        dictDefaultMessage: 'Klikk her eller dra prosjektbilder hit for å laste opp',
+        dictCancelUpload: 'Avbryt opplasting',
+        dictRemoveFile: 'Fjern bildet',
+        maxFiles: 10,
+        maxFileSize: 10,
+        init: function () {
+            this.on('success', (file, response) => {
+
+            });
+            this.on('error', (file, response) => {
+                this.removeFile(file);
+                console.log(response);
+            });
+            this.on('sending', (file, xhr, formData) => {
+                if (app.project_pk) {
+                    formData.append('project_pk', app.project_pk);
+                }
+            });
+            this.on('removedfile', (file) => {
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'remove_project_image' %}",
+                    data: {
+                        'project': app.project_pk,
+                        'filename':  file.name
+                    },
+                    success: () => {
+                        console.log("fil fjernet fra server");
+                    }
+                })
+            })
+
+        }
+    }
+
+    // Delete unfinished projects
+    window.onbeforeunload = () => {
+        console.log(app.project_pk);
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'delete_project' %}",
+            async: false,
+            data: {
+                'pk': app.project_pk
+            }
+        })
+        return 'Er du sikker på at du vil forlate siden?';
+    };
+</script>
+{% endblock javascript %}

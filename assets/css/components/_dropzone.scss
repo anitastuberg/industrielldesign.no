@@ -1,0 +1,21 @@
+.dropzone {
+    border: var(--border-width) dashed $black;
+    background: none;
+    border-radius: 0;
+
+    .dz-preview {
+        background: none;
+
+        .dz-image {
+            border-radius: 0;
+        }
+
+        .dz-progress {
+            display: none;
+        }
+
+        .dz-remove {
+            position: relative;
+        }
+    }
+}

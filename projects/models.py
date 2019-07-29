@@ -8,14 +8,20 @@ import datetime
 
 # Create your models here.
 class ProjectImage(models.Model):
+    name = models.CharField(max_length=500, blank=True, null=True)
     image = ProcessedImageField(upload_to='projectimages/',processors=[ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
     project = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True, null=True)
+    order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        if not self.project:
+            return str(self.pk)
+        else:
+            return "Bilde til prosjekt nummer: %d" % self.project.pk
 
 
 class Project(models.Model):
 
-    HØST = 'Høst'
-    VÅR = 'Vår'
     YEAR_CHOICES = [
         ('1. klasse', '1. klasse'),
         ('2. klasse', '2. klasse'),
@@ -25,27 +31,22 @@ class Project(models.Model):
     ]
     
 
-    title = models.CharField(max_length=150, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
 
-    creator = models.CharField(max_length=300)
-    class_year = models.CharField('Klasse', choices=YEAR_CHOICES, max_length=10)
-    course = models.CharField(max_length=150, blank=False, null=False)
+    creator = models.CharField(max_length=300, blank=True, null=True)
+    class_year = models.CharField('Klasse', choices=YEAR_CHOICES, max_length=10, blank=True, null=True)
+    course = models.CharField(max_length=150, blank=True, null=True)
     
     creation_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    slug = models.SlugField(max_length=60, blank=True)
-
     def __str__(self):
-        return self.title
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-        super(Project, self).save(*args, **kwargs)
+        if self.creator and self.course:
+            return "%s" % (self.creator)
+        else:
+            return str(self.pk)
 
     class Meta:
         verbose_name = "Prosjekt"
         verbose_name_plural = "Prosjekter"
-        ordering = ('creation_date', 'title')
+        ordering = ('creation_date',)

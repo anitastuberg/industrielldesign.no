@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 from projects.forms import CreateProjectForm
 from .models import Project, ProjectImage
@@ -7,31 +7,50 @@ from .models import Project, ProjectImage
 
 # Create your views here.
 def projects(request):
-    # GET
-    # Returns all projects in the database to be displayed on the project front page
-    if request.method == 'GET':
-        context = {
-            "projects": Project.objects.all()
-        }
-        return render(request, 'projects/projects.html', context)
+    context = {
+        "projects": Project.objects.exclude(creator__isnull=True)
+    }
+    return render(request, 'projects/projects.html', context)
 
-    # POST
-    # Pressing a project will send back detailed data for that project to be displayed
-    # in the project detail modal.
-    else:
-        slug = request.POST.get('slug')
-        project = Project.objects.get(slug=slug)
-        response_data = {
-            'project_title': project.title,
-            'project_description': project.description,
-            'project_image': project.thumbnail.url,
-            'project_creator': project.creator,
-            'project_course': project.course,
-            'project_year': project.year,
-            'project_semester': project.semester
-        }
+def create_initial_project(request):
+    project = Project.objects.create()
+    return HttpResponse(project.pk)
 
-        return JsonResponse(response_data)
+
+def remove_project_image(request):
+    filename = request.POST.get('filename')
+    project = request.POST.get('project_pk')
+    try:
+        project_image = ProjectImage.objects.get(name=filename)
+        if project_image.project.pk == project:
+            project_image.delete()
+            return HttpResponse(status=200)
+        return HttpResponse(status=403)
+    except ProjectImage.DoesNotExist:
+        return HttpResponse(status=404)
+
+
+def upload_project_image(request):
+    try:
+        pk = request.POST.get('project_pk')
+        project = Project.objects.get(pk=pk)
+    except Project.DoesNotExist:
+        return HttpResponse("Project does not exist")
+
+    uploaded_file = request.FILES['file']
+    ProjectImage.objects.create(image=uploaded_file, project=project, name=uploaded_file.name)
+    return HttpResponse("File uploaded")
+
+
+def delete_project(request):
+    pk = request.POST.get('pk')
+    try:
+        project = Project.objects.get(pk=pk)
+        if not project.creator and project:
+            project.delete()
+        return HttpResponse(status=200)
+    except Project.DoesNotExist:
+        return HttpResponse(status=404)
 
 
 def create_project(request):
@@ -41,27 +60,27 @@ def create_project(request):
     if request.method == 'GET':
         return render(request, 'projects/create-project.html', context)
     else:
-        form = CreateProjectForm(request.POST, request.FILES or None)
-        context['form'] = form
-        if form.is_valid() and len(request.FILES.getlist('images')) <= 10:
-            project = form.save(commit=False)
-            files = request.FILES.getlist('images')
-            project.save()
+        project_pk = request.POST.get('project_pk')
+        try:
+            project = Project.objects.get(pk=project_pk)
+            form = CreateProjectForm(request.POST, instance=project)
+            print(request.POST)
+            context['form'] = form
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.save()
+                return JsonResponse({'pk': project.pk})
+            else:
+                print(form.errors)
+                return HttpResponse('error')
+        except Project.DoesNotExist:
+            project = Project.objects.create()
+            return JsonResponse({'pk': project.pk})
 
-            try:
-                for f in files:
-                    ProjectImage.objects.create(image=f, project=project)
-            except:
-                project.delete()
-                return render(request, 'projects/create-project.html', context)
-            return redirect('projects')
-        else:
-            return render(request, 'projects/create-project.html')
 
-
-def project_detail(request, project_slug):
+def project_detail(request, project_pk):
     context = {
-        'project': Project.objects.get(slug=project_slug)
+        'project': Project.objects.get(pk=project_pk)
     }
     if request.method == 'GET':
         return render(request, 'projects/project-detail.html', context)

@@ -27,7 +27,7 @@ def home(request):
 
     context = {
         "events": events[0:4],
-        'projects': Project.objects.all()[0:7]
+        'projects': Project.objects.all()[0:6]
     }
     return render(request, 'index.html', context)
 
