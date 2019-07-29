@@ -1,80 +1,95 @@
 $dz-preview-size: 60px;
 
 .dropzone {
-  border: var(--border-width) dashed $black;
-  background: none;
-  border-radius: 0;
+    border: var(--border-width) dashed $black;
+    background: none;
+    border-radius: 0;
 
-  .dz-default {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    cursor: pointer;
+    .dz-default {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        cursor: pointer;
 
-    &.dz-drag-hover {
-      border-style: solid;
+        &.dz-drag-hover {
+            border-style: solid;
+        }
     }
-  }
 }
 
 .dz-preview {
-  display: grid;
-  grid-template-columns: $dz-preview-size 1fr;
-  grid-column-gap: 2rem;
-  border: var(--border-width) solid $black;
-  height: calc(#{$dz-preview-size} + 2 * var(--border-width));
-  position: relative;
-  margin-top: calc(-1 * var(--border-width));
+    display: grid;
+    grid-template-columns: $dz-preview-size 1fr;
+    grid-column-gap: 2rem;
+    border: var(--border-width) solid $black;
+    height: calc(#{$dz-preview-size} + 2 * var(--border-width));
+    position: relative;
+    margin-top: calc(-1 * var(--border-width));
 
-  .dz-image {
-    background: $black;
-    height: $dz-preview-size;
-    width: $dz-preview-size;
-    border-right: var(--border-width) solid $black;
-  }
+    .dz-image {
+        background: $black;
+        height: $dz-preview-size;
+        width: $dz-preview-size;
+        border-right: var(--border-width) solid $black;
+    }
 
-  .dz-progress {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 4px;
-    width: 0%;
-    background: $black;
-  }
+    .dz-progress {
+        position: absolute;
+        width: calc(100% - #{$dz-preview-size});
+        bottom: 0;
+        left: $dz-preview-size;
 
-  &:hover {
+        span {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            width: 0%;
+            background: $success;
+        }
+    }
+
+    >div {
+        display: flex;
+        align-items: center;
+    }
+
+    &:hover {
+
+        .dz-remove,
+        .dz-cancel {
+            opacity: 1;
+        }
+    }
+
+    &.dz-processing:not(.dz-complete) {
+        .dz-remove {
+            display: none;
+        }
+    }
+
+    &.dz-processing.dz-complete {
+        .dz-remove {
+            display: flex;
+        }
+
+        .dz-cancel {
+            display: none;
+        }
+    }
+
     .dz-remove,
     .dz-cancel {
-      opacity: 1;
+        position: absolute;
+        display: flex;
+        opacity: 0;
+        align-items: center;
+        cursor: pointer;
+        justify-content: center;
+        width: $dz-preview-size;
+        height: $dz-preview-size;
+        top: 0;
+        left: 0;
     }
-  }
-
-  &.dz-processing:not(.dz-complete) {
-    .dz-remove {
-      display: none;
-    }
-  }
-  &.dz-processing.dz-complete {
-    .dz-remove {
-      display: flex;
-    }
-    .dz-cancel {
-      display: none;
-    }
-  }
-  .dz-remove,
-  .dz-cancel {
-    position: absolute;
-    display: flex;
-    opacity: 0;
-    align-items: center;
-    cursor: pointer;
-    justify-content: center;
-    width: $dz-preview-size;
-    height: $dz-preview-size;
-    top: 0;
-    left: 0;
-  }
 }

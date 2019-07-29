@@ -42,12 +42,13 @@
     </form>
     {% include 'components/course-search.html' %}
     <br>
+    <div class="dropzone-previews"></div>
+    <br>
     <form id="dropzone" action="{% url 'upload_project_image' %}" method="post" enctype="multipart/form-data"
         class="dropzone">
         {% csrf_token %}
     </form>
     <br>
-    <div class="dropzone-previews"></div>
     <br>
     <br>
     <br>

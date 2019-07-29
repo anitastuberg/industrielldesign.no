@@ -1267,13 +1267,27 @@ footer #sit-logo {
 
 .dz-preview .dz-progress {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  width: calc(100% - 60px);
+  bottom: 0;
+  left: 60px;
+}
+
+.dz-preview .dz-progress span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   height: 4px;
   width: 0%;
-  background: #1A1A1A;
+  background: #4BB543;
+}
+
+.dz-preview > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .dz-preview:hover .dz-remove,
