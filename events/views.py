@@ -168,41 +168,14 @@ def event(request, event_slug):
 
     # POST (User sending data) requests are only necessary if event
     # has registration
-    elif request.method == 'POST' and event.registration_required:
-        if not user.is_authenticated:
-            email = request.POST.get('email')  # Get username/email
-            password = request.POST.get('password')  # Get password
-
-            # Retrieves the user
-            user = authenticate(request, email=email, password=password)
-
-            # If user exists
-            if user is not None:
-                login(request, user)
-                context['user'] = user
-                context['loginSuccess'] = True
-
-                context = updateButtonEventButton(user, context)
-            # If user does not exist
-            else:
-                context['loginSuccess'] = False
-                context['errorMessage'] = 'Feil epost eller passord, prøv igjen'
-
+    elif request.method == 'POST':
         # If request doesn't contain an email. It is a sign-up request
-        elif not request.POST.get('email'):
-            if event.registration_required and checkClass(user, event) and (not context['not_open_yet']) and (not context['event_full']) and ((event.only_komite and user.is_komite) or (not event.only_komite)):
-                event.registered_users.add(user)
-                context['registerSuccess'] = True
-                context = updateButtonEventButton(user, context)
-            elif request.POST.get('waiting_list') == 'true':
-                event.waiting_list.add(user)
-                context = updateButtonEventButton(user, context)
-            else:
-                context['registerSuccess'] = False
+        if event.registration_required and checkClass(user, event) and (not context['not_open_yet']) and (not context['event_full']) and ((event.only_komite and user.is_komite) or (not event.only_komite)):
+            event.registered_users.add(user)
+            context['registerSuccess'] = True
+            context = updateButtonEventButton(user, context)
         # Event and Profile are not json serializable so have to be removed before it's sent
-        del context['event']
-        del context['user']
-        return JsonResponse(context)
+        return render(request, 'events/event-detail.html', context)
 
 
 def event_admin(request, event_slug):

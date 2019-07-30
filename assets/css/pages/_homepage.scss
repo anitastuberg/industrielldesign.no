@@ -1,5 +1,4 @@
 #homepage {
-
   section {
     display: block;
     height: 100vh;
@@ -9,10 +8,13 @@
     overflow-x: hidden;
 
     h1 {
-      $h1: (576: 48, 1024: 64);
+      $h1: (
+        576: 48,
+        1024: 64
+      );
       font-size: least-squares-fit($h1);
       line-height: 1em;
-      font-family: 'PT Serif';
+      font-family: "PT Serif";
     }
 
     h1,
@@ -22,15 +24,18 @@
       max-width: $xxl;
       z-index: 1;
       top: 4rem;
-
     }
 
     p {
-      font-size: 1.5rem;
+      $p: (
+        576: 16,
+        1024: 20
+      );
+      font-size: least-squares-fit($p);
       max-width: 70vw;
     }
 
-    >img {
+    > img {
       position: absolute;
       top: 55%;
       right: -5%;
@@ -72,10 +77,8 @@
       grid-template-columns: repeat(3, 1fr);
 
       .event:nth-child(4) {
-        display: none
+        display: none;
       }
-
-      ;
     }
 
     @media screen and (max-width: $md) {
@@ -92,10 +95,8 @@
       }
 
       .event:nth-child(4) {
-        display: block
+        display: block;
       }
-
-      ;
     }
 
     //.event:nth-child(4n+2), .event:nth-child(4n+3) {
@@ -156,7 +157,6 @@
 }
 
 @keyframes scroll-down {
-
   0%,
   100% {
     transform: translateY(0) rotate(90deg);

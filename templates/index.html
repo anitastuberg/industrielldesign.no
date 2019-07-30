@@ -30,7 +30,7 @@
             {% endfor %}
         </div>
         <br>
-        <a href="{% url 'all_events' %}" class="header3 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
+        <a href="{% url 'all_events' %}" class="subtitle1 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
         <div class="projects box-container">
             {% for project in projects %}
             <a class="box" href="{% url 'project_detail' project_pk=project.pk %}">
@@ -39,7 +39,7 @@
             {% endfor %}
         </div>
         <br>
-        <a href="{% url 'projects' %}" class="header3 right">Se alle prosjektene <img src="{% static 'img/icons/arrow.svg' %}" /></a>
+        <a href="{% url 'projects' %}" class="subtitle1 right">Se alle prosjektene <img src="{% static 'img/icons/arrow.svg' %}" /></a>
     </div>
 </main>
 {% include 'components/footer.html' %}
