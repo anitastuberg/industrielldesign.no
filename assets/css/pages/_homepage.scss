@@ -13,18 +13,21 @@
       font-size: least-squares-fit($h1);
       line-height: 1em;
       font-family: 'PT Serif';
-      top: 4rem;
     }
 
     h1,
     p {
+      position: relative;
       display: block;
       max-width: $xxl;
       z-index: 1;
+      top: 4rem;
+
     }
 
     p {
       font-size: 1.5rem;
+      max-width: 70vw;
     }
 
     >img {

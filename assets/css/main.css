@@ -1342,18 +1342,20 @@ footer #sit-logo {
   font-size: calc(3.57143vw + 27.42857px);
   line-height: 1em;
   font-family: 'PT Serif';
-  top: 4rem;
 }
 
 #homepage section h1,
 #homepage section p {
+  position: relative;
   display: block;
   max-width: 81.25em;
   z-index: 1;
+  top: 4rem;
 }
 
 #homepage section p {
   font-size: 1.5rem;
+  max-width: 70vw;
 }
 
 #homepage section > img {
