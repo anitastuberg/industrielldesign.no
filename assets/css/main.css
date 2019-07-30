@@ -1035,7 +1035,6 @@ footer #sit-logo {
 .box.box-image, .box-image.url-preview, .box-image.event, #course-detail .box-image.add-link {
   margin-top: 1rem;
   padding: 1rem;
-  cursor: pointer;
 }
 
 .box.box-image h4, .box-image.url-preview h4, .box-image.event h4, #course-detail .box-image.add-link h4 {
@@ -2038,5 +2037,45 @@ footer #sit-logo {
 #tips-page .tag {
   position: relative;
   z-index: 1;
+}
+
+@media screen and (min-width: 48em) {
+  #profile-page .user-info {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  #profile-page .new-password {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 300px;
+        grid-template-columns: 1fr 300px;
+    grid-gap: 1rem;
+  }
+  #profile-page .new-password button {
+    width: 100%;
+    height: 3rem;
+  }
+}
+
+#profile-page form {
+  margin: 2rem 0;
+}
+
+#profile-page .my-books .box-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+#profile-page .my-books .box-container button img {
+  width: 1rem;
+  margin-right: 0.5rem;
 }
 /*# sourceMappingURL=main.css.map */

@@ -4,14 +4,18 @@ from django.shortcuts import render, redirect
 
 from authentication.forms import RegisterForm
 from authentication.models import Profile
+from books.models import Book
 
 
 def my_profile(request):
     user = Profile.objects.get(pk=request.user.pk)
     form = RegisterForm(instance=user)
+    my_books = Book.objects.filter(
+        seller=Profile.objects.get(pk=request.user.pk))
     context = {
         'user': user,
-        'form': form
+        'form': form,
+        'my_books': my_books
     }
 
     if request.method == 'GET':
@@ -25,7 +29,8 @@ def my_profile(request):
             password = request.POST['password']
             user.set_password(password)
             user.save()
-            login(request, authenticate(request, email=user.email, password=user.password))
+            login(request, authenticate(
+                request, email=user.email, password=user.password))
         else:
             form = RegisterForm(request.POST, instance=user)
             user.allergies = form['allergies'].value()
@@ -35,3 +40,9 @@ def my_profile(request):
 
         context['form'] = RegisterForm(instance=user)
         return render(request, 'profilepage/profilepage.html', context)
+
+
+def delete_book(request):
+    book_pk = request.POST.get('book_pk')
+    Book.objects.filter(pk=book_pk).delete()
+    return HttpResponse('deleted')

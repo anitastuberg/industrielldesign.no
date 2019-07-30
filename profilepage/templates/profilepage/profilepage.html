@@ -1,42 +1,95 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block page_title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
 
 {% block content %}
-    {% include 'components/navbar.html' %}
-    <div id="profile-page" class="container nav">
-        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-        <div class="user-settings">
-            <form method="post">
-                {% csrf_token %}
-                <div class="input-field">
-                    {{ form.allergies }}
-                    <label for="allergies">Allergier</label>
+{% include 'components/navbar.html' %}
+<div id="profile-page" class="container nav">
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <div class="user-settings">
+        <form method="post" class="user-info">
+            {% csrf_token %}
+            <div class="input-field">
+                {{ form.allergies }}
+                <label for="allergies">Allergier</label>
+            </div>
+            <div class="input-field">
+                {{ form.graduation_year }}
+                <label for="allergies">Allergier</label>
+            </div>
+            <div class="input-field">
+                {{ form.is_komite }}
+                <div class="checkmark"></div>
+                <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label>
+            </div>
+            <button type="submit" class="button">Lagre info</button>
+        </form>
+        <form method="post" class="new-password">
+            {% csrf_token %}
+            <div class="input-field">
+                <input name="password" type="password" placeholder="Nytt passord">
+                <label for="allergies">Nytt passord</label>
+            </div>
+            <button type="submit" class="button">Lagre nytt passord</button>
+        </form>
+    </div>
+    <div id="books" class="my-books">
+        <h3>Mine bøker</h3>
+        <br>
+        <div class="box-container">
+            {% for book in my_books %}
+            <div class="book box">
+                <div class="image-container">
+                    <img src="{{ book.image.url }}" alt="">
                 </div>
-                <div class="input-field">
-                    {{ form.graduation_year }}
-                    <label for="allergies">Allergier</label>
+                <p class="caption gray">{{ book.course.name }} – {{ book.course.course_code }}</p>
+                <p class="">{{ book.title }}</p>
+                <div class="bottom">
+                    <p class="caption">{{ book.seller.first_name }} {{ book.seller.last_name }},
+                        {{ book.seller.get_class_year }}.
+                        klasse</p>
+                    <h6 class="subtitle2">{{ book.price }} kr</h6>
+                    <br>
+                    <button class="button book-delete" data-book-pk="{{ book.pk }}"><img src="{% static 'img/icons/close_white.svg' %}">Slett</button>
                 </div>
-                <div class="input-field">
-                    {{ form.is_komite }}
-                    <div class="checkmark"></div>
-                    <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label>
-                </div>
-                <input type="submit" class="button" value="Lagre info">
-            </form>
-            <form method="post">
-                {% csrf_token %}
-                <div class="input-field">
-                    <input name="password" type="password" placeholder=".">
-                    <label for="allergies">Nytt passord</label>
-                </div>
-                <input type="submit" class="button" value="Lagre nytt passord">
-            </form>
-            <a href="{% url 'logout' %}" class="link">Logg ut</a>
+            </div>
+            {% endfor %}
         </div>
-        <div class="user-activity">
-
-        </div>
+    </div>
+    <div class="user-activity">
 
     </div>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'logout' %}" class="button secondary">Logg ut</a>
+
+
+</div>
 {% endblock content %}
+{% block javascript %}
+<script src="{% static 'js/ajaxSetup.js' %}"></script>
+<script>
+
+$('.book-delete').click(function() {
+    deleteBook($(this), $(this).data('book-pk'));
+});
+
+function deleteBook(self, book_pk) {
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url "delete_book" %}',
+        data: {
+            'book_pk': book_pk
+        },
+        success: () => {
+            $(self).parent().parent().remove();
+        }
+    });
+}
+</script>
+
+{% endblock javascript %}

@@ -1,0 +1,39 @@
+#profile-page {
+    .user-info {
+        @media screen and (min-width: $md) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1rem;
+        }
+    }
+
+    .new-password {
+        @media screen and (min-width: $md) {
+
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            grid-gap: 1rem;
+
+            button {
+                width: 100%;
+                height: 3rem;
+            }
+        }
+    }
+
+    form {
+        margin: 2rem 0;
+    }
+
+    .my-books {
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+            button img {
+                width: 1rem;
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}
