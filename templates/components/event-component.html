@@ -3,7 +3,6 @@
 {% with event.event_start_time|days_until as days %}
 <a class="event {% if days < 0 %}old{% endif %}"
     href="{% url 'event' event_slug=event.slug %}"
-    data-aos="fade-up"
     >
     <div>
         {% if days >= 0 %}<p>{{ days }} dager til</p>{% endif %}
