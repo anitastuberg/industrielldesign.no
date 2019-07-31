@@ -1020,10 +1020,14 @@ footer #sit-logo {
 }
 
 .box.clickable, .clickable.url-preview, .clickable.event, .event:not(.old), #course-detail .clickable.add-link {
-  -webkit-transition: color 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
-  transition: color 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
-  transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out;
-  transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
+  -webkit-transition-property: color, opacity, -webkit-box-shadow, -webkit-transform;
+  transition-property: color, opacity, -webkit-box-shadow, -webkit-transform;
+  transition-property: box-shadow, color, opacity, transform;
+  transition-property: box-shadow, color, opacity, transform, -webkit-box-shadow, -webkit-transform;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
 }
 
 .box.clickable:hover, .clickable.url-preview:hover, .clickable.event:hover, .event:hover:not(.old), #course-detail .clickable.add-link:hover {
@@ -1135,7 +1139,7 @@ footer #sit-logo {
 }
 
 .event.old {
-  opacity: 0.5;
+  opacity: 0.5 !important;
   cursor: default;
 }
 

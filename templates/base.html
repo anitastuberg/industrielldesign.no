@@ -25,6 +25,7 @@
     <title>{% block page_title %}{% endblock %} – Leonardo linjeforening</title>
     
     {% block extra_head %}{% endblock extra_head %}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
@@ -46,6 +47,8 @@
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     {% endif %}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 
     <meta name="description" content="{% block meta %}{% endblock %}">
 
@@ -58,6 +61,9 @@
 </div>
 
 <script src="{% static 'js/navbar.js' %}"></script>
+<script>
+  AOS.init();
+</script>
 {% block javascript %}
 {% endblock %}
 </body>

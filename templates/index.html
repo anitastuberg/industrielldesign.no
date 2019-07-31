@@ -33,7 +33,7 @@
         <a href="{% url 'all_events' %}" class="subtitle1 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
         <div class="projects box-container">
             {% for project in projects %}
-            <a class="box" href="{% url 'project_detail' project_pk=project.pk %}">
+            <a class="box" href="{% url 'project_detail' project_pk=project.pk %}" data-aos="fade-up">
                 <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
             </a>
             {% endfor %}
