@@ -55,10 +55,8 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-<div class="full-width-container">
-    {% block content %}
-    {% endblock content %}
-</div>
+{% block content %}
+{% endblock content %}
 
 <script src="{% static 'js/navbar.js' %}"></script>
 <script>

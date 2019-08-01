@@ -14,6 +14,7 @@
 
 {% block content %}
 {% include 'components/navbar.html' %}
+<div class="full-width-container">
 <main id="homepage">
     <section>
         <h1>Leonardo<br>linjeforening</h1>
@@ -42,6 +43,7 @@
         <a href="{% url 'projects' %}" class="subtitle1 right">Se alle prosjektene <img src="{% static 'img/icons/arrow.svg' %}" /></a>
     </div>
 </main>
+</div>
 {% include 'components/footer.html' %}
 {% endblock content %}
 {% block javascript %}

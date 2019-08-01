@@ -1,14 +1,16 @@
 a {
-  display: block;
-  color: $black;
-  text-decoration: none;
+    display: block;
+    color: $black;
+    text-decoration: none;
 }
 
-p a, .link {
-  display: inline-block;
-  border-bottom: $border-width dashed $black;
+p a,
+.link {
+    display: inline-block;
+    border-bottom: $border-width dashed $black;
+    margin-left: 5px;
 }
 
 p a {
-  display: inline;
+    display: inline;
 }
