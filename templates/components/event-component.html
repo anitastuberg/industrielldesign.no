@@ -6,7 +6,7 @@
     >
     <div>
         {% if days >= 0 %}<p>{{ days }} dager til</p>{% endif %}
-        <h3>{{ event.event_start_time|date:"d.m.y" }}</h3>
+        <p class="date">{{ event.event_start_time|date:"d.m.y" }}</p>
         <h3>{{ event.title }}</h3>
     </div>
     <div class="image-container">

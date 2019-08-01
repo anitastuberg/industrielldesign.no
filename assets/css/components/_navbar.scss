@@ -76,6 +76,12 @@ $hamburger-bp: $xl;
       text-transform: uppercase;
       cursor: pointer;
       transition: color 200ms ease-in-out;
+      color: $dark-gray;
+
+      &:hover {
+        color: $black;
+      }
+
 
       &.selected,
       li.selected {

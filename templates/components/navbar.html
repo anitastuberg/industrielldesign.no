@@ -60,14 +60,3 @@
         {% endif %}
     </ul>
 </nav>
-
-
-<script>
-    const items = $('.item-list > li');
-    const dropdownItem = $('.item-list > li.dropdown');
-    dropdownItem.hover(function () {
-        $(this).siblings().addClass('gray');
-    }, function () {
-        items.removeClass('gray');
-    })
-</script>

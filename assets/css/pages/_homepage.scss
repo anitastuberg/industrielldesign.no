@@ -8,10 +8,8 @@
     overflow-x: hidden;
 
     h1 {
-      $h1: (
-        576: 48,
-        1024: 64
-      );
+      $h1: (576: 48,
+          1024: 64);
       font-size: least-squares-fit($h1);
       line-height: 1em;
       font-family: "PT Serif";
@@ -27,15 +25,15 @@
     }
 
     p {
-      $p: (
-        576: 16,
-        1024: 20
-      );
+      $p: (576: 16,
+          1024: 20);
       font-size: least-squares-fit($p);
       max-width: 70vw;
+      margin-top: 1rem;
+      color: $dark-gray;
     }
 
-    > img {
+    >img {
       position: absolute;
       top: 55%;
       right: -5%;
@@ -157,6 +155,7 @@
 }
 
 @keyframes scroll-down {
+
   0%,
   100% {
     transform: translateY(0) rotate(90deg);

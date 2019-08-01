@@ -374,6 +374,10 @@ p a {
     cursor: pointer;
     -webkit-transition: color 200ms ease-in-out;
     transition: color 200ms ease-in-out;
+    color: #757573;
+  }
+  #main-navigation .nav-item:hover {
+    color: #1A1A1A;
   }
   #main-navigation .nav-item.selected,
   #main-navigation .nav-item li.selected {
@@ -1143,6 +1147,12 @@ footer #sit-logo {
   cursor: default;
 }
 
+.event .date {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 .event div:not(.image-container) {
   position: absolute;
   width: 100%;
@@ -1359,6 +1369,8 @@ footer #sit-logo {
 #homepage section p {
   font-size: calc(0.89286vw + 10.85714px);
   max-width: 70vw;
+  margin-top: 1rem;
+  color: #757573;
 }
 
 #homepage section > img {
@@ -1917,8 +1929,8 @@ footer #sit-logo {
 #komite .box-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(400px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 }
 

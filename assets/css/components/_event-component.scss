@@ -13,6 +13,12 @@
     cursor: default;
   }
 
+  .date {
+    position: absolute;
+    top: $body-padding;
+    right: $body-padding;
+  }
+
   div:not(.image-container) {
     position: absolute;
     width: 100%;
