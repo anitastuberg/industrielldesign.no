@@ -20,9 +20,9 @@
                 <label for="{{ form.email.id_for_label }}">Passord</label>
                 {{ form.password.errors }}
             </div>
-            <button class="button fluid" type="submit">Logg inn</button>
+            <button class="button fluid" type="submit"><span>Logg inn<span></button>
             <br><br><br>
-            <a class="button secondary center" href="{% url 'register' %}" style="width: 80%">Registrer ny bruker</a>
+            <a class="button secondary center" href="{% url 'register' %}" style="width: 80%"><span>Registrer ny bruker</span></a>
             <br><br>
             <a class="link center" href="/accounts/password_reset">Glemt passordet?</a>
         </form>

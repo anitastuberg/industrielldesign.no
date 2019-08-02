@@ -24,7 +24,7 @@
                 <div class="checkmark"></div>
                 <label for="{{ form.is_komite.id_for_label }}">Komitémedlem</label>
             </div>
-            <button type="submit" class="button">Lagre info</button>
+            <button type="submit" class="button"><span>Lagre info</span></button>
         </form>
         <form method="post" class="new-password">
             {% csrf_token %}
@@ -32,7 +32,7 @@
                 <input name="password" type="password" placeholder="Nytt passord">
                 <label for="allergies">Nytt passord</label>
             </div>
-            <button type="submit" class="button">Lagre nytt passord</button>
+            <button type="submit" class="button"><span>Lagre nytt passord</span></button>
         </form>
     </div>
     <div id="books" class="my-books">
@@ -64,7 +64,7 @@
     <br>
     <br>
     <br>
-    <a href="{% url 'logout' %}" class="button secondary">Logg ut</a>
+    <a href="{% url 'logout' %}" class="button secondary"><span>Logg ut</span></a>
 
 
 </div>
