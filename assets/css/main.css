@@ -293,6 +293,25 @@ p a {
   display: inline;
 }
 
+.button-link {
+  padding: 1rem 2rem;
+  border: var(--border-width) solid #1A1A1A;
+  margin-top: calc(-1 * var(--border-width));
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.button-link img {
+  position: absolute;
+  right: 2rem;
+}
+
 #main-navigation {
   position: fixed;
   top: 0;

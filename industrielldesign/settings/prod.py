@@ -5,6 +5,8 @@ DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
+ADMINS = [('Tobias Wulvik', 'tobias.wulvik@gmail.com')]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
