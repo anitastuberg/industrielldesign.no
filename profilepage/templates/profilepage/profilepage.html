@@ -9,7 +9,7 @@
 <div id="profile-page" class="container nav">
     <h2>{{ user.first_name }} {{ user.last_name }}</h2>
     <div class="user-settings">
-        <form method="post" class="user-info">
+        <form method="post" class="user-info" autocomplete="off">
             {% csrf_token %}
             <div class="input-field">
                 {{ form.allergies }}
