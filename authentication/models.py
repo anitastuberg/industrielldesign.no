@@ -7,6 +7,7 @@ from django.contrib.auth.models import (
 )
 import datetime
 from .validators import validate_stud_email
+from leonardo.models import Komite
 
 
 class ProfileManager(BaseUserManager):
@@ -73,7 +74,8 @@ class Profile(AbstractBaseUser):
     allergies = models.CharField(max_length=250, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    is_komite = models.BooleanField(default=False)
+    komite = models.ForeignKey(
+        Komite, on_delete=models.CASCADE, null=True, blank=True)
 
     objects = ProfileManager()
 

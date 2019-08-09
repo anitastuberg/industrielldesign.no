@@ -14,7 +14,8 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('email', 'password', 'graduation_year', 'first_name', 'last_name', 'allergies', 'is_active', 'is_admin', 'is_komite')
+        fields = ('email', 'password', 'graduation_year', 'first_name',
+                  'last_name', 'allergies', 'is_active', 'is_admin', 'komite')
 
     def save(self, commit=True):
         # Save the provided password in hashed format
@@ -34,7 +35,8 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('email', 'password', 'graduation_year', 'first_name', 'last_name', 'allergies', 'is_active', 'is_admin', 'is_komite')
+        fields = ('email', 'password', 'graduation_year', 'first_name',
+                  'last_name', 'allergies', 'is_active', 'is_admin', 'komite')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -51,11 +53,13 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'graduation_year', 'first_name', 'last_name', 'allergies', 'is_admin', 'is_komite')
+    list_display = ('email', 'graduation_year', 'first_name',
+                    'last_name', 'allergies', 'is_admin', 'komite')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'graduation_year','allergies', 'is_komite')}),
+        ('Personal info', {'fields': (
+            'first_name', 'last_name', 'graduation_year', 'allergies', 'komite')}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -64,11 +68,12 @@ class UserAdmin(BaseUserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'first_name', 'last_name', 'graduation_year', 'allergies', 'password1')}
-        ),
+         ),
     )
     search_fields = ('first_name', 'last_name')
     ordering = ('last_name',)
     filter_horizontal = ()
+
 
 # Now register the new UserAdmin...
 admin.site.register(Profile, UserAdmin)

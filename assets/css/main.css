@@ -2177,32 +2177,21 @@ footer #sit-logo {
   z-index: 1;
 }
 
-@media screen and (min-width: 48em) {
-  #profile-page .user-info {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
-  }
-}
-
-@media screen and (min-width: 48em) {
-  #profile-page .new-password {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr 300px;
-        grid-template-columns: 1fr 300px;
-    grid-gap: 1rem;
-  }
-  #profile-page .new-password button {
-    width: 100%;
-    height: 3rem;
-  }
+#profile-page {
+  max-width: 37.5em;
 }
 
 #profile-page form {
   margin: 2rem 0;
+}
+
+#profile-page #is_komite ~ .input-field {
+  margin-top: 1rem;
+  display: none;
+}
+
+#profile-page #is_komite:checked ~ .input-field {
+  display: block;
 }
 
 #profile-page .my-books .box-container {

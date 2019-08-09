@@ -121,7 +121,7 @@ def updateButtonEventButton(user, context):
         elif user in context['event'].waiting_list.all():
             context['buttonText'] = "Du står på venteliste"
             context['buttonState'] = False
-        elif not user.is_komite and context['event'].only_komite:
+        elif not user.komite is not None and context['event'].only_komite:
             context['buttonText'] = "Bare for komitéer"
             context['buttonState'] = False
         elif context['event'].available_spots:
@@ -170,7 +170,7 @@ def event(request, event_slug):
     # has registration
     elif request.method == 'POST':
         # If request doesn't contain an email. It is a sign-up request
-        if event.registration_required and checkClass(user, event) and (not context['not_open_yet']) and (not context['event_full']) and ((event.only_komite and user.is_komite) or (not event.only_komite)):
+        if event.registration_required and checkClass(user, event) and (not context['not_open_yet']) and (not context['event_full']) and ((event.only_komite and user.komite is not None) or (not event.only_komite)):
             event.registered_users.add(user)
             context['registerSuccess'] = True
             context = updateButtonEventButton(user, context)

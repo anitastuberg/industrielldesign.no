@@ -7,17 +7,37 @@
 {% block content %}
 {% include 'components/navbar.html' %}
 <div id="profile-page" class="container nav">
-    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-    <h3>Endre brukerinformasjon:</h3>
-    <br>
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
     <div class="user-settings">
-        <a class="button-link" href="{% url 'change_info' %}">Endre allergier, klasse eller komite<img src="{% static 'img/icons/arrow.svg' %}"></a>
-        <a class="button-link" href="{% url 'change_password' %}">Endre passord<img src="{% static 'img/icons/arrow.svg' %}"></a>
+        <form method="post" class="user-info">
+            {% csrf_token %}
+            <div class="input-field">
+                {{ form.allergies }}
+                <label for="allergies">Allergier</label>
+            </div>
+            <div class="input-field">
+                {{ form.graduation_year }}
+                <label for="allergies">Allergier</label>
+            </div>
+            <div class="input-field">
+                <input type="checkbox" id="is_komite" {% if request.user.komite is not None %}checked{% endif %}>
+                <div class="checkmark"></div>
+                <label for="is_komite">Komitémedlem</label>
+
+                <div class="input-field">
+                    {{ form.komite }}
+                    <label for="{{ form.komite.id_for_label }}">Komitémedlem</label>
+                </div>
+            </div>
+            <div class="input-field">
+                <input name="new-password" type="password" placeholder="Nytt passord">
+                <label for="allergies">Nytt passord</label>
+            </div>
+            <button type="submit" class="button"><span>Lagre</span></button>
+        </form>
+        <form method="post" class="new-password">
+        </form>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
     <div id="books" class="my-books">
         <h3>Mine bøker</h3>
         <br>
@@ -35,7 +55,7 @@
                         klasse</p>
                     <h6 class="subtitle2">{{ book.price }} kr</h6>
                     <br>
-                    <button class="button book-delete" data-book-pk="{{ book.pk }}"><img src="{% static 'img/icons/close_white.svg' %}">Slett</button>
+                    <button class="button book-delete" data-book-pk="{{ book.pk }}"><img src="{% static 'img/icons/close_white.svg' %}"><span>Slett</span></button>
                 </div>
             </div>
             {% endfor %}
@@ -55,13 +75,16 @@
 {% block javascript %}
 <script src="{% static 'js/ajaxSetup.js' %}"></script>
 <script>
-
+const komite = $('#id_komite');
+$('#is_komite').change(function() {
+    if (!$(this).is(":checked")) {
+        komite.val('');
+    }
+});
 $('.book-delete').click(function() {
     deleteBook($(this), $(this).data('book-pk'));
 });
-
 function deleteBook(self, book_pk) {
-
     $.ajax({
         type: 'POST',
         url: '{% url "delete_book" %}',

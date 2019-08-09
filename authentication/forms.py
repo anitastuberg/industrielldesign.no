@@ -19,11 +19,13 @@ class RegisterForm(forms.ModelForm):
         self.fields['allergies'].widget.attrs['placeholder'] = "Allergier"
         self.fields['password'].widget.attrs['autocomplete'] = "new-password"
         self.fields['password'].widget.attrs['placeholder'] = "Passord"
-        self.fields['graduation_year'].choices = [("", ""),] + list(self.fields["graduation_year"].choices)[1:]
-    
+        self.fields['graduation_year'].choices = [
+            ("", ""), ] + list(self.fields["graduation_year"].choices)[1:]
+
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'graduation_year', 'allergies', 'password', 'is_komite']
+        fields = ['email', 'first_name', 'last_name',
+                  'graduation_year', 'allergies', 'password', 'komite']
         widgets = {
             'password': forms.PasswordInput(),
         }

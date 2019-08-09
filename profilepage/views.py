@@ -5,14 +5,14 @@ from django.shortcuts import render, redirect
 from authentication.forms import RegisterForm
 from authentication.models import Profile
 from books.models import Book
-
-
-def get_user(request):
-    return Profile.objects.get(pk=request.user.pk)
+from leonardo.models import Komite
 
 
 def my_profile(request):
-    user = get_user(request)
+    try:
+        user = Profile.objects.get(pk=request.user.pk)
+    except Profile.DoesNotExist:
+        return redirect('login')
     form = RegisterForm(instance=user)
     my_books = Book.objects.filter(
         seller=Profile.objects.get(pk=request.user.pk))
@@ -28,30 +28,30 @@ def my_profile(request):
         else:
             return render(request, 'profilepage/profilepage.html', context)
 
-
-def change_password(request):
-    user = get_user(request)
-    if request.user.is_authenticated:
-        if request.method == 'GET':
-            return render(request, 'profilepage/change-password.html', {})
+    else:
+        form = RegisterForm(request.POST, instance=user)
+        komite = form['komite'].value()
+        allergies = form['allergies'].value()
+        graduation_year = form['graduation_year'].value()
+        print('Komite:', komite)
+        if allergies:
+            user.allergies = allergies
+        if komite:
+            user.komite = Komite.objects.get(pk=komite)
         else:
-            password = request.POST['password']
+            user.komite = None
+        if graduation_year:
+            user.graduation_year = graduation_year
+        user.save()
+        if request.POST.get('new-password'):
+            password = request.POST['new-password']
             user.set_password(password)
             user.save()
             login(request, authenticate(
                 request, email=user.email, password=user.password))
-            redirect('my_profile')
-    else:
-        redirect('login')
 
-
-def change_info(request):
-    user = get_user(request)
-    form = RegisterForm(request.POST, instance=user)
-    user.allergies = form['allergies'].value()
-    user.is_komite = form['is_komite'].value()
-    user.graduation_year = form['graduation_year'].value()
-    user.save()
+        context['form'] = RegisterForm(instance=user)
+        return render(request, 'profilepage/profilepage.html', context)
 
 
 def delete_book(request):
