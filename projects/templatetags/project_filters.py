@@ -7,6 +7,6 @@ register = template.Library()
 def get_first_project_image_url(images):
     images = list(images)
     if len(images):
-        return list(images)[0].image.url
+        return list(images)[0].thumbnail.url
     else:
         return "Unknown"

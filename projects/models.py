@@ -1,6 +1,6 @@
 from django.db import models
-from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFit
+from imagekit.models import ProcessedImageField, ImageSpecField
+from imagekit.processors import ResizeToFit, ResizeToFill
 from django.conf import settings
 from django.template.defaultfilters import slugify
 import datetime
@@ -10,7 +10,11 @@ import datetime
 class ProjectImage(models.Model):
     name = models.CharField(max_length=500, blank=True, null=True)
     image = ProcessedImageField(upload_to='projectimages/', processors=[
-                                ResizeToFit(2000, 2000, False)], format='JPEG', options={'quality': 85})
+                                ResizeToFit(2000, 2000, False)], format='JPEG',
+                                options={'quality': 85})
+    thumbnail = ImageSpecField(source='image', processors=[
+        ResizeToFill(700, 700, False)], format='JPEG',
+        options={'quality': 100})
     project = models.ForeignKey(
         'Project', on_delete=models.CASCADE, blank=True, null=True)
     creation_date = models.DateTimeField(auto_now_add=True, auto_now=False)

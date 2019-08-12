@@ -3,6 +3,7 @@
 {% load static %}
 {% load days_until %}
 {% load project_filters %}
+{% load imagekit %}
 
 {% block page_title %}Hjem{% endblock %}
 
@@ -35,7 +36,7 @@
         <div class="projects box-container">
             {% for project in projects %}
             <a class="box" href="{% url 'project_detail' project_pk=project.pk %}">
-                <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}">
+                <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}" alt="{{ project.creator }}">
             </a>
             {% endfor %}
         </div>
