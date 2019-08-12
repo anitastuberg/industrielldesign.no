@@ -25,7 +25,6 @@
     <title>{% block page_title %}{% endblock %} – Leonardo linjeforening</title>
     
     {% block extra_head %}{% endblock extra_head %}
-    {% comment %} <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> {% endcomment %}
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
@@ -38,16 +37,10 @@
     <link rel="icon" type="image/png" href="{% static 'img/favicon/Logo_32.png' %}" sizes="32x32">
     <link rel="icon" type="image/png" href="{% static 'img/favicon/Logo_64.png' %}" sizes="64x64">
 
-    {% if not debug %}
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/vue.min.js' %}"></script>
-    {% else %}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    {% endif %}
-    {% comment %} <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> {% endcomment %}
 
 
     <meta name="description" content="{% block meta %}{% endblock %}">
