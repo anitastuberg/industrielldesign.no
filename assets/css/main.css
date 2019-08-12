@@ -1462,6 +1462,33 @@ footer #sit-logo {
   left: 0;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td,
+table th {
+  border: 1px solid #1A1A1A;
+  padding: 8px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #e8e6e0;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: left;
+  font-weight: bold;
+  background-color: #F3F2EF;
+}
+
 #homepage section {
   display: block;
   height: 100vh;

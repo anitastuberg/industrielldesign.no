@@ -63,7 +63,7 @@
                         },
                         success: function (data) {
                             if (data === 'success') {
-                                window.location.href = {% url 'tips' %};
+                                window.location.href = "{% url 'tips' %}";
                             } else {
                                 alert("Noe gikk galt");
                             }

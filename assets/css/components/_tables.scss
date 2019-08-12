@@ -1,0 +1,26 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td,
+    th {
+        border: $border;
+        padding: 8px;
+    }
+
+    tr:nth-child(odd) {
+        background-color: darken($background-color, 5%);
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    th {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: left;
+        font-weight: bold;
+        background-color: $background-color;
+    }
+}

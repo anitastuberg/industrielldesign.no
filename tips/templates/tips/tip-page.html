@@ -5,7 +5,7 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <div class="container nav ql-container">
-    <a class="button secondary fab" href="{% url 'edit-tip' tip_slug=tip.slug %}">Rediger</a>
+    <a class="button secondary fab" href="{% url 'edit-tip' tip_slug=tip.slug %}"><span>Rediger</span></a>
         <div class="content p-width">
             {{ tip.html|safe }}
         </div>
