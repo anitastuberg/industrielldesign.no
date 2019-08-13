@@ -83,15 +83,15 @@ def stringBuilder(event):
     elif event.class_4 and event.class_5:
         open_for_string = "4. og 5. klasse"
     elif event.class_1:
-        open_for_string = "1. klassse"
+        open_for_string = "1. klasse"
     elif event.class_2:
-        open_for_string = "2. klassse"
+        open_for_string = "2. klasse"
     elif event.class_3:
-        open_for_string = "3. klassse"
+        open_for_string = "3. klasse"
     elif event.class_4:
-        open_for_string = "4. klassse"
+        open_for_string = "4. klasse"
     elif event.class_5:
-        open_for_string = "5. klassse"
+        open_for_string = "5. klasse"
     else:
         open_for_string = "Noen"
 
