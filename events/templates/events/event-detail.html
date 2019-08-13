@@ -30,7 +30,7 @@
                         {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</a>
                     {% else %}
                     <button class="button cta" type="submit"
-                        {% if not buttonState %}disabled{% endif %}>{{ buttonText }}</button>
+                        {% if not buttonState %}disabled{% endif %}><span>{{ buttonText }}</span></button>
                     {% if event.registration_start_time and not_open_yet %}
                     <p class="registration-start-time">Påmelding
                         åpner: {{ event.registration_start_time|date:"j. F H:i" }}</p>
