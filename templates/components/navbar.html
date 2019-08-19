@@ -39,6 +39,10 @@
                         href="{% url 'thesign' %}">TheSign</a></li>
                 <li class="{% if 'om-leonardo' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'about' %}">Om oss</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="{% if 'vedtekter' in request.path %}selected{% endif %}"><a class="nav-item"
+                        href="{% url 'vedtekter' %}">Vedtekter</a></li>
+                {% endif %}
             </ul>
         </li>
 

@@ -14,23 +14,20 @@ class CreateEventForm(forms.ModelForm):
         self.fields['short_description'].widget.attrs['placeholder'] = "Kort beskrivelse"
         self.fields['description'].widget.attrs['placeholder'] = "Lengre beskrivelse"
         self.fields['location'].widget.attrs['placeholder'] = "Sted"
-        self.fields['event_start_time'].widget.attrs['placeholder'] = "Når begynner arrangementet?"
-        self.fields['event_end_time'].widget.attrs.update({'type': 'datetime-local'})
-
 
     class Meta:
         model = Event
         fields = [
             'title',
             'short_description',
-            'description', 
+            'description',
             'location',
-            'event_start_time', 
-            'event_end_time', 
-            'registration_required', 
+            'event_start_time',
+            'event_end_time',
+            'registration_required',
             'only_komite',
             'alumni',
-            'class_1', 
+            'class_1',
             'class_2',
             'class_2',
             'class_3',
