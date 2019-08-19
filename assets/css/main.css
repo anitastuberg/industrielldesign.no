@@ -2285,4 +2285,36 @@ table th {
 #leo-snake__score div span {
   font-size: 1.1em;
 }
+
+#vedtekter ol {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#vedtekter ol > li {
+  display: table;
+  counter-increment: item;
+  margin-bottom: 0;
+}
+
+#vedtekter ol > li:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 0.6em;
+}
+
+#vedtekter li ol > li {
+  margin: 0;
+}
+
+#vedtekter li ol > li:before {
+  content: counters(item, ".") " ";
+}
+
+#vedtekter ul li {
+  list-style-type: disc;
+}
 /*# sourceMappingURL=main.css.map */
