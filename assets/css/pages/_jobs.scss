@@ -1,0 +1,68 @@
+#job {
+
+    .filters {
+        margin-bottom: 2rem;
+    }
+
+    .filters .filter {
+        display: inline-block;
+    }
+}
+
+.annonse {
+    $logo-size: 120px;
+    $offset: 6px;
+    display: grid;
+    grid-template-columns: $logo-size 1fr;
+    grid-column-gap: 2rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+
+    &:hover .logo {
+        transform: translate($offset, $offset);
+
+        .border {
+            transform: translate(0, 0);
+        }
+    }
+
+    .logo {
+        position: relative;
+        height: $logo-size;
+        width: $logo-size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 200ms ease-in-out;
+
+        .border {
+            position: absolute;
+            transition: transform 200ms ease-in-out;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 80%;
+            height: 80%;
+            object-fit: scale-down;
+        }
+    }
+
+    .border {
+        transform: translate($offset, $offset);
+        border: var(--border-width) solid;
+    }
+}
+
+.text {
+    h3 {
+        margin-bottom: 0.5rem;
+    }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

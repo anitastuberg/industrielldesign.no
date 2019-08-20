@@ -4,17 +4,69 @@
 {% block page_title %}Jobb{% endblock %}
 
 {% block content %}
-    {% include 'components/navbar.html' %}
-    <div id="job" class="container nav narrow">
+{% include 'components/navbar.html' %}
+<div id="job" class="container nav narrow">
+    <h1>Stilllingsannonser</h1>
+    <br>
+    <br>
+    <br>
+    <div class="wrapper">
+        <div class="filters">
+        {% comment %} {% for filter in filters %}
+            <div class="filter">{{ filter.name }}</div>
+        {% endfor %} {% endcomment %}
+        </div>
         <div class="stilllingsannonser">
             {% for job in jobs %}
-            <div class="annonse">
-                <h3>{{ job.title }}</h3>
-                <p class="beskrivelse">{{ job.description }}</p>
-                <p class="deadline"><span class="label">Frist: </span>{{ job.deadline | date:'d. F' }}</p>
-                <p class="label">{{ job.deadline|days_until }} dager igjen</p>
-            </div>
+            <a class="annonse" href="{% url 'job-detail' job_slug=job.slug %}">
+                <div class="logo" style="background: {{ job.company.color }}">
+                    <img src="{{ job.company.logo.url }}" alt="{{ job.company.name }}">
+                    <div class="border" style="border-color: {{ job.company.color }}"></div>
+                </div>
+                <div class="text">
+                    <div>
+                        <h3>{{ job.title }}</h3>
+                        <p class="deadline"><span class="label">Frist: </span>{{ job.deadline | date:'d. F' }}</p>
+                        <p class="caption">{{ job.deadline|days_until }} dager igjen</p>
+                    </div>
+                    <p>{% for filter in job.filters.all %}<span>#{{ filter.name }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}</p>
+                </div>
+            </a>
             {% endfor %}
         </div>
     </div>
+</div>
 {% endblock content %}
+{% block javascript %}
+<script>
+        let currentScroll;
+        let url;
+        let projectImages = $('.project-image');
+
+        function saveLocation(scroltop) {
+
+            url = window.location.href;
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function () {
+                localStorage.setItem(url, scroltop);
+            }, 250));
+        }
+
+        $(window).scroll(function () {
+            currentScroll = $(this).scrollTop();
+            saveLocation(currentScroll);
+            projectImages.each(function () {
+                if (Math.abs(($(this).offset().top) - currentScroll) < 400) {
+                    projectImages.removeClass("active");
+                    $(this).addClass("active")
+                }
+            });
+        });
+
+        if (localStorage.getItem(window.location.href)) {
+            url = window.location.href;
+            scroltop = localStorage.getItem(url);
+            $(window).scrollTop(scroltop);
+        }
+    </script>
+{% endblock javascript %}

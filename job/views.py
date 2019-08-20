@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render
 
-from job.models import Job
+from job.models import Job, JobFilter
 
 
 def job(request):
@@ -14,7 +14,16 @@ def job(request):
         except ValueError:
             return d + (datetime.date(d.year + years, 1, 1) - datetime.date(d.year, 1, 1))
     context = {
-        "jobs": Job.objects.filter(deadline__range=(datetime.date.today(), add_years()))
+        "jobs": Job.objects.filter(deadline__range=(datetime.date.today(), add_years())),
+        'filters': JobFilter.objects.all()
     }
 
     return render(request, 'job/jobb.html', context)
+
+
+def job_detail(request, job_slug):
+    job = Job.objects.get(slug=job_slug)
+    context = {
+        'job': job
+    }
+    return render(request, 'job/job-detail.html', context)
