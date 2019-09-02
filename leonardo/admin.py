@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import TheSign, Komite
+from .models import TheSign, Komite, Kontaktperson
 
 
 
@@ -16,3 +16,4 @@ class KomiteAdmin(admin.ModelAdmin):
 
 admin.site.register(TheSign, TheSignAdmin)
 admin.site.register(Komite, KomiteAdmin)
+admin.site.register(Kontaktperson)

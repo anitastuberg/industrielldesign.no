@@ -45,3 +45,11 @@ class Komite(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Kontaktperson(models.Model):
+    name = models.CharField(max_length=250)
+    image = ProcessedImageField(upload_to='komite/', processors=[ResizeToFit(
+        500, 500, False)], format='JPEG', options={'quality': 85})
+    email = models.PositiveIntegerField()
+    stilling = models.CharField(max_length=250)
