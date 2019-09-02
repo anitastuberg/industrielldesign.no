@@ -1954,6 +1954,10 @@ table th {
   width: 100%;
 }
 
+#about .kontaktperson img {
+  max-width: 200px;
+}
+
 @media screen and (min-width: 48em) {
   #courses .box, #courses .url-preview, #courses .event, #courses #course-detail .add-link, #course-detail #courses .add-link, #courses .labels {
     display: -ms-grid;

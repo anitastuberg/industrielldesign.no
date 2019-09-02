@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponseForbidden
 
-from .models import Komite
+from .models import Komite, Kontaktperson
 from .models import TheSign
 
 # Create your views here.
 
 
 def about(request):
-    return render(request, 'leonardo/about.html', {})
+    context = {
+        'kontaktpersons': Kontaktperson.objects.all
+    }
+    return render(request, 'leonardo/about.html', context)
 
 
 def komiteer(request):
