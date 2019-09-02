@@ -53,3 +53,6 @@ class Kontaktperson(models.Model):
         500, 500, False)], format='JPEG', options={'quality': 85})
     email = models.CharField(max_length=250)
     stilling = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
