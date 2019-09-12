@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Folketinget</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/folketinget/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/folketinget/favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+    <nav>
+        <img src="{% static 'img/folketinget/us-capitol.svg' %}" alt="parlamentet">
+        <b>Folketinget</b>
+    </nav>
+    <h1>En enklere politikk</h1>
+    <p>Hvordan kan vi forenkle og tilgjengeliggjøre politisk data for å øke engasjementet og forståelsen for politikk?
+    </p>
+    <ul>
+        <li>Hvor finner man informasjon om vedtak?</li>
+        <li>Hvordan er egentlig maktfordelingen i en koalisjon?</li>
+        <li>Burde man lese hele partiprogrammet?</li>
+        <li>Hvordan påvirker denne politikken meg?</li>
+    </ul>
+    <p>Vi vil se nærmere på hvordan hver og enkelt kan følge med på sakene som omhandler oss, og bruke stemmen vår med
+        selvtillit når det er valg!</p>
+    <a href="https://folketinget.typeform.com/to/lbYxks">Gi oss din tilbakemelding</a>
+    <img id="voting" src="{% static 'img/folketinget/undraw_voting_nvu7.svg' %}" alt="voting">
+</body>
+
+</html>
