@@ -94,3 +94,9 @@ img#voting {
     width: 40vw;
     height: auto;
 }
+
+@media screen and (max-width: 600px) {
+    img#voting {
+        display: none;
+    }
+}
