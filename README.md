@@ -48,8 +48,8 @@ Alt 2 Virtualenv through PyCharm:
 
 7. Open the project folder in terminal and type `pip3 install -r requirements.txt`
 8. Now run a couple of commands to set up the database:
-  - `python manage.py makemigrations`
-  - `python manage.py migrate`
-9. Run the server with `python manage.py runserver`
+  - `python3 manage.py makemigrations`
+  - `python3 manage.py migrate`
+9. Run the server with `python3 manage.py runserver`
 10. Open your browser and type in `localhost:8000` in the address-bar.
 
