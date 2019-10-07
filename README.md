@@ -26,6 +26,7 @@ Webpage for the designstudents at Industrial Design, NTNU Trondheim.
 
 1. Install python 3 >= 3.6
 2. Install pip3
+3. Install PostGRES, guide [here](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)
 3. Clone the git-repository somewhere on your computer `git clone url`
 
 #### Virtual environment
