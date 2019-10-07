@@ -6,4 +6,4 @@ DEBUG = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), '..', 'media')
-EMAIL_HOST_PASSWORD = 'Jwa6dq95xjgvIDsqer'
+EMAIL_HOST_PASSWORD = ''
