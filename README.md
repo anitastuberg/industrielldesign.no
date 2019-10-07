@@ -51,6 +51,7 @@ Alt 2 Virtualenv through PyCharm:
 8. Now run a couple of commands to set up the database:
   - `python3 manage.py makemigrations`
   - `python3 manage.py migrate`
+9. Create a superuser with the command `python3 manage.py createsuperuser`.
 9. Run the server with `python3 manage.py runserver`
 10. Open your browser and type in `localhost:8000` in the address-bar.
 
