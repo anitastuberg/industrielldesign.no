@@ -26,7 +26,9 @@ Webpage for the designstudents at Industrial Design, NTNU Trondheim.
 
 1. Install python 3 >= 3.6
 2. Install pip3
-3. Clone the git-repository somewhere on your computer `git clone url`
+3. Install Git
+4. Install PostGRES, guide [here](shttps://devcenter.heroku.com/articles/heroku-postgresql#local-setup)
+5. Clone the git-repository somewhere on your computer `git clone url`
 
 #### Virtual environment
 Alt 1, Manual setup:
@@ -47,8 +49,9 @@ Alt 2 Virtualenv through PyCharm:
 
 7. Open the project folder in terminal and type `pip3 install -r requirements.txt`
 8. Now run a couple of commands to set up the database:
-  - `python manage.py makemigrations`
-  - `python manage.py migrate`
-9. Run the server with `python manage.py runserver`
+  - `python3 manage.py makemigrations`
+  - `python3 manage.py migrate`
+9. Create a superuser with the command `python3 manage.py createsuperuser`.
+9. Run the server with `python3 manage.py runserver`
 10. Open your browser and type in `localhost:8000` in the address-bar.
 

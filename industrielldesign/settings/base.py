@@ -25,7 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'otmxj!sqb^b8$sdv@o-2&iiatwa0@bb6)rz$$1j6#hamw&jfn_'
 
-ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com', 'www.industrielldesign.no', 'localhost', 'industrielldesign.herokuapp.com']
+ALLOWED_HOSTS = ['LeonardoLinjeforening.pythonanywhere.com',
+                 'www.industrielldesign.no', 'localhost', 'industrielldesign.herokuapp.com']
 
 AUTH_USER_MODEL = 'authentication.Profile'
 
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
     'tips',
     'leonardo',
     'student',
+    'printqueue',
     # Third party apps:
     'imagekit',
     'storages'
@@ -88,7 +90,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             'templates',
-            ],
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,4 +158,3 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 django_heroku.settings(locals())
-
