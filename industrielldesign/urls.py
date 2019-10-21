@@ -7,6 +7,8 @@ from django.contrib import admin
 handler404 = 'student.views.handler404'
 handler500 = 'student.views.handler500'
 
+from printqueue.views import printer_overview_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
