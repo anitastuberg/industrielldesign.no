@@ -8,8 +8,10 @@ from .models import TheSign
 
 
 def about(request):
+    contacts = Kontaktperson.objects.all().order_by('rank')
+
     context = {
-        'kontaktpersons': Kontaktperson.objects.all
+        'kontaktpersons': contacts
     }
     return render(request, 'leonardo/about.html', context)
 
