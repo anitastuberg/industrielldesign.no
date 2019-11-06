@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Printer, Job
+from .models import Printjob, Printer
 
 # Register your models here.
 admin.site.register(Printer)
-admin.site.register(Job)
+admin.site.register(Printjob)

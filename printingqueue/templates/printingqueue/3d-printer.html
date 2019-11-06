@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "components/navbar.html" %}
+	<div class="container">
+		<h1>3D-printer</h1>
+		<p>Reservasjoner:</p>
+		<div class="printjobs box-container">
+			{% for job in printjobs %}
+			<div class="job box">
+				<span>{{ job.printer.name }}</span>
+				<span>{{ job.duration }} hrs</span>
+				<span>{{ job.start_time|date:"d.m.y h:i"}}</span>
+			</div>	
+			{% endfor %}
+		</div>
+		<form class="register-job" method="POST">
+			{% csrf_token %}
+			<div class="input-field">
+				{{ form.duration }}
+				<label for="duration">Lengde</label>
+			</div>
+			<div class="input-field">
+				{{ form.description }}
+				<label for="duration">Beskrivelse</label>
+			</div>
+			<div class="input-field">
+				{{ form.start_time }}
+				<label for="duration">Dato</label>
+			</div>
+			<div class="input-field">
+				{{ form.printer }}
+				<label for="duration">Lengde</label>
+			</div>
+			<button class="button" type="submit"><span>Opprett</span></button>
+		</form>
+	</div>
+{% endblock %}

@@ -53,7 +53,7 @@
                 href="{% url 'all_events' %}">Arrangementer</a></li>
 
         <li><a class="nav-item {% if 'print' in request.path %}selected{% endif %}"
-                href="{% url 'all_events' %}">Print</a></li>
+                href="{% url '3d_printer' %}">Print</a></li>
 
         {% if request.user.is_authenticated %}
         <li><a class="nav-item user {% if 'min-profil' in request.path %}selected{% endif %}" href="{% url 'my_profile' %}">

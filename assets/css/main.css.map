@@ -24,6 +24,7 @@
         "components/_face.scss",
         "components/_dropzone.scss",
         "components/_tables.scss",
+        "components/_gcode-reservation.scss",
         "pages/_homepage.scss",
         "pages/events/_event-detail.scss",
         "pages/events/_all-events.scss",

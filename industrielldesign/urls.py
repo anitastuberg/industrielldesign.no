@@ -7,7 +7,6 @@ from django.contrib import admin
 handler404 = 'student.views.handler404'
 handler500 = 'student.views.handler500'
 
-from printqueue.views import printer_overview_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +23,7 @@ urlpatterns = [
     path('', include('tips.urls')),
     path('', include('student.urls')),
     path('', include('leonardo.urls')),
-    path('', include('printqueue.urls')),
+    path('', include('printingqueue.urls')),
 ]
 
 if settings.DEBUG:

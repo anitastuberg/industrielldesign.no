@@ -2477,8 +2477,7 @@ table th {
   width: 300px;
   position: absolute;
   top: 80px;
-  /*right: -300px;*/
-  display:block;
+  display: none;
   height: 70px;
   z-index: 1000;
   -webkit-box-shadow: -2px 2px 8px 0px rgba(0,0,0,0.75);
