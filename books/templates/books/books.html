@@ -29,7 +29,11 @@
                     <div class="bottom">
                         <p class="caption">{{ book.seller.first_name }} {{ book.seller.last_name }}, {{ book.seller.get_class_year }}.
                             klasse</p>
+                            {% if request.user.is_authenticated %}
                             <p class="caption">{{ book.seller.email }}</p>
+                            {% else %}
+                            <p class="caption">Logge inn for kontaktinfo</p>
+                            {% endif %}
                         <h6 class="subtitle2">{{ book.price }} kr</h6>
                     </div>
                 </div>
