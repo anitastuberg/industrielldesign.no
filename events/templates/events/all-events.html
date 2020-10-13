@@ -16,7 +16,11 @@
         <img src="{% static 'img/illustrations/all-events.png' %}" alt="Bli med på Leonardos arrangmenter som Siri" />
     </header>
     <div class="box-container">
-        {% for event in events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
+        {% for event in upcoming_events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
+       
+    </div>
+    <div class="box-container" style="margin-top: 1.5rem"> <!-- inline styling for margin mellom de to div'ene for gamle og nye-->
+        {% for event in past_events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
     </div>
 </div>
 {% endblock %}

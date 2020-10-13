@@ -19,14 +19,12 @@ from .forms import CreateEventForm
 
 def all_events(request):
     now = timezone.now()
-    events = (Event.objects.annotate(
-        relevance=models.Case(
-            models.When(event_start_time__gte=now, then=1),
-            models.When(event_start_time__lt=now, then=2),
-            output_field=models.IntegerField(),
-        )).order_by('relevance', 'event_start_time'))
-    context = {
-        'events': events
+    upcoming = Event.objects.annotate().filter(event_start_time__gte=now) #kommende events, er sortert etter dato i database
+
+    past = Event.objects.annotate().filter(event_start_time__lt=now).reverse() #tidligere events, reverseres for å få eldste sist
+    context = { #pusher til to variabler, hentes inn i all-events.html
+        'past_events': past,
+        'upcoming_events': upcoming
     }
 
     return render(request, 'events/all-events.html', context)
