@@ -1,9 +1,14 @@
 {% load days_until %}
 
-{% with event.event_start_time|days_until as days%}
+{% with event.event_start_time|days_until as diff%}
 <a class="event {% if days < 0 %}old{% endif %}" href="{% url 'event' event_slug=event.slug %}">
     <div>
-        {% if days >= 0 %}<p>{{ days }} dager til</p>{% endif %}
+        <!-- {% if diff.days > 0 %}<p>{{ diff.days }} dager til</p>{% endif %}
+        {% if diff.hours >= 0 %} <p> {{diff.hours }} timer til </p> {% endif %} -->
+        {% if diff.days > 1 %} <p> {{ diff.days }} dager til </p>
+        {% elif diff.days == 1 %} <p> {{ diff.days }} dag til </p>
+        {% elif diff.seconds > 3600 %} <p> {% widthratio diff.seconds 3600 1 %} timer til </p>
+        {% else %} <p> {% widthratio diff.seconds 60 1 %} minutter til </p> {% endif %}
         <p class="date">{{ event.event_start_time|date:"d.m.y" }}</p>
         <h3>{{ event.title }}</h3>
     </div>
