@@ -1,9 +1,7 @@
 {% load days_until %}
 
-{% with event.event_start_time|days_until as days %}
-<a class="event {% if days < 0 %}old{% endif %}"
-    href="{% url 'event' event_slug=event.slug %}"
-    >
+{% with event.event_start_time|days_until as days%}
+<a class="event {% if days < 0 %}old{% endif %}" href="{% url 'event' event_slug=event.slug %}">
     <div>
         {% if days >= 0 %}<p>{{ days }} dager til</p>{% endif %}
         <p class="date">{{ event.event_start_time|date:"d.m.y" }}</p>

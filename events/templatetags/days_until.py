@@ -3,7 +3,6 @@ import datetime
 
 register = template.Library()
 
-
 @register.filter
 def days_until(value):
     """
@@ -26,7 +25,6 @@ def days_until(value):
     else:
         # Date is in the past; return expired message
         return -1
-
 
 @register.filter(name='times')
 def times(number):
