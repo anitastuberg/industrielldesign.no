@@ -18,15 +18,10 @@ def home(request):
             return d + (datetime.date(d.year + years, 1, 1) - datetime.date(d.year, 1, 1))
 
     now = timezone.now()
-    events = (Event.objects.annotate(
-        relevance=models.Case(
-            models.When(event_start_time__gte=now, then=1),
-            models.When(event_start_time__lt=now, then=2),
-            output_field=models.IntegerField(),
-        )).order_by('relevance', 'event_start_time'))
+    upcoming = Event.objects.annotate().filter(event_start_time__gte=now)
 
     context = {
-        "events": events[0:4],
+        "events": upcoming[0:4],
         'projects': Project.objects.all()[0:6]
     }
     return render(request, 'index.html', context)
