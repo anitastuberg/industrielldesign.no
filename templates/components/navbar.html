@@ -33,6 +33,8 @@
         <li class="nav-item dropdown {% if 'leonardo' in request.path %}selected{% endif %}">
             <span>Leonardo</span>
             <ul>
+                <li class="{% if 'nyheter' in request.path %}selected{% endif %}"><a class="nav-item"
+                        href="{% url 'nyheter' %}">Nyheter</a></li>
                 <li class="{% if 'komiteer' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'komiteer' %}">Komiteer</a></li>
                 <li class="{% if 'thesign' in request.path %}selected{% endif %}"><a class="nav-item"

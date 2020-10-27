@@ -5,6 +5,8 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
+    path('leonardo/nyheter/', views.nyheter, name='nyheter'),
+    path('leonardo/nyheter/<slug:nyhet_slug>', views.nyhet, name='nyhet'),
     path('leonardo/komiteer/', views.komiteer, name='komiteer'),
     path('leonardo/komiteer/<slug:komite_slug>',
          views.komite_detail, name='komite_detail'),

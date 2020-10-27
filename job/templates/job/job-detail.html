@@ -14,6 +14,6 @@
         {% endwith %}
         <p class="caption"></p>
         <br>
-        <p class="p-width white-space-wrap">{{job.description}}</p>
+        <p class="p-width white-space-wrap">{{job.description|linebreaks}}</p>
     </div>
 {% endblock content %}

@@ -24,12 +24,20 @@
     </section>
     <br>
     <div class="container">
+        <h4>Siste nyheter</h4><br>
+        <div class="events box-container">
+            {% for nyhet in nyheter %} {% include 'components/nyhet-component.html' with nyhet=nyhet %} {% endfor %}
+        </div>
+        <br>
+        <a href="{% url 'nyheter' %}" class="subtitle1 right">Se flere nyheter <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
+
         <h4>Kommende hendelser</h4><br>
         <div class="events box-container">
             {% for event in events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
         </div>
         <br>
         <a href="{% url 'all_events' %}" class="subtitle1 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
+        
         <div class="projects box-container">
             {% for project in projects %}
             <a class="box" href="{% url 'project_detail' project_pk=project.pk %}">
