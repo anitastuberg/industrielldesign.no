@@ -10,6 +10,7 @@
     <br>
     <br>
     <br>
+    <p>OBS: Om du ikke får opp noen stillingsannsonser kan det hjelpe å deaktivere AdBlock</p>
     <div class="wrapper">
         <div class="filters">
         {% comment %} {% for filter in filters %}
@@ -27,7 +28,9 @@
                     <div>
                         <h3>{{ job.title }}</h3>
                         <p class="deadline"><span class="label">Frist: </span>{{ job.deadline | date:'d. F' }}</p>
-                        <p class="caption">{{ job.deadline|days_until }} dager igjen</p>
+                        {% with job.deadline|days_until as diff %}
+                        <p class="caption">{{ diff.days }} dager igjen</p>
+                        {% endwith %}
                     </div>
                     <p>{% for filter in job.filters.all %}<span>#{{ filter.name }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}</p>
                 </div>
