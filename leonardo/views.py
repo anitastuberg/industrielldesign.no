@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseForbidden
+from django.utils import timezone
 
 from .models import Komite, Kontaktperson
-from .models import TheSign
+from .models import TheSign, Nyhet
 
 # Create your views here.
 
@@ -42,3 +43,17 @@ def vedtekter(request):
         return render(request, 'leonardo/vedtekter.html', {})
     else:
         return HttpResponseForbidden()
+
+def nyheter(request):
+    now = timezone.now()
+    past = Nyhet.objects.annotate().filter(post_time__lt=now)
+    context = {
+        'nyheter': past
+    }
+    return render(request, 'leonardo/nyheter.html', context)
+
+def nyhet(request, nyhet_slug):
+    context = {
+        'nyhet': Nyhet.objects.get(slug=nyhet_slug)
+    }
+    return render(request, 'leonardo/nyheter-detail.html', context)

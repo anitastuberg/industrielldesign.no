@@ -1,0 +1,14 @@
+{% load days_until %}
+
+{% with nyhet.post_time|days_until as diff %}
+<a class="event" href="{% url 'nyhet' nyhet_slug=nyhet.slug %}">
+    <div>
+        <p style="visibility:hidden;">a</p> <!-- riktig spacing-->
+        <p class="date">Publisert {{ nyhet.post_time|date:"d.m.y" }}</p>
+        <h3>{{ nyhet.title }}</h3>
+    </div>
+    <div class="image-container">
+        <img src="{{ nyhet.thumbnail.url }}" alt="{{ nyhet.title }}">
+    </div>
+</a>
+{% endwith %}

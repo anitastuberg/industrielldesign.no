@@ -9,7 +9,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ["__str__", "event_start_time"]
     form = CreateEventForm
     filter_horizontal = ('registered_users', 'waiting_list')
-    ordering = ('event_start_time',)
+    ordering = ('-event_start_time',)
     class Meta:
         model = Event
 

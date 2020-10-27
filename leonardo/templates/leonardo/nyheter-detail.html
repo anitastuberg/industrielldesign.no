@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_title %}{{ nyhet.title }}{% endblock page_title %}
+
+{% block content %}
+{% include 'components/navbar.html' %}
+<div class="container nav" id="event-detail">
+    <div class="image">
+        <img src="{{ nyhet.image.url }}" alt="{{ nyhet.title }}">
+    </div>
+    <header>
+        <h1>{{ nyhet.title }}</h1>
+        <div class="info">
+            <p><img src="{% static 'img/icons/time.svg' %}">{{ nyhet.post_time|date:"d. F Y "}}</p>
+        </div>
+    </header>
+
+    <div class="body p-width">
+        <p class="content-markdown">{{ nyhet.description | linebreaks }}</p>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.4.0/marked.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Renders markdown from db to html
+        marked.setOptions({
+            sanitize: true,
+            tables: true,
+            baseUrl: "../"
+        });
+        let content = $('.content-markdown');
+        let markedContent = marked(content.text());
+        content.html(markedContent);
+    });
+</script>
+{% endblock javascript %}

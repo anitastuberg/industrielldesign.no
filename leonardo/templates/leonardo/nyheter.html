@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load days_until %}
+{% block page_title %}Nyheter{% endblock page_title %}
+
+{% block content %}
+{% include 'components/navbar.html' %}
+<div id="all-events" class="container nav">
+
+    <header>
+        <h1>Nyheter</h1>
+        {% if request.user.is_authenticated %}
+            <a class="button" href="/admin/leonardo/nyhet/add/"><span>Ny nyhet</span></a>
+            <br><br>
+        {% endif %}
+        <img src="{% static 'img/illustrations/bao.png' %}" alt="Les Leonardos nyheter">
+    </header>
+    <div class="box-container">
+        {% for nyhet in nyheter %} {% include 'components/nyhet-component.html' with nyhet=nyhet %} {% endfor %}
+    </div>
+</div>
+{% endblock %}

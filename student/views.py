@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from events.models import Event
 from projects.models import Project
+from leonardo.models import Nyhet
 
 
 def home(request):
@@ -19,10 +20,12 @@ def home(request):
 
     now = timezone.now()
     upcoming = Event.objects.annotate().filter(event_start_time__gte=now)
+    nyheter = Nyhet.objects.annotate().filter(post_time__lt=now)
 
     context = {
         "events": upcoming[0:4],
-        'projects': Project.objects.all()[0:6]
+        'projects': Project.objects.all()[0:6],
+        'nyheter': nyheter[0:4]
     }
     return render(request, 'index.html', context)
 

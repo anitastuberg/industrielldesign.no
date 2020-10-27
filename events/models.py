@@ -71,6 +71,6 @@ class Event(models.Model):
 
     class Meta:
         # ordering = ['event_start_date']
-        verbose_name = 'Event'
-        verbose_name_plural = 'Events'
+        verbose_name = 'Arrangement'
+        verbose_name_plural = 'Arrangementer'
         ordering = ['event_start_time', 'title']
