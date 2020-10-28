@@ -106,7 +106,7 @@ class Profile(AbstractBaseUser):
             return 4
         elif self.graduation_year == self.YEAR:
             return 5
-        elif self.graduation_year < self.YEAR:
+        elif self.graduation_year > self.YEAR:
             return 6
 
     # Sets the user to alumni if they've finished
