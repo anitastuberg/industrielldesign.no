@@ -64,7 +64,7 @@ def checkClass(user, event):
         has_access = True
     if user.get_class_year() == 5 and event.class_5:
         has_access = True
-    if user.get_class_year() > 5 and event.alumni:
+    if user.get_class_year() == "Alumni" and event.alumni:
         has_access = True
     return has_access
 
