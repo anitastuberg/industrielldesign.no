@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block page_title %}Leie Soundbox{% endblock page_title %}
+
+{% block content %}
+{% include 'components/navbar.html' %}
+
+<div class="container nav" id="utleie">
+    <h1>Leie Soundbox</h1>
+    <img src="{% static 'img/soundbox.png' %}" alt="Soundbox 2">
+    <p>Ønsker du å leie soundbox til arrangement, fest eller noe helt annet?</p>
+    <br>
+    <h3>Prisliste:</h3>
+    <ul>
+        <li>Privat: 400kr for 1 dag, 100kr for hver påfallene dag</li>
+        <li>Linjeforening: 300kr for 1 dag, 100kr for hver påfallene dag</li>
+        <li>Leonardo: Gratis</li>
+    </ul>
+    <br>
+    <p>Ta kontakt på ilpresidente.leonardo@gmail.com for å sette opp en leieavtale eller mer informasjon!</p>
+</div>
+
+{% endblock content %}

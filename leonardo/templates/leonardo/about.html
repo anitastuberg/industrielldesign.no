@@ -15,7 +15,9 @@
     <section>
         {% for kontaktperson in kontaktpersons  %}
             <div class="kontaktperson">
-                <img src="{{kontaktperson.image.url}}" alt="{{kontaktperson.name}}">
+                <img src="{{kontaktperson.image.url}}"
+                        onmouseover="this.src='{{kontaktperson.hoverImage.url}}';"
+                        onmouseout="this.src='{{kontaktperson.image.url}}';">
                 <div class="kontaktdetails">
                     <div class = "caption gray" style="margin-bottom:8px;">{{kontaktperson.name}}</div>
                     <div class="stilling">{{kontaktperson.stilling}}</div>
