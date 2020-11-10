@@ -57,3 +57,6 @@ def nyhet(request, nyhet_slug):
         'nyhet': Nyhet.objects.get(slug=nyhet_slug)
     }
     return render(request, 'leonardo/nyheter-detail.html', context)
+
+def utleie(request):
+    return render(request, 'leonardo/utleie.html', {})
