@@ -34,8 +34,8 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
     filters = models.ManyToManyField(JobFilter)
     slug = models.SlugField(blank=True, null=True)
-    image = ProcessedImageField(upload_to='job/', processors=[ResizeToFit(2000, 2000, False)], format='JPEG',
-                                options={'quality': 85}, null=True)
+    image = ProcessedImageField(upload_to='job/', processors=[ResizeToFit(1000, 1000, False)], format='JPEG',
+                                options={'quality': 85}, null=True, blank=True)
 
     def __str__(self):
         return self.title
