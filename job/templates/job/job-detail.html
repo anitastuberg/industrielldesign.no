@@ -6,7 +6,9 @@
     {% include "components/navbar.html" %}
     <div id="job-detail" class="container nav">
         <div class="image">
+            {% if job.image.url != null %}
             <img src="{{ job.image.url }}" alt="{{ event.short_description }}">
+            {% endif %}
         </div>
         <h2>{{ job.title }}</h2>
         {% with job.deadline|days_until as diff %}
