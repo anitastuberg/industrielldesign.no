@@ -33,6 +33,8 @@ class Job(models.Model):
     description = models.TextField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
     filters = models.ManyToManyField(JobFilter)
+    hyperlink = models.CharField(max_length=150, null=True, blank=True)
+    hyperlinkText = models.CharField(max_length=150, null=True, blank=True)
     slug = models.SlugField(blank=True, null=True)
     image = ProcessedImageField(upload_to='job/', processors=[ResizeToFit(1000, 1000, False)], format='JPEG',
                                 options={'quality': 85}, null=True, blank=True)
