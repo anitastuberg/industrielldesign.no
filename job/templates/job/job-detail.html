@@ -5,6 +5,7 @@
 {% block content %}
     {% include "components/navbar.html" %}
     <div id="job-detail" class="container nav">
+        
         <div class="image">
             {% if job.image.url != null %}
             <img src="{{ job.image.url }}" alt="{{ event.short_description }}">
@@ -17,5 +18,10 @@
         <p class="caption"></p>
         <br>
         <p class="p-width white-space-wrap">{{job.description|linebreaks}}</p>
+        {% if job.hyperlink != null %} 
+        <a href="{{job.hyperlink}}" class="button" id="job-link-button">
+            <span>{{job.hyperlinkText}}</span>
+        </a>
+        {% endif %}
     </div>
 {% endblock content %}
