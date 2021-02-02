@@ -44,6 +44,8 @@ class Event(models.Model):
         settings.AUTH_USER_MODEL, blank=True, related_name='registerd_users')
     waiting_list = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name='waiting_list_users')
+    external_link = models.CharField(blank=True, null=True, max_length=150)
+    link_text = models.CharField(blank=True, null=True, max_length=150)
     slug = models.SlugField(max_length=60, blank=True)
     image = ProcessedImageField(upload_to='events/', processors=[ResizeToFit(2000, 2000, False)], format='JPEG',
                                 options={'quality': 85})
