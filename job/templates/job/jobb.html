@@ -21,7 +21,7 @@
             {% for job in jobs %}
             <a class="annonse" href="{% url 'job-detail' job_slug=job.slug %}">
                 <div class="logo" style="background: {{ job.company.color }}">
-                    <img src="{{ job.company.logo.url }}" alt="{{ job.company.name }}">
+                    <img src="{{ job.company.logo.url }}" alt="{{ job.company.name }}" style="background-color:#F3F2EF">
                     <div class="border" style="border-color: {{ job.company.color }}"></div>
                 </div>
                 <div class="text">
