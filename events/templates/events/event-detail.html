@@ -47,6 +47,11 @@
         <p class="subtitle1">{{ event.short_description }}</p>
         <p class="content-markdown">{{ event.description | linebreaks }}</p>
     </div>
+    {% if event.external_link != null %}
+    <a class="button" href="{{event.external_link}}">
+        <span>{{event.link_text}}</span>
+    </a>
+    {% endif %}
 </div>
 
 {% endblock content %}

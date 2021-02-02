@@ -14,6 +14,7 @@ class CreateEventForm(forms.ModelForm):
         self.fields['short_description'].widget.attrs['placeholder'] = "Kort beskrivelse"
         self.fields['description'].widget.attrs['placeholder'] = "Lengre beskrivelse"
         self.fields['location'].widget.attrs['placeholder'] = "Sted"
+        self.fields['event_start_time'].widget.attrs['placeholder'] = "åååå-mm-dd tt:mm:ss"
 
     class Meta:
         model = Event
@@ -37,5 +38,7 @@ class CreateEventForm(forms.ModelForm):
             'available_spots',
             'registered_users',
             'waiting_list',
+            'external_link',
+            'link_text',
             'image'
         ]
