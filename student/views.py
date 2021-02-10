@@ -46,6 +46,9 @@ def utveksling(request):
 def ny_student(request):
     return render(request, 'student/ny-student.html')
 
+def printer(request):
+    return render(request, 'student/printer.html')
+
 
 def terms(request):
     return render(request, 'terms-conditions.html', {})
