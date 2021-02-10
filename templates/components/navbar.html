@@ -17,16 +17,23 @@
                         og triks</a></li>
                 <li class="{% if 'fag' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'courses' %}">Fag</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="{% if 'printer' in request.path %}selected{% endif %}"><a class="nav-item"
+                        href="{% url 'printer' %}">Printer</a></li>
+                {% endif %}
                 <li class="{% if 'boksalg' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'books' %}">Boksalg</a></li>
                 <li><a class="nav-item {% if 'jobb' in request.path %}selected{% endif %}"
                         href="{% url 'job' %}">Jobb</a></li>
-                <li class="{% if 'ny-student' in request.path %}selected{% endif %}"><a class="nav-item"
+                
+                <!-- 
+                        Commented out because blank
+                        <li class="{% if 'ny-student' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'ny-student' %}" disabled="">Ny student?</a></li>
                 <li class="{% if 'utveksling' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'utveksling' %}">Utveksling</a></li>
                 <li class="{% if 'klassetur' in request.path %}selected{% endif %}"><a class="nav-item"
-                        href="{% url 'klassetur' %}">Klasseturer</a></li>
+                        href="{% url 'klassetur' %}">Klasseturer</a></li> -->
             </ul>
         </li>
 

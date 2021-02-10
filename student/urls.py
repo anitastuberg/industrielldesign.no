@@ -11,4 +11,5 @@ urlpatterns = [
     path('student/utveksling/', views.utveksling, name='utveksling'),
     path('student/ny-student/', views.ny_student, name='ny-student'),
     path('vilkår/', views.terms, name='terms'),
+    path('student/printer/', views.printer, name='printer')
 ]
