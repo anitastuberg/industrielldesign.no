@@ -58,6 +58,7 @@ Alt 2 Virtualenv through PyCharm:
 ## Making changes to scss
 
 1. Install sass (how?)
-2. cd assets/css/ 
-3. sass --watch main.scss:main.css
-4. saved changes in scss files will automatically compile to the css-file.
+2. If a new .scss file, add it to main.scss 
+3. cd assets/css/ 
+4. sass --watch main.scss:main.css
+5. saved changes in scss files will automatically compile to the css-file.
