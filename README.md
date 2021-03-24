@@ -55,3 +55,9 @@ Alt 2 Virtualenv through PyCharm:
 9. Run the server with `python3 manage.py runserver`
 10. Open your browser and type in `localhost:8000` in the address-bar.
 
+## Making changes to scss
+
+1. Install sass (how?)
+2. cd assets/css/ 
+3. sass --watch main.scss:main.css
+4. saved changes in scss files will automatically compile to the css-file.
