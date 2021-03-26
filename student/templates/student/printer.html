@@ -9,7 +9,7 @@
     <div class="job-reservations full-width-container" id="job-reservations">
         <!-- <PrinterErrorModal v-visible="this.errorModal" :visibilty="this.errorModal" /> -->
         <!-- <button-counter v-if="modalVisibility" v-bind:visibility="modalVisibility" v-on:hideReservationModal="hideReservationModal"></button-counter> -->
-        <!-- <ModalReservation></ModalReservation> -->
+        <reservation_modal @hideModal="hideModal" :visibility="modalVisibility"></reservation_modal>
 
         <div class="HorizontalScrollingContainer" id="ScrollingContainer">
 
@@ -50,10 +50,11 @@
 
 {% block javascript %}
 <script src="{% static 'js/ajaxSetup.js' %}"></script>
-<script>
-    
-    // import ModalReservation from './ReservationModal.vue';
-    // require('./ReservationModal.vue');
+<script src="{% static 'js/ReservationModal.js' %}"></script>
+<script type="module">
+    // import ModalReservation from '../../assets/js/ReservationModal';
+    // import ModalReservation from './ReservationModal';
+    // const ModalReservation = require('../../ReservationModal');
 
     // import { mapGetters } from 'vuex';
     // import { mapState } from 'vuex';
@@ -65,6 +66,7 @@
         el: '.job-reservations',
         // components: {modal},
         delimiters: ['[{', '}]'],
+        components: {reservation_modal},
         // mounted: function() {
         //     console.log(user.first_name);
         // },
@@ -85,8 +87,8 @@
                 startTimeHumanReadable: "",
                 selectedJob: -1,
                 errorModal: false,
-                modalVisibility: false,
-                printerQueues: null,
+                modalVisibility: true,
+                printerQueues: [],
                 // [{
                 //     device: 1,
                 //     jobs: [
@@ -129,6 +131,10 @@
             }
         },
         methods: {
+            hideModal: function() {
+                console.log("called hide modal");
+                this.modalVisibility = false;
+            },
             updateQueues: function(queues) {
                 queues.forEach(queue => {
                     console.log("device: " + queue.device);
@@ -171,6 +177,19 @@
                 this.errorModal = true;
             },
             openReservationModal: function() {
+                
+                this.selectedJob = -1;
+                this.modalVisibility = true;
+                console.log("open reservation modal " + this.modalVisibility);
+                // this.$store.dispatch("showModal");
+            },
+            hideReservationModal: function() {
+                console.log("hideReservationModal");
+                this.modalVisibility = false;
+            },
+            confirmReservation: function() {
+                console.log("confirm reservation  new date: " + this.newJob.date);
+                // this.$store.dispatch("reserveJob", this.newJob);
                 $.ajax({
                     type: 'POST',
                     url: "{% url 'create_job' %}",
@@ -184,20 +203,7 @@
                     error: (response) => {
                         console.log("error");
                     }
-            });
-                // this.selectedJob = -1;
-                // this.modalVisibility = true;
-                // console.log("open reservation modal " + this.modalVisibility);
-                // this.$store.dispatch("showModal");
-            },
-            hideReservationModal: function() {
-                console.log("hideReservationModal");
-                this.modalVisibility = false;
-            },
-            confirmReservation: function() {
-                console.log("confirm reservation  new date: " + this.newJob.date);
-                // this.$store.dispatch("reserveJob", this.newJob);
-                
+                });
 
                 console.log("confirm");
             },
@@ -374,9 +380,6 @@
                 return (selectedJob!=-1 && selectedJob.user != this.userId);
             },
             computedPrinterQueues: function() {
-                if (this.printerQueues == null) {
-                    return [];
-                }
                 const computedPrinterQueue = this.printerQueues;
                 computedPrinterQueue.forEach(printerQueue => {
                     printerQueue.jobs.forEach(job => {
@@ -418,9 +421,6 @@
                 return computedPrinterQueue;
             },
             timeline: function() {
-                    if (this.printerQueues == null) {
-                        return [];
-                    }
                     /*
                     important that this accomdates css flex
                     starting with 2 hour intervals per 100px
@@ -431,7 +431,6 @@
                     const currentSeconds = Date.now()/1000; //seems to be millis
                     var endDateSeconds = currentSeconds;
 
-                    console.log("here");
                     this.printerQueues.forEach(printerQueue => {
                         printerQueue.jobs.forEach(job => {
                             const jobEndSeconds = Number(job.duration) + Number(job.date);
