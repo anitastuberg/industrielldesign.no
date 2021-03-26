@@ -90,6 +90,10 @@
       background: white;
     }
   }
+  &.small {
+    font-size: 0.6rem;
+    min-height: 10px;
+  }
 }
 
 a.button {

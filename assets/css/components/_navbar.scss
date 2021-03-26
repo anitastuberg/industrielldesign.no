@@ -128,12 +128,13 @@ $hamburger-bp: $xl;
         position: absolute;
         pointer-events: none;
         top: 0;
-        padding: 3rem 0 2rem;
+        padding: 3rem 0rem 2rem;
         transform: translateY(-10px);
         transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
         opacity: 0;
 
         li {
+          background-color: $background-color;
           display: inline-block;
           margin-right: 2vw;
           white-space: nowrap;

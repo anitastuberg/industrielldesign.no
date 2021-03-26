@@ -1,117 +1,11 @@
-body {
-  background-color: $background-color;
-
-  &.dark {
-
-    &,
-    .full-width-container,
-    #main-navigation,
-    .container {
-      background-color: $black;
-    }
-  }
-}
-
-// Works with the footer
-.full-width-container {
-  width: 100%;
-  background: $background-color;
-}
-
-// CONTAINER
-.container {
-  max-width: $xxl;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 5% $body-padding $footer-height;
-  margin-bottom: $footer-height;
-
-  &.nav {
-    padding-top: calc(#{$nav-height} + 5%);
-  }
-
-  &.max-mobile {
-    max-width: 375px;
-    padding-left: auto;
-    padding-right: auto;
-  }
-}
-
-.full-width {
-  width: 100%;
-}
-
-
-.center {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.right {
-  text-align: right;
-  margin-right: 0;
-  margin-left: auto;
-}
-
-.left {
-  text-align: left;
-  margin-right: auto;
-  margin-left: 0;
-}
-
-.preloader {
-  &:not(.loading) {
-    display: none;
-  }
-
-  width: $preloader-size;
-  height: $preloader-size;
-  background: black;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0deg) scale(1);
-    animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  }
-
-  30% {
-    transform: rotate(45deg) scale(0.9, 1.1);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  60% {
-    transform: rotate(90deg) scale(1);
-  }
-
-  100% {
-    transform: rotate(90deg);
-  }
-}
-
 #job-reservations {
-  .TempNav {
-      // background-color: black;  
-      color: black;
-      width: 100%;
-      height: 50px;
-      padding-top: 15px;
-  }
-  .PageTitle{
-      margin-left: 20px;
-      text-align: left;
-      float: left;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-        -moz-user-select: none;
-          -ms-user-select: none;
-          -o-user-select: none;
-              user-select: none;
-  }
+  margin-top: $nav-height+2rem;
+
   .UserInfo {
+      margin-left: 20px;
       margin-right: 20px;
+      height: 300px;
+      width: 50px;
       text-align: right;
       text-transform: capitalize;
   }
@@ -380,5 +274,145 @@ body {
 
   .GantAction:disabled {
     opacity: 10%;
+  }
+ 
+  .TempFooter {
+    padding-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+
+//RESERVATION MODAL BELOW 
+.ReservationModal {
+  display: fixed;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.Visible {
+  display: fixed;
+}
+.ReservationModalContent {
+  background-color: white;
+  border-radius: 10px;
+  margin: 5% auto;
+  padding: 20px;
+  padding-bottom: 0px;
+  width: 370px;
+}
+.ModalTitle {
+margin-bottom: 30px;
+}
+.FormContainer {
+display: flex;
+align-items: center;
+margin-bottom: 0px;
+flex-direction: column;
+}
+.ModalRow {
+//   border-color: green;
+//   border-width: 1px;
+border-style: dashed;
+// flex-grow: 1;
+margin-bottom: 5px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+width: 100%;
+padding-bottom: 10px;
+}
+.ModalColumn {
+//   border-color: red;
+//   border-width: 1px;
+border-style: double;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+.modalInput {
+width: 100%;
+}
+.calculateInputBtn {
+background-color: black;
+color: white;
+}
+.timeInput {
+font-size: small;
+text-align: center;
+}
+.timeTitle { 
+  padding: 2px ;
+  font-size: small;
+}
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
+//ANIMATIONS LOADER BELOW
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: black;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 2px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 2px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 14px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 26px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(12px, 0);
   }
 }

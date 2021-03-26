@@ -1,13 +1,26 @@
 import datetime
+import json
+import simplejson
+# import pytest
 
 from django.db import models
+from django.core import serializers
 from django.db.models import F
 from django.shortcuts import render
 from django.utils import timezone
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
+from django.views.generic import View
+
 
 from events.models import Event
 from projects.models import Project
 from leonardo.models import Nyhet
+from .models import PrintJob
+from .models import Printer
+from .utils import PrintQueuesMixin
+from .serializers import PrintJobSerializer
 
 
 def home(request):
@@ -25,7 +38,7 @@ def home(request):
     context = {
         "events": upcoming[0:4],
         'projects': Project.objects.all()[0:6],
-        'nyheter': nyheter[0:4]
+        'nyheter': nyheter[0:4],
     }
     return render(request, 'index.html', context)
 
@@ -47,7 +60,10 @@ def ny_student(request):
     return render(request, 'student/ny-student.html')
 
 def printer(request):
-    return render(request, 'student/printer.html')
+    context = {
+        'user': request.user.id
+    }
+    return render(request, 'student/printer.html', context)
 
 
 def terms(request):
@@ -60,3 +76,21 @@ def handler404(request, exception):
 
 def handler500(request):
     return render(request, '500.html', status=500)
+
+# Job Handlers
+
+class PrintQueues(PrintQueuesMixin, View):
+    def get(self, request):
+        data = self.get_relevant_jobs()
+        return JsonResponse(data)
+
+class PrintJobClass(PrintQueuesMixin, View):
+    def delete(self, request, pk):
+        PrintJob.objects.filter(id=pk).delete()
+        data = self.get_relevant_jobs()
+        return JsonResponse(data)
+    def post(self, request):
+        date = request.POST.get('date')
+        # updated_data = self.get_relevant_jobs()
+        return JsonResponse({"queues" : date})
+    

@@ -1,20 +1,547 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block page_title %}Printer{% endblock %}
 
 {% block content %}
     {% include 'components/navbar.html' %}
-    <div class="container nav">
-        <img src="{% static 'img/printguide/side1.jpg' %}" alt="hvordan printe" style="max-width: 49%; position: relative;">
-        <img src="{% static 'img/printguide/side2.jpg' %}" alt="hvordan printe" style="max-width: 49%; position: relative;">
-        <img src="{% static 'img/printguide/side3.jpg' %}" alt="hvordan printe" style="max-width: 49%; position: relative;">
-        <img src="{% static 'img/printguide/side4.jpg' %}" alt="hvordan printe" style="max-width: 49%; position: relative;">
-        <br><br>
-        <a class="button" target="_blank" rel="noopener noreferrer" href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F19sSH3iJnWrkAEkZ09Ti9jL4JSvf9yy597fekaiRE9zU%2Fedit%3Fusp%3Dsharing%26fbclid%3DIwAR11sN0lPihjo6MkBod91yVm9RuY0FU9fCzXlN3ysejQtj6kIRAPq3P1tiU&h=AT0za2HyjHPhen50rn_NeVVkQa4uXycZgyHRKYAQzBRNXAhIcsF2QZXjP5OKLI2KGYTrjIlLY17JAN4bNPRsFmcMf29bfnvHcFPd4a6yvmUX3LKa4sfD4baUIl4qs3svUCz_Y1LK7nJz1qaYlQ&__tn__=-UK-R&c[0]=AT0WLoDci7AU4SEeLMrAUZtlTUGEnPwp4fRaQ5ch2ySkKDg2mEMJUFHXliL0l5-u1sFa3WuUTRhOhVy5X9RQn6tSpFINeAGcwQfbiSY3AAjBpJOwy_af_p8nn0YF7Y4TijetJvMz71vgqC7EcUrvmb-jvFNIj7rarwKg9-BkN9GT8iNGLWrRdqxhuFVTjB_SA-3lmvERJWNFBsIWcg">
-        <span>Trykk her for å reservere printer</span></a>
-        <br><br>
-        <iframe width="100%" height="1400" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8HsIJOGiGoGykH0SZjXbXO_aR7GszfqiArQS4oSKRqwtH8C1zdyBxNnbf1xU6kXue-emceJrHjFQ3/pubhtml?gid=1244965332&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+    {{user | json_script:"user-data"}}
+    <div class="job-reservations full-width-container" id="job-reservations">
+        <!-- <PrinterErrorModal v-visible="this.errorModal" :visibilty="this.errorModal" /> -->
+        <!-- <button-counter v-if="modalVisibility" v-bind:visibility="modalVisibility" v-on:hideReservationModal="hideReservationModal"></button-counter> -->
+        <!-- <ModalReservation></ModalReservation> -->
+
+        <div class="HorizontalScrollingContainer" id="ScrollingContainer">
+
+            <div class="TimeContainer">
+                <div class="TimeElement" v-bind:key="time.id" v-for="time in timeline">
+                    <div class="Day">[{time.date}]</div>
+                    <div class="Time">[{time.time}]</div>
+                </div>
+            </div>
+
+            <div class="Queue" v-bind:key="printerQueue.device" v-for="printerQueue in computedPrinterQueues">
+                <div class="LeftColumnTitle">[{printerQueue.device}]</div>
+                <div v-dragged="onDragged" @click="selectJob(job)"  class="Job" v-bind:key="job.id" v-for="job in printerQueue.jobs" v-bind:class="job.priority" v-bind:style="{ width: job.widthPercentage, left: job.left}">
+                    <div class="StartTime" v-if="job.priority == 'New'">
+                        <span>[{startTimeHumanReadable}]</span>
+                    </div>
+                    <div class="StartTime" v-if="job.priority != 'New'">
+                        <span>[{job.username}]</span>
+                    </div>
+                </div>
+                <div class="RightColumnOpacity"></div>
+            </div>
+        </div>
+            <!-- <div class="ScrollMargin"></div> -->
+
+        <div class="TempFooter">
+            <button v-if="selectedJob!=-1 && reservationInProcess==false" class="button small NavButton" @click="printerError"><span>Printer Error</span></button>
+            <button v-if="selectedJob!=-1 && selectedJob.user != this.userId" class="button small NavButton"><span>Contact Author</span></button>
+            <!-- <button v-if="selectedJob!=-1 && selectedJob.user != this.userId" class="button small NavButton"><span>Request Slot</span></button> -->
+            <button v-if="this.selectedJob!=-1 && this.reservationInProcess==false && this.selectedJob.user==this.userId" class="button small NavButton" @click="deleteJob"><span>Cancel Reservation</span></button>
+            <button v-if="reservationInProcess==false" class="button small NavButton" @click="openReservationModal"><span>+</span></button>
+            <button v-if="reservationInProcess==true" class="button small NavButton" @click="confirmReservation"><span>Confirm</span></button>
+            <button v-if="reservationInProcess==true" class="button small NavButton" @click="cancelReservation"><span>Cancel</span></button>
+        </div>
+        
     </div>
 {% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/ajaxSetup.js' %}"></script>
+<script>
+    
+    // import ModalReservation from './ReservationModal.vue';
+    // require('./ReservationModal.vue');
+
+    // import { mapGetters } from 'vuex';
+    // import { mapState } from 'vuex';
+    // import PrinterErrorModal from '../components/PrinterErrorModal/PrinterErrorModal.vue'
+    
+    // let modal = require('./ReservationModal');
+
+    let jobReservations = new Vue({
+        el: '.job-reservations',
+        // components: {modal},
+        delimiters: ['[{', '}]'],
+        // mounted: function() {
+        //     console.log(user.first_name);
+        // },
+        data: function() {
+            return {
+                newJob: {
+                    exists: false,
+                    description: '',
+                    file: null,
+                    duration: -1,
+                    date: -1,
+                    device: -1,
+                    priority: '',
+                },
+                userId: 1, //not to compute or query from server
+                sliderValue: 1,
+                startTop: -1,
+                startTimeHumanReadable: "",
+                selectedJob: -1,
+                errorModal: false,
+                modalVisibility: false,
+                printerQueues: null,
+                // [{
+                //     device: 1,
+                //     jobs: [
+                //         {
+                //             user: 1,
+                //             id: 3,
+                //             description: 'file',
+                //             duration: 7200,
+                //             date: Number(Date.now()/1000 + 9000),
+                //             priority: 'Urgent',
+                //         },
+                //     ]
+                // },
+                // {
+                //     device: 2,
+                //     jobs: [
+                //         {
+                //             user: 2,
+                //             id: 2,
+                //             description: 'file',
+                //             duration: 3600,
+                //             date: Number(Date.now()/1000 + 7200),
+                //             priority: 'Private',
+                //         },
+                //     ]
+                // },
+                // {
+                //     device: 3,
+                //     jobs: [
+                //         {
+                //             user: 4,
+                //             id: 1,
+                //             description: 'file',
+                //             duration: 3600,
+                //             date: Number(Date.now()/1000 + 14400),
+                //             priority: 'Job',
+                //         },
+                //     ]
+                // }],
+            }
+        },
+        methods: {
+            updateQueues: function(queues) {
+                queues.forEach(queue => {
+                    console.log("device: " + queue.device);
+                    if (queue.jobs.length > 0) {
+                        queue.jobs.forEach(job => {
+                            console.log("date: " + job.print_job_date);
+                            const startDate = new Date(job.print_job_date);
+                            const endDate = new Date(job.print_job_end_date);
+                            // const duration = (endDate - startDate)/1000;
+                            if (job.author == this.userId) {
+                                job.priority = "Personal";
+                                job.user = job.author;
+                            }
+                            job.date = startDate.getTime()/1000;
+                            // job.duration = duration;
+                        });
+                    }
+                });
+                this.printerQueues = queues;
+            },
+            deleteJob: function() {
+                $.ajax({
+                    type: 'DELETE',
+                    url: "/student/printer/job/" + this.selectedJob.id,
+                    // probably better that this eventually becomes a django dyanmic url
+                    data: {
+                        responseType: 'json',
+                    },
+                    success: (response) => {
+                        this.updateQueues(response.queues);
+                        this.selectedJob = -1;
+                    },
+                    error: (response) => {
+                        console.log("error");
+                    }
+                });
+            },
+            printerError: function() {
+                console.log("printer error");
+                this.errorModal = true;
+            },
+            openReservationModal: function() {
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'create_job' %}",
+                    data: {
+                        responseType: 'json',
+                        date: 'dynamic date'
+                    },
+                    success: (response) => {
+                        console.log(response.queues);
+                    },
+                    error: (response) => {
+                        console.log("error");
+                    }
+            });
+                // this.selectedJob = -1;
+                // this.modalVisibility = true;
+                // console.log("open reservation modal " + this.modalVisibility);
+                // this.$store.dispatch("showModal");
+            },
+            hideReservationModal: function() {
+                console.log("hideReservationModal");
+                this.modalVisibility = false;
+            },
+            confirmReservation: function() {
+                console.log("confirm reservation  new date: " + this.newJob.date);
+                // this.$store.dispatch("reserveJob", this.newJob);
+                
+
+                console.log("confirm");
+            },
+            cancelReservation: function() {
+                // this.$store.dispatch("queryJobs");
+            },
+            //END BUTTON JOB FUNCTIONS
+            selectJob: function(job) {
+                if (this.reservationInProcess) { return; }
+                if (this.selectedJob.id == job.id) {
+                    this.removeSelectedCSS(this.selectedJob);
+                    this.selectedJob = -1;
+                }
+                else {
+                    this.removeSelectedCSS(this.selectedJob);
+                    this.selectedJob = job;
+                    this.selectedJob.priority = this.selectedJob.priority + " SelectedJob";
+                }
+            },
+            removeSelectedCSS : function(job) {
+                if (job != -1) {
+                    const newPriorities = job.priority.split(" ").filter((priority) => {
+                    return priority != "SelectedJob";
+                    });
+                    var newPrioritiesString = "";
+                    newPriorities.forEach((priority) => {
+                        newPrioritiesString += priority + " ";
+                    });
+                    job.priority = newPrioritiesString;
+                }
+            },
+            convertPositionToDate: function(left) {
+                const hours = left/100;
+                const secondsFromLeft = hours*3600;
+
+                const startDate = new Date(0);
+                startDate.setUTCSeconds(Date.now()/1000);
+                startDate.setHours(startDate.getHours());
+                startDate.setMinutes(0);
+                startDate.setSeconds(0);
+                
+                return ((startDate.getTime()/1000) + secondsFromLeft);    
+            },
+            humanReadableTime: function(left) {
+                const absoluteDateSeconds = this.convertPositionToDate(left);
+                // console.log("absolute seconds: " + absoluteDateSeconds);
+                const date = new Date(0);
+                date.setUTCSeconds(absoluteDateSeconds);
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                if (hours < 10) {
+                    hours = '0' + hours;
+                }
+                if (minutes < 10) {
+                    minutes = '0' + minutes;
+                }
+                this.startTimeHumanReadable = hours+":"+minutes;
+            },
+            onDragged({ el, deltaX, deltaY, _clientX, _clientY, _offsetX, _offsetY, first, last }) {
+                // QUIT IF NOT A NEW JOB PROPOSAL
+                var shouldContinue = false;
+                el.classList.forEach((className) => {
+                    if (className == "New") { shouldContinue = true; }
+                })
+                if (shouldContinue ==  false) { return; }
+
+                // BULLSHIT
+                if ((_clientX == (1/_clientY)) && (_offsetX == _offsetY)) {console.log('surprise');}
+                // BULLSHIT
+
+                var l = +window.getComputedStyle(el)['left'].slice(0, -2) || 0;
+                var t = +window.getComputedStyle(el)['top'].slice(0, -2) || 0;
+
+                if (first) {
+                    this.startTop = el.style.top;
+                    this.printerQueues.forEach(queue => {  
+                        queue.jobs.forEach(job => {
+                            if (job.priority == "New") {
+                                this.job = job;
+                                // this.device = queue.device;
+                            }
+                        });
+                    });
+                    
+                    el.style.zIndex = "500";
+                    return
+                }
+                if (last) { //COMPLETE DRAG
+                    
+                    var deltaYvertical = parseFloat(window.getComputedStyle(el).top);
+                    //THERE IS A difference between moving one space and moving two!
+
+                    var distanceToOvercome = parseFloat(window.getComputedStyle(el.parentNode).height)/2+ parseFloat(window.getComputedStyle(el.parentNode).marginBottom)/2;
+                    var rowChange = 0;
+                    var sign = deltaYvertical < 0 ? -1 : 1;
+                    deltaYvertical = Math.abs(deltaYvertical);
+                    while (deltaYvertical > distanceToOvercome) {
+                        rowChange++;
+                        distanceToOvercome += parseFloat(window.getComputedStyle(el.parentNode).height)+ parseFloat(window.getComputedStyle(el.parentNode).marginBottom);
+                    }
+                    rowChange *= sign;
+                    const lastDevice = this.newJob.device;
+                    var newDevice = lastDevice + rowChange;
+                    if (newDevice < 1) {
+                        newDevice = 1;
+                    }
+                    else  if (newDevice > this.printerQueues.length) {
+                        newDevice = this.printerQueues.length;
+                    }
+
+                    // console.log('deltaY ' + deltaYvertical);
+                    // console.log('rowChange ' + rowChange);
+
+                    // get job from priority, get device, get new device from transformation
+                    
+                    var updatedJob = this.newJob;
+                    updatedJob.device = newDevice;
+                    updatedJob.date = this.convertPositionToDate(parseFloat(el.style.left));
+                    
+                    if (lastDevice == newDevice) {
+                        console.log("no queue change");
+                        el.style.top = this.startTop;
+                    }
+                // else {
+                    var updatedQueues = this.printerQueues;
+                    var remainingJobs;
+
+                    //get jobs regular jobs
+                    this.printerQueues.forEach((queue) => {
+                        if (queue.device == lastDevice) {
+                            remainingJobs = queue.jobs.filter((job) => {
+                                return (job.priority != "New");
+                            });
+                        }
+                    });
+
+                    console.log("remaining job count: " + remainingJobs.length);
+
+                    //update previous and new queue
+                    updatedQueues.forEach((queue) => {
+                        if (queue.device == lastDevice) {
+                            queue.jobs = remainingJobs;
+                        }
+                        if (queue.device == newDevice) {
+                            queue.jobs.push(this.newJob);
+                        }
+                    });
+                    // this.$store.dispatch("updateQueues", updatedQueues);
+                    // this.$store.dispatch("updateNewJob", updatedJob.date);
+
+                    //RESET Z-Index after animation
+                    const jobStyle = el.style;
+                    jobStyle.zIndex = "0";
+                    
+                    this.startTimeHumanReadable = '';
+                    
+                    return;
+                }
+                // el.style.left = l + deltaX + 'px';
+                //Update date
+                
+                el.style.left = l + deltaX + 'px';
+                el.style.top = t + deltaY + 'px';
+                this.humanReadableTime(parseFloat(el.style.left));
+            }
+        },
+        computed: {
+            // ...mapState(['sliderValue', 'printerQueues', 'newJob', 'modalVisibility']),
+            // ...mapGetters(['username', 'is_authenticated', 'userId']),
+            otherButtons: function() {
+                return (this.selectedJob!=-1 && this.reservationInProcess==false);
+            },
+            myButtons: function() {
+                return (selectedJob!=-1 && selectedJob.user != this.userId);
+            },
+            computedPrinterQueues: function() {
+                if (this.printerQueues == null) {
+                    return [];
+                }
+                const computedPrinterQueue = this.printerQueues;
+                computedPrinterQueue.forEach(printerQueue => {
+                    printerQueue.jobs.forEach(job => {
+                        /*
+
+                        - this.sliderValue is simply the time between intervals
+                        - time elements are 2 hour intervals at 100px. 2hours/100px
+                        - (job.duration in seconds) 
+                        - ratio is this.sliderWidth per 10% -> this.sliderValue/.10
+                        Percentage = (job.duration * 10%) / (this.sliderValue * 3600)
+                        -  duration is in seconds?
+                        -  (50px/ 1hour) * job.duration * 1hour/3600seconds
+                        */
+                            
+                        
+                        job.widthPercentage = (50 * job.duration / 3600) + 'px';
+                        
+                        const startDate = new Date(0);
+                        startDate.setUTCSeconds(Date.now()/1000);
+                        startDate.setHours(startDate.getHours());
+                        startDate.setMinutes(0);
+                        startDate.setSeconds(0);
+                        
+                        const deltaTime = job.date - (startDate.getTime()/1000);
+                        //deltaTime is number of seconds between now and job
+                        //sliderValue is time interval
+                        const deltaTimeInHours = deltaTime/3600; //3600 seconds in an hour
+                        
+                        // const deltaTimeInHoursInPixels = deltaTimeInHours * 50px/hour
+                        const deltaTimeInHoursInPixels = (deltaTimeInHours * 100) + 'px';
+                        job.left = deltaTimeInHoursInPixels;
+                        
+                        //make special color for personal
+                        if (job.user == this.userId) {
+                            job.priority = "Personal";
+                        }
+                    });
+                });
+                return computedPrinterQueue;
+            },
+            timeline: function() {
+                    if (this.printerQueues == null) {
+                        return [];
+                    }
+                    /*
+                    important that this accomdates css flex
+                    starting with 2 hour intervals per 100px
+                    */
+                    var dateForTimeElement = new Date();
+                    const dayString = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+                    const currentHour = (new Date()).getHours();
+                    const currentSeconds = Date.now()/1000; //seems to be millis
+                    var endDateSeconds = currentSeconds;
+
+                    console.log("here");
+                    this.printerQueues.forEach(printerQueue => {
+                        printerQueue.jobs.forEach(job => {
+                            const jobEndSeconds = Number(job.duration) + Number(job.date);
+                            if (jobEndSeconds > endDateSeconds) {
+                                endDateSeconds = jobEndSeconds;
+                            }
+                        });
+                    });
+
+                    // add one page width of seconds at the end. inverse(50 pixels / 1 hour) * 3600 seconds / hour;
+
+                    // extra width of page in seconds?
+                    const pageWidthInSeconds = window.innerWidth * (3600/50);
+
+                    // console.log('pageWidth: '+ pageWidthInSeconds);
+
+
+
+                    // const extraSeconds = 3600*12;
+
+                    const timelineDurationSeconds = (endDateSeconds - currentSeconds) + pageWidthInSeconds;
+                    
+                    // console.log('timeline duration: ' + timelineDurationSeconds);
+                    /* if timelineDurationSeconds < full page of time
+                        add appropriate # hours
+                    */
+                    // const timelineNumberOfHours = (endDateSeconds - currentSeconds)/(this.sliderValue*3600);
+                    var timelineObject = [];
+                    timelineObject.push({
+                        time: currentHour,
+                        date: ""
+                    }); 
+                    /*
+                    timelineObject = [
+                        22,
+                        23,
+                        0,
+                        1,
+                    ]
+                    */
+                    //should always have enough hours for one day?, but more hours when needed. Width of spacing between times is to be predefined
+                    
+                    var i = 1;
+                    var sumTime = 0;
+                    while ( i <= 11 || sumTime <= timelineDurationSeconds ) {
+                        sumTime += Number(this.sliderValue) * 3600;
+                        const lastNumber = timelineObject[timelineObject.length-1].time;
+                        const tentativeNextNumber = Number(lastNumber) + Number(this.sliderValue);
+                        if (tentativeNextNumber >= 24) {
+                            //add day here
+                            timelineObject.push({
+                                time: Number(tentativeNextNumber-24),
+                                date: dayString[dateForTimeElement.getDay()] + " " + dateForTimeElement.getDate()
+                            });
+                            dateForTimeElement.setDate(dateForTimeElement.getDate() + 1);
+                        }
+                        else {
+                            timelineObject.push({
+                                time: tentativeNextNumber,
+                                date: (i == 1) ? (dayString[dateForTimeElement.getDay()] + " " + dateForTimeElement.getDate()) : ""
+                            });
+                            if (i == 1) { 
+                                dateForTimeElement.setDate(dateForTimeElement.getDate() + 1);
+                            }
+                        }
+                        i++;
+                    }
+                    timelineObject = timelineObject.map(numObj => {
+                        return {
+                            time: (numObj.time < 10) ? ('0' + numObj.time + ':00') : (''+ numObj.time + ':00'),
+                            date: numObj.date
+                        }
+                    });
+                    //remove first time for clarity (temporarily for testing)
+                    timelineObject[0] = {};
+                    return timelineObject;
+            },
+            reservationInProcess: function() {
+                var inProcess = false;
+
+                this.printerQueues.forEach((queue) => {
+                    queue.jobs.forEach((job) => {
+                        if (job.priority == "New") { inProcess = true; }
+                    });
+                });
+                return inProcess;
+            }
+        },
+        created() {
+            // SETTING USER ID
+            const textData = document.getElementById('user-data').textContent;
+            this.userId = JSON.parse(textData);
+            
+            // QUERYING JOB DATA
+            $.ajax({
+                    type: 'GET',
+                    url: "{% url 'get_job_queues' %}",
+                    data: {
+                        responseType: 'json',
+                    },
+                    success: (response) => {
+                        console.log(response.queues);
+                        this.updateQueues(response.queues);
+                    },
+                    error: (response) => {
+                        console.log("error");
+                    }
+            });
+            // this.$store.dispatch('logout');    
+        } 
+    });     
+</script>
+{% endblock %} 

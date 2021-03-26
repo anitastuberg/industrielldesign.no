@@ -1,0 +1,81 @@
+
+    <div class="ReservationModal" v-bind:class="{ Visible: visibilty }">
+      <div class="ReservationModalContent">
+        <div class="ModalTitle header3">New Booking</div>
+
+        <div class="FormContainer">
+
+          <div class="ModalRow">
+            <div class="ModalColumn subtitle1">Filename</div>
+            <input class="ModalColumn modalInput" placeholder="filename / description" ref="filename" v-model="filename">
+          </div>
+          
+          <div class="ModalRow">
+            <div class="ModalColumn subtitle1">Print Time</div>
+            <div class="ModalColumn">
+              <div class="ModalRow">
+                <div class="ModalColumn">
+                  <div v-if="estimating" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                  <input v-if="!estimating" class="modalInput timeInput" ref="hours" v-model="hours" placeholder="0">
+                </div>
+                <div class="ModalColumn timeTitle">
+                  hours
+                </div>
+                <div class="ModalColumn">
+                  <div v-if="estimating" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                  <input v-if="!estimating" class="modalInput timeInput" ref="minutes" v-model="minutes" placeholder="0">
+                </div>
+                <div class="ModalColumn timeTitle">
+                  mins
+                </div>
+
+              </div>
+              <div class="ModalRow">
+                <button class="button small" :disabled="lines==='' || estimating" @click="estimatePrintTime"><span>Estimate Time</span></button>
+                <!-- <button v-if="estimating" class="button small" @click="cancelEstimate"><span>Cancel Estimate</span></button> -->
+              </div>
+            </div>
+          </div>
+          
+          <div class="ModalRow">
+            <div class="ModalColumn subtitle1">Course Related</div>
+            <div class="ModalColumn">
+              <input type="checkbox" class="checked" id="is_course_related" v-model="courseRelated">
+            </div>
+          </div>
+          
+          <div class="ModalRow">
+            <button class="button fluid" :disabled="duration==-1" @click="proceedToPlacement"><span>Continue</span></button>
+          </div>
+          <div class="ModalRow lastFlexItem">
+            <button class="button secondary fluid" @click="hide"><span>Cancel</span></button>
+          </div>
+          
+        </div>
+
+      </div>
+    </div>
+
+<script>
+// import axios from 'axios'
+// var gcodeProcessorWorker = new Worker('../../assets/js/GcodeProcessor.js', { type: "module" });
+// import { mapState } from 'vuex'
+
+let reservationModal = new Vue({
+    el: 'ReservationModal',
+    props: ["visibilty", "file"], 
+    data: function() {
+      return {
+        progressPercent: 0,
+        filename: '',
+        duration: -1,
+        filament: -1,
+        courseRelated: false,
+        lines: '',
+        hours: '',
+        minutes: '',
+        estimating: false,
+      }      
+    },
+});
+

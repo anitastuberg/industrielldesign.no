@@ -64,11 +64,11 @@ INSTALLED_APPS = [
     'tips',
     'leonardo',
     'student',
-    'printqueue',
     # Third party apps:
     'imagekit',
-    'storages'
-
+    'storages',
+    'rest_framework'
+    
 
 ]
 
