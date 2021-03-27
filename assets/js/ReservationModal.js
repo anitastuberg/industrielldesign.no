@@ -1,4 +1,4 @@
-const reservation_modal = Vue.component('reservation-modal', {
+var modal = Vue.component('modal', {
   props: ["visibility", "file"],
   data: function() {
     return {
@@ -204,7 +204,7 @@ const reservation_modal = Vue.component('reservation-modal', {
   }
 },
 template: 
- `<div class="ReservationModal" v-bind:class="{ 'Visible'=visibility }">
+ `<div class="ReservationModal Visible">
         <div class="ReservationModalContent">
           <div class="ModalTitle header3">New Reservation</div>
 

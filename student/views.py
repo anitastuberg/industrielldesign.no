@@ -90,7 +90,14 @@ class PrintJobClass(PrintQueuesMixin, View):
         data = self.get_relevant_jobs()
         return JsonResponse(data)
     def post(self, request):
+        # validate user and uniqueness of time slot, recheck that the time slot is available
         date = request.POST.get('date')
         # updated_data = self.get_relevant_jobs()
         return JsonResponse({"queues" : date})
     
+class PrintJobRecommendation(PrintQueuesMixin, View):
+    def post(self, request):
+        duration = request.POST.get('duration')
+        queues = self.get_relevant_jobs()
+         
+        return JsonResponse(queues)

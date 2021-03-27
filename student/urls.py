@@ -18,6 +18,7 @@ urlpatterns = [
     path('student/printer/queues/', views.PrintQueues.as_view(), name='get_job_queues'),
     path('student/printer/job/', views.PrintJobClass.as_view(), name='create_job'),
     path('student/printer/job/<int:pk>/', views.PrintJobClass.as_view(), name='delete_job'),
+    path('student/printer/recommendation/', views.PrintJobRecommendation.as_view(), name='recommend_job'),
 
     
     
