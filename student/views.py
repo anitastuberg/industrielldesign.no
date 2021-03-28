@@ -99,5 +99,13 @@ class PrintJobRecommendation(PrintQueuesMixin, View):
     def post(self, request):
         duration = request.POST.get('duration')
         queues = self.get_relevant_jobs()
-         
-        return JsonResponse(queues)
+        json_queues = queues['queues']
+        
+        # json_queues = json.dumps(queues)
+
+        for queue in json_queues:
+            queue['proposals'] = self.get_relevant_proposals(queue['jobs'], duration)
+            print(queue)
+
+
+        return JsonResponse({"duration" : duration})

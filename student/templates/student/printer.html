@@ -154,7 +154,7 @@
                 startTimeHumanReadable: "",
                 selectedJob: -1,
                 errorModal: false,
-                modalVisibility: true,
+                modalVisibility: false,
                 printerQueues: [],
             }
         },
@@ -347,19 +347,19 @@
             },
             updateQueues: function(queues) {
                 queues.forEach(queue => {
-                    console.log("device: " + queue.device);
+                    // console.log("device: " + queue.device);
                     if (queue.jobs.length > 0) {
                         queue.jobs.forEach(job => {
-                            console.log("date: " + job.print_job_date);
+                            // console.log("date: " + job.print_job_date);
                             const startDate = new Date(job.print_job_date);
                             const endDate = new Date(job.print_job_end_date);
-                            // const duration = (endDate - startDate)/1000;
+                            const duration = (endDate - startDate)/1000;
                             if (job.author == this.userId) {
                                 job.priority = "Personal";
                                 job.user = job.author;
                             }
                             job.date = startDate.getTime()/1000;
-                            // job.duration = duration;
+                            job.duration = duration;
                         });
                     }
                 });
@@ -742,7 +742,7 @@
                         responseType: 'json',
                     },
                     success: (response) => {
-                        console.log(response.queues);
+                        // console.log(response.queues);
                         this.updateQueues(response.queues);
                     },
                     error: (response) => {
@@ -757,7 +757,7 @@
                         'duration': '5000',
                     },
                     success: (response) => {
-                        console.log("queues retrieved! " + response.queues);
+                        console.log("queues retrieved! " + response.duration);
                     },
                     error: (response) => {
                         console.log("error");
