@@ -39,37 +39,36 @@ class PrintQueuesMixin(object):
         # value = "relevant_proposals"
         if (len(sorted_jobs) == 0):
             # round up time?
-            # now_string_format = timezone.now()
             # iso 8601
-            # string_date = json.dumps(datetime.now().isoformat("T", "milliseconds"), default=str)
-            string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str)
-            
+            now_string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str)
             # now_string_format = now#.strftime('YYYY-MM-DDTHH:MM:SS+HH:MM')
-            proposals = ({'proposal_start' : string_date, 'proposal_end' : -1})
-            return proposals
-        elif (len(sorted_jobs) == 1):
-            print('yes')
-            start = sorted_jobs[0]['print_job_end_date']
-            proposals = ({'proposal_start' : start, 'proposal_end' : -1})
+            proposals = ({'proposal_start' : now_string_date, 'proposal_end' : -1})
             return proposals
         else:
             proposals = []
-            print(len(sorted_jobs))
-            for i in range(0,len(sorted_jobs)-1):
-                if (i == len(sorted_jobs)-1):
-                    proposal = ({'proposal_start' : current, 'proposal_end' : next})
-                    proposals.append(sorted_jobs[i]['print_job_end_date'])
-                # elif (i==0):
-                    # possible job before first 
-                else:
+            now = datetime.now()
+
+            now_string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str)
+            first_job_start = sorted_jobs[0]['print_job_date']
+            first_parts = first_job_start.split("T")
+            first_job_start_string = first_parts[0] + " " + first_parts[1][0:8] 
+            first_job_date_obj = datetime.strptime(first_job_start_string, '%Y-%m-%d %H:%M:%S')
+            delta = (first_job_date_obj - now).total_seconds()
+            if  delta > int(duration) and delta > 0:
+                # Adds proposal before first job if possible
+                print("space before first job")
+                proposal = {'proposal_start' : now_string_date, 'proposal_end' : first_job_start}
+                proposals.append(proposal)
+
+            if (len(sorted_jobs) > 1):
+                # Adds proposals between existing jobs 
+                print('more than one current job')
+                for i in range(0,len(sorted_jobs)-1):
                     next = sorted_jobs[i+1]['print_job_date']
                     current = sorted_jobs[i]['print_job_end_date']
                     # parse time seconds delta from ^
-                    # if duration <= datetime.strptime(next, '%y-%m-%d%h:%m:%s:')-datetime.strptime(current, '%y-%m-%d%h:%m:%s:'):
-                    # next_date = next.split('T')
 
-                    # %Y-%m-%d %H:%M:%S.%f'
-                    #.split('+')[0]
+                    # reconstructing the string formatted dates
                     next_parts = next.split("T")
                     next = next_parts[0] + " " + next_parts[1][0:8] 
                     print(next)
@@ -78,19 +77,18 @@ class PrintQueuesMixin(object):
                     current = current_parts[0] + " " + current_parts[1][0:8] 
                     print(current)
 
-                    # current = '2018-06-29 10:15:27'
                     next_obj = datetime.strptime(next, '%Y-%m-%d %H:%M:%S')
                     current_obj = datetime.strptime(current, '%Y-%m-%d %H:%M:%S')
                     delta = (next_obj-current_obj).total_seconds()
-                    # delta_hms = delta.split(':')
-                    # delta_seconds = delta_hms[0]*3600 + delta_hms[1]*60 + delta_hms[2]
-                    print("delta time")
-                    print(delta)
 
-                    if duration <= delta:
-                        # proposal = ({'proposal_start' : current, 'proposal_end' : next})
-                        # proposals.append(proposal)
-            return []
+                    if int(duration) <= int(delta):
+                        proposal = {'proposal_start' : current, 'proposal_end' : next}
+                        proposals.append(proposal)
+            # always add a proposal after the the end of the last job
+            last_job_start_date = sorted_jobs[-1]['print_job_end_date']
+            proposal = {'proposal_start' : last_job_start_date, 'proposal_end' : -1}
+            proposals.append(proposal)
+            return proposals
 
     
 
