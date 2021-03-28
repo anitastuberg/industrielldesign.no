@@ -40,15 +40,16 @@ class PrintQueuesMixin(object):
         if (len(sorted_jobs) == 0):
             # round up time?
             # iso 8601
-            now_string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str)
+            now_string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str).strip('"')
+
             # now_string_format = now#.strftime('YYYY-MM-DDTHH:MM:SS+HH:MM')
-            proposals = ({'proposal_start' : now_string_date, 'proposal_end' : -1})
+            proposals = [{'proposal_start' : now_string_date, 'proposal_end' : -1}]
             return proposals
         else:
             proposals = []
             now = datetime.now()
 
-            now_string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str)
+            now_string_date = json.dumps(datetime.now(timezone.utc).astimezone().isoformat(sep="T", timespec="seconds"), default=str).strip('"')
             first_job_start = sorted_jobs[0]['print_job_date']
             first_parts = first_job_start.split("T")
             first_job_start_string = first_parts[0] + " " + first_parts[1][0:8] 
@@ -70,15 +71,15 @@ class PrintQueuesMixin(object):
 
                     # reconstructing the string formatted dates
                     next_parts = next.split("T")
-                    next = next_parts[0] + " " + next_parts[1][0:8] 
-                    print(next)
+                    next_str = next_parts[0] + " " + next_parts[1][0:8] 
+                    print(next_str)
 
                     current_parts = current.split("T")
-                    current = current_parts[0] + " " + current_parts[1][0:8] 
-                    print(current)
+                    current_str = current_parts[0] + " " + current_parts[1][0:8] 
+                    print(current_str)
 
-                    next_obj = datetime.strptime(next, '%Y-%m-%d %H:%M:%S')
-                    current_obj = datetime.strptime(current, '%Y-%m-%d %H:%M:%S')
+                    next_obj = datetime.strptime(next_str, '%Y-%m-%d %H:%M:%S')
+                    current_obj = datetime.strptime(current_str, '%Y-%m-%d %H:%M:%S')
                     delta = (next_obj-current_obj).total_seconds()
 
                     if int(duration) <= int(delta):
@@ -90,5 +91,8 @@ class PrintQueuesMixin(object):
             proposals.append(proposal)
             return proposals
 
-    
+    def get_date_object_for_string(self, string_date):
+        string_parts = string_date.split("T")
+        joined_parts_string = string_parts[0] + " " + string_parts[1][0:8] 
+        return datetime.strptime(joined_parts_string, '%Y-%m-%d %H:%M:%S')
 

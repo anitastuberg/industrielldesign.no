@@ -95,9 +95,9 @@
 
         <div class="TempFooter">
             <button v-if="selectedJob!=-1 && reservationInProcess==false" class="button small NavButton" @click="printerError"><span>Printer Error</span></button>
-            <button v-if="selectedJob!=-1 && selectedJob.user != this.userId" class="button small NavButton"><span>Contact Author</span></button>
+            <button v-if="selectedJob!=-1 && selectedJob.author != this.userId" class="button small NavButton"><span>Contact Author</span></button>
             <!-- <button v-if="selectedJob!=-1 && selectedJob.user != this.userId" class="button small NavButton"><span>Request Slot</span></button> -->
-            <button v-if="this.selectedJob!=-1 && this.reservationInProcess==false && this.selectedJob.user==this.userId" class="button small NavButton" @click="deleteJob"><span>Cancel Reservation</span></button>
+            <button v-if="this.selectedJob!=-1 && this.reservationInProcess==false && this.selectedJob.author==this.userId" class="button small NavButton" @click="deleteJob"><span>Cancel Reservation</span></button>
             <button v-if="reservationInProcess==false" class="button small NavButton" @click="openReservationModal"><span>+</span></button>
             <button v-if="reservationInProcess==true" class="button small NavButton" @click="confirmReservation"><span>Confirm</span></button>
             <button v-if="reservationInProcess==true" class="button small NavButton" @click="cancelReservation"><span>Cancel</span></button>
@@ -140,7 +140,6 @@
                 estimating: false,
 
                 newJob: {
-                    exists: false,
                     description: '',
                     file: null,
                     duration: -1,
@@ -184,10 +183,10 @@
             modalVisibility: function() {
                 if (this.modalVisibility==true) {
                     if (this.file == '') {
-                        this.$refs.filename.focus();
+                        // this.$refs.filename.focus();
                     }
                     else {
-                        this.$refs.hours.focus();
+                        // this.$refs.hours.focus();
                     }
                 }
             }
@@ -291,16 +290,25 @@
         },
         recommendTimeSlot: function(completion) {
             if (this.duration == -1) { return; } 
-            const url='http://localhost:1337/reservation-proposal/'+this.duration;
-            axios.get(url)
-            .then(res => {
-                completion(res.data);
-                // console.log("job proposal: "+ res.data.device);
-                // self.proposal = res.data;
-            })
-            .catch(err => {
-                console.log("error " + err)
-                completion(err);
+            $.ajax({
+                    type: 'POST',
+                    url: "{% url 'recommend_job' %}",
+                    data: {
+                        'duration': this.duration,
+                    },
+                    success: (response) => {
+                        this.updateQueues(response.queues);
+                        const suggestedJob = response.new_job;
+                        this.newJob.author = suggestedJob.author;
+                        this.newJob.device = suggestedJob.device;
+                        this.newJob.duration = suggestedJob.duration;
+                        this.newJob.date = suggestedJob.print_job_date;
+                        this.newJob.priority = "New";
+                        this.hideModal()
+                    },
+                    error: (response) => {
+                        console.log("error");
+                    }
             });
         },
         convertToHrsMins: function(duration) {
@@ -347,17 +355,14 @@
             },
             updateQueues: function(queues) {
                 queues.forEach(queue => {
-                    // console.log("device: " + queue.device);
                     if (queue.jobs.length > 0) {
                         queue.jobs.forEach(job => {
                             // console.log("date: " + job.print_job_date);
                             const startDate = new Date(job.print_job_date);
                             const endDate = new Date(job.print_job_end_date);
-                            const duration = (endDate - startDate)/1000;
-                            if (job.author == this.userId) {
-                                job.priority = "Personal";
-                                job.user = job.author;
-                            }
+                            const duration = (endDate - startDate)/(1000*this.sliderValue/2);
+                            // duration should be checked before launch.. maybe 0 minutes should align around center of hour
+                            
                             job.date = startDate.getTime()/1000;
                             job.duration = duration;
                         });
@@ -398,17 +403,16 @@
                 this.modalVisibility = false;
             },
             confirmReservation: function() {
-                console.log("confirm reservation  new date: " + this.newJob.date);
-                // this.$store.dispatch("reserveJob", this.newJob);
                 $.ajax({
                     type: 'POST',
                     url: "{% url 'create_job' %}",
                     data: {
                         responseType: 'json',
-                        date: 'dynamic date'
+                        job: JSON.stringify(this.newJob),
                     },
                     success: (response) => {
-                        console.log(response.queues);
+                        this.updateQueues(response.queues);
+                        // console.log(response.queues);
                     },
                     error: (response) => {
                         console.log("error");
@@ -418,6 +422,7 @@
                 console.log("confirm");
             },
             cancelReservation: function() {
+                this.queryJobs();
                 // this.$store.dispatch("queryJobs");
             },
             //END BUTTON JOB FUNCTIONS
@@ -478,7 +483,9 @@
                 el.classList.forEach((className) => {
                     if (className == "New") { shouldContinue = true; }
                 })
+                console.log("dragging");
                 if (shouldContinue ==  false) { return; }
+                console.log("should continue");
 
                 // BULLSHIT
                 if ((_clientX == (1/_clientY)) && (_offsetX == _offsetY)) {console.log('surprise');}
@@ -578,6 +585,21 @@
                 el.style.left = l + deltaX + 'px';
                 el.style.top = t + deltaY + 'px';
                 this.humanReadableTime(parseFloat(el.style.left));
+            },
+            queryJobs: function() {
+                $.ajax({
+                    type: 'GET',
+                    url: "{% url 'get_job_queues' %}",
+                    data: {
+                        responseType: 'json',
+                    },
+                    success: (response) => {
+                        this.updateQueues(response.queues);
+                    },
+                    error: (response) => {
+                        console.log("error");
+                    }
+                });
             }
         },
         computed: {
@@ -604,7 +626,6 @@
                         -  (50px/ 1hour) * job.duration * 1hour/3600seconds
                         */
                             
-                        
                         job.widthPercentage = (50 * job.duration / 3600) + 'px';
                         
                         const startDate = new Date(0);
@@ -623,7 +644,8 @@
                         job.left = deltaTimeInHoursInPixels;
                         
                         //make special color for personal
-                        if (job.user == this.userId) {
+                        if (job.author == this.userId && job.priority != "New") {
+                            console.log("personal");
                             job.priority = "Personal";
                         }
                     });
@@ -735,34 +757,7 @@
             this.userId = JSON.parse(textData);
             
             // QUERYING JOB DATA
-            $.ajax({
-                    type: 'GET',
-                    url: "{% url 'get_job_queues' %}",
-                    data: {
-                        responseType: 'json',
-                    },
-                    success: (response) => {
-                        // console.log(response.queues);
-                        this.updateQueues(response.queues);
-                    },
-                    error: (response) => {
-                        console.log("error");
-                    }
-            });
-            
-            $.ajax({
-                    type: 'POST',
-                    url: "{% url 'recommend_job' %}",
-                    data: {
-                        'duration': '5000',
-                    },
-                    success: (response) => {
-                        console.log("queues retrieved! " + response.duration);
-                    },
-                    error: (response) => {
-                        console.log("error");
-                    }
-            });
+            this.queryJobs()
         } 
     });     
 </script>

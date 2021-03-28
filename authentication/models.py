@@ -115,6 +115,9 @@ class Profile(AbstractBaseUser):
             self.graduation_year = 5000
             self.save()
 
+    def get_username(self):
+        return self.first_name + " " + self.last_name
+
     @property
     def is_staff(self):
         return self.is_admin
