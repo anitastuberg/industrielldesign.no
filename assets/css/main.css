@@ -202,222 +202,6 @@ body {
     transform: rotate(90deg) scale(1); }
   100% {
     transform: rotate(90deg); } }
-#job-reservations .TempNav {
-  color: black;
-  width: 100%;
-  height: 50px;
-  padding-top: 15px; }
-#job-reservations .PageTitle {
-  margin-left: 20px;
-  text-align: left;
-  float: left;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
-#job-reservations .UserInfo {
-  margin-right: 20px;
-  text-align: right;
-  text-transform: capitalize; }
-#job-reservations .NavButton {
-  margin-right: 10px; }
-#job-reservations .HorizontalScrollingContainer {
-  /* width: 100%; */
-  margin-top: 40px;
-  overscroll-behavior-x: none;
-  overflow-y: hidden;
-  /*whole page should be scrolling.. not this div*/
-  overflow-x: scroll;
-  white-space: nowrap;
-  background-color: transparent;
-  /* border-width: 1px;
-  border-color: red;
-  border-style: solid;
-  */ }
-#job-reservations .TimeContainer {
-  position: relative;
-  background-color: transparent;
-  display: inline-block;
-  height: auto;
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: small;
-  /* overflow-y: hidden; */
-  /* overflow-x: hidden; */
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
-#job-reservations .Day {
-  height: 25px; }
-#job-reservations .TimeElement {
-  display: inline-block;
-  background-color: #F3F2EF;
-  vertical-align: middle;
-  width: 100px;
-  color: black;
-  white-space: nowrap; }
-#job-reservations .Queue {
-  position: relative;
-  vertical-align: middle;
-  margin-bottom: 5px;
-  height: 50px;
-  width: 100%;
-  background-color: transparent; }
-#job-reservations .LeftColumnTitle {
-  z-index: 1;
-  position: fixed;
-  opacity: 0.8;
-  font-size: x-large;
-  text-align: center;
-  vertical-align: middle;
-  color: black;
-  float: left;
-  margin-left: 1.5%;
-  height: 50px;
-  line-height: 2.1;
-  overflow: hidden;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
-#job-reservations .RightColumnOpacity {
-  z-index: 1;
-  position: fixed;
-  right: 0px;
-  background-color: #F3F2EF;
-  opacity: 0.8;
-  width: 4%;
-  height: 50px; }
-#job-reservations .Job {
-  /* https://stackoverflow.com/questions/5209814/can-i-position-an-element-fixed-relative-to-parent */
-  position: absolute;
-  margin: 0px;
-  float: left;
-  text-align: left;
-  width: 20%;
-  height: 100%;
-  background-color: Gray;
-  color: #E5E5E5;
-  border-radius: 8px;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
-#job-reservations .SelectedJob {
-  border-width: medium;
-  border-color: lightgrey;
-  border-style: solid; }
-#job-reservations .Job:hover {
-  border-width: medium;
-  border-color: lightgrey;
-  border-style: solid; }
-#job-reservations .StartTime {
-  margin-left: 6px;
-  margin-top: 15px;
-  cursor: grab;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
-#job-reservations .ScrollMargin {
-  height: 10px;
-  width: 100%; }
-#job-reservations .Personal {
-  background-color: #C23546;
-  overflow: hidden;
-  position: absolute;
-  margin: 0px;
-  float: left;
-  text-align: left;
-  width: 20%;
-  height: 100%;
-  color: #E5E5E5; }
-#job-reservations .Urgent {
-  background-color: #F0AE1A;
-  overflow: hidden;
-  position: absolute;
-  margin: 0px;
-  float: left;
-  text-align: left;
-  width: 20%;
-  height: 100%;
-  color: #E5E5E5; }
-#job-reservations .Private {
-  background-color: #3B208B;
-  overflow: hidden;
-  position: absolute;
-  margin: 0px;
-  float: left;
-  text-align: left;
-  width: 20%;
-  height: 100%;
-  color: #E5E5E5; }
-#job-reservations .New {
-  background-color: green;
-  overflow: hidden;
-  position: absolute;
-  margin: 0px;
-  float: left;
-  text-align: left;
-  width: 20%;
-  height: 100%;
-  color: #E5E5E5; }
-#job-reservations .SlideContainer {
-  z-index: 1000;
-  position: relative;
-  width: 100%;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  height: 10px; }
-#job-reservations .Slider {
-  position: absolute;
-  right: 30px;
-  top: 0px; }
-#job-reservations .Legend {
-  position: absolute;
-  left: 2%;
-  margin-top: 30px;
-  width: 50%;
-  height: 50px;
-  display: grid; }
-#job-reservations .Key {
-  position: relative;
-  width: 60px;
-  height: 20px;
-  border-radius: 8px;
-  float: left;
-  margin: 5px; }
-#job-reservations .LegendText {
-  position: relative;
-  margin-left: 35px;
-  line-height: 1.8; }
-#job-reservations .Actions {
-  position: absolute;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  right: 5%;
-  width: 30%;
-  height: 100px;
-  padding: 20px;
-  padding-left: 50px; }
-#job-reservations .GantAction {
-  margin: 10px;
-  background-color: black;
-  color: white; }
-#job-reservations .GantAction:disabled {
-  opacity: 10%; }
-
 a {
   display: block;
   color: #1A1A1A;
@@ -1259,21 +1043,21 @@ table {
     vertical-align: middle;
     margin-bottom: 5px;
     height: 50px;
-    width: 100%;
+    width: 500%;
+    overscroll-behavior-x: scroll;
     background-color: transparent; }
   #job-reservations .LeftColumnTitle {
     z-index: 1;
-    position: fixed;
     opacity: 0.8;
     font-size: x-large;
     text-align: center;
     vertical-align: middle;
     color: black;
     float: left;
-    margin-left: 1.5%;
     height: 50px;
     line-height: 2.1;
-    overflow: hidden;
+    position: sticky;
+    left: 1em;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -1283,7 +1067,7 @@ table {
   #job-reservations .RightColumnOpacity {
     z-index: 1;
     position: fixed;
-    right: 0px;
+    top: 0;
     background-color: #F3F2EF;
     opacity: 0.8;
     width: 4%;
@@ -1293,29 +1077,24 @@ table {
     position: absolute;
     margin: 0px;
     float: left;
+    padding: 10px;
     text-align: left;
     width: 20%;
     height: 100%;
-    background-color: Gray;
+    background-color: #757573;
     color: #E5E5E5;
     border-radius: 8px;
+    overflow: hidden;
+    transition: transform 200ms, background-color 200ms;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none; }
-  #job-reservations .SelectedJob {
-    border-width: medium;
-    border-color: lightgrey;
-    border-style: solid; }
   #job-reservations .Job:hover {
-    border-width: medium;
-    border-color: lightgrey;
-    border-style: solid; }
+    transform: translate(4px, 4px); }
   #job-reservations .StartTime {
-    margin-left: 6px;
-    margin-top: 15px;
     cursor: grab;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -1323,11 +1102,20 @@ table {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none; }
+  #job-reservations .Job .JobCreator {
+    width: 100%;
+    position: relative;
+    top: 8px; }
+    #job-reservations .Job .JobCreator .named {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize; }
   #job-reservations .ScrollMargin {
     height: 10px;
     width: 100%; }
   #job-reservations .Personal {
-    background-color: #C23546;
+    background-color: #E81756;
     overflow: hidden;
     position: absolute;
     margin: 0px;
@@ -1356,6 +1144,12 @@ table {
     width: 20%;
     height: 100%;
     color: #E5E5E5; }
+  #job-reservations .Job.Personal.SelectedJob {
+    background-color: #8b0e34; }
+  #job-reservations .Job.Urgent.SelectedJob {
+    background-color: #9a6e0a; }
+  #job-reservations .Job.Private.SelectedJob {
+    background-color: #180d38; }
   #job-reservations .New {
     background-color: green;
     overflow: hidden;

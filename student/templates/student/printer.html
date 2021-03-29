@@ -84,8 +84,8 @@
                     <div class="StartTime" v-if="job.priority == 'New'">
                         <span>[{startTimeHumanReadable}]</span>
                     </div>
-                    <div class="StartTime" v-if="job.priority != 'New'">
-                        <span>[{job.username}]</span>
+                    <div class="JobCreator" v-if="job.priority != 'New'">
+                        <div class="named"><span>[{job.username}]</span></div>
                     </div>
                 </div>
                 <div class="RightColumnOpacity"></div>
