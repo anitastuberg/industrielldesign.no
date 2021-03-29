@@ -65,7 +65,8 @@
     vertical-align: middle;
     margin-bottom: 5px;
     height: 50px;
-    width: 100%;
+    width: 500%;
+    overscroll-behavior-x: scroll;
     background-color: transparent;
     // border-width: 0.2px;
     // border-color: black;
@@ -74,7 +75,6 @@
 
   .LeftColumnTitle {
     z-index: 1;
-    position: fixed;
     // background-color: #F3F2EF;
     opacity: 0.8;
     font-size: x-large;
@@ -82,22 +82,23 @@
     vertical-align: middle;
     color: black;
     float: left;
-    margin-left: 1.5%;
     height: 50px;
     line-height: 2.1;
-    overflow: hidden;
+    position: sticky;
+    left: 1em;
     -webkit-user-select: none;
     -khtml-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
         -o-user-select: none;
           user-select: none;
+    
   }
 
   .RightColumnOpacity { 
     z-index: 1;
     position: fixed;
-    right: 0px;
+    top: 0;
     background-color: #F3F2EF;
     opacity: 0.8;
     width: 4%;
@@ -109,12 +110,15 @@
     position: absolute;
     margin: 0px;
     float: left;
+    padding: 10px;
     text-align: left;
     width: 20%;
     height: 100%;
-    background-color: Gray;
+    background-color: $dark-gray;
     color: #E5E5E5;
     border-radius: 8px;
+    overflow: hidden;
+    transition: transform 200ms, background-color 200ms;
     // transition: transform .2s;
     // transition: left 2s;s
     // transition-property: transform;
@@ -135,22 +139,12 @@
               user-select: none;
   }
 
-  .SelectedJob {
-    border-width: medium;
-    border-color: lightgrey;
-    border-style: solid;
-  }
-
   .Job:hover {
-    border-width: medium;
-    border-color: lightgrey;
-    border-style: solid;
+    transform: translate(4px,4px);
   }
 
   .StartTime {
     // height: 100%;
-    margin-left: 6px;
-    margin-top: 15px;
     cursor: grab;
     -webkit-user-select: none;
       -khtml-user-select: none;
@@ -163,13 +157,25 @@
     // text-align: left;
   }
 
+  .Job .JobCreator {
+    width: 100%;
+    position: relative;
+    top: 8px;
+    .named {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+    }
+  }
+
   .ScrollMargin {
     height: 10px;
     width: 100%;
   }
 
   .Personal {
-    background-color: #C23546;
+    background-color: $accent-3;
     overflow: hidden;
     position: absolute;
     margin: 0px;
@@ -181,7 +187,7 @@
   }
 
   .Urgent {
-    background-color: #F0AE1A;
+    background-color: $accent-1;
     overflow: hidden;
     position: absolute;
     margin: 0px;
@@ -193,7 +199,7 @@
   }
 
   .Private {
-    background-color: #3B208B;
+    background-color: $accent-5;
     overflow: hidden;
     position: absolute;
     margin: 0px;
@@ -202,6 +208,18 @@
     width: 20%;
     height: 100%;
     color: #E5E5E5;
+  }
+  
+  .Job.Personal.SelectedJob{
+    background-color: darken($accent-3,20%);
+  }
+
+  .Job.Urgent.SelectedJob{
+    background-color: darken($accent-1,20%);
+  }
+
+  .Job.Private.SelectedJob{
+    background-color: darken($accent-5,20%);
   }
 
   .New {
