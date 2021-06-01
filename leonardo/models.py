@@ -71,6 +71,8 @@ class Nyhet(models.Model):
     thumbnail = ImageSpecField(source='image', processors=[
         ResizeToFill(300, 300, False)], format='JPEG',
         options={'quality': 100})
+    external_link = models.CharField(blank=True, null=True, max_length=150)
+    link_text = models.CharField(blank=True, null=True, max_length=150)
     slug = models.SlugField(max_length=60, blank=True)
 
     def __str__(self):
