@@ -20,6 +20,11 @@
     <div class="body p-width">
         <p class="content-markdown">{{ nyhet.description | linebreaks }}</p>
     </div>
+    {% if nyhet.external_link != null %}
+    <a class="button" href="{{nyhet.external_link}}">
+        <span>{{nyhet.link_text}}</span>
+    </a>
+    {% endif %}
 </div>
 
 {% endblock content %}
