@@ -20,9 +20,19 @@
     <div class="body p-width">
         <p class="content-markdown">{{ nyhet.description | linebreaks }}</p>
     </div>
-    {% if nyhet.external_link != null %}
-    <a class="button" href="{{nyhet.external_link}}">
-        <span>{{nyhet.link_text}}</span>
+    {% if nyhet.external_link_1 != null %}
+    <a class="button" href="{{nyhet.external_link_1}}">
+        <span>{{nyhet.link_text_1}}</span>
+    </a>
+    {% endif %}
+    {% if nyhet.external_link_2 != null %}
+    <a class="button" href="{{nyhet.external_link_2}}">
+        <span>{{nyhet.link_text_2}}</span>
+    </a>
+    {% endif %}
+    {% if nyhet.external_link_3 != null %}
+    <a class="button" href="{{nyhet.external_link_3}}">
+        <span>{{nyhet.link_text_3}}</span>
     </a>
     {% endif %}
 </div>
