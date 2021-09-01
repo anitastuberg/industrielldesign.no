@@ -71,8 +71,12 @@ class Nyhet(models.Model):
     thumbnail = ImageSpecField(source='image', processors=[
         ResizeToFill(300, 300, False)], format='JPEG',
         options={'quality': 100})
-    external_link = models.CharField(blank=True, null=True, max_length=250)
-    link_text = models.CharField(blank=True, null=True, max_length=250)
+    external_link_1 = models.CharField(blank=True, null=True, max_length=250)
+    link_text_1 = models.CharField(blank=True, null=True, max_length=250)
+    external_link_2 = models.CharField(blank=True, null=True, max_length=250)
+    link_text_2 = models.CharField(blank=True, null=True, max_length=250)
+    external_link_3 = models.CharField(blank=True, null=True, max_length=250)
+    link_text_3 = models.CharField(blank=True, null=True, max_length=250)
     slug = models.SlugField(max_length=60, blank=True)
 
     def __str__(self):
