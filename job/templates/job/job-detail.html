@@ -18,9 +18,19 @@
         <p class="caption"></p>
         <br>
         <p class="p-width white-space-wrap">{{job.description|linebreaks}}</p>
-        {% if job.hyperlink != null %} 
-        <a href="{{job.hyperlink}}" class="button" id="job-link-button">
-            <span>{{job.hyperlinkText}}</span>
+        {% if job.external_link_1 != null %} 
+        <a href="{{job.external_link_1}}" class="button" id="job-link-button">
+            <span>{{job.link_text_1}}</span>
+        </a>
+        {% endif %}
+        {% if job.external_link_2 != null %} 
+        <a href="{{job.external_link_2}}" class="button" id="job-link-button">
+            <span>{{job.link_text_2}}</span>
+        </a>
+        {% endif %}
+        {% if job.external_link_3 != null %} 
+        <a href="{{job.external_link_3}}" class="button" id="job-link-button">
+            <span>{{job.link_text_3}}</span>
         </a>
         {% endif %}
     </div>
