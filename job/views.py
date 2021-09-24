@@ -14,7 +14,7 @@ def job(request):
         except ValueError:
             return d + (datetime.date(d.year + years, 1, 1) - datetime.date(d.year, 1, 1))
     context = {
-        "jobs": Job.objects.filter(deadline__range=(datetime.date.today(), add_years())),
+        'jobs': Job.objects.filter(deadline__range=(datetime.date.today(), add_years())).order_by('deadline'),
         'filters': JobFilter.objects.all()
     }
 
