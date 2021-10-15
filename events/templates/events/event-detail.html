@@ -45,7 +45,7 @@
 
     <div class="body p-width">
         <p class="subtitle1">{{ event.short_description }}</p>
-        <p class="content-markdown">{{ event.description | linebreaks }}</p>
+        <p class="content-markdown">{{ event.description | safe }}</p>
     </div>
     {% if event.external_link != null %}
     <a class="button" href="{{event.external_link}}">

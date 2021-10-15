@@ -18,7 +18,7 @@
     </header>
 
     <div class="body p-width">
-        <p class="content-markdown">{{ nyhet.description | linebreaks }}</p>
+        <p class="content-markdown">{{ nyhet.description | safe }}</p>
     </div>
     {% if nyhet.external_link_1 != null %}
     <a class="button" href="{{nyhet.external_link_1}}">
