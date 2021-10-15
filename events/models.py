@@ -3,6 +3,7 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
+from djrichtextfield.models import RichTextField
 import datetime
 
 
@@ -26,7 +27,7 @@ class Event(models.Model):
 
     title = models.CharField(max_length=200, unique=True)
     short_description = models.TextField(blank=True, null=True)
-    description = models.TextField()
+    description = RichTextField()
     location = models.CharField(max_length=50, blank=True, null=True)
     event_start_time = models.DateTimeField()
     event_end_time = models.DateTimeField(blank=True, null=True)
