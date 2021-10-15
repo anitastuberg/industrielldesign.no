@@ -27,8 +27,15 @@ class Company(models.Model):
         verbose_name_plural = "Bedrifter"
 
 
+class BulletPoints():
+    title = models.CharField(max_length=100)
+    point = models.ExpressionList
+
+
+
 class Job(models.Model):
     title = models.CharField(max_length=100)
+    intro = models.TextField(max_length=200, null=True)
     deadline = models.DateTimeField()
     description = models.TextField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
