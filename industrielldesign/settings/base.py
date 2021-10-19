@@ -67,8 +67,8 @@ INSTALLED_APPS = [
     'printqueue',
     # Third party apps:
     'imagekit',
-    'storages',
-    'djrichtextfield'
+    'storages'
+
 
 ]
 
@@ -158,16 +158,3 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 django_heroku.settings(locals())
-
-
-#Config for rich text field
-DJRICHTEXTFIELD_CONFIG = {
-    'js': ['//cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'],
-    'init_template': 'djrichtextfield/init/tinymce.js',
-    'settings': {
-        'menubar': False,
-        'plugins': 'lists',
-        'toolbar': 'bold italic | bullist numlist | removeformat',
-        'width': 700
-    }
-}
