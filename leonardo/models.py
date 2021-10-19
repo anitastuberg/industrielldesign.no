@@ -3,7 +3,6 @@ from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
-from djrichtextfield.models import RichTextField
 import datetime
 
 
@@ -65,7 +64,7 @@ class Kontaktperson(models.Model):
 
 class Nyhet(models.Model):
     title = models.CharField(max_length=250, unique=True)
-    description = RichTextField()
+    description = models.TextField()
     post_time = models.DateTimeField()
     image = ProcessedImageField(upload_to='nyheter/', processors=[ResizeToFit(2000, 2000, False)], format='JPEG',
                                 options={'quality': 85})
