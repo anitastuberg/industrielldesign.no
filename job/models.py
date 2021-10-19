@@ -1,10 +1,8 @@
 from django.db import models
-from djrichtextfield import widgets
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 from django.core.validators import RegexValidator
 from django.template.defaultfilters import slugify
-from djrichtextfield.models import RichTextField
 
 
 class JobFilter(models.Model):
@@ -32,7 +30,7 @@ class Company(models.Model):
 class Job(models.Model):
     title = models.CharField(max_length=100)
     deadline = models.DateTimeField()
-    description = RichTextField()
+    description = models.TextField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
     filters = models.ManyToManyField(JobFilter)
     external_link_1 = models.CharField(max_length=150, null=True, blank=True)

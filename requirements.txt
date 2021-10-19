@@ -10,4 +10,3 @@ boto3
 django-storages
 whitenoise
 simplejson
-django-richtextfield

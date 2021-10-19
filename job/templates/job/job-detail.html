@@ -17,8 +17,7 @@
         {% endwith %}
         <p class="caption"></p>
         <br>
-        <div>{{job.description|safe}}</div>
-        
+        <p class="p-width white-space-wrap">{{job.description|linebreaks}}</p>
         {% if job.external_link_1 != null %} 
         <a href="{{job.external_link_1}}" class="button" id="job-link-button">
             <span>{{job.link_text_1}}</span>
