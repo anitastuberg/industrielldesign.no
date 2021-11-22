@@ -60,3 +60,6 @@ def nyhet(request, nyhet_slug):
 
 def utleie(request):
     return render(request, 'leonardo/utleie.html', {})
+
+def linktree(request):
+    return render(request, 'leonardo/linktree.html', {})

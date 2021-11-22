@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('student.urls')),
     path('', include('leonardo.urls')),
     path('', include('printqueue.urls')),
+
 ]
 
 if settings.DEBUG:
