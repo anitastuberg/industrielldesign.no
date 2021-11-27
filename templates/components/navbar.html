@@ -10,31 +10,24 @@
     </div>
     <ul class="item-list">
         <li id="close-nav" class="nav-item"><img src="{% static 'img/icons/close_white.svg' %}" alt="close"></li>
-        <li class="nav-item dropdown {% if 'student' in request.path %}selected{% endif %}">
-            <span>Student</span>
-            <ul>
+        <li class="nav-item dropdown {% if 'jobb' in request.path %}selected{% endif %}">
+                <li><a class="nav-item {% if 'jobb' in request.path %}selected{% endif %}"
+                        href="{% url 'job' %}">Karriere</a></li>
+                
+                <!-- 
+                        Commented out because blank
                 <li><a class="nav-item {% if 'tips' in request.path %}selected{% endif %}" href="{% url 'tips' %}">Tips
                         og triks</a></li>
                 <li class="{% if 'fag' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'courses' %}">Fag</a></li>
-                {% if request.user.is_authenticated %}
-                <li class="{% if 'printer' in request.path %}selected{% endif %}"><a class="nav-item"
-                        href="{% url 'printer' %}">Printer</a></li>
-                {% endif %}
                 <li class="{% if 'boksalg' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'books' %}">Boksalg</a></li>
-                <li><a class="nav-item {% if 'jobb' in request.path %}selected{% endif %}"
-                        href="{% url 'job' %}">Jobb</a></li>
-                
-                <!-- 
-                        Commented out because blank
-                        <li class="{% if 'ny-student' in request.path %}selected{% endif %}"><a class="nav-item"
+                <li class="{% if 'ny-student' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'ny-student' %}" disabled="">Ny student?</a></li>
                 <li class="{% if 'utveksling' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'utveksling' %}">Utveksling</a></li>
                 <li class="{% if 'klassetur' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'klassetur' %}">Klasseturer</a></li> -->
-            </ul>
         </li>
 
         <li class="nav-item dropdown {% if 'leonardo' in request.path %}selected{% endif %}">
@@ -48,11 +41,14 @@
                         href="{% url 'thesign' %}">TheSign</a></li>
                 <li class="{% if 'om-leonardo' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'about' %}">Om oss</a></li>
-                <li class="{% if 'utleie' in request.path %}selected{% endif %}"><a class="nav-item"
-                        href="{% url 'utleie' %}">Leie Soundbox</a></li>
+                <!-- Not in use
+                        <li class="{% if 'utleie' in request.path %}selected{% endif %}"><a class="nav-item"
+                        href="{% url 'utleie' %}">Leie Soundbox</a></li> -->
                 {% if request.user.is_authenticated %}
                 <li class="{% if 'vedtekter' in request.path %}selected{% endif %}"><a class="nav-item"
                         href="{% url 'vedtekter' %}">Vedtekter</a></li>
+                <li class="{% if 'printer' in request.path %}selected{% endif %}"><a class="nav-item"
+                        href="{% url 'printer' %}">Printer</a></li>
                 {% endif %}
             </ul>
         </li>
@@ -62,6 +58,7 @@
 
         <li><a class="nav-item {% if 'arrangementer' in request.path %}selected{% endif %}"
                 href="{% url 'all_events' %}">Arrangementer</a></li>
+        
 
         {% comment %} <li><a class="nav-item {% if 'print' in request.path %}selected{% endif %}"
                 href="{% url 'all_events' %}">Print</a></li> {% endcomment %}
