@@ -14,5 +14,7 @@ urlpatterns = [
     path('leonardo/vedtekter/', views.vedtekter, name='vedtekter'),
     path('leonardo/thesign/', views.thesign, name='thesign'),
     path('leonardo/utleie/', views.utleie, name='utleie'),
+    path('leonardo/linktree/', views.linktree, name='linktree'),
+
     path('folketinget', TemplateView.as_view(template_name="leonardo/folketinget.html"), name="folketinget")
 ]

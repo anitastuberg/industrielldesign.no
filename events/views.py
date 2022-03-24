@@ -74,8 +74,16 @@ def stringBuilder(event):
         open_for_string = "Alle IPD-studenter og alumni"
     elif event.class_1 and event.class_2 and event.class_3 and event.class_4 and event.class_4 and event.class_5:
         open_for_string = "Alle IPD-studenter"
+    elif event.class_2 and event.class_3 and event.class_4 and event.class_4 and event.class_5:
+        open_for_string = "2. - 5. klasse"
+    elif event.class_1 and event.class_2 and event.class_3 and event.class_4:
+        open_for_string = "1. - 4. klasse"      
     elif event.class_3 and event.class_4 and event.class_4 and event.class_5:
         open_for_string = "3. - 5. klasse"
+    elif event.class_2 and event.class_3 and event.class_4:
+        open_for_string = "2. - 4. klasse"   
+    elif event.class_1 and event.class_2 and event.class_3:
+        open_for_string = "1. - 3. klasse"  
     elif event.class_1 and event.class_2:
         open_for_string = "1. og 2. klasse"
     elif event.class_4 and event.class_5:
