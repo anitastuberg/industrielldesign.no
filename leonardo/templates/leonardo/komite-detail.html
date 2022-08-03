@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
-{% block page_title %}{{komite.name}}{% endblock page_title %}
+{% block page_title %}{{komite.name}}{{komite.image}}{% endblock page_title %}
 
 {% block content %}
     {% include 'components/navbar.html' %}
     <div id="komite-detail" class="container nav">
         <h1>{{ komite.name }}</h1>
         <p class="p-width break">{{ komite.description }}</p>
+        <div>{{komite.image}}</div>
     </div>
 
 {% endblock content %}
