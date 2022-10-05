@@ -1161,7 +1161,7 @@ footer {
   justify-content: space-around;
   width: 100%;
   min-height: 200px;
-  position: fixed;
+  position: relative;
   bottom: 0;
   z-index: -1;
   background-color: #1A1A1A;
@@ -2438,6 +2438,9 @@ table th {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 }
+/*#komite-detail {
+  display: inline-flex;
+}*/
 
 #thesign .box-container {
   display: -ms-grid;
