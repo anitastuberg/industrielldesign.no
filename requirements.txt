@@ -4,7 +4,7 @@ django-imagekit
 mixer
 gunicorn
 django-heroku
-psycopg2-binary>=2.8,<2.9
+psycopg2-binary>=2.8,<3.0
 dj-database-url
 boto3
 django-storages
