@@ -1164,8 +1164,8 @@ footer {
   position: relative;
   bottom: 0;
   z-index: -1;
-  background-color: #1A1A1A;
-  color: #757573;
+  background-color: #0A95b5 /*#1A1A1A*/ ;
+  color: black#757573;
   padding: 2rem;
   max-width: 100vw;
 }
@@ -2438,9 +2438,23 @@ table th {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 }
-/*#komite-detail {
-  display: inline-flex;
-}*/
+/* få tekst og komitebilde ved siden av hverandre */
+#komite-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /*gap: 15px;*/
+}
+.tekst-flex{
+  width: 47vw;
+}
+.bilde-flex{
+  width: 47vw;
+}
+#bildesatan{
+  width: 100%;
+}
+/* endring ferdig*/
 
 #thesign .box-container {
   display: -ms-grid;
@@ -2834,5 +2848,6 @@ table th {
   background-position-x: center;
   background-position-y: center;
 }
+
 
 /*# sourceMappingURL=main.css.map */
