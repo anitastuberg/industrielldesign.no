@@ -5,9 +5,14 @@
 {% block content %}
     {% include 'components/navbar.html' %}
     <div id="komite-detail" class="container nav">
-        <h1>{{ komite.name }}</h1>
-        <p class="p-width break">{{ komite.description }}</p>
-        <img src="{{ komite.image.url }}" alt="{{ komite.name }}">
+        <div id="komite-text" class="text-flex">
+            <h1>{{ komite.name }}</h1>
+            <p class="p-width break">{{ komite.description }}</p>
+        </div>
+        <div id="komite-bilde" class="bilde-flex">
+            <img src="{{ komite.image.url }}" alt="{{ komite.name }}">
+        </div>
+
     </div>
 
 {% include 'components/footer.html' %}
