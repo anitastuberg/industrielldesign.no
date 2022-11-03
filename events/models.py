@@ -52,6 +52,7 @@ class Event(models.Model):
     thumbnail = ImageSpecField(source='image', processors=[
         ResizeToFill(300, 300, False)], format='JPEG',
         options={'quality': 100})
+    expo = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
