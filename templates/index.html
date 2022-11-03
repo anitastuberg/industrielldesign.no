@@ -33,7 +33,7 @@
 
         <h4>Kommende hendelser</h4><br>
         <div class="events box-container">
-            {% for event in events %} {% include 'components/event-component.html' with event=event %} {% endfor %}
+            {% for event in events %}{% if event.expo != True %}{% include 'components/event-component.html' with event=event %}{% endif %}{% endfor %}
         </div>
         <br>
         <a href="{% url 'all_events' %}" class="subtitle1 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
