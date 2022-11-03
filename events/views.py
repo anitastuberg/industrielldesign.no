@@ -19,9 +19,9 @@ from .forms import CreateEventForm
 
 def all_events(request):
     now = timezone.now()
-    upcoming = Event.objects.annotate().filter(event_start_time__gte=now) #kommende events, er sortert etter dato i database
+    upcoming = Event.objects.annotate().filter(event_start_time__gte=now).exclude(expo=True) #kommende events, er sortert etter dato i database
 
-    past = Event.objects.annotate().filter(event_start_time__lt=now).reverse() #tidligere events, reverseres for å få eldste sist
+    past = Event.objects.annotate().filter(event_start_time__lt=now).reverse().exclude(expo=True) #tidligere events, reverseres for å få eldste sist
     context = { #pusher til to variabler, hentes inn i all-events.html
         'past_events': past,
         'upcoming_events': upcoming

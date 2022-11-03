@@ -40,5 +40,6 @@ class CreateEventForm(forms.ModelForm):
             'waiting_list',
             'external_link',
             'link_text',
-            'image'
+            'image',
+            'expo'
         ]
