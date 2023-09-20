@@ -63,3 +63,6 @@ def utleie(request):
 
 def linktree(request):
     return render(request, 'leonardo/linktree.html', {})
+
+def prikksystem(request):
+    return render(request, 'leonardo/prikksystem.html', {})
