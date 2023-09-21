@@ -497,12 +497,11 @@ p a {
 
   #main-navigation .nav-item {
     position: relative;
-    /*text-transform: uppercase;*/
+    text-transform: uppercase;
     cursor: pointer;
     -webkit-transition: color 200ms ease-in-out;
     transition: color 200ms ease-in-out;
     color: #757573;
-    letter-spacing: .04em;
   }
 
   #main-navigation .nav-item:hover {
@@ -1150,7 +1149,7 @@ a.button {
   padding-left: 2.3rem;
   cursor: pointer;
 }
-/*
+
 footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1165,7 +1164,7 @@ footer {
   position: relative;
   bottom: 0;
   z-index: -1;
-  background-color: #0A95b5 /*#1A1A1A*/ /*;
+  background-color: #0A95b5 /*#1A1A1A*/ ;
   color: black#757573;
   padding: 2rem;
   max-width: 100vw;
@@ -1178,171 +1177,6 @@ footer img {
 
 footer #sit-logo {
   height: 48px;
-}*/
-#footer {
-  /*background-color: #0996B4;*/
-  /*background-image: url(img/footer_background.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  */
-  position: relative;
-  bottom: -5vh;
-  
-  /*
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-self: flex-end;
-  */
-  
-  color: #105867;
-  font-weight: bolder;
-  font-size: 16px;
-  margin-top: 10vh;
-  background-color: #1F96B4;
-}
-
-#footer_mail {
-  color: #105867;
-  text-decoration: none;
-  font-size: 2.4vmin;
-  font-weight: 600;
-}
-
-#footer_mail:hover {
-  color: #217383;
-}
-
-#footer_content {
-  display: flex;
-  flex-direction: column;
-}
-
-#footer_top {
-  height: 30vh;
-  background: url('../img/footer/background_cropped.png') bottom no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 0.9em 0.9em 0em 0.9em;
-}
-
-#footer_bottom {
-  background-color: #105867;
-  height: 6vh;
-  color: #1F96B4;
-  
-}
-
-#footer_send_tips {
-  color:#1F96B4;
-  font-size: 12px;
-  text-decoration: none;
-  font-weight: normal;
-  margin-left: 2vw;
-}
-
-#footer_send_tips:hover {
-  color:#40aac5;
-}
-
-footer p {
-  
-  margin: 1vh 0vh 1vh 0vh;
-  font-weight: normal;
-  font-size: 2.3vmin;
-  color: white;
-  
-}
-
-
-
-#footer_contact {
-  display: flex;
-  width: 40vw;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-
-#sponsor {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 1vh;
-  column-gap: 2%;
-  width: 33.4vw;
-  margin-top: 20vh;
-}
-
-#spons_text {
-  color: #105867;
-  font-weight: 600;
-  margin-left: 8vw;
-}
-
-
-#social {
-  display: flex;
-  flex-direction: row;
-  align-self: flex-end;
-  align-content: flex-end;
-  gap: 1vw;
-  margin-bottom: -30vh;
-  margin-right: 7vw;
-}
-
-#variant {
-  margin-top: -2vh;
-  height: 5vh;
-  margin-left: 8vw;
-}
-
-
-@media (max-width: 760px) {
-  #footer_top {
-      background-image: none;
-      flex-direction: column;
-      justify-content: center;
-      width: 70vw;
-      min-width: 200px;
-      height: 33vh;
-      align-self: center;
-      padding: 0;
-      text-align: center;
-      margin-top: 4vh;
-      gap: 2vh;
-  }
-
-  #social {
-      align-self: center;
-      margin: auto;
-      margin-top: 2vh;
-  }
-
-  #footer_contact {
-      justify-content: flex-start;
-      align-items: center;
-      height: 30vh;
-      margin: auto;
-  }
-
-  #sponsor {
-      justify-content: center;
-      margin: auto;
-      margin-bottom: 3vh;
-  }
-
-  #spons_text {
-      margin-left: 0;
-  }
-
-  #variant {
-      margin-left: 0;
-  }
-
 }
 
 .course-search {
