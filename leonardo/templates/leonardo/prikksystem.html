@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_title %}Prikksystem{% endblock %}
+
+{% block content %}
+    {% include 'components/navbar.html' %}
+    <div class="container nav">
+        <br><br>
+        <table class="prikksystem" id="prikksystem">
+            <h1>Prikksystem</h1>
+            <tr>
+                <th>Navn</th>
+                <th>Antall prikker</th>
+                <th>Begrunnelse på nylig</th>
+            </tr>
+            <tr>
+                <td>Kaisa</td>
+                <td>1</td>
+                <td>For sen til møtet</td>
+            </tr>
+            <tr>
+                <td>Amalie</td>
+                <td>0</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Silje</td>
+                <td>3</td>
+                <td>Ikke møtt opp uten beskjed</td>
+            </tr>
+            <tr>
+                <td>Markus</td>
+                <td>0</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Christian</td>
+                <td>0</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Johanne</td>
+                <td>0</td>
+                <td></td>
+            </tr>
+        </table>
+        <div>
+            <br><br><br>
+            <h3>Regler</h3>
+            <br>
+            <ul>
+                <li>For sen :   1 prikk</li>
+                <li>Ikke møtt opp:  3 prikk</li>
+            </ul>
+        </div>
+         </div>
+
+         <script>
+
+         </script>
+    </div>
+    <script src="{%static 'js/prikksystem.js'%}"></script>     
+{% include 'components/footer.html' %}
+{% endblock %}
