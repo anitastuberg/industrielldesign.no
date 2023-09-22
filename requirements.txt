@@ -1,5 +1,5 @@
 django==2.2.24
-Pillow
+Pillow==9.5.0
 django-imagekit
 mixer
 gunicorn
