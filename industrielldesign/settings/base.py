@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'nb'
 
-USE_TZ = True
+USE_TZ = False
 
 TIME_ZONE = 'Europe/Oslo'
 
