@@ -7,6 +7,12 @@
     <img id="tekna-logo" src="{% static 'img/spons/variant-logo.svg' %}" alt="Tekna-logo">
 </footer>-->
 <style>
+    body{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
     #footer {
     /*background-color: #0996B4;*/
     /*background-image: url(img/footer_background.svg);
@@ -15,6 +21,10 @@
     */
     position: relative;
     bottom: -5vh;
+    margin-top: auto;
+
+
+    
     
     /*
     display: flex;
@@ -44,6 +54,8 @@
 #footer_content {
     display: flex;
     flex-direction: column;
+    /*usikker på om dette vil hjelpe?
+    width: 100%;*/
 }
 
 #footer_top {
@@ -178,15 +190,15 @@ footer p {
         <div id="footer_top">
             <div id="footer_contact">
                 <span style="font-size: 20px;">KONTAKT OSS </span>
-                <p> Leonardo
+                <p> Leonardo Linjeforening
                     <br>
-                    Adresse 1
+                    Kolbjørn Hejes vei 2B
                     <br>
-                    1234 Tronhdeim
-                    <br>
-                    test@ntnu.no
+                    7491 Trondheim
+                    
+                    
                 </p>
-                <a id="footer_mail" href="mailto:leonardo@leonardo.no">leonardo@leonardo.no</a>
+                <a id="footer_mail" href="mailto:leonardo@leonardo.no">kontakt@industrielldesign.no</a>
 
                 <div id="social">
                     <!--Instagram-->
@@ -227,7 +239,7 @@ footer p {
     </div>
     
     <div id="footer_bottom">
-        <a id="footer_send_tips" href="mailto:leonardo@leonardo.no" color="white">Hvis du finner feil på nettsiden, eller har andre innspill, ta gjerne kontakt! </a>
+        <a id="footer_send_tips" href="mailto:websjef@industrielldesign.no" color="white">Hvis du finner feil på nettsiden, eller har andre innspill, ta gjerne kontakt! </a>
     </div>
 
     
