@@ -1219,7 +1219,7 @@ footer #sit-logo {
 
 #footer_top {
   height: 30vh;
-  background: url('../img/footer/background_cropped.png') bottom no-repeat;
+  /*background: url('../img/footer/background_cropped.png') bottom no-repeat;*/
   background-size: cover;
   display: flex;
   flex-direction: row;
